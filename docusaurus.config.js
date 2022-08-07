@@ -39,14 +39,14 @@ const config = {
 					// Please change this to your repo.
 					// Remove this to remove the "edit this page" links.
 					editUrl:
-						"https://github.com/cross-seed/cross-seed.org/tree/master/",
+						"https://github.com/cross-seed/cross-seed.org/edit/master/",
 				},
 				// blog: {
 				// 	showReadingTime: true,
 				// 	// Please change this to your repo.
 				// 	// Remove this to remove the "edit this page" links.
 				// 	editUrl:
-				// 		"https://github.com/cross-seed/cross-seed.org/tree/master/",
+				// 		"https://github.com/cross-seed/cross-seed.org/edit/master/",
 				// },
 				theme: {
 					customCss: require.resolve("./src/css/custom.css"),
