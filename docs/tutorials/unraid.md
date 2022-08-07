@@ -10,7 +10,7 @@ To install in Unraid, the easiest setup will be to use the
 app. Once the app is installed, go to the **App** tab and search for
 `cross-seed`. After you get no results, click on the **Click Here To Get More
 Results From DockerHub** link. From there you should be able to install the
-`mmgoodnow/cross-seed` image from the list.
+`crossseed/cross-seed` image from the list.
 
 ## Configuration
 

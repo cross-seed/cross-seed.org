@@ -66,7 +66,7 @@ service:
 version: "2.1"
 services:
     cross-seed:
-        image: mmgoodnow/cross-seed
+        image: crossseed/cross-seed
         container_name: cross-seed
         user: 1000:1000 # optional but recommended
         ports:

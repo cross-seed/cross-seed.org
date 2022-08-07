@@ -11,7 +11,7 @@ Here we will install `cross-seed` and run our first search.
 ### with Docker (recommended)
 
 ```
-docker run mmgoodnow/cross-seed --version
+docker run crossseed/cross-seed --version
 ```
 
 ### with `npm`
@@ -132,7 +132,7 @@ service:
 version: "2.1"
 services:
     cross-seed:
-        image: mmgoodnow/cross-seed
+        image: crossseed/cross-seed
         container_name: cross-seed
         user: 1000:1000 # optional but recommended
         volumes:
