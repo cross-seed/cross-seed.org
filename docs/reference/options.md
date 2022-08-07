@@ -631,6 +631,5 @@ searchCadence: "2w",
 searchCadence: "4 weeks",
 ```
 
-[pr]:
-	https://github.com/cross-seed/cross-seed/tree/master/website/docs/basics/options.md
+[pr]: https://github.com/cross-seed/cross-seed.org/tree/master/docs/basics/options.md
 [ms]: https://github.com/vercel/ms#examples
