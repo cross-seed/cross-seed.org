@@ -73,21 +73,8 @@ info: [server] Server is running on port 2468, ^C to stop.
 
 ## Automation/Scheduling
 
-If you would like to schedule a periodic scan, you can do this with the "User Scripts" plugin for Unraid.
+`cross-seed` runs in [Daemon mode](../basics/daemon.md) by default on Unraid. 
 
-Go to the "Apps" tab and search for "user scripts" by Squid. Click on "Install" to install the plugin.
-
-Now, go to the "Settings" tab. Under "User Utilities", find and click on "User Scripts".
-
-On the bottom of the page, click on the "ADD NEW SCRIPT" button. Name the script to whatever suits your fancy.
-
-On the new script, click on the gear icon and then click on "Edit Script".
-
-In the text box, paste the following code:
-
-```
-#!/bin/bash
-docker exec -i cross-seed cross-seed search
-```
-
-Click on "SAVE CHANGES". You can add a schedule by selecting an option in the dropdown. Click "APPLY" on the bottom of the page.
+If you would like to schedule a periodic scan of your library, set the [`searchCadence option`](../reference/options.md#searchcadence).
+If you would like to set up RSS scans, set the [`rssCadence option`](../reference/options.md#rsscadence).
+If you would like to automatically check for cross-seeds when a download finishes, learn how to [set up automatic searches for finished downloads](../basics/daemon#set-up-automatic-searches-for-finished-downloads).
