@@ -122,7 +122,7 @@ Docker container.
 -   `/config` - config dir (this follows a common Docker convention)
 -   `/torrents` - your torrent input dir (usually set to your rtorrent session
     dir, or your qBittorrent BT_backup dir)
--   `/output` - people sometimes use this as a watch folder. If you use
+-   `/cross-seeds` - the output dir. People sometimes point this at a watch folder. If you use
     [autotorrent2][at2] you can set it up to read from this folder.
 
 Create or open your existing `docker-compose.yml` file and add the `cross-seed`
@@ -138,7 +138,7 @@ services:
         volumes:
             - /path/to/config/folder:/config
             - /path/to/rtorrent_sess:/torrents:ro # note that this volume can and should be mounted read-only
-            - /path/to/output/folder:/output
+            - /path/to/output/folder:/cross-seeds
         command: search
 ```
 
