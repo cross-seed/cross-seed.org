@@ -613,7 +613,7 @@ If you have RSS and on-finished-download searches set up, you can run these
 
 :::
 
-#### `rssCadence` Examples (CLI)
+#### `searchCadence` Examples (CLI)
 
 ```shell
 cross-seed daemon --search-cadence "2 weeks"
@@ -621,7 +621,7 @@ cross-seed daemon --search-cadence "2w"
 
 ```
 
-#### `rssCadence` Examples (Config file)
+#### `searchCadence` Examples (Config file)
 
 ```js
 searchCadence: null, // disable the periodic search feature
