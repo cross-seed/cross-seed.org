@@ -53,13 +53,11 @@ Injection will work best if you use the `Original` content layout.
 
 :::caution Sonarr users
 
-There is a bad interaction with `cross-seed`, **qBittorrent**, and **Sonarr**,
+There is a potential problem with Season Packs and using Sonarr On Download/Upgrade OR Qbit Download Complete or search/rss/announce race conditions to trigger cross-seed if you use inject with `cross-seed`, **qBittorrent**, and **Sonarr**,
 where new cross-seeds will be added with the Sonarr category, and then get stuck
-in Sonarr's import queue. There is a
-[fix in progress](https://github.com/cross-seed/cross-seed/pull/257), which will
-work if:
+in Sonarr's import queue. The workaround is to enable which will append <category> with `.cross-seed` and:
 
--   you don't use separate **pre/post import categories** in Sonarr
+-   you don't use separate **pre/post import categories** in Sonarr OR
 -   Sonarr's **pre/post import categories** have the same **save path** in
     qBittorrent.
 
