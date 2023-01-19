@@ -178,7 +178,7 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
     ```shell
     #!/bin/sh
-    curl -XPOST http://localhost:2468/api/webhook --data-urlencode 'name=$1'
+    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "name=$1"
     ```
 
 :::tip Docker users
