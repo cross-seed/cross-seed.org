@@ -62,3 +62,18 @@ in Sonarr's import queue. The workaround is to enable which will append <categor
     qBittorrent.
 
 :::
+
+## `Transmission` setup
+:::caution
+
+Transmission is for now only available on the `next` branch
+
+:::
+
+1. Edit your config file:
+    1. Set your [`action`](../reference/options#action) option to `inject`.
+    2. Set your [`transmissionRpcUrl`](../reference/options#rtorrentrpcurl) option.
+       It should look like an `http` url that looks like
+       `http://user:pass@localhost:9091/transmission/rpc`
+2. Start or restart `cross-seed`. The logs at startup will tell you if
+   `cross-seed` was able to connect to Transmission.

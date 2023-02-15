@@ -220,6 +220,34 @@ you can separate the two commands with a semicolon:
 
 :::
 
+### Transmission
+
+1.  `cd` to the directory where `settings.json` lives.
+2.  Create a file called `transmission-cross-seed.sh`. It should contain the
+    following contents:
+
+    ```shell
+    #!/bin/sh
+    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "infoHash=$TR_TORRENT_HASH"
+    ```
+
+:::tip Docker users
+
+You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
+Docker networks.
+
+:::
+
+3.  Run the following command (this will give Transmission permission to execute
+    your script):
+
+    ```shell
+    chmod +x transmission-cross-seed.sh
+    ```
+
+4.  In the settings of Transmission: call script when download completes: `sh ./transmission-cross-seed.sh`
+
+
 ## Set up RSS
 
 Setting up RSS is very easy. Just open your config file, and set the
