@@ -240,8 +240,8 @@ rTorrent has access to this path also.
 
 :::caution Docker users
 
-Leave the `outputDir` as `/output` and use Docker to map your directory to
-`/output`.
+Leave the `outputDir` as `/cross-seeds` and use Docker to map your directory to
+`/cross-seeds`.
 
 :::
 
