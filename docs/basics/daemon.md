@@ -247,6 +247,34 @@ Docker networks.
 
 4.  In the settings of Transmission: call script when download completes: `sh ./transmission-cross-seed.sh`
 
+### Deluge
+
+1.  Create a file called `deluge-cross-seed.sh`. It should contain the
+    following contents:
+
+    ```shell
+    #!/bin/sh
+    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "name=$2"
+    ```
+
+:::tip Docker users
+
+You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
+Docker networks.
+
+:::
+
+2.  Run the following command (this will give Deluge permission to execute your
+    script):
+
+    ```shell
+    chmod +x deluge-cross-seed.sh
+    ```
+
+3.  In the settings of **Deluge**:
+    * Enable the Execute plugin
+    * Under **Add Command** select event of **Torrent Complete** and input the Command: `sh /path/to/deluge-cross-seed.sh`
+    * Press **Add** and **Apply**
 
 ## Set up RSS
 
