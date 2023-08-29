@@ -17,12 +17,12 @@ cases. For more complex cases,
 1. Make sure **rTorrent** has access to your `outputDir` (if Docker, make sure
    they're mapped to the same path).
 2. Edit your config file:
-   1. Set your [`action`](../reference/options#action) option to `inject`.
-   2. Set your [`rtorrentRpcUrl`](../reference/options#rtorrentrpcurl) option.
-      It should look like an `http` url that looks like
-      `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
-      installed). See the [reference](../reference/options#rtorrentrpcurl) for
-      more details.
+	1. Set your [`action`](../reference/options#action) option to `inject`.
+	2. Set your [`rtorrentRpcUrl`](../reference/options#rtorrentrpcurl) option.
+	   It should look like an `http` url that looks like
+	   `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
+	   installed). See the [reference](../reference/options#rtorrentrpcurl) for
+	   more details.
 3. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to rTorrent.
 
@@ -45,17 +45,20 @@ Injection will work best if you use the `Original` content layout.
 :::
 
 2. Edit your config file:
-   1. Set your [`action`](../reference/options#action) option to `inject`.
-   2. Set your [`qbittorrentUrl`](../reference/options#qbittorrenturl) option.
-      It should look like an `http` url that looks like
-      `http://user:pass@localhost:8080(/qbittorrent)` See the
-      [reference](../reference/options#qbittorrenturl) for more details.
+	1. Set your [`action`](../reference/options#action) option to `inject`.
+	2. Set your [`qbittorrentUrl`](../reference/options#qbittorrenturl) option.
+	   It should look like an `http` url that looks like
+	   `http://user:pass@localhost:8080(/qbittorrent)` See the
+	   [reference](../reference/options#qbittorrenturl) for more details.
 
 :::caution Sonarr users
 
-There is a potential problem with Season Packs and using Sonarr On Download/Upgrade OR Qbit Download Complete or search/rss/announce race conditions to trigger cross-seed if you use inject with `cross-seed`, **qBittorrent**, and **Sonarr**,
+There is a potential problem with Season Packs and using Sonarr On Download/Upgrade OR Qbit Download
+Complete or search/rss/announce race conditions to trigger cross-seed if you use inject
+with `cross-seed`, **qBittorrent**, and **Sonarr**,
 where new cross-seeds will be added with the Sonarr category, and then get stuck
-in Sonarr's import queue. The workaround is to enable the `duplicateCategories` option which will append your category with `.cross-seed` and:
+in Sonarr's import queue. The workaround is to enable the `duplicateCategories` option which will
+append your category with `.cross-seed` and:
 
 - you don't use separate **pre/post import categories** in Sonarr OR
 - Sonarr's **pre/post import categories** have the same **save path** in
@@ -72,9 +75,9 @@ Transmission is for now only available on the `next` branch
 :::
 
 1. Edit your config file:
-   1. Set your [`action`](../reference/options#action) option to `inject`.
-   2. Set your [`transmissionRpcUrl`](../reference/options#rtorrentrpcurl) option.
-      It should look like an `http` url that looks like
-      `http://user:pass@localhost:9091/transmission/rpc`
+	1. Set your [`action`](../reference/options#action) option to `inject`.
+	2. Set your [`transmissionRpcUrl`](../reference/options#rtorrentrpcurl) option.
+	   It should look like an `http` url that looks like
+	   `http://user:pass@localhost:9091/transmission/rpc`
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to Transmission.
