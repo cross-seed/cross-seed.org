@@ -41,7 +41,7 @@ Applications app. Check out the [Unraid guide](../tutorials/unraid) for details.
 
 :::tip
 
-Docker users can skip ahead to [Scaling Up](#scaling-up).
+Docker users can skip ahead to [Scaling Up](#with-docker).
 
 :::
 
