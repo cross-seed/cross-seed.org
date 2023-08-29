@@ -16,7 +16,7 @@ docker run crossseed/cross-seed --version
 
 ### with `npm`
 
-Requires [node](https://nodejs.org/en/download/) 14 or greater.
+Requires [node](https://nodejs.org/en/download/) 16 or greater.
 
 ```shell
 npm install -g cross-seed
@@ -25,7 +25,7 @@ cross-seed --version
 
 ### with `yarn`
 
-Requires [node](https://nodejs.org/en/download/) 14 or greater.
+Requires [node](https://nodejs.org/en/download/) 16 or greater.
 
 ```shell
 yarn global add cross-seed
@@ -119,11 +119,11 @@ With Docker, any paths that you would provide as command-line arguments or in
 the config file should stay hardcoded, and instead you can mount volumes to the
 Docker container.
 
--   `/config` - config dir (this follows a common Docker convention)
--   `/torrents` - your torrent input dir (usually set to your rtorrent session
-    dir, or your qBittorrent BT_backup dir)
--   `/cross-seeds` - the output dir. People sometimes point this at a watch folder. If you use
-    [autotorrent2][at2] you can set it up to read from this folder.
+- `/config` - config dir (this follows a common Docker convention)
+- `/torrents` - your torrent input dir (usually set to your rtorrent session
+  dir, or your qBittorrent BT_backup dir)
+- `/cross-seeds` - the output dir. People sometimes point this at a watch folder. If you use
+  [autotorrent2][at2] you can set it up to read from this folder.
 
 Create or open your existing `docker-compose.yml` file and add the `cross-seed`
 service:
@@ -131,15 +131,15 @@ service:
 ```yaml
 version: "2.1"
 services:
-    cross-seed:
-        image: crossseed/cross-seed
-        container_name: cross-seed
-        user: 1000:1000 # optional but recommended
-        volumes:
-            - /path/to/config/folder:/config
-            - /path/to/rtorrent_sess:/torrents:ro # note that this volume can and should be mounted read-only
-            - /path/to/output/folder:/cross-seeds
-        command: search
+  cross-seed:
+    image: crossseed/cross-seed
+    container_name: cross-seed
+    user: 1000:1000 # optional but recommended
+    volumes:
+      - /path/to/config/folder:/config
+      - /path/to/rtorrent_sess:/torrents:ro # note that this volume can and should be mounted read-only
+      - /path/to/output/folder:/cross-seeds
+    command: search
 ```
 
 #### Create a config file
@@ -155,11 +155,11 @@ scan of your torrent directory!
 
 `cross-seed` has two subcommands: `search` and `daemon`.
 
--   `search` (used above) will scan each torrent you provide and look for
-    cross-seeds, then exit.
+- `search` (used above) will scan each torrent you provide and look for
+  cross-seeds, then exit.
 
--   `daemon` will run forever, and can be configured to run searches
-    periodically, watch RSS, and search for newly finished downloads.
+- `daemon` will run forever, and can be configured to run searches
+  periodically, watch RSS, and search for newly finished downloads.
 
 If you're satisfied by just running `cross-seed search` every once in a while,
 and then using [`autotorrent2`][at2] to inject these into your client, then
