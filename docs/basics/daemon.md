@@ -212,11 +212,19 @@ Docker networks.
 :::tip
 
 If you are already using the **Run external program on torrent completion** box,
-you can separate the two commands with a semicolon:
+you should create a shell script with your commands:
 
 ```shell
-    oldcommand %N; curl -XPOST http://localhost:2468/api/webhook --data-urlencode "name=%N"
+    #!/bin/bash
+    oldcommand ${1}
+    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "name=${1}"
 ```
+
+Then use the following in qBittorrent:
+```shell
+    /bin/bash ./qBittorrent/yourscriptname.sh "%N"
+```
+
 
 :::
 
