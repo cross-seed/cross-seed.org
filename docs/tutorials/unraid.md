@@ -14,20 +14,21 @@ app. Once the app is installed, go to the **App** tab and search for
 
 ### Volume Mappings
 
-Cross-seed needs to access 3 directories: an input directory with torrent files,
-an output directory for cross-seed to save new torrent files, and a config
+Cross-seed **needs** to access 3 directories: an input directory with torrent files,
+an output directory for cross-seed to save new torrent files (for `action: 'save',`), and a config
 directory.
 
-| Config Type | Name   | Container Path | Host Path                           | Access Mode |
-| ----------- | ------ | -------------- | ----------------------------------- | ----------- |
-| Path        | Config | /config        | /mnt/user/appdata/cross-seed        | Read/Write  |
-| Path        | Input  | /torrents      | /path/to/torrent/client/session/dir | Read Only   |
-| Path        | Output | /output        | /path/to/torrent/client/watch/dir   | Read/Write  |
+| Config Type     | Name   | Container Path                       | Host Path                           | Access Mode |
+| --------------- | ------ | ------------------------------------ | ----------------------------------- | ----------- |
+| Path            | Config | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
+| Path            | Input  | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
+| Path            | Output | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
+| Path (Optional) | Data   | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 
 ### Port Mappings
 
-Cross-seed can listen for HTTP requests for when a torrent finishes downloading
-or you receive an announce.
+`cross-seed` can listen for an HTTP request from when a torrent finishes downloading
+or you receive an `announce`.
 
 :::tip
 
@@ -73,8 +74,8 @@ info: [server] Server is running on port 2468, ^C to stop.
 
 ## Automation/Scheduling
 
-`cross-seed` runs in [Daemon mode](../basics/daemon.md) by default on Unraid. 
+`cross-seed` runs in [Daemon mode](../basics/daemon.md) by default on Unraid.
 
-If you would like to schedule a periodic scan of your library, set the [`searchCadence option`](../reference/options.md#searchcadence).
-If you would like to set up RSS scans, set the [`rssCadence option`](../reference/options.md#rsscadence).
+If you would like to schedule a periodic scan of your library, set the [`searchCadence option`](../basics/options.md#searchcadence).
+If you would like to set up RSS scans, set the [`rssCadence option`](../basics/options.md#rsscadence).
 If you would like to automatically check for cross-seeds when a download finishes, learn how to [set up automatic searches for finished downloads](../basics/daemon#set-up-automatic-searches-for-finished-downloads).

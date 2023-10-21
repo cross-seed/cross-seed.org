@@ -11,7 +11,7 @@ CLI > config file > defaults
 ```
 
 If you specify an option both on the command line and in the config file, the
-command line value will override the config file value.
+command line value will override the config file's value.
 
 ## Options on the command line
 
@@ -38,8 +38,8 @@ long-form option name as the `kebab-cased` variant. For example, the
 
 `cross-seed` will look for a configuration file at
 
--   **Mac**/**Linux**/**Unix**: `~/.cross-seed/config.js`
--   **Windows**: `AppData\Local\cross-seed\config.js`
+- **Mac**/**Linux**/**Unix**: `~/.cross-seed/config.js`
+- **Windows**: `AppData\Local\cross-seed\config.js`
 
 :::tip
 
@@ -61,9 +61,10 @@ configuration.
 
 The configuration file uses JavaScript syntax, which means:
 
--   Array/multi options must be enclosed in \[brackets\].
--   Strings must be enclosed in "quotation" marks.
--   Array elements and options must be separated by commas.
+- Array/multi options must be enclosed in \[brackets\].
+- Strings must be enclosed in "quotation" marks.
+- Array elements and options must be separated by commas.
+- **Windows users will need to use \\\\ for paths. (e.g. c:\\\\torrents)**
 
 :::
 
@@ -75,7 +76,11 @@ The configuration file uses JavaScript syntax, which means:
 | [`torznab`](#torznab)                               | **Required** |
 | [`torrentDir`](#torrentdir)                         | **Required** |
 | [`outputDir`](#outputdir)                           | **Required** |
+| [`dataDirs`](#datadir)                              |              |
+| [`dataCategory`](#datacategory)                     |              |
+| [`linkDir`](#linkdir)                               |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
+| [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
@@ -83,6 +88,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`action`](#action)                                 |              |
 | [`rtorrentRpcUrl`](#rtorrentrpcurl)                 |              |
 | [`qbittorrentUrl`](#qbittorrenturl)                 |              |
+| [`delugeRpcUrl`](#delugerpcurl)                     |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
 
 ## Options used in `cross-seed daemon`
@@ -93,7 +99,11 @@ The configuration file uses JavaScript syntax, which means:
 | [`torznab`](#torznab)                               | **Required** |
 | [`torrentDir`](#torrentDir)                         | **Required** |
 | [`outputDir`](#outputDir)                           | **Required** |
-| [`includeEpisodes`](#includeEpisodes)               |              |
+| [`dataDirs`](#datadir)                              |              |
+| [`dataCategory`](#datacategory)                     |              |
+| [`linkDir`](#linkdir)                               |              |
+| [`includeEpisodes`](#includeepisodes)               |              |
+| [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includeNonVideos)             |              |
 | [`fuzzySizeThreshold`](#fuzzySizeThreshold)         |              |
 | [`excludeOlder`](#excludeOlder)                     |              |
@@ -108,7 +118,7 @@ The configuration file uses JavaScript syntax, which means:
 
 ## All options
 
-### `delay`
+### `delay`\*
 
 | Config file name | CLI short form | CLI Long form     | Format             | Default |
 | ---------------- | -------------- | ----------------- | ------------------ | ------- |
@@ -143,6 +153,8 @@ delay: 20,
 
 List of Torznab URLs. You can use Jackett, Prowlarr, or indexer built-in Torznab
 implementations.
+
+This entry **MUST** be wrapped in []'s and strings inside wrapped with quotes and separated by commas.
 
 :::caution
 
@@ -199,7 +211,7 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 Point this at a directory containing torrent files. If you don't know where your
 torrent client stores its files, the table below might help.
 
-:::caution Docker users
+:::caution Docker
 
 Leave the `torrentDir` as `/torrents` and use Docker to map your directory to
 `/torrents`.
@@ -209,7 +221,7 @@ Leave the `torrentDir` as `/torrents` and use Docker to map your directory to
 | Client           | Linux                                                      | Windows                                                   | Mac                                                   |
 | ---------------- | ---------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
 | **rTorrent**     | your session directory as configured in .rtorrent.rc       | your session directory as configured in .rtorrent.rc      | your session directory as configured in .rtorrent.rc  |
-| **Deluge**       | `/home/<username>/.config/deluge/state`                    | Unknown (please submit a [PR][pr]!)                       | Unknown (please submit a [PR][pr]!)                   |
+| **Deluge**       | `/home/<username>/.config/deluge/state`                    | %APPDATA%\deluge\state                                    | Currently Not Supported Officially                    |
 | **Transmission** | `/home/<username>/.config/transmission/torrents`           | Unknown (please submit a [PR][pr]!)                       | Unknown (please submit a [PR][pr]!)                   |
 | **qBittorrent**  | `/home/<username>/.local/share/data/qBittorrent/BT_backup` | `C:\Users\<username>\AppData\Local\qBittorrent\BT_backup` | `~/Library/Application Support/qBittorrent/BT_backup` |
 
@@ -235,10 +247,10 @@ torrentDir: "/torrents",
 | `outputDir`      | `-o <dir>`     | `--output-dir <dir>` | `string` |         |
 
 `cross-seed` will store the torrent files it finds in this directory. If you use
-[Injection](../tutorials/injection) with **rTorrent**, you'll need to make sure
-rTorrent has access to this path also.
+[Injection](../tutorials/injection) you'll need to make sure that the client has
+access to this path also.
 
-:::caution Docker users
+:::caution Docker
 
 Leave the `outputDir` as `/cross-seeds` and use Docker to map your directory to
 `/cross-seeds`.
@@ -262,6 +274,160 @@ outputDir: "/tmp/output",
 outputDir: ".",
 ```
 
+### `dataDirs`
+
+| Config file name | CLI short form          | CLI long form           | Format      | Default |
+| ---------------- | ----------------------- | ----------------------- | ----------- | ------- |
+| `dataDirs`       | `--data-dirs <dirs...>` | `--data-dirs <dirs...>` | `string(s)` |         |
+
+`cross-seed` will search the paths provided (separated by spaces). If you use
+[Injection](../tutorials/injection) `cross-seed` will use the specified linkType
+to create a link to the original file in the linkDir during data-based searchs where it cannot
+find a associated torrent file.
+
+:::caution Docker
+
+You will need to mount the volume for cross-seed to have access to the data and linkDir.
+
+:::
+
+#### `dataDirs` Examples (CLI)
+
+```shell
+cross-seed search --data-dirs /data/torrents/completed
+```
+
+#### `dataDirs` Examples (Config file)
+
+```js
+dataDir: ["/data/torrents/completed"],
+
+dataDir: ["/data/torrents/completed", "/media/library/movies"],
+
+```
+
+### `dataCategory`
+
+| Config file name | CLI short form               | CLI long form | Format   | Default |
+| ---------------- | ---------------------------- | ------------- | -------- | ------- |
+| `dataCategory`   | `--data-category <category>` | N/A           | `string` |         |
+
+`cross-seed` will, when performing data-based searches with [injection](../tutorials/injection),
+use this category for all injected torrents.
+
+:::caution Docker
+
+You will need to mount the volume for cross-seed to have access to the data and linkDir.
+:::
+
+#### `dataCategory` Examples (CLI)
+
+```shell
+cross-seed search --data-category category
+```
+
+#### `dataCategory` Examples (Config file)
+
+```js
+dataCategory: "Category1",
+
+```
+
+### `linkDir`
+
+| Config file name | CLI short form     | CLI long form      | Format   | Default |
+| ---------------- | ------------------ | ------------------ | -------- | ------- |
+| `linkDir`        | `--link-dir <dir>` | `--link-dir <dir>` | `string` |         |
+
+`cross-seed` will link (symlink/hardlink) in the path provided. If you use
+[Injection](../tutorials/injection) `cross-seed` will use the specified linkType
+to create a link to the original file in the linkDir during data-based searchs where it cannot
+find a associated torrent file.
+
+:::caution Docker
+
+You will need to mount the volume for cross-seed to have access to the dataDir and linkDir.
+
+:::
+
+#### `linkDir` Examples (CLI)
+
+```shell
+cross-seed search --linkDir /data/torrents/xseeds
+```
+
+#### `linkDir` Examples (Config file)
+
+```js
+linkDir: "/links",
+
+linkDir: "/data/torrents/links",
+
+```
+
+### `linkType`
+
+| Config file name | CLI short form       | CLI long form        | Format   | Default |
+| ---------------- | -------------------- | -------------------- | -------- | ------- |
+| `linkType`       | `--link-type <type>` | `--link-type <type>` | `string` |         |
+
+`cross-seed` will link (symlink/hardlink) in the method provided. If you use
+[Injection](../tutorials/injection) `cross-seed` will use the specified linkType
+to create a link to the original file in the linkDir during data-based searchs where it cannot
+find a associated torrent file.
+
+Valid methods for linkType are `symlink` and `hardlink`.
+
+:::caution Docker
+
+You will need to mount the volume for cross-seed to have access to the dataDir and linkDir.
+:::
+
+#### `linkType` Examples (CLI)
+
+```shell
+cross-seed search --linkType hardlink
+```
+
+#### `linkType` Examples (Config file)
+
+```js
+linkType: "hardlink",
+
+linkType: "symlink",
+
+```
+
+### `matchMode`
+
+| Config file name | CLI short form        | CLI long form         | Format         | Default |
+| ---------------- | --------------------- | --------------------- | -------------- | ------- |
+| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky` | `safe`  |
+
+`cross-seed` uses two types of matching algorithms, `safe` and `risky`. `safe` is the default and matches
+based on name and size, while `risky` matches strictly on size. For media library searches `risky` is necessary
+due to the renaming of files.
+
+:::tip
+Using skipRecheck in conjunction with `risky` is not recommended, and could result in you downloading rather than cross-seeding properly.
+**Proceed with caution!**
+:::
+
+#### `matchMode` Examples (CLI)
+
+```shell
+cross-seed search --match-mode risky
+cross-seed search --match-mode safe
+```
+
+#### `matchMode` Examples (Config file)
+
+```js
+matchMode: "risky",
+
+matchMode: "safe",
+```
+
 ### `includeEpisodes`
 
 | Config file name  | CLI short form | CLI long form        | Format    | Default |
@@ -269,13 +435,14 @@ outputDir: ".",
 | `includeEpisodes` | `-e`           | `--include-episodes` | `boolean` | `false` |
 
 Set this to `true` to include single episode torrents in the search (which are
-ignored by default).
+ignored by default). This will include episodes present inside season packs for data-based
+searches.
 
 #### `includeEpisodes` Examples (CLI)
 
 ```shell
-cross-seed search -e # will include episodes
-cross-seed search --include-episodes # will include episodes
+cross-seed search -e # will include all episodes
+cross-seed search --include-episodes # will include all episodes
 cross-seed search --no-include-episodes # will not include episodes
 cross-seed search # will not include episodes
 ```
@@ -286,6 +453,31 @@ cross-seed search # will not include episodes
 includeEpisodes: true,
 
 includeEpisodes: false,
+```
+
+### `includeSingleEpisodes`
+
+| Config file name        | CLI short form | CLI long form               | Format    | Default |
+| ----------------------- | -------------- | --------------------------- | --------- | ------- |
+| `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
+
+Set this to `true` to include single episode torrents in the search (which are
+ignored by default). This will include episodes present inside season packs for data-based
+searches.
+
+#### `includeSingleEpisodes` Examples (CLI)
+
+```shell
+cross-seed search --include-single-episodes # will include single episodes not from season pack
+cross-seed search # will not include episodes
+```
+
+#### `includeSingleEpisodes` Examples (Config file)
+
+```js
+includeSingleEpisodes: true,
+
+includeSingleEpisodes: false,
 ```
 
 ### `includeNonVideos`
@@ -405,7 +597,7 @@ excludeRecentSearch: "1 day",
 excludeRecentSearch: "2 weeks",
 ```
 
-### `action`
+### `action`\*
 
 | Config file name | CLI short form     | CLI long form            | Format          | Default |
 | ---------------- | ------------------ | ------------------------ | --------------- | ------- |
@@ -493,6 +685,62 @@ qbittorrentUrl: "http://qbittorrent:8080/qbittorrent",
 qbittorrentUrl: "http://user:pass@localhost:8080",
 ```
 
+### `transmissionRpcUrl`
+
+| Config file name     | CLI short form | CLI long form                 | Format | Default |
+| -------------------- | -------------- | ----------------------------- | ------ | ------- |
+| `transmissionRpcUrl` |                | `--transmissionrpc-url <url>` | URL    |         |
+
+The url of your **Transmission** RPC Interface. Only relevant with
+[Injection](../tutorials/injection).
+
+**Transmission** doesn't use HTTP Basic/Digest Auth, but you can provide your
+**Transmission** credentials at the beginning of the URL like so:
+`http://username:password@localhost:9091/transmission/rpc`
+
+#### `transmissionRpcUrl` Examples (CLI)
+
+```shell
+cross-seed search --transmissionrpc-url http://transmission:8080/transmission/rpc
+cross-seed search --transmissionrpc-url http://user:pass@localhost:8080
+```
+
+#### `transmissionRpcUrl` Examples (Config file)
+
+```js
+transmissionRpcUrl: "http://transmission:8080/transmission/rpc",
+
+transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
+```
+
+### `delugeRpcUrl`
+
+| Config file name | CLI short form | CLI long form           | Format | Default |
+| ---------------- | -------------- | ----------------------- | ------ | ------- |
+| `delugeRpcUrl`   |                | `--delugerpc-url <url>` | URL    |         |
+
+The url of your **Deluge** JSON-RPC Interface. Only relevant with
+[Injection](../tutorials/injection).
+
+**Deluge** doesn't use HTTP Basic/Digest Auth, but you can provide your
+**Deluge** password at the beginning of the URL like so:
+`http://:password@localhost:8112/json`
+
+#### `delugeRpcUrl` Examples (CLI)
+
+```shell
+cross-seed search --delugerpc-url http://deluge:8112/json
+cross-seed search --delugerpc-url http://:pass@localhost:8112/json
+```
+
+#### `delugeRpcUrl` Examples (Config file)
+
+```js
+delugeRpcUrl: "http://deluge:8112/json",
+
+delugeRpcUrl: "http://:pass@localhost:8112/json",
+```
+
 ### `notificationWebhookUrl`
 
 | Config file name         | CLI short form | CLI long form                      | Format | Default |
@@ -519,7 +767,7 @@ Content-Type: application/json
 }
 ```
 
-Currently, cross-seed only sends the "RESULTS" event. In the future it may send
+Currently, cross-seed only sends the "RESULTS" and "TEST" events. In the future it may send
 more. This payload supports both
 [**apprise**](https://github.com/caronc/apprise-api) and
 [**Notifiarr**](https://github.com/Notifiarr/Notifiarr).
@@ -536,7 +784,7 @@ cross-seed daemon --notification-webhook-url http://apprise:8000/notify
 notificationWebhookUrl: "http://apprise:8000/notify",
 ```
 
-### `port`
+### `port`\*
 
 | Config file name | CLI short form | CLI long form   | Format   | Default |
 | ---------------- | -------------- | --------------- | -------- | ------- |

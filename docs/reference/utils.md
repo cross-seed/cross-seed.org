@@ -1,11 +1,11 @@
 The `cross-seed` app has several subcommand utilities. Some of these can help
 you debug your system, or help you find more information to file a bug report.
 
-## `cross-seed gen-config`
+### `cross-seed gen-config`
 
 Generate an empty config file in its proper location.
 
-### Options
+#### Options
 
 | short form | long form  | note                                                                                                         |
 | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
@@ -18,35 +18,35 @@ cross-seed gen-config
 cross-seed gen-config -d
 ```
 
-## `cross-seed clear-cache`
+### `cross-seed clear-cache`
 
 Clear the cache of previous decisions.
 
-## `cross-seed test-notification`
+### `cross-seed test-notification`
 
 Send a notification to the specified URL.
 
-### Usage
+#### Usage
 
 ```shell
 cross-seed test-notification <url>
 ```
 
-## `cross-seed diff`
+### `cross-seed diff`
 
 See if and why two torrents pass the matching algorithm.
 
-### Usage
+#### Usage
 
 ```shell
 cross-seed diff <owned torrent> <candidate torrent>
 ```
 
-## `cross-seed tree`
+### `cross-seed tree`
 
 Check a torrent's file tree from `cross-seed`'s perspective.
 
-### Usage
+#### Usage
 
 ```shell
 cross-seed tree file.torrent
