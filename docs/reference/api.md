@@ -2,7 +2,7 @@
 
 `cross-seed` has an HTTP API as part of [Daemon Mode](../basics/daemon.md). When
 you run the `cross-seed daemon` command, the app starts an HTTP server, listening
-on port 2468 (configurable with the [`port`](options#port) option).
+on port 2468 (configurable with the [`port`](../basics/options#port) option).
 
 :::danger
 
@@ -17,7 +17,7 @@ on port 2468 (configurable with the [`port`](options#port) option).
 This endpoint invokes a search, on all configured trackers, for a specific
 torrent name, infoHash, or torrent data. You can provide the name directly,
 or you can provide an infoHash or path to search for, which `cross-seed` will
-use to either look up the torrent in your [`torrentDir`](options#torrentdir) or parse the
+use to either look up the torrent in your [`torrentDir`](../basics/options#torrentdir) or parse the
 filename directly. It will respond with `204 No Content` once it has received your
 request successfully.
 

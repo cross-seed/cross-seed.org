@@ -178,7 +178,7 @@ manual setup.
 If you plan on utilizing the `path` webhook call, you will need to configure data-based searches
 in you config file.
 
-[**Data-Based Setup**](./tutorials/data-based-matching#setup)
+[**Data-Based Setup**](../tutorials/data-based-matching#setup)
 
 :::
 
