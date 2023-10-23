@@ -1,23 +1,30 @@
 # HTTP API
 
 `cross-seed` has an HTTP API as part of [Daemon Mode](../basics/daemon.md). When
-you run `cross-seed daemon`, the app starts an HTTP server, listening on port
-2468 (configurable with the [`port`](options#port) option).
+you run the `cross-seed daemon` command, the app starts an HTTP server, listening
+on port 2468 (configurable with the [`port`](options#port) option).
 
 :::danger
 
-`cross-seed` does _not_ have API auth. **Do not expose its port to the
-internet.**
+`cross-seed` does _not_ have API auth.
+
+**Do not expose its port to untrusted networks (such as the Internet)**
 
 :::
 
 ## POST `/api/webhook`
 
 This endpoint invokes a search, on all configured trackers, for a specific
-torrent name. You can provide the name directly, or you can provide an infoHash,
-which `cross-seed` will use to look up the name in your
-[`torrentDir`](options#torrentdir). It will respond with `204 No Content` once
-it has received your request successfully.
+torrent name, infoHash, or torrent data. You can provide the name directly,
+or you can provide an infoHash or path to search for, which `cross-seed` will
+use to either look up the torrent in your [`torrentDir`](options#torrentdir) or parse the
+filename directly. It will respond with `204 No Content` once it has received your
+request successfully.
+
+:::tip
+Searches that match a torrent file always take precedence, even in data-based searching.
+
+:::
 
 ### Supported formats
 
@@ -31,9 +38,10 @@ it has received your request successfully.
 ```js
 POST /api/webhook
 {
-	// one of { name, infoHash } is required
+	// one of { name, infoHash, path } is required
 	name: "<torrent name here>",
 	infoHash: "<infoHash of torrent>",
+	path: "/path/to/torrent/file.mkv",
 	outputDir: "/path/to/output/dir", // optional
 }
 ```
@@ -54,15 +62,15 @@ curl -XPOST http://localhost:2468/api/webhook \
 
 ## POST `/api/announce` (experimental)
 
-Use this endpoint to feed announces into cross-seed. For each announce,
-cross-seed will check if the given torrent name matches any torrents you already
+Use this endpoint to feed announces into cross-seed. For each `announce`,
+`cross-seed` will check if the provided search criteria match any torrents you already
 have. If found, it will run the matching algorithm to verify that the torrents
 do match, and download/inject the announced torrent.
 
 :::tip
 
-This is a real-time alternative to scanning RSS feeds. Consider turning RSS scan
-off if you set up this feature.
+This is a real-time alternative to scanning RSS feeds. Consider turning the RSS
+scan off (`rssCadence: null,`) if you set up this feature.
 
 :::
 

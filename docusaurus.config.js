@@ -59,10 +59,9 @@ const config = {
     ({
       navbar: {
         title: "cross-seed",
-        // logo: {
-        // 	alt: "cross-seed logo",
-        // 	src: "img/logo.svg",
-        // },
+        logo: {
+          src: "img/cross-seed.svg",
+        },
         items: [
           {
             type: "doc",
@@ -71,8 +70,15 @@ const config = {
             label: "Tutorial",
           },
           {
-            href: "https://github.com/cross-seed/cross-seed",
+            to: "https://discord.gg/jpbUFzS5Wb",
+            label: "Discord",
+            className: "discord-link",
+            position: "right",
+          },
+          {
+            to: "https://github.com/cross-seed/cross-seed",
             label: "GitHub",
+            className: "github-link",
             position: "right",
           },
         ],
@@ -94,7 +100,8 @@ const config = {
             items: [
               {
                 label: "Discord",
-                href: "https://discord.gg/jpbUFzS5Wb",
+                to: "https://discord.gg/jpbUFzS5Wb",
+                //className: "discord-link",
               },
             ],
           },
@@ -103,7 +110,8 @@ const config = {
             items: [
               {
                 label: "GitHub",
-                href: "https://github.com/cross-seed/cross-seed",
+                to: "https://github.com/cross-seed/cross-seed",
+                //className: "github-link",
               },
             ],
           },

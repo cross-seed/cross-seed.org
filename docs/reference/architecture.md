@@ -51,11 +51,11 @@ checkNewCandidateMatch --> getTorrentByFuzzyName
 - `cross-seed search`
 - `POST /api/search`
 
-The search pipeline takes an owned torrent, parses its name, then searches for
+The search pipeline takes an owned torrent, parses its name, and then searches for
 its parsed name on all of your Torznab indexers. After that, it's given a list
-of candidates, which then all run through the
-[**matching algorithm**](#matching-algorithm) against the owned torrent. Any
-resulting matches will then run through the configured [**action**](#actions).
+of candidates, which then all run through the [**matching algorithm**](#matching-algorithm)
+against the owned torrent. Any resulting matches will then run through the configured
+[**action**](#actions).
 
 ### RSS pipeline
 
@@ -72,7 +72,15 @@ run through the configured [**action**](#actions).
 
 ## Prefiltering
 
-TODO
+Prefiltering occurs during the startup of `cross-seed`. This will index all the .torrent files and any
+`dataDirs` you may have added.
+
+- If you're using injection, the existence of any .torrent files implies their
+  presence in the client. If the torrent is not present, it will fail injection and save instead.
+
+- Your torrentDir should not contain torrent files that are not present in your client.
+
+- Prefiltering de-duplicates, multiple files with the same torrent name will not be searched multiple times.
 
 ## Matching algorithm
 
@@ -80,8 +88,8 @@ TODO
 
 ## Actions
 
-There are three things that can happen during the `action` phase:
+Three things can happen during the `action` phase:
 
 - link data files (if data-based)
-- inject matched torrent file
-- save matched torrent file
+- inject matching torrent file
+- save matching torrent file
