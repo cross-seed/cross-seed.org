@@ -125,7 +125,10 @@ const config = {
   markdown: {
     mermaid: true,
   },
-  themes: ["@docusaurus/theme-mermaid"],
+  themes: [
+    "@docusaurus/theme-mermaid",
+    [require.resolve("@easyops-cn/docusaurus-search-local"), { hashed: true }],
+  ],
 };
 
 module.exports = config;
