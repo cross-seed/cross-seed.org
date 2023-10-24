@@ -128,7 +128,7 @@ Docker container.
 
 - `/config` - config dir (this follows a common Docker convention)
 - `/torrents` - your torrent input dir (usually set to your rtorrent session
-  dir, or your qBittorrent BT_backup dir)
+  dir, Deluge state dir, Transmission torrents dir, or your qBittorrent BT_backup dir)
 - `/cross-seeds` - the output dir. People sometimes point this at a watch folder. If you use
 
 Create or open your existing `docker-compose.yml` file and add the `cross-seed`

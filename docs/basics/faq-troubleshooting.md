@@ -22,7 +22,7 @@ You will be able to see the circumstances around the failure, and start investig
 ### My data-based results are paused at 100% after injection
 
 This is by design and due to the way data-based searches function. This is done to prevent automatically downloading
-missing files or files that failed rechecking. Until there is a way to guarentee you won't end up downloading
+missing files or files that failed rechecking. Until there is a way to guarantee you won't end up downloading
 extra (not cross-seeding) this is the best solution.
 
 :::tip
@@ -34,7 +34,7 @@ Consider using `infoHash` if you are racing to prevent mismatches.
 Torrent files in `torrentDir` take precedence over data files with the same name and are de-duplicated. If you need to search
 specifically the `dataDirs`, use an empty directory for `torrentDir` temporarily. This will strictly search the data.
 
-### `Error: ENOENT: no such file or directory`
+### Error: ENOENT: no such file or directory
 
 This is usually caused by broken symlinks in, or files being moved or deleted from, your `dataDirs` during a data-based search.
 Check the `/logs/verbose.\*.log` files for the file causing this.
@@ -51,7 +51,7 @@ a more in depth guide is available at [Trash's Hardlinking Guide](https://trash-
 
 - symlinks are a "shortcut" of sorts, pointing at the original file from a new location. This can be used across mounts (docker) or partitions/drives, and does not cost you any extra space. The only possible issue is that if the original file is deleted (when you remove a torrent,) the torrents in your client using the `symlink` will "break" and you will receive errors. If this sounds like a hassle, consider reading further about hardlinks.
 
-- hardlinks are a tricky thing for someone not familiar, but are worth understanding. They are a "direct line" to the actual data on the disk and are indistinguishable from the original to the file system. They do not require any space, but until all references are deleted, the file will exist on the disk. These linktypes are only possible on the same partition/disk/mount, and you will need to have your linkDir set to the same mount (docker) or partition. This is the best approach if you do not always keep the source torrent in your client (due to them being deleted from the tracker) - which would then break symlinks and cross-seeds. This is the approach commonly used in Arr's on import.
+- hardlinks are a tricky thing for someone not familiar with the concept but are worth understanding. They are a "direct line" to the actual data on the disk and, as far as the file system is concerned, are indistinguishable from the original. Hardlinks do not require any additional space and the file will remain on the disk until all references to said file are deleted. These linktypes are only possible on the same partition/disk/mount, and you will need to have your `linkDir` set to the same mount (Docker) or partition as your `dataDirs`. This is the best approach if you do not always keep the source torrent in your client (due to them being deleted from the tracker) - which would then break symlinks and cross-seeds. This is the approach commonly used in Arr's on import.
 
 :::tip
 If you are using qBittorrent, consider checking out [qbit_manage](https://github.com/StuffAnThings/qbit_manage) to manage your hardlinks eligible for deletion.
@@ -88,7 +88,7 @@ We try to reduce unnecessary snatches of .torrent files as much as possible, but
 
 ### Recommended Overall Improvements
 
-- You can use the `announce` endpoint instead of `webhook` to match what cross-seed already knows about your available media.
+- You can use the [`/api/announce`](../reference/api#post-apiannounce-experimental) endpoint from someting like autobrr, instead of [`/api/webhook`](../reference/api#post-apiwebhook) to match what cross-seed already knows about your available media instead of searching your indexers.
 - If using [**autobrr**](https://autobrr.com/), consider setting up filters with [**omegabrr**](https://github.com/autobrr/omegabrr) to minimize calls to cross-seed
 - Adjust `excludeRecentSearch` `excludeOlder` and `searchCadence` to reduce searching
 - If your cross-seed runs 24/7, consider reducing or eliminating searching. RSS is capable of catching all releases if 24/7.

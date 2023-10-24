@@ -9,20 +9,30 @@ can inject the torrents it finds directly into your torrent client. This satisfi
 simple use cases. For more complex cases, [**autotorrent2**](https://github.com/JohnDoee/autotorrent2)
 or [**qbit_manage**](https://github.com/StuffAnThings/qbit_manage) is recommended.
 
+:::info
+`cross-seed` requires access to the directory where your client's .torrent files are stored.
+
+| Client       | Torrent/Session Folder          |
+| ------------ | ------------------------------- |
+| Qbit         | `BT_Backup`                     |
+| Deluge       | `state`                         |
+| Transmission | `torrents`                      |
+| rTorrent     | session dir from `.rtorrent.rc` |
+
+:::
+
 ### `rTorrent` setup
 
 `cross-seed` will inject torrents into **rTorrent** with a `cross-seed` label.
 
-1. Make sure **rTorrent** has access to your `outputDir` (if Docker, make sure
-   they're mapped to the same path).
-2. Edit your config file:
+1. Edit your config file:
    1. Set your [`action`](../basics/options#action) option to `inject`.
    2. Set your [`rtorrentRpcUrl`](../basics/options#rtorrentrpcurl) option.
       It should look like an `http` url that looks like
       `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
       installed). See the [reference](../basics/options#rtorrentrpcurl) for
       more details.
-3. Start or restart `cross-seed`. The logs at startup will tell you if
+2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to rTorrent.
 
 :::tip Docker
@@ -37,28 +47,30 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
 
 ### `qBittorrent` setup
 
-:::caution
+:::info
 
-Injection will work best if you use the `Original` content layout.
+Injection will work best if you use the `Original` content layout in qBittorrent options.
 
 :::
 
-2. Edit your config file:
+1. Edit your config file:
    1. Set your [`action`](../basics/options#action) option to `inject`.
    2. Set your [`qbittorrentUrl`](../basics/options#qbittorrenturl) option.
       It should look like an `http` url that looks like
-      `http://user:pass@localhost:8080/qbittorrent` See the
+      `http://user:pass@localhost:8080/` See the
       [reference](../basics/options#qbittorrenturl) for more details.
+2. Start or restart `cross-seed`. The logs at startup will tell you if
+   `cross-seed` was able to connect to qBittorrent.
 
 :::caution Arr Users
 
-There is a potential problem with duplication of imports using an Arr On Download/Upgrad, Qbit Download
-Complete, or search/rss/announce race conditions to trigger cross-seed if you use inject with `cross-seed`,
-**qBittorrent**, and an **Arr** where new cross-seeds will be added with the Arr category, and then get stuck
-in Sonarr's import queue. The workaround is to enable the `duplicateCategories` option which will
-append your category with `.cross-seed` and:
+There is a potential problem with duplication of imports using either an Arr On Download/Upgrade, Qbit Download
+Complete, or search/rss/announce trigger, which causes race conditions if you use inject with `cross-seed`.
+Injecting to **qBittorrent** and using an **Arr** can result in new cross-seeds being added with the Arr import
+category, causing them to get stuck in your Arr's import queue. The workaround is to enable the `duplicateCategories`
+option, which will append your category with `.cross-seed` and either...
 
-- you don't use separate **pre/post import categories** in your Arr OR
+- use the same **pre/post import categories** in your Arr **OR**
 - your Arr's **pre/post import categories** have the same **save path** in
   qBittorrent.
 
