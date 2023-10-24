@@ -72,15 +72,19 @@ run through the configured [**action**](#actions).
 
 ## Prefiltering
 
-Prefiltering occurs during the startup of `cross-seed`. This will index all the .torrent files and any
-`dataDirs` you may have added.
+Prefiltering occurs during the startup of `cross-seed`. This will index all the .torrent files from
+[`torrentDir`](../basics/options.md#torrentdir) and data from any [`dataDirs`](../basics/options.md#datadirs)
+you may have added.
 
-- If you're using injection, the existence of any .torrent files implies their
-  presence in the client. If the torrent is not present, it will fail injection and save instead.
+- If you're using [injection](../tutorials/injection.md), the existence of any .torrent files implies their
+  presence in the client. If the torrent is not present in your client, it will fail injection and save instead.
 
-- Your torrentDir should not contain torrent files that are not present in your client.
+- Your [`torrentDir`](../basics/options.md#torrentdir) should not contain torrent files that are not present in your client.
 
-- Prefiltering de-duplicates, multiple files with the same torrent name will not be searched multiple times.
+- Prefiltering de-duplicates. Multiple files/torrents with the same name will not be searched multiple times.
+  :::info
+  .torrent files from your [`torrentDir`](../basics/options.md#torrentdir) will take precedence over files in your [`dataDirs`](../basics/options.md#datadirs) with the same name.
+  :::
 
 ## Matching algorithm
 

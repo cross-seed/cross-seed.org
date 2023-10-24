@@ -8,13 +8,15 @@ Daemon Mode lets you harness the full power of `cross-seed` by continuously runn
 and enabling the following features:
 
 - instantly searching for cross-seeds for finished downloads
-  - using your torrent client using `webhook` end point
-  - using a third-party script to trigger from an Arr's import event ([cross-seed Arr Import script](https://github.com/bakerboy448/StarrScripts#xseedsh))
+  - using your torrent client using [`webhook`](../reference/api.md#post-apiwebhook) endpoint
+  - using a third-party script to trigger from an Arr's import/upgrade event
+    - [bakerboy448's Arr Import script](https://github.com/bakerboy448/StarrScripts#xseedsh)
+    - [yammes' Arr Import script](https://github.com/yammes08/Scripts)
 - watching for new releases:
-  - scanning RSS feeds periodically (`rssCadence`) for matching content
+  - scanning RSS feeds periodically ([`rssCadence`](./options.md#rsscadence)) for matching content
   - listening for new release announces and snatching them if you already
-    have the data (e.g. [autobrr](https://autobrr.com/) -> `announce` API endpoint)
-- Running batch searches on your full collection of torrents periodically (`searchCadence`)
+    have the data (e.g. [autobrr](https://autobrr.com/) -> [`announce`](../reference/api.md#post-apiannounce-experimental) API endpoint)
+- Running batch searches on your full collection of torrents periodically ([`searchCadence`](./options.md#searchcadence))
 
 :::tip
 
@@ -175,8 +177,8 @@ cross-seeds as soon as a torrent finishes downloading. However, it requires some
 manual setup.
 
 :::info
-If you plan on utilizing the `path` webhook call, you will need to configure data-based searches
-in you config file.
+If you plan on utilizing the [`path`](../tutorials/data-based-matching.md) [`webhook`](../reference/api.md#post-apiwebhook) API call, you will need to configure data-based searches
+in your config file.
 
 [**Data-Based Setup**](../tutorials/data-based-matching#setup)
 
@@ -207,12 +209,12 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
     :::
     :::tip
     You will need to pick a method of search, **infoHash is recommended** - but requires your session directory from `.rtorrent.rc` to
-    be mounted (Docker) and/or set to `torrenDir` in the config or it will not function properly.
+    be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not function properly.
     :::
 
 3.  Uncomment/Comment the appropriate lines to decide how you wish to use search.
 
-    - The hastag/pound-sign (`#`) is used to "comment" the line - commented lines
+    - The hastag/pound-sign `#` is used to "comment" the line - commented lines
       will not be executed.
 
 4.  Run the following command (this will give rTorrent permission to execute
@@ -235,7 +237,7 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
    the following in the box:
    :::tip
    You will need to pick a method of search, **infoHash is recommended** - but requires the `BT_Backup`
-   folder from qBittorrent to be mounted (Docker) and/or set to `torrenDir` in the config or it will not
+   folder from qBittorrent to be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not
    function properly.
 
    :::
@@ -252,7 +254,7 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "infoHash=%I"
    ```
 
-   **Data Based:**
+   [**Data Based:**](../tutorials/data-based-matching.md#setup)
 
    ```shell
    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "path=%F"
@@ -261,7 +263,7 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 :::tip Docker
 You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
 Docker networks. `localhost` will not work for Docker. You will need to use your
-host's IP (e.g. 192.x or 10.x) if not using custom docker networks.
+host's IP (e.g. 192.x or 10.x) if not using custom Docker networks.
 
 :::
 
@@ -296,7 +298,7 @@ Then add this in qBittorrent's settings to execute the script:
     /bin/bash ./qBittorrent/yourscriptname.sh "%N" "%I"
 ```
 
-:::note
+:::info
 
 You may need to adjust the variables above that qBittorrent sends to the script.
 
@@ -317,12 +319,12 @@ You may need to adjust the variables above that qBittorrent sends to the script.
 
     You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
     Docker networks. `localhost` will not work for Docker. You will need to use your
-    host's IP (e.g. 192.x or 10.x) if not using custom docker networks.
+    host's IP (e.g. 192.x or 10.x) if not using custom Docker networks.
 
     :::
     :::tip
     `cross-seed` requires your `torrents` directory from `/.config/transmission` be mounted (Docker)
-    and/or set to `torrenDir` in the config or it will not function properly.
+    and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not function properly.
     :::
 
 3.  Run the following command (this will give Transmission permission to execute
@@ -340,8 +342,8 @@ You may need to adjust the variables above that qBittorrent sends to the script.
 
 ### Deluge
 
-1.  Create a file called `deluge-cross-seed.sh`. It should contain the
-    following contents:
+1.  Create a file called `deluge-cross-seed.sh`, it should contain the
+    following:
 
     ```shell
     #!/bin/bash
@@ -357,20 +359,20 @@ You may need to adjust the variables above that qBittorrent sends to the script.
 
     You can use `http://cross-seed:2468` instead of `http://localhost:2468` with Docker networks.
     `localhost` will not work for Docker. You will need to use your host's IP (e.g. 192.x or 10.x)
-    if not using custom docker networks.
+    if not using custom Docker networks.
 
     :::
 
     :::tip
     You will need to pick a method of search, **infoHash is recommended** - but requires the `state`
-    folder from Deluge to be mounted (docker) and/or set to `torrenDir` in the config or it will not
+    folder from Deluge to be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not
     function properly.
 
     :::
 
 2.  Uncomment/Comment the appropriate lines to decide how you wish to use search.
 
-    - The hastag/pound-sign (`#`) is used to "comment" the line - commented lines
+    - The hastag/pound-sign `#` is used to "comment" the line - commented lines
       will not be executed.
 
 3.  Run the following command (this will give Deluge permission to execute your

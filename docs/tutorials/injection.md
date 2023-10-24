@@ -9,15 +9,19 @@ can inject the torrents it finds directly into your torrent client. This satisfi
 simple use cases. For more complex cases, [**autotorrent2**](https://github.com/JohnDoee/autotorrent2)
 or [**qbit_manage**](https://github.com/StuffAnThings/qbit_manage) is recommended.
 
+:::tip
+If you are having issues with injection errors, and it reverting to save, please [check our FAQ](../basics/faq-troubleshooting.md#failed-to-inject-saving-instead)
+:::
+
 :::info
 `cross-seed` requires access to the directory where your client's .torrent files are stored.
 
-| Client       | Torrent/Session Folder          |
-| ------------ | ------------------------------- |
-| Qbit         | `BT_Backup`                     |
-| Deluge       | `state`                         |
-| Transmission | `torrents`                      |
-| rTorrent     | session dir from `.rtorrent.rc` |
+| Client                              | Torrent/Session Folder          |
+| ----------------------------------- | ------------------------------- |
+| [qBittorrent](#qbittorrent-setup)   | `BT_Backup`                     |
+| [Deluge](#deluge-setup)             | `state`                         |
+| [Transmission](#transmission-setup) | `torrents`                      |
+| [rTorrent](#rtorrent-setup)         | session dir from `.rtorrent.rc` |
 
 :::
 

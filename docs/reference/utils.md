@@ -11,7 +11,7 @@ Generate an empty config file in its proper location.
 | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
 | `-d`       | `--docker` | Specifying this flag will configure `outputDir` and `torrentDir` to `/output` and `/torrents`, respectively. |
 
-### Usage
+#### Usage
 
 ```shell
 cross-seed gen-config

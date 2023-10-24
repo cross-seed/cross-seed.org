@@ -15,7 +15,7 @@ app. Once the app is installed, go to the **App** tab and search for
 ### Volume Mappings
 
 Cross-seed **needs** to access 3 directories: an input directory with torrent files,
-an output directory for cross-seed to save new torrent files (for `action: 'save',`), and a config
+an output directory for cross-seed to save new torrent files ([`action: 'save',`](../basics/options.md#action)), and a config
 directory.
 
 | Config Type     | Name   | Container Path                       | Host Path                           | Access Mode |
@@ -43,8 +43,8 @@ skip this step.
 
 #### Screenshot
 
-Below is a screenshot of what your docker container configuration might look
-like. Now, you can try starting the docker container and editing the resulting
+Below is a screenshot of what your Docker container configuration might look
+like. Now, you can try starting the Docker container and editing the resulting
 configuration file in the next step.
 
 ![screenshot-cross-seed](https://user-images.githubusercontent.com/2813049/147599328-6032688e-45e4-43cf-87f6-a070829e1a1b.png)

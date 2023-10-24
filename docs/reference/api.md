@@ -4,6 +4,10 @@
 you run the `cross-seed daemon` command, the app starts an HTTP server, listening
 on port 2468 (configurable with the [`port`](../basics/options#port) option).
 
+:::tip
+You can easily configure your torrent client to [send search commands when a torrent finishes.](../basics/daemon#set-up-automatic-searches-for-finished-downloads)
+:::
+
 :::danger
 
 `cross-seed` does _not_ have API auth.
@@ -70,7 +74,7 @@ do match, and download/inject the announced torrent.
 :::tip
 
 This is a real-time alternative to scanning RSS feeds. Consider turning the RSS
-scan off (`rssCadence: null,`) if you set up this feature.
+scan off ([`rssCadence: null,`](../basics/options.md#rsscadence)) if you set up this feature.
 
 :::
 

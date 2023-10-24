@@ -54,6 +54,10 @@ To create an editable config file, run the following command:
 cross-seed gen-config
 ```
 
+:::tip
+Add `-d` to this command to generate a config for Docker
+:::
+
 From there, you can open the config file in your favorite editor and set up your
 configuration.
 
@@ -61,7 +65,7 @@ configuration.
 
 The configuration file uses JavaScript syntax, which means:
 
-- Array/multi options must be enclosed in \[brackets\].
+- Array/multi options must be enclosed in \['brac', 'kets'\].
 - Strings must be enclosed in "quotation" marks.
 - Array elements and options must be separated by commas.
 - **Windows users will need to use \\\\ for paths. (e.g. c:\\\\torrents)**
@@ -78,6 +82,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputDir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadir)                              |              |
 | [`dataCategory`](#datacategory)                     |              |
+| [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
@@ -101,6 +106,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputDir`](#outputDir)                           | **Required** |
 | [`dataDirs`](#datadir)                              |              |
 | [`dataCategory`](#datacategory)                     |              |
+| [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
@@ -333,6 +339,35 @@ dataCategory: "Category1",
 
 ```
 
+### `duplicateCategories`
+
+| Config file name      | CLI short form | CLI long form            | Format    | Default |
+| --------------------- | -------------- | ------------------------ | --------- | ------- |
+| `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false` |
+
+`cross-seed` will inject using the original category, appending '.cross-seed', with the same save paths as your normal categories.
+
+:::info
+This will prevent an Arr from seeing duplicate torrents in Activity, and attempting to import cross-seeds.
+
+Example: if you have a category called "Movies", this will automatically inject cross-seeds to "Movies.cross-seed"
+:::
+
+#### `duplicateCategories` Examples (CLI)
+
+```shell
+cross-seed search --duplicate-categories
+```
+
+#### `duplicateCategories` Examples (Config file)
+
+```js
+duplicateCategories: true,
+
+duplicateCategories: false,
+
+```
+
 ### `linkDir`
 
 | Config file name | CLI short form     | CLI long form      | Format   | Default |
@@ -378,9 +413,11 @@ find a associated torrent file.
 
 Valid methods for linkType are `symlink` and `hardlink`.
 
+[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use-data-based-searching)
+
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the dataDir and linkDir.
+You will need to mount the volume for cross-seed to have access to the `dataDirs` and `linkDir`.
 :::
 
 #### `linkType` Examples (CLI)
@@ -631,16 +668,20 @@ action: "inject",
 The url of your **rTorrent** XMLRPC interface. Only relevant with
 [Injection](../tutorials/injection). Often ends in `/RPC2`.
 
+:::info
 If you use **Sonarr** or **Radarr**, cross-seed is configured the same way.
-**ruTorrent** installations come with this endpoint configured but naked
+**ruTorrent** installations come with this endpoint configured, but naked
 **rTorrent** does not provide this wrapper. If you don't use **ruTorrent**,
 you'll have to
 [set up the endpoint yourself](https://github.com/linuxserver/docker-rutorrent/issues/122#issuecomment-769009432)
 with a webserver.
+:::
 
+:::tip
 If you use HTTP Digest Auth on this endpoint (recommended), then you can provide
 credentials in the following format:
 `http://username:password@localhost/rutorrent/RPC2`
+:::
 
 #### `rtorrentRpcUrl` Examples (CLI)
 
@@ -666,9 +707,11 @@ rtorrentRpcUrl: "http://user:pass@localhost:8080/RPC2",
 The url of your **qBittorrent** Web UI. Only relevant with
 [Injection](../tutorials/injection).
 
+:::tip
 **qBittorrent** doesn't use HTTP Basic/Digest Auth, but you can provide your
 **qBittorrent** credentials at the beginning of the URL like so:
-`http://username:password@localhost:8080/qbittorrent`
+`http://username:password@localhost:8080/`
+:::
 
 #### `qbittorrentUrl` Examples (CLI)
 
@@ -694,9 +737,11 @@ qbittorrentUrl: "http://user:pass@localhost:8080",
 The url of your **Transmission** RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
 
+:::tip
 **Transmission** doesn't use HTTP Basic/Digest Auth, but you can provide your
 **Transmission** credentials at the beginning of the URL like so:
 `http://username:password@localhost:9091/transmission/rpc`
+:::
 
 #### `transmissionRpcUrl` Examples (CLI)
 
@@ -722,9 +767,11 @@ transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
 The url of your **Deluge** JSON-RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
 
+:::tip
 **Deluge** doesn't use HTTP Basic/Digest Auth, but you can provide your
 **Deluge** password at the beginning of the URL like so:
 `http://:password@localhost:8112/json`
+:::
 
 #### `delugeRpcUrl` Examples (CLI)
 
@@ -857,7 +904,7 @@ will run periodic searches of your torrents (respecting your `includeEpisodes`,
 
 If you have RSS and on-finished-download searches set up, you can run these
 **very infrequently** - on the order of dozens of weeks. There is a minimum of
-**1 day**.
+**1 day** unless [`excludeRecentSearch`](#excluderecentsearch) has been set.
 
 :::
 

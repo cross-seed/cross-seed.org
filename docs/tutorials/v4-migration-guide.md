@@ -16,12 +16,12 @@ title: v4 Migration Guide
 | `searchAll`                           | Configuration file | `searchAll: true,`                     | `includeEpisodes: true, includeNonVideos: true,`                                                                              |
 | `-a`/`--search-all`                   | CLI arguments      | `-a`                                   | `--include-non-videos --include-episodes`                                                                                     |
 
-# New: support for periodic searches and RSS scans
+# Support for periodic searches and RSS scans
 
--   Use the new `rssCadence`/`--rss-cadence` option to do periodic RSS scans
-    -   enforced minimum of 10 minutes
-    -   supports the [vercel/ms format](https://github.com/vercel/ms)
--   Use the new `searchCadence`/`--search-cadence` option to do periodic
-    searches
-    -   enforced minimum of 1 day
-    -   supports the [vercel/ms format](https://github.com/vercel/ms)
+- Use the new `rssCadence`/`--rss-cadence` option to do periodic RSS scans
+  - enforced minimum of 10 minutes
+  - supports the [vercel/ms format](https://github.com/vercel/ms)
+- Use the new `searchCadence`/`--search-cadence` option to do periodic
+  searches
+  - enforced minimum of 1 day
+  - supports the [vercel/ms format](https://github.com/vercel/ms)
