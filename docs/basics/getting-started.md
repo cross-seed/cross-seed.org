@@ -155,7 +155,7 @@ services:
 When you run the container the first time, it will create a config file at
 `/config/config.js`. Open this file in your favorite editor. Since you've
 already configured your volume mappings, the only required config option is
-[`torznab`](../basics/options.md#torznab). Once you've got that setup, you
+[`torznab`](../basics/options.md#torznab). Once you have that set up, you
 can run your Docker container and it should get started running through a full
 scan of your torrent directory!
 
