@@ -4,7 +4,13 @@ title: Getting Started
 sidebar_position: 0
 ---
 
-Here we will install `cross-seed` and run our first search.
+## Introduction
+
+Cross-seeding is the term used for downloading a torrent from one tracker and then using that data to seed across different trackers. Generally, this is not against the rules, but you should always check and abide by your trackers' rules.
+
+Since you already have the torrent's files, this results in zero download and instant seeding. This is a great way to build ratio (especially on your new trackers) and contribute to the torrenting community.
+
+Now we will install `cross-seed` and run our first search.
 
 ## Installation
 

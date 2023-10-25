@@ -177,11 +177,8 @@ cross-seeds as soon as a torrent finishes downloading. However, it requires some
 manual setup.
 
 :::info
-If you plan on utilizing the [`path`](../tutorials/data-based-matching.md) [`webhook`](../reference/api.md#post-apiwebhook) API call, you will need to configure data-based searches
-in your config file.
-
-[**Data-Based Setup**](../tutorials/data-based-matching#setup)
-
+If you plan on utilizing the [`path`](../tutorials/data-based-matching.md) [`webhook`](../reference/api.md#post-apiwebhook)
+API call, you will need to [**set up data-based matching**](../tutorials/data-based-matching.md#setup) in your config file.
 :::
 
 ### rTorrent
@@ -401,7 +398,7 @@ rssCadence: "10 minutes",
 
 Setting up periodic searches is very easy. Just open your config file, and set
 the [`searchCadence`](../basics/options#searchcadence) option. I recommend 26
-weeks (biannual):
+weeks (biannual) for full searches:
 
 ```js
 searchCadence: "26 weeks",
@@ -416,8 +413,12 @@ frequently for a smoother load:
 
 ```js
 searchCadence: "1 week",
-excludeRecentSearch: "26 weeks",
-excludeOlder: "52 weeks",
+excludeRecentSearch: "1 year",
+excludeOlder: "1 year",
 ```
 
-This will search once a week for any torrents that cross-seed first searched less than a year ago, and have not been searched in the last 26 weeks.
+This will search once a week for any torrents that `cross-seed` first searched less than a year ago, and has not been searched in the last year.
+
+:::tip
+If your cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
+:::

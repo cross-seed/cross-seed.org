@@ -58,9 +58,29 @@ If you are using qBittorrent, consider checking out [qbit_manage](https://github
 
 :::
 
-### Searches aren't working from VPN'd torrent client
+### I can't reach my Prowlarr/Jackett/cross-seed/torrent client (Using Docker/VPN)
 
-If you are running your searches on completion from a VPN'd torrent client, it is likely you will need to set up split tunneling. You will not be able to access your local instance (which should not be publicly exposed) from the VPN due to localhost/NAT not being accessible from the VPN. If you are running a VPN'd torrent client in Docker, you can use your cross-seed's container IP or name (if using custom Docker networks).
+If you are using [Docker](./getting-started#with-docker), you cannot use `localhost` as an address to communicate across containers. Consider using your host's local IP address (usually a 192 or 10 address) or the container name (if using a "Custom Docker Network").
+
+If your setup is running with a VPN, you will need to either
+
+1. Set up split tunneling
+2. Try to use the Docker network addresses as your instance hostnames
+3. Address the routing of local/internal traffic in your VPN configuration
+
+:::info
+There is no need to put cross-seed behind a VPN, all of its requests are directly made to the torrent client or Jackett/Prowlarr.
+:::
+
+Generally, you won't be able to access local instances from services utilizing a VPN since localhost/LAN is not accessible from the VPN network by default.
+
+:::danger
+`cross-seed` does _not_ have API auth.
+**Do not expose its port to untrusted networks (such as the Internet).**
+:::
+:::tip
+If you are having issues, your best bet is to contact your VPN software/provider support, they are your best resource.
+:::
 
 ### Searching media libraries vs. torrent data (data-based searching)
 
@@ -95,4 +115,4 @@ We try to reduce unnecessary snatches of .torrent files as much as possible, but
 - You can use the [`/api/announce`](../reference/api#post-apiannounce-experimental) endpoint from someting like autobrr, instead of [`/api/webhook`](../reference/api#post-apiwebhook) to match what cross-seed already knows about your available media instead of searching your indexers.
 - If using [**autobrr**](https://autobrr.com/), consider setting up filters with [**omegabrr**](https://github.com/autobrr/omegabrr) to minimize calls to cross-seed
 - Adjust [`excludeRecentSearch` `excludeOlder` and `searchCadence`](./daemon.md#set-up-periodic-searches) to reduce searching
-- If your cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing or eliminating searching. RSS is capable of catching all releases if 24/7.
+- If your cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.

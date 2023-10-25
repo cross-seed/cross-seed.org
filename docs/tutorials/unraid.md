@@ -15,7 +15,7 @@ app. Once the app is installed, go to the **App** tab and search for
 ### Volume Mappings
 
 Cross-seed **needs** to access 3 directories: an input directory with torrent files,
-an output directory for cross-seed to save new torrent files ([`action: 'save',`](../basics/options.md#action)), and a config
+an output directory for cross-seed to save new torrent files (when using [`action: 'save',`](../basics/options.md#action)), and a config
 directory.
 
 | Config Type     | Name   | Container Path                       | Host Path                           | Access Mode |
@@ -24,6 +24,13 @@ directory.
 | Path            | Input  | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
 | Path            | Output | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
 | Path (Optional) | Data   | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
+
+:::tip
+The "Data" path is used only for **[data-based searching](./data-based-matching.md)**. If you wish to add this, you will need to go to the bottom of
+your container template and click on "**Add another Path, Port, Variable, Label or Device**" and select Path.
+
+The container path will need to "mirror" how your torrent client views this directory.
+:::
 
 ### Port Mappings
 
@@ -61,7 +68,7 @@ curl https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.t
 cp config.template.docker.js config.js
 ```
 
-From here, you can edit the configuration to your liking through either nano or whatever method you use to edit your files.
+From here, you can [edit the configuration options](../basics/options.md#options-used-in-cross-seed-daemon) to your liking through your preferred text editor (`nano`, `vim`, etc).
 
 Start your container and check the logs. You should see something along the lines of:
 
@@ -77,5 +84,7 @@ info: [server] Server is running on port 2468, ^C to stop.
 `cross-seed` runs in [Daemon mode](../basics/daemon.md) by default on Unraid.
 
 If you would like to schedule a periodic scan of your library, set the [`searchCadence option`](../basics/options.md#searchcadence).
+
 If you would like to set up RSS scans, set the [`rssCadence option`](../basics/options.md#rsscadence).
-If you would like to automatically check for cross-seeds when a download finishes, learn how to [set up automatic searches for finished downloads](../basics/daemon#set-up-automatic-searches-for-finished-downloads).
+
+If you would like to automatically check for cross-seeds when a download finishes, learn how to [set up with automatic searches](../basics/daemon#set-up-automatic-searches-for-finished-downloads).
