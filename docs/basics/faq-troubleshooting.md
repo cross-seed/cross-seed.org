@@ -1,5 +1,11 @@
 # FAQ & Troubleshooting
 
+### General Suggestions
+
+- Adjust [`excludeRecentSearch` `excludeOlder` and `searchCadence`](./daemon.md#set-up-periodic-searches) to reduce searching indexers needlessly.
+- If cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
+- The log files in `/logs` - specifically `verbose.*.log` - are your friend. If you experience undesired results from `cross-seed`, look to these files first for indicators of why `cross-seed` performed the way it did.
+
 ### What can I do about `error parsing torrent at http://…`?
 
 This means that the Prowlarr/Jackett download link didn't resolve to a torrent file. It's
@@ -110,9 +116,14 @@ You can utilize the [`cross-seed diff`](../reference/utils#cross-seed-diff) comm
 
 We try to reduce unnecessary snatches of .torrent files as much as possible, but because we need to compare files inside the torrent as well as their sizes, it is sometimes unavoidable.
 
-### Recommended Overall Improvements
+### How can I use [**autobrr**](https://autobrr.com/) with cross-seed?
 
-- You can use the [`/api/announce`](../reference/api#post-apiannounce-experimental) endpoint from someting like autobrr, instead of [`/api/webhook`](../reference/api#post-apiwebhook) to match what cross-seed already knows about your available media instead of searching your indexers.
-- If using [**autobrr**](https://autobrr.com/), consider setting up filters with [**omegabrr**](https://github.com/autobrr/omegabrr) to minimize calls to cross-seed
-- Adjust [`excludeRecentSearch` `excludeOlder` and `searchCadence`](./daemon.md#set-up-periodic-searches) to reduce searching
-- If your cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
+If you are using [**autobrr**](https://autobrr.com/) to cross-seed, you can use the [`/api/announce`](../reference/api#post-apiannounce-experimental) endpoint, rather than [`/api/webhook`](../reference/api#post-apiwebhook), to match against what cross-seed [already knows about your available media](../reference/architecture#prefiltering) (instead of searching your indexers every time).
+
+:::tip
+If you want to filter announces even further, consider setting up more specific filters or using [**omegabrr**](https://github.com/autobrr/omegabrr) (which filters based on monitored items in Arrs) to minimize calls to cross-seed.
+:::
+
+:::info
+For more help setting this up, you can head over to the [autobrr documentation for 3rd-party-tools](https://autobrr.com/3rd-party-tools/#cross-seed-filter) and read more.
+:::
