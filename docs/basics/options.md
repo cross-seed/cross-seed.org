@@ -471,9 +471,16 @@ matchMode: "safe",
 | ----------------- | -------------- | -------------------- | --------- | ------- |
 | `includeEpisodes` | `-e`           | `--include-episodes` | `boolean` | `false` |
 
-Set this to `true` to include single episode torrents in the search (which are
-ignored by default). This will include episodes present inside season packs for data-based
-searches.
+Set this to `true` to include **ALL** episodes (which are ignored by default).
+
+:::info
+This **WILL** include episodes present inside season packs (for data-based searches).
+:::
+
+:::tip
+This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+which outlines the most common scenarios.
+:::
 
 #### `includeEpisodes` Examples (CLI)
 
@@ -498,9 +505,16 @@ includeEpisodes: false,
 | ----------------------- | -------------- | --------------------------- | --------- | ------- |
 | `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
 
-Set this to `true` to include single episode torrents in the search (which are
-ignored by default). This will include episodes present inside season packs for data-based
-searches.
+Set this to `true` to include **ALL SINGLE** episodes (which are ignored by default).
+
+:::info
+This will **NOT** include episodes present inside season packs (data-based searches).
+:::
+
+:::tip
+This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+which outlines the most common scenarios.
+:::
 
 #### `includeSingleEpisodes` Examples (CLI)
 
@@ -523,8 +537,16 @@ includeSingleEpisodes: false,
 | ------------------ | -------------- | ---------------------- | --------- | ------- |
 | `includeNonVideos` |                | `--include-non-videos` | `boolean` | `false` |
 
-Set this to `true` to include torrents which contain non-video files (`.mp4`,
-`.avi`, `.mkv`) in the search (which are ignored by default).
+Set this to `true` to include torrents which contain files other than video files (`.mp4`, `.avi`, `.mkv`) in the search.
+
+:::info
+If your torrents contain `.nfo`,`.srt`, or `.txt`, for example, they will otherwise be ignored by default.
+:::
+
+:::tip
+This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+which outlines the most common scenarios.
+:::
 
 #### `includeNonVideos` Examples (CLI)
 
