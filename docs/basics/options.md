@@ -175,10 +175,8 @@ The **path** of each URL should end in `/api`.
 
 #### Finding your Torznab URLs
 
-For [Prowlarr](https://github.com/Prowlarr/Prowlarr), click **(i)** and copy the
-**Torznab Url**, then append `?apikey=YOUR_PROWLARR_API_KEY`.
-
-For [Jackett](https://github.com/Jackett/Jackett), click **Copy RSS feed**.
+For [Prowlarr](https://github.com/Prowlarr/Prowlarr) and [Jackett](https://github.com/Jackett/Jackett)
+you can simply copy the **RSS URL** from the WebUI.
 
 :::note
 
