@@ -15,7 +15,7 @@ and enabling the following features:
 - watching for new releases:
   - scanning RSS feeds periodically ([`rssCadence`](./options.md#rsscadence)) for matching content
   - listening for new release announces and snatching them if you already
-    have the data (e.g. [autobrr](https://autobrr.com/) -> [`announce`](../reference/api.md#post-apiannounce-experimental) API endpoint)
+    have the data (e.g. [autobrr](https://autobrr.com/) -> [`announce`](../reference/api.md#post-apiannounce) API endpoint)
 - Running batch searches on your full collection of torrents periodically ([`searchCadence`](./options.md#searchcadence))
 
 :::tip
@@ -35,9 +35,8 @@ finished downloading, and ways to watch for new releases.
 
 :::danger
 
-`cross-seed` does _not_ have API auth.
-
-**Do not expose its port to untrusted networks (such as the Internet).**
+As of v5.8.0, `cross-seed` has an option to enable API auth, but we still recommend
+that you **do not expose its port to untrusted networks (such as the Internet).**
 
 :::
 
@@ -177,9 +176,36 @@ cross-seeds as soon as a torrent finishes downloading. However, it requires some
 manual setup.
 
 :::info
-If you plan on utilizing the [`path`](../tutorials/data-based-matching.md) [`webhook`](../reference/api.md#post-apiwebhook)
+If you plan on using the [`path`](../tutorials/data-based-matching.md) [`webhook`](../reference/api.md#post-apiwebhook)
 API call, you will need to [**set up data-based matching**](../tutorials/data-based-matching.md#setup) in your config file.
 :::
+
+### Step 1: Find your API key
+
+If you have the `apiAuth` option enabled (which you should),
+you will need to supply an API key with your `curl` commands. API keys can be provided in one of two ways:
+
+- an `X-Api-Key` HTTP header
+- an `apikey` query param
+
+In this doc we will use the query param version.
+
+:::tip Docker
+Start by shelling into your container:
+
+```shell
+docker exec -it cross-seed sh
+```
+
+:::
+
+You can find your API key with the following command:
+
+```shell
+cross-seed api-key
+```
+
+In the rest of this doc, we will refer to this as `YOUR_API_KEY`.
 
 ### rTorrent
 
@@ -192,9 +218,9 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
     ```shell
     #!/bin/sh
-    # curl -XPOST http://localhost:2468/api/webhook --data-urlencode "name=$1"
-    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "infoHash=$2"
-    # curl -XPOST http://localhost:2468/api/webhook --data-urlencode "path=$3"
+    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=$1"
+    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$2"
+    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=$3"
     ```
 
     :::tip Docker
@@ -204,14 +230,15 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
     host's IP (e.g. 192.x or 10.x) if not using custom Docker networks.
 
     :::
+
     :::tip
-    You will need to pick a method of search, **infoHash is recommended** - but requires your session directory from `.rtorrent.rc` to
-    be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not function properly.
+    You will need to pick a method of search, **infoHash is recommended** - but requires your **session directory** from `.rtorrent.rc` to
+    be mounted (Docker) and set to [`torrentDir`](./options.md#torrentdir) in the config.
     :::
 
 3.  Uncomment/Comment the appropriate lines to decide how you wish to use search.
 
-    - The hastag/pound-sign `#` is used to "comment" the line - commented lines
+    - The hashtag/pound-sign `#` is used to "comment" the line - commented lines
       will not be executed.
 
 4.  Run the following command (this will give rTorrent permission to execute
@@ -242,19 +269,19 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
    **Name Based:**
 
    ```shell
-   curl -XPOST http://localhost:2468/api/webhook --data-urlencode "name=%N"
+   curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=%N"
    ```
 
    **InfoHash Based:**
 
    ```shell
-   curl -XPOST http://localhost:2468/api/webhook --data-urlencode "infoHash=%I"
+   curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"
    ```
 
    [**Data Based:**](../tutorials/data-based-matching.md#setup)
 
    ```shell
-   curl -XPOST http://localhost:2468/api/webhook --data-urlencode "path=%F"
+   curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"
    ```
 
 :::tip Docker
@@ -286,7 +313,7 @@ You can add infoHash searching using the following script:
 ```shell
     #!/bin/bash
     oldcommand ${1}
-    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "infoHash=${2}"
+    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=${2}"
 ```
 
 Then add this in qBittorrent's settings to execute the script:
@@ -309,7 +336,7 @@ You may need to adjust the variables above that qBittorrent sends to the script.
 
     ```shell
     #!/bin/sh
-    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "infoHash=$TR_TORRENT_HASH"
+    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$TR_TORRENT_HASH"
     ```
 
     :::tip Docker
@@ -347,9 +374,9 @@ You may need to adjust the variables above that qBittorrent sends to the script.
     torrentid=$1
     torrentname=$2
     torrentpath=$3
-    # curl -XPOST http://localhost:2468/api/webhook --data-urlencode "name=$torrentname"
-    curl -XPOST http://localhost:2468/api/webhook --data-urlencode "infoHash=$torrentid"
-    # curl -XPOST http://localhost:2468/api/webhook --data-urlencode "path=$torrentpath/$torrentname"
+    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=$torrentname"
+    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$torrentid"
+    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=$torrentpath/$torrentname"
     ```
 
     :::tip Docker
