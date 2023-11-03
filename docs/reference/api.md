@@ -10,7 +10,7 @@ You can easily configure your torrent client to [send search commands when a tor
 
 ## Authorization
 
-On cross-seed versions v5.8.0 and greater, you can enable the
+You can enable the
 [`apiAuth` option](../basics/options.md#apiauth) to require authorization
 on all HTTP requests made to the cross-seed daemon.
 

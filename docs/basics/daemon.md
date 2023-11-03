@@ -35,7 +35,7 @@ finished downloading, and ways to watch for new releases.
 
 :::danger
 
-As of v5.8.0, `cross-seed` has an option to enable API auth, but we still recommend
+`cross-seed` has an [`apiAuth` option](./options.md#apiauth) to require authorization on requests, but we still recommend
 that you **do not expose its port to untrusted networks (such as the Internet).**
 
 :::
