@@ -92,12 +92,6 @@ option, which will append your category with `.cross-seed` and either...
 
 ### `Deluge` setup
 
-:::caution
-
-Deluge is a work in progress at the moment, but is available for now on the `deluge` branch
-
-:::
-
 1. Edit your config file:
    1. Set your [`action`](../basics/options#action) option to `inject`.
    2. Set your [`delugenRpcUrl`](../basics/options#delugerpcurl) option.
