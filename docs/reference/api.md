@@ -19,7 +19,7 @@ Even with API auth enabled, we still recommend that you **do not expose its port
 :::
 
 To find your API key, run the `cross-seed api-key` command.
-The api key can be provided in either of two ways:
+The api key can be included with your requests in either of two ways:
 
 ```shell
 # provide api key as a query param

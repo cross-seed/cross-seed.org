@@ -183,7 +183,7 @@ API call, you will need to [**set up data-based matching**](../tutorials/data-ba
 ### Step 1: Find your API key
 
 If you have the `apiAuth` option enabled (which you should),
-you will need to supply an API key with your `curl` commands. API keys can be provided in one of two ways:
+you will need to supply an API key with your `curl` commands. API keys can be included with your requests in one of two ways:
 
 - an `X-Api-Key` HTTP header
 - an `apikey` query param
