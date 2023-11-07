@@ -122,7 +122,7 @@ We try to reduce unnecessary snatches of .torrent files as much as possible, but
 
 ### How can I use [**autobrr**](https://autobrr.com/) with cross-seed?
 
-If you are using [**autobrr**](https://autobrr.com/) to cross-seed, you can use the [`/api/announce`](../reference/api#post-apiannounce-experimental) endpoint, rather than [`/api/webhook`](../reference/api#post-apiwebhook), to match against what cross-seed [already knows about your available media](../reference/architecture#prefiltering) (instead of searching your indexers every time).
+If you are using [**autobrr**](https://autobrr.com/) to cross-seed, you can use the [`/api/announce`](../reference/api#post-apiannounce) endpoint, rather than [`/api/webhook`](../reference/api#post-apiwebhook), to match against what cross-seed [already knows about your available media](../reference/architecture#prefiltering) (instead of searching your indexers every time).
 
 :::tip
 If you want to filter announces even further, consider setting up more specific filters or using [**omegabrr**](https://github.com/autobrr/omegabrr) (which filters based on monitored items in Arrs) to minimize calls to cross-seed.

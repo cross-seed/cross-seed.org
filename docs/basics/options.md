@@ -121,6 +121,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`port`](#port)                                     |              |
 | [`rssCadence`](#rssCadence)                         |              |
 | [`searchCadence`](#searchCadence)                   |              |
+| [`apiAuth`](#apiAuth)                               |              |
 
 ## All options
 
@@ -134,7 +135,7 @@ When running a search with `cross-seed search` or using `searchCadence` in
 daemon mode, the `delay` option lets you set how long you want `cross-seed` to
 sleep in between searching for each torrent. If you set it higher, it will
 smooth out load on your indexers, but if you set it lower, `cross-seed` will run
-faster. I don't recommend setting this lower than 2, as it could garner you
+faster. We don't recommend setting this lower than 2, as it could garner you
 unwanted attention from tracker staff.
 
 #### `delay` Examples (CLI)
@@ -948,3 +949,37 @@ searchCadence: "4 weeks",
 
 [pr]: https://github.com/cross-seed/cross-seed.org/tree/master/docs/basics/options.md
 [ms]: https://github.com/vercel/ms#examples
+
+### `apiAuth`
+
+| Config file name | CLI short form | CLI long form | Format    | Default |
+| ---------------- | -------------- | ------------- | --------- | ------- |
+| `apiAuth`        |                | `--api-auth`  | `boolean` | `false` |
+
+Set this to `true` to require an API key on all requests made to the
+[/api/announce](../reference/api.md#post-apiannounce) and
+[/api/webhook](../reference/api.md#post-apiwebhook) endpoints.
+
+To find your API key, run the `cross-seed api-key` command.
+The api key can be included with your requests in either of two ways:
+
+```shell
+# provide api key as a query param
+curl -XPOST localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode ...
+# provide api key as an HTTP header
+curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlencode ...
+```
+
+#### `apiAuth` Examples (CLI)
+
+```shell
+cross-seed daemon --api-auth # will require auth on requests
+cross-seed daemon --no-api-auth # will allow any requests
+```
+
+#### `apiAuth` Examples (Config file)
+
+```js
+apiAuth: true,
+apiAuth: false,
+```

@@ -8,13 +8,25 @@ on port 2468 (configurable with the [`port`](../basics/options#port) option).
 You can easily configure your torrent client to [send search commands when a torrent finishes.](../basics/daemon#set-up-automatic-searches-for-finished-downloads)
 :::
 
+## Authorization
+
+You can enable the
+[`apiAuth` option](../basics/options.md#apiauth) to require authorization
+on all HTTP requests made to the cross-seed daemon.
+
 :::danger
-
-`cross-seed` does _not_ have API auth.
-
-**Do not expose its port to untrusted networks (such as the Internet)**
-
+Even with API auth enabled, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
 :::
+
+To find your API key, run the `cross-seed api-key` command.
+The api key can be included with your requests in either of two ways:
+
+```shell
+# provide api key as a query param
+curl -XPOST localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode ...
+# provide api key as an HTTP header
+curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlencode ...
+```
 
 ## POST `/api/webhook`
 
@@ -64,7 +76,7 @@ curl -XPOST http://localhost:2468/api/webhook \
   --data '{"name":"<torrent name here>"}'
 ```
 
-## POST `/api/announce` (experimental)
+## POST `/api/announce`
 
 Use this endpoint to feed announces into cross-seed. For each `announce`,
 `cross-seed` will check if the provided search criteria match any torrents you already
