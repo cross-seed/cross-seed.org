@@ -10,9 +10,14 @@ You can easily configure your torrent client to [send search commands when a tor
 
 ## Authorization
 
-You can enable the
-[`apiAuth` option](../basics/options.md#apiauth) to require authorization
+You can enable/disable the
+[`apiAuth` option](../basics/options.md#apiauth) to toggle authorization
 on all HTTP requests made to the cross-seed daemon.
+
+:::info
+[`apiAuth`](../basics/options.md#apiauth) is enabled in the config file
+by default, if you want to disable [`apiAuth`](../basics/options.md#apiauth) set it to `false`.
+:::
 
 :::danger
 Even with API auth enabled, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**

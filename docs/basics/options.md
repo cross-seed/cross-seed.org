@@ -956,6 +956,11 @@ searchCadence: "4 weeks",
 | ---------------- | -------------- | ------------- | --------- | ------- |
 | `apiAuth`        |                | `--api-auth`  | `boolean` | `false` |
 
+:::info
+[`apiAuth`](../basics/options.md#apiauth) is enabled in the config file
+by default, if you want to disable [`apiAuth`](../basics/options.md#apiauth) set it to `false`.
+:::
+
 Set this to `true` to require an API key on all requests made to the
 [/api/announce](../reference/api.md#post-apiannounce) and
 [/api/webhook](../reference/api.md#post-apiwebhook) endpoints.
