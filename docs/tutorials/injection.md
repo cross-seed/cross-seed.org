@@ -94,7 +94,7 @@ option, which will append your category with `.cross-seed` and either...
 
 1. Edit your config file:
    1. Set your [`action`](../basics/options#action) option to `inject`.
-   2. Set your [`delugenRpcUrl`](../basics/options#delugerpcurl) option.
+   2. Set your [`delugeRpcUrl`](../basics/options#delugerpcurl) option.
       It should look like an `http` url that looks like
       `http://:pass@localhost:8112/json` (the colon before `pass` is intentional)
 2. Start or restart `cross-seed`. The logs at startup will tell you if
