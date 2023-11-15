@@ -408,7 +408,7 @@ You may need to adjust the variables above that qBittorrent sends to the script.
 
 4.  In the settings of **Deluge**:
     - Enable the Execute plugin
-    - Under **Add Command** select event of **Torrent Complete** and input the Command: `sh /path/to/deluge-cross-seed.sh`
+    - Under **Add Command** select event of **Torrent Complete** and input the Command: `/path/to/deluge-cross-seed.sh`
     - Press **Add** and **Apply**
     - Restart your Deluge client/daemon (this is required to hook torrent completion calls)
 
