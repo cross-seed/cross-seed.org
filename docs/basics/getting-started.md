@@ -16,7 +16,7 @@ Now we will install `cross-seed` and run our first search.
 
 ### with Docker (recommended)
 
-```
+```shell
 docker run crossseed/cross-seed --version
 ```
 
