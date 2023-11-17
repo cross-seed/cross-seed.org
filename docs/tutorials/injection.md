@@ -13,6 +13,20 @@ or [**qbit_manage**](https://github.com/StuffAnThings/qbit_manage) is recommende
 If you are having issues with injection errors, and it reverting to save, please [check our FAQ](../basics/faq-troubleshooting.md#failed-to-inject-saving-instead)
 :::
 
+:::caution Arr Users
+
+There is a potential problem with duplication of imports using either an Arr On Download/Upgrade, Deluge/qBittorrent on complete execution,
+or search/rss/announce trigger, which causes race conditions and bad categorizing/labeling when you use inject with `cross-seed`.
+
+Injecting to **qBittorrent/Deluge** and using an **Arr** can result in new cross-seeds being added with the Arr import
+category, causing them to get stuck in your Arr's import queue. The workaround is to enable the `duplicateCategories`
+option, which will append your category with `.cross-seed` and **if using qBittorrent** either...
+
+- use the same **pre/post import categories** in your Arr **OR**
+- your Arr's **pre/post import categories** have the same **save path** in qBittorrent.
+
+:::
+
 :::info
 `cross-seed` requires access to the directory where your client's .torrent files are stored.
 
@@ -65,20 +79,6 @@ Injection will work best if you use the `Original` content layout in qBittorrent
       [reference](../basics/options#qbittorrenturl) for more details.
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to qBittorrent.
-
-:::caution Arr Users
-
-There is a potential problem with duplication of imports using either an Arr On Download/Upgrade, Qbit Download
-Complete, or search/rss/announce trigger, which causes race conditions if you use inject with `cross-seed`.
-Injecting to **qBittorrent** and using an **Arr** can result in new cross-seeds being added with the Arr import
-category, causing them to get stuck in your Arr's import queue. The workaround is to enable the `duplicateCategories`
-option, which will append your category with `.cross-seed` and either...
-
-- use the same **pre/post import categories** in your Arr **OR**
-- your Arr's **pre/post import categories** have the same **save path** in
-  qBittorrent.
-
-:::
 
 ### `Transmission` setup
 
