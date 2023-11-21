@@ -18,15 +18,15 @@ Cross-seed **needs** to access 3 directories: an input directory with torrent fi
 an output directory for cross-seed to save new torrent files (when using [`action: 'save',`](../basics/options.md#action)), and a config
 directory.
 
-| Config Type     | Name   | Container Path                       | Host Path                           | Access Mode |
-| --------------- | ------ | ------------------------------------ | ----------------------------------- | ----------- |
-| Path            | Config | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
-| Path            | Input  | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
-| Path            | Output | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
-| Path (Optional) | Data   | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
+| Config Type     | Name       | Container                            | Host                                | Access Mode |
+| --------------- | ---------- | ------------------------------------ | ----------------------------------- | ----------- |
+| Path            | configPath | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
+| Path            | torrentDir | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
+| Path            | outputDir  | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
+| Path (Optional) | dataDir    | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 
 :::tip
-The "Data" path is used only for **[data-based searching](./data-based-matching.md)**. If you wish to add this, you will need to go to the bottom of
+The "dataDir" path is used only for **[data-based searching](./data-based-matching.md)**. If you wish to add this, you will need to go to the bottom of
 your container template and click on "**Add another Path, Port, Variable, Label or Device**" and select Path.
 
 The container path will need to "mirror" how your torrent client views this directory.
