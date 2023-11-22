@@ -35,6 +35,9 @@ This is by design and due to the way data-based searches function. This is done 
 missing files or files that failed rechecking. Until there is a way to guarantee you won't end up downloading
 extra (not cross-seeding) this is the best solution.
 
+Alternatively, if you wish for torrents to not inject in a paused state, you can enable `skipRecheck` in the config
+file, and this will instead Error on missing/incomplete files.
+
 :::tip
 Consider using `infoHash` if you are racing to prevent mismatches.
 :::
