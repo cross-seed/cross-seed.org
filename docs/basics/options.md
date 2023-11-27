@@ -601,7 +601,7 @@ fuzzySizeThreshold: 20,
 | ---------------- | -------------- | ------------------------- | -------------------------------- | ------- |
 | `excludeOlder`   | `-x <value>`   | `--exclude-older <value>` | `string` in the [ms][ms] format) |         |
 
-When running a search of your `torrentDir`, exclude torrents first searched more
+When running a search, this option excludes anything first searched more
 than this long ago. This option is only relevant in `search` mode or in `daemon`
 mode with [`searchCadence`](#searchcadence) turned on.
 
@@ -635,8 +635,8 @@ excludeOlder: "0s",
 | --------------------- | -------------- | --------------------------------- | -------------------------------- | ------- |
 | `excludeRecentSearch` | `-r <value>`   | `--exclude-recent-search <value>` | `string` in the [ms][ms] format) |         |
 
-When running a search of your `torrentDir`, exclude torrents which have been
-searched more recently than this long ago. This option is only relevant in
+When running a search, this option excludes anything that has been searched
+more recently than this long ago. This option is only relevant in
 `search` mode or in `daemon` mode with [`searchCadence`](#searchcadence) turned
 on.
 
