@@ -95,8 +95,8 @@ scan off ([`rssCadence: null,`](../basics/options.md#rsscadence)) if you set up 
 
 :::
 
-This endpoint returns 200 if your request was received and a match was found. If
-no match it responds with 204 No Content.
+This endpoint returns 200 if your request was received and a completed match was found, 202 if the match was found to be incomplete (still downloading), and if
+no match was found will respond with 204 No Content.
 
 ### Supported formats
 
