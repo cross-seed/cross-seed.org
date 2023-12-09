@@ -572,11 +572,9 @@ includeNonVideos: false,
 Increase this number to reject fewer torrents based on size. There is no
 guarantee that it will increase your match rate.
 
-https://github.com/cross-seed/cross-seed/blob/port-docs-from-wiki/src/decide.ts#L70-L87
-
 :::caution
 
-This option has very limited utility and under normal operation, does not need
+This option has very limited utility and under normal operation does not need
 to be modified.
 
 :::
@@ -584,15 +582,14 @@ to be modified.
 #### `fuzzySizeThreshold` Examples (CLI)
 
 ```shell
-cross-seed search -d 10
-cross-seed search --fuzzy-size-threshold 3
-cross-seed daemon -d 5
+cross-seed search --fuzzy-size-threshold 0.02
+cross-seed daemon --fuzzy-size-threshold 0.02
 ```
 
 #### `fuzzySizeThreshold` Examples (Config file)
 
 ```js
-fuzzySizeThreshold: 20,
+fuzzySizeThreshold: 0.02,
 ```
 
 ### `excludeOlder`
