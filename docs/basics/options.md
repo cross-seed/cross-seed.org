@@ -594,9 +594,9 @@ fuzzySizeThreshold: 0.02,
 
 ### `excludeOlder`
 
-| Config file name | CLI short form | CLI long form             | Format                           | Default |
-| ---------------- | -------------- | ------------------------- | -------------------------------- | ------- |
-| `excludeOlder`   | `-x <value>`   | `--exclude-older <value>` | `string` in the [ms][ms] format) |         |
+| Config file name | CLI short form | CLI long form             | Format                          | Default |
+| ---------------- | -------------- | ------------------------- | ------------------------------- | ------- |
+| `excludeOlder`   | `-x <value>`   | `--exclude-older <value>` | `string` in the [ms][ms] format |         |
 
 When running a search, this option excludes anything first searched more
 than this long ago. This option is only relevant in `search` mode or in `daemon`
@@ -628,9 +628,9 @@ excludeOlder: "0s",
 
 ### `excludeRecentSearch`
 
-| Config file name      | CLI short form | CLI long form                     | Format                           | Default |
-| --------------------- | -------------- | --------------------------------- | -------------------------------- | ------- |
-| `excludeRecentSearch` | `-r <value>`   | `--exclude-recent-search <value>` | `string` in the [ms][ms] format) |         |
+| Config file name      | CLI short form | CLI long form                     | Format                          | Default |
+| --------------------- | -------------- | --------------------------------- | ------------------------------- | ------- |
+| `excludeRecentSearch` | `-r <value>`   | `--exclude-recent-search <value>` | `string` in the [ms][ms] format |         |
 
 When running a search, this option excludes anything that has been searched
 more recently than this long ago. This option is only relevant in
