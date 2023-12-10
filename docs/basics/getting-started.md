@@ -151,13 +151,14 @@ services:
     image: crossseed/cross-seed
     container_name: cross-seed
     user: 1000:1000 # optional but recommended
+    ports:
+      - "2468:2468" # you'll need this for daemon mode only
     volumes:
       - /path/to/config/folder:/config
-      - /path/to/rtorrent_sess:/torrents:ro # note that this volume can and should be mounted read-only
+      - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
       - /path/to/output/folder:/cross-seeds
-      - /path/to/torrent/data:/data # this is optional dataDir path (for data-based matching) - will need to mirror your torrent client's path (like Arr's do)
-
-    command: search
+      - /path/to/torrent/data:/data # OPTIONAL!!! this is dataDir path (for data-based matching) - will need to mirror your torrent client's path (like Arr's do)
+    command: search # this enables the search mode, change to daemon to specifically run the daemon
 ```
 
 #### Create a config file
