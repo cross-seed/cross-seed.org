@@ -57,6 +57,12 @@ If you do not link files within your `dataDirs` or have them outside of the [`ma
 
 :::
 
+### My torrents are injected (qBittorrent) but show `missing files` error!
+
+If you are seeing injected torrents show up with `missing files` error, it is likely because you do not have a save path set for the original torrent's category that cross-seed was cross-seeding from. You should also see a warning when the torrents are being injected telling you that there is no save path set.
+
+Set a save path for the files in that category to fix this.
+
 ### What [`linkType`](./options.md#linktype) should I use? (data-based searching)
 
 Your options are `"hardlink"` or `"symlink"`. These operate in seperate ways, and depending on your workflow you should choose appropriately. This is a brief description, however
