@@ -94,7 +94,7 @@ There is no need to put cross-seed behind a VPN, all of its requests are directl
 Generally, you won't be able to access local instances from services utilizing a VPN since localhost/LAN is not accessible from the VPN network by default.
 
 :::danger
-`cross-seed` does _not_ have API auth.
+Even though `cross-seed` does have API auth, we still recommend that you...
 **Do not expose its port to untrusted networks (such as the Internet).**
 :::
 :::tip
