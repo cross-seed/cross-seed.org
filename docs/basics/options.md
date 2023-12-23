@@ -216,8 +216,13 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 Point this at a directory containing torrent files. If you don't know where your
 torrent client stores its files, the table below might help.
 
-:::caution Docker
+:::tip qBittorrent
+If you are using qBittorrent 4.6.x and/or `SQLite database` in `Preferences -> Advanced` you will
+need to switch to `fastresume` for compatibility with `cross-seed`. We have no ETA on SQLite integration
+currently.
+:::
 
+:::caution Docker
 Leave the `torrentDir` as `/torrents` and use Docker to map your directory to
 `/torrents`.
 

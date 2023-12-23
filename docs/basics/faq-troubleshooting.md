@@ -63,6 +63,12 @@ If you are seeing injected torrents show up with `missing files` error, it is li
 
 Set a save path for the files in that category to fix this.
 
+### I am getting `0 torrents found` with qBittorrent and I set my `torrentDir`
+
+If you are using qBittorrent 4.6.x or later and have the option to use `SQLite database` in the Advanced menu in preferences, you will not be able to do torrent based searches. To be compatible with `cross-seed` you will need to switch this to `fastresume` mode and restart qBittorrent. This will store actual torrent files in your BT_Backup folder. `cross-seed` depends on, and indexes, the torrent files for searching.
+
+We have no current ETA on integration with qBittorrent's SQLite database.
+
 ### What [`linkType`](./options.md#linktype) should I use? (data-based searching)
 
 Your options are `"hardlink"` or `"symlink"`. These operate in seperate ways, and depending on your workflow you should choose appropriately. This is a brief description, however
@@ -87,12 +93,11 @@ If your setup is running with a VPN, you will need to either
 2. Try to use the Docker network addresses as your instance hostnames
 3. Address the routing of local/internal traffic in your VPN configuration
 
+Generally, you won't be able to access local instances from services utilizing a VPN since localhost/LAN is not accessible from the VPN network by default.
+
 :::info
 There is no need to put cross-seed behind a VPN, all of its requests are directly made to the torrent client or Jackett/Prowlarr.
 :::
-
-Generally, you won't be able to access local instances from services utilizing a VPN since localhost/LAN is not accessible from the VPN network by default.
-
 :::danger
 Even with API auth enabled, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
 :::
