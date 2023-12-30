@@ -568,7 +568,7 @@ includeNonVideos: true,
 includeNonVideos: false,
 ```
 
-### `fuzzySizeThreshold` (experimental)
+### `fuzzySizeThreshold`
 
 | Config file name     | CLI short form | CLI long form                    | Format                         | Default |
 | -------------------- | -------------- | -------------------------------- | ------------------------------ | ------- |
