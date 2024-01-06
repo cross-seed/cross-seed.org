@@ -159,6 +159,7 @@ services:
       - /path/to/output/folder:/cross-seeds
       - /path/to/torrent/data:/data # OPTIONAL!!! this is dataDir path (for data-based matching) - will need to mirror your torrent client's path (like Arr's do)
     command: search # this enables the search mode, change to daemon to specifically run the daemon
+    restart: no # make sure to not enable it in search mode, otherwise it will keep rerunning constantly
 ```
 
 #### Create a config file
