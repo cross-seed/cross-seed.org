@@ -990,3 +990,95 @@ cross-seed daemon --no-api-auth # will allow any requests
 apiAuth: true,
 apiAuth: false,
 ```
+
+### `snatchTimeout`
+
+| Config file name | CLI short form | CLI long form                | Format                          | Default   |
+| ---------------- | -------------- | ---------------------------- | ------------------------------- | --------- |
+| `snatchTimeout`  |                | `--snatch-timeout <timeout>` | `string` in the [ms][ms] format | undefined |
+
+This option applies to any snatch (download) of a .torrent file via Torznab.
+If a response is not given in the amount of time specified then it will
+consider the snatch as failed.
+
+#### `snatchTimeout` Examples (CLI)
+
+```shell
+cross-seed daemon --snatch-timeout "15s"
+cross-seed search --snatch-timeout "30s"
+
+```
+
+#### `snatchTimeout` Examples (Config file)
+
+```js
+snatchTimeout: undefined, // disable the snatch timeout (http default)
+
+snatchTimeout: "30s",
+
+snatchTimeout: "15s",
+```
+
+[pr]: https://github.com/cross-seed/cross-seed.org/tree/master/docs/basics/options.md
+[ms]: https://github.com/vercel/ms#examples
+
+### `searchTimeout`
+
+| Config file name | CLI short form | CLI long form                | Format                          | Default   |
+| ---------------- | -------------- | ---------------------------- | ------------------------------- | --------- |
+| `searchTimeout`  |                | `--search-timeout <timeout>` | `string` in the [ms][ms] format | undefined |
+
+This option applies to any search via Torznab. If the search response is not
+given in the amount of time specified then it will consider the search failed.
+
+#### `searchTimeout` Examples (CLI)
+
+```shell
+cross-seed daemon --search-timeout "20s"
+cross-seed search --search-timeout "45s"
+
+```
+
+#### `searchTimeout` Examples (Config file)
+
+```js
+searchTimeout: undefined, // disables searchTimeout (http default)
+
+searchTimeout: "60s",
+
+searchTimeout: "20s",
+```
+
+[pr]: https://github.com/cross-seed/cross-seed.org/tree/master/docs/basics/options.md
+[ms]: https://github.com/vercel/ms#examples
+
+### `searchLimit`
+
+| Config file name | CLI short form | CLI long form             | Format   | Default   |
+| ---------------- | -------------- | ------------------------- | -------- | --------- |
+| `searchLimit`    |                | `--search-limit <number>` | `number` | undefined |
+
+This option applies to any snatch (download) of a .torrent file via Torznab.
+If a response is not given in the amount of time specified then it will
+consider the snatch as failed.
+
+:::info
+This will apply to searching in daemon mode (periodic/cadence or when given
+a path which contains many files) or directly with the search command.
+:::
+
+#### `searchLimit` Examples (CLI)
+
+```shell
+cross-seed daemon --search-limit 50
+cross-seed search --search-limit 150
+
+```
+
+#### `searchLimit` Examples (Config file)
+
+```js
+searchLimit: undefined, // disable search count limits
+
+searchLimit: 150,
+```
