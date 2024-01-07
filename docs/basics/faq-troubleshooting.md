@@ -131,6 +131,12 @@ You can utilize the [`cross-seed diff`](../reference/utils#cross-seed-diff) comm
 
 `cross-seed` currently searches for potential matches and compares the contents and size of files within, it is possible you are running searches too often, are not keeping the torrent_cache folder, or are improperly utilizing [**autobrr**](https://autobrr.com/).
 
+Using `risky` matching will match solely based on the size of the torrents returned from a search. This will always result in more .torrent files being snatched from the tracker.
+
+Using `safe` will isolate snatches to those that match within a threshold/distance using the Fuse library.
+
+It is important to note that your tracker may have opinions on the snatching of .torrent files that cross-seed will do, and it is important to respect these or potentially risk your account being put in jeopardy.
+
 We try to reduce unnecessary snatches of .torrent files as much as possible, but because we need to compare files inside the torrent as well as their sizes, it is sometimes unavoidable.
 
 ### How can I use [**autobrr**](https://autobrr.com/) with cross-seed?

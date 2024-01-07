@@ -1058,9 +1058,8 @@ searchTimeout: "20s",
 | ---------------- | -------------- | ------------------------- | -------- | --------- |
 | `searchLimit`    |                | `--search-limit <number>` | `number` | undefined |
 
-This option applies to any snatch (download) of a .torrent file via Torznab.
-If a response is not given in the amount of time specified then it will
-consider the snatch as failed.
+This option applies to any search Torznab. This option will stop searching after the
+number of searches meets the number specified.
 
 :::info
 This will apply to searching in daemon mode (periodic/cadence or when given
