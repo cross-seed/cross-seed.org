@@ -10,6 +10,12 @@ Cross-seeding is the term used for downloading a torrent from one tracker and th
 
 Since you already have the torrent's files, this results in zero download and instant seeding. This is a great way to build ratio (especially on your new trackers) and contribute to the torrenting community.
 
+:::danger
+Certain `cross-seed` configurations can result in downloading an excessive number of torrent files in a short amount of time. Trackers may, as a result, forbid this or require specific settings to minimize this behavior as much as possible.
+
+[See this FAQ post for details](./faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files)
+:::
+
 Now we will install `cross-seed` and run our first search.
 
 ## Installation
