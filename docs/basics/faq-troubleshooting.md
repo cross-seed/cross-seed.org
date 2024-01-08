@@ -127,20 +127,6 @@ This is a result of the matching algorithm used by `cross-seed`, and is most com
 You can utilize the [`cross-seed diff`](../reference/utils#cross-seed-diff) command to compare the torrents.
 :::
 
-### My tracker is mad at me for snatching 1000000 .torrent files!
-
-`cross-seed` currently searches for potential matches and compares the contents and size of files within, it is possible you are running searches too often, are not keeping the torrent_cache folder, or are improperly utilizing [**autobrr**](https://autobrr.com/).
-
-Using `risky` matching will match solely based on the size of the torrents returned from a search. This will always result in more .torrent files being snatched from the tracker.
-
-Using `safe` will isolate snatches to those that match within a threshold/distance using the Fuse library.
-
-:::caution
-It is important to note that your tracker may have opinions on the snatching of .torrent files that cross-seed will do, and it is important to respect these or potentially risk your account being put in jeopardy.
-:::
-
-We try to reduce unnecessary snatches of .torrent files as much as possible, but because we need to compare files inside the torrent as well as their sizes, it is sometimes unavoidable.
-
 ### How can I use [**autobrr**](https://autobrr.com/) with cross-seed?
 
 If you are using [**autobrr**](https://autobrr.com/) to cross-seed, you can use the [`/api/announce`](../reference/api#post-apiannounce) endpoint, rather than [`/api/webhook`](../reference/api#post-apiwebhook), to match against what cross-seed [already knows about your available media](../reference/architecture#prefiltering) (instead of searching your indexers every time).
@@ -152,3 +138,81 @@ If you want to filter announces even further, consider setting up more specific 
 :::info
 For more help setting this up, you can head over to the [autobrr documentation for 3rd-party-tools](https://autobrr.com/3rd-party-tools/#cross-seed-filter) and read more.
 :::
+
+### My tracker is mad at me for snatching too many .torrent files!
+
+`cross-seed` searches for and compares potential match's contents and the size(s) of file(s) within those torrents. It is possible you are running searches too often, have configured `cross-seed` in a less-than-desirable way, are not keeping the torrent_cache folder, or are improperly utilizing [**autobrr**](https://autobrr.com/).
+
+:::caution
+It is important to note that your tracker may have opinions on the snatching of .torrent files that cross-seed can potentially do, and it is important to respect these or risk your account being disabled.
+:::
+
+We try to reduce unnecessary snatches of .torrent files as much as possible, but because we need to compare the files inside the torrent as well as their sizes, it is sometimes unavoidable.
+
+:::warning
+`cross-seed` is incredibly configurable and needs a good amount of thought and testing in your configuration before leaving it to do its thing. **We highly recommend you read your tracker's rules, investigate the number of potential searches you will be performing, and thoroughly read the documentation on the options in the config template as well as on this site.**
+:::
+
+#### Settings to consider when looking to minimize snatches
+
+---
+
+```js
+includeEpisodes: false,
+includeSingleEpisodes: true,
+```
+
+This will exclude season packs' individual episodes (for data-based searching) while still searching for episodes outside of season packs. Many times individual episodes have been replaced on trackers for the season packs. This is beneficial for initial searches especially.
+
+:::warning
+If you do not download or upgrade to season packs, this could still result in excessive searching.
+:::
+
+---
+
+```js
+includeNonVideos: false,
+```
+
+This option will exclude any torrents or folders that contain non-video files. This is useful for excluding things that are not movies or TV content, but will also exclude anything that contains `.nfo`, `.srt`, `.txt` or other non-video files from being searched.
+
+---
+
+```js
+matchMode: "safe",
+```
+
+:::info
+Using [`risky`](./options.md#matchmode) matching will match torrents for snatching based on the size of the torrents and compare them regardless of filename.
+
+Using [`safe`](./options.md#matchmode) matching will match torrents for snatching based on the size and compare them requiring the file structure to match.
+:::
+
+---
+
+It is highly recommended to utilize [`excludeOlder` and `excludeRecentSearch`](./daemon.md#set-up-periodic-searches). Both of these are covered [here](./daemon.md#set-up-periodic-searches) as well as on the [options page](./options.md#excludeolder).
+
+Setting something reasonable for both of these based on the amount of content you download is crucial. While we cache your .torrents, it is not beneficial, for example, to repeatedly search the same torrents that are 6 months old every few days. There is no one-size-fits-all setting for this, but you can run cross-seed with your config and see how many torrents it will search and adjust accordingly.
+
+A final set of options to consider are [`searchLimit`](./options.md#searchlimit) and [`searchCadence`](./options.md#searchcadence). These two options combined will limit the number of searches performed on your schedule ([`searchCadence`](./options.md#searchcadence)) and can ease the search queries you are making to your tracker.
+
+---
+
+#### BTN
+
+After discussions with the staff of the site, we have agreed on a recommended set of configuration options that should help to minimize excessive snatching of the .torrent files for comparison. These settings are merely recommendations. You and you alone are responsible for your account and the actions of the software you use with your account.
+
+```js
+delay: 30,
+excludeRecentSearch: undefined,
+excludeOlder: "2w",
+searchCadence: "3d",
+```
+
+For initial searches, we recommend the following additional options be set. This will only search for season packs.
+
+```js
+includeEpisodes: false,
+includeSingleEpisodes: false,
+includeNonVideos: false,
+```
