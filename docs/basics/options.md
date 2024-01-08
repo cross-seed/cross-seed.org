@@ -446,11 +446,13 @@ linkType: "symlink",
 | `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky` | `safe`  |
 
 `cross-seed` uses two types of matching algorithms, `safe` and `risky`. `safe` is the default and matches
-based on name and size, while `risky` matches strictly on size. For media library searches `risky` is necessary
-due to the renaming of files.
+based on size and requires release groups match to snatch for further comparison. `risky` matches on size
+and will, if present, compare the release groups, but will still proceed to snatch if one is not.
+
+For media library searches `risky` is necessary due to the renaming of files.
 
 :::tip
-Using skipRecheck in conjunction with `risky` is not recommended, and could result in you downloading rather than cross-seeding properly.
+Using skipRecheck in conjunction with `risky` is not recommended and could result in you downloading rather than cross-seeding properly.
 **Proceed with caution!**
 :::
 

@@ -9,7 +9,7 @@
 ### What can I do about `error parsing torrent at http://…`?
 
 This means that the Prowlarr/Jackett download link didn't resolve to a torrent file. It's
-possible you got rate-limited so you might want to try again later.
+possible you've got rate-limited so you might want to try again later.
 Otherwise, just ignore it. There's nothing cross-seed will be able to do to fix
 it.
 
@@ -183,9 +183,9 @@ matchMode: "safe",
 ```
 
 :::info
-Using [`risky`](./options.md#matchmode) matching will match torrents for snatching based on the size of the torrents and compare them regardless of filename.
+Using [`risky`](./options.md#matchmode) matching will match torrents for snatching based on the size of the torrents and whether the release groups match (if both are present) and compare them regardless of file structures. This will always result in more .torrent files being snatched from the tracker.
 
-Using [`safe`](./options.md#matchmode) matching will match torrents for snatching based on the size and compare them requiring the file structure to match.
+Using [`safe`](./options.md#matchmode) matching will match torrents for snatching based on the size and require that the release groups match and compare them, requiring file structure to match.
 :::
 
 ---
