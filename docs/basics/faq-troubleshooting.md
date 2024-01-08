@@ -207,12 +207,9 @@ delay: 30,
 excludeRecentSearch: undefined,
 excludeOlder: "2w",
 searchCadence: "3d",
-```
-
-We recommend the following additional options be set. This will only search for season packs.
-
-```js
 includeEpisodes: false,
 includeSingleEpisodes: false,
 includeNonVideos: false,
 ```
+
+Descriptions for the settings listed above can be found [here](./options.md).
