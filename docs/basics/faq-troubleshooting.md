@@ -209,7 +209,7 @@ excludeOlder: "2w",
 searchCadence: "3d",
 ```
 
-For initial searches, we recommend the following additional options be set. This will only search for season packs.
+We recommend the following additional options be set. This will only search for season packs.
 
 ```js
 includeEpisodes: false,
