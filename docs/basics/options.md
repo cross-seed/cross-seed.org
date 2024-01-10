@@ -310,9 +310,9 @@ cross-seed search --data-dirs /data/torrents/completed
 #### `dataDirs` Examples (Config file)
 
 ```js
-dataDir: ["/data/torrents/completed"],
+dataDirs: ["/data/torrents/completed"],
 
-dataDir: ["/data/torrents/completed", "/media/library/movies"],
+dataDirs: ["/data/torrents/completed", "/media/library/movies"],
 
 ```
 
