@@ -20,10 +20,14 @@ Now we will install `cross-seed` and run our first search.
 
 ## Installation
 
-### with Docker (recommended)
+:::tip
+If you are not already using Docker, and/or especially if you are on Windows, it is not recommended to install Docker specifically for `cross-seed`. Use one of the other methods ([npm](#with-npm) or [yarn](#with-yarn)) which we refer to as running "natively".
+:::
+
+### with Docker
 
 ```shell
-docker run crossseed/cross-seed --version
+docker run ghcr.io/cross-seed/cross-seed --version
 ```
 
 ### with `npm`
@@ -154,7 +158,7 @@ service:
 version: "2.1"
 services:
   cross-seed:
-    image: crossseed/cross-seed
+    image: ghcr.io/cross-seed/cross-seed
     container_name: cross-seed
     user: 1000:1000 # optional but recommended
     ports:
