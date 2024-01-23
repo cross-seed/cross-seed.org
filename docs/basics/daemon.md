@@ -123,7 +123,7 @@ User={user}
 Group={group}
 Restart=always
 Type=simple
-ExecStart=/path/to/node cross-seed daemon
+ExecStart=cross-seed daemon
 [Install]
 WantedBy=multi-user.target
 ```
