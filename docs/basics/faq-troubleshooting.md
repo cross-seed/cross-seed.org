@@ -83,6 +83,21 @@ If you are using qBittorrent, consider checking out [qbit_manage](https://github
 
 :::
 
+### I'm getting errors in cross-seed on hostingby.design seedbox
+
+:::tip
+Although we are providing the information given from hostingby.design, we are not able to support this directly. This is just what was passed to us. Contact them for details and further instructions if you have any issues
+:::
+
+1. Get your shared instance IP address (`cat .install/subnet.lock)
+2. Torznab URLs should be: `http://ip:port/prowlarr/[id]/api?apikey=[apikey]`
+3. Your torrent client should be on the same subnet (if installed after dec. 2023). If not, update the “bind ip” address in web ui settings to your ip from step 1 and restart the torrent client
+4. The torrent client address URL in cross-seed config should be http://user:pass@ip:port (note: no `/qbittorrent` or `/deluge` etc at the end)
+
+:::info
+The subnet/shared instances are reverse proxies so no https
+:::
+
 ### I can't reach my Prowlarr/Jackett/cross-seed/torrent client (Using Docker/VPN)
 
 If you are using [Docker](./getting-started#with-docker), you cannot use `localhost` as an address to communicate across containers. Consider using your host's local IP address (usually a 192 or 10 address) or the container name (if using a "Custom Docker Network").
