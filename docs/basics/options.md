@@ -452,7 +452,7 @@ and will, if present, compare the release groups, but will still proceed to snat
 For media library searches `risky` is necessary due to the renaming of files.
 
 :::tip
-Using skipRecheck in conjunction with `risky` is not recommended and could result in you downloading rather than cross-seeding properly.
+Using skipRecheck in conjunction with `risky` is not recommended in most cases (depending on your content and trackers) and will result in your torrents paused to prevent additional downloading from taking place.
 **Proceed with caution!**
 :::
 
