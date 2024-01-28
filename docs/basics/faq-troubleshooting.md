@@ -23,6 +23,12 @@ Remove any `stop_untied=` schedules from your .rtorrent.rc.
 
 Commonly: `schedule2 = untied_directory, 5, 5, (cat,"stop_untied=",(cfg.watch),"*.torrent")`
 
+### `SyntaxError: Unexpected identifier` when I try and start cross-seed
+
+`cross-seed` configuration files are formatted with commas at the end of each identifier (option), if you are seeing this error it is most likely that you are missing a comma at the end of the setting BEFORE the identifier specified in the error.
+
+Alternatively, you could also be missing quotes around the value you provided. Check the syntax before and around the config setting given in the error.
+
 ### Failed to inject, saving instead.
 
 Best way to start troubleshooting this is to check the `logs/verbose.*.log` and find this specific event.
