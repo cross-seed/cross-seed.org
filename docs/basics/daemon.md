@@ -423,15 +423,17 @@ rssCadence: "10 minutes",
 ## Set up periodic searches
 
 Setting up periodic searches is very easy. Just open your config file, and set
-the [`searchCadence`](../basics/options#searchcadence) option. I recommend 26
-weeks (biannual) for full searches:
+the [`searchCadence`](../basics/options#searchcadence) option. I recommend at least 26
+weeks (biannual) for _FULL_ searches, however, you can schedule smaller searches more often with
+further configuration:
 
 ```js
 searchCadence: "26 weeks",
 ```
 
-You can also combine `searchCadence` with `excludeRecentSearch` and `excludeOlder` and run it more
-frequently for a smoother load:
+You can combine [`searchCadence`](../basics/options#searchcadence) with [`excludeRecentSearch`](../basics/options.md#excluderecentsearch)
+and [`excludeOlder`](../basics/options#excludeolder) - and even [`searchLimit`](../basics/options#searchlimit) for a more frequent and
+smoother search load. This results in searching with the following criteria applied:
 
 - `excludeRecentSearch` will exclude any torrents searched for **from the current moment back the specified time**.
 
@@ -443,7 +445,7 @@ excludeRecentSearch: "1 year",
 excludeOlder: "1 year",
 ```
 
-This will search once a week for any torrents that `cross-seed` first searched less than a year ago, and has not been searched in the last year.
+This will search once a week for any torrents that `cross-seed` first searched less than a year ago, and that have not been searched in the last year.
 
 :::tip
 If your cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.

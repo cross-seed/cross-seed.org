@@ -892,7 +892,7 @@ specifying it at all, will disable the feature.
 
 :::note
 
-There is a minimum cadence of `10 minutes`. I recommend keeping it at a
+There is a minimum cadence of `10 minutes`. We recommend keeping it at a
 relatively low number (10-30 mins) because if an indexer has a high frequency of
 new uploads, keeping the number low will make sure `cross-seed` gets a chance to
 see each new upload.
