@@ -5,10 +5,11 @@ title: Unraid
 
 ## Installation
 
-To install in Unraid, the easiest setup will be to use the
+To install in unRAID, the easiest setup will be to use the
 [Community Applications](https://forums.unraid.net/topic/38582-plug-in-community-applications/)
-app. Once the app is installed, go to the **App** tab and search for
-`cross-seed`. Click on the "Install" button. This will take you to the template configuration.
+app (Apps section in the unRAID WebUI). Go to the **Apps** tab and search for `cross-seed`.
+We have an official container now, which is under "ambipro's Repository". Click on the "Install"
+button. This will take you to the template configuration.
 
 ## Configuration
 
@@ -26,10 +27,9 @@ directory.
 | Path (Optional) | dataDir    | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 
 :::tip
-The "dataDir" path is used only for **[data-based searching](./data-based-matching.md)**. If you wish to add this, you will need to go to the bottom of
-your container template and click on "**Add another Path, Port, Variable, Label or Device**" and select Path.
+The "dataDir" path is used only for **[data-based searching](./data-based-matching.md)**. If you wish to add this, you will need to edit the path for `dataDir`.
 
-The container path will need to "mirror" how your torrent client views this directory.
+The container path for `cross-seed` will need to be the same as how your torrent client's container path is configured.
 :::
 
 ### Port Mappings
