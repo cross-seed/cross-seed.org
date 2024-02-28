@@ -39,6 +39,12 @@ that you **do not expose its port to untrusted networks (such as the Internet).*
 
 :::
 
+:::info Unraid
+
+If you are running `cross-seed` on Unraid, it runs in [daemon mode by default](../tutorials/unraid.md#automationscheduling) and no changes are needed.
+
+:::
+
 ## Running the daemon continuously
 
 The easiest way to run the daemon is just to leave a terminal open after running
