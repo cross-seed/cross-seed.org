@@ -5,9 +5,9 @@ title: Unraid
 
 ## Installation
 
-To install in unRAID, the easiest setup will be to use the
+To install in Unraid, the easiest setup will be to use the
 [Community Applications](https://forums.unraid.net/topic/38582-plug-in-community-applications/)
-app (Apps section in the unRAID WebUI). Go to the **Apps** tab and search for `cross-seed`.
+app (Apps section in the Unraid WebUI). Go to the **Apps** tab and search for `cross-seed`.
 We have an official container now, which is under "ambipro's Repository". Click on the "Install"
 button. This will take you to the template configuration.
 
@@ -54,7 +54,13 @@ Below is a screenshot of what your Docker container configuration might look
 like. Now, you can try starting the Docker container and editing the resulting
 configuration file in the next step.
 
-![screenshot-cross-seed](https://user-images.githubusercontent.com/2813049/147599328-6032688e-45e4-43cf-87f6-a070829e1a1b.png)
+![screenshot-cross-seed](https://github.com/cross-seed/cross-seed.org/assets/123845855/2ce0b912-e341-4622-b0a1-8dcd18557730)
+
+:::tip
+
+In the top right if you enable "Advanced View" it will reveal the `Post Argument` field, this can be changed from `daemon` to `search` (for example) to run the search command.
+
+:::
 
 You can start the container to create the config file path.
 
