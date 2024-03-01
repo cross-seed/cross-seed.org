@@ -39,14 +39,6 @@ that you **do not expose its port to untrusted networks (such as the Internet).*
 
 :::
 
-:::info Unraid
-
-If you are running `cross-seed` on Unraid, it runs in [daemon mode by default](../tutorials/unraid.md#automationscheduling) and no changes are needed.
-
-See [this screenshot and instructions](../tutorials/unraid.md#screenshot) for details on changing the `cross-seed` command
-
-:::
-
 ## Running the daemon continuously
 
 The easiest way to run the daemon is just to leave a terminal open after running
@@ -65,6 +57,7 @@ However, that's not very sustainable.
 Below are a few ways you can set up `cross-seed daemon` to run on its own:
 
 - [Docker](#docker)
+- [Unraid](#unraid)
 - [`systemd`](#systemd-linux)
 - [`screen`](#screen)
 
@@ -102,6 +95,12 @@ docker stop cross-seed # Stop the daemon
 docker restart cross-seed # Restart the daemon
 docker logs cross-seed # view the logs
 ```
+
+### Unraid
+
+If you are running `cross-seed` on Unraid, it runs in [daemon mode by default](../tutorials/unraid.md#automationscheduling) and no changes are needed.
+
+See [this screenshot and instructions](../tutorials/unraid.md#screenshot) for details on changing the `cross-seed` command.
 
 ### `systemd` (Linux)
 
