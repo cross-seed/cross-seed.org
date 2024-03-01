@@ -98,9 +98,11 @@ docker logs cross-seed # view the logs
 
 ### Unraid
 
-If you are running `cross-seed` on Unraid, it runs in [daemon mode by default](../tutorials/unraid.md#automationscheduling) and no changes are needed.
+If you are running `cross-seed` on Unraid you should have installed the "Community App" from ambipro's repository, this is our official container.
 
-See [this screenshot and instructions](../tutorials/unraid.md#screenshot) for details on changing the `cross-seed` command.
+Be default, the [container runs in daemon mode](../tutorials/unraid.md#automationscheduling) and no changes are needed.
+
+We recommend you head over to the [Unraid Tutorial](../tutorials/unraid.md) for specifics and documentation for the container.
 
 ### `systemd` (Linux)
 
