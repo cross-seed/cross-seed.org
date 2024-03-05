@@ -13,6 +13,16 @@ possible you've got rate-limited so you might want to try again later.
 Otherwise, just ignore it. There's nothing cross-seed will be able to do to fix
 it.
 
+### Does cross-seed work on public trackers?
+
+While it is possible, in some cases, for you to cross-seed on public trackers; the majority of public trackers are serving the same torrent file (identical infohash) with different announce URLs. This results in cross-seed seeing what you would assume are matches on different trackers as being torrents you already have in your client. These "matches" will therefore be excluded in cross-seed's decisions. The torrent clients we support also do not allow for multiple torrents to be added with the same infohash, so it is entirely outside of our control, even if we somehow were able to support matching identical infohashes.
+
+Another problem is the naming schemes (or lack of one) that the majority of public trackers use. Due to the nature of "anyone can upload", you will get individuals or bots tagging releases with their names, or just otherwise butchering the naming conventions we depend on for properly parsing and matching torrents.
+
+Finally, given that there is no direct, lasting, benefit to you for cross-seeding on public trackers, as there is no account, ratio, reputation, or upload directly associated with you, the benefit YOU will receive if any matches are found is almost non-existent.
+
+All of these factors combine to yield extremely limited results, if any, and the inability, for us, to provide support beyond initial configurations and set up for use on public trackers.
+
 ### Why do I get `Unsupported: magnet link detected at…`?
 
 `cross-seed` does not support the usage of magnet links. If your indexer supports torrent files you will need to switch your settings.
