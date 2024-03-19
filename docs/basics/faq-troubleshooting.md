@@ -1,5 +1,9 @@
 # FAQ & Troubleshooting
 
+## Updating to cross-seed v6
+
+If you are updating from version 5.x to version 6.0, you can visit the [v6 migration guide](../v6-migration) for the changes and settings that have been made and introduced. We recommend reading this page before seeking any support, as it should cover most of the questions you may encounter.
+
 ### General Suggestions
 
 - Adjust [`excludeRecentSearch` `excludeOlder` and `searchCadence`](./daemon.md#set-up-periodic-searches) to reduce searching indexers needlessly.
