@@ -6,6 +6,10 @@
 - If cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
 - The log files in `/logs` - specifically `verbose.*.log` - are your friend. If you experience undesired results from `cross-seed`, look to these files first for indicators of why `cross-seed` performed the way it did.
 
+### Does cross-seed support music torrents?
+
+While `cross-seed` may incidentally find _some_ music matches, it is not optimized for music at all. You may find better results with [crops](https://github.com/).
+
 ### What can I do about `error parsing torrent at http://…`?
 
 This means that the Prowlarr/Jackett download link didn't resolve to a torrent file. It's
