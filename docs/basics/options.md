@@ -642,7 +642,8 @@ excludeOlder: "0s",
 When running a search, this option excludes anything that has been searched
 more recently than this long ago. This option is only relevant in
 `search` mode or in `daemon` mode with [`searchCadence`](#searchcadence) turned
-on.
+on. Previous searches that failed due to a timeout or other error will not be
+exluded.
 
 #### `excludeRecentSearch` Examples (CLI)
 
