@@ -8,7 +8,7 @@
 
 ### Does cross-seed support music torrents?
 
-While `cross-seed` may incidentally find _some_ music matches, it is not optimized for music at all. You may find better results with [crops](https://github.com/).
+While `cross-seed` may incidentally find _some_ music matches, it is not optimized for music at all. You may find better results with [crops](https://github.com/soranosita/crops).
 
 ### What can I do about `error parsing torrent at http://…`?
 
