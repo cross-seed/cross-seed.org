@@ -644,6 +644,11 @@ more recently than this long ago. This option is only relevant in
 `search` mode or in `daemon` mode with [`searchCadence`](#searchcadence) turned
 on.
 
+:::note
+
+Searches that failed on specific trackers (for example - due to timeout or rate-limiting) will not be marked as having been searched, and thus will not be excluded by this setting for those specific trackers on the next run.
+:::
+
 #### `excludeRecentSearch` Examples (CLI)
 
 ```shell
