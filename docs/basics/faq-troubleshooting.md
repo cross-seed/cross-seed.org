@@ -226,6 +226,12 @@ Using [`risky`](./options.md#matchmode) matching will match torrents for snatchi
 Using [`safe`](./options.md#matchmode) matching will match torrents for snatching based on the size and require that the release groups match and compare them, requiring file structure to match.
 :::
 
+:::caution
+There are TV shows that are not combined into season packs, such as Jeopardy, Talk Shows, or similar. These shows often have naming which specifies dates, rather than SeasonEpisode style. Searching with `includeSingleEpisodes` and using `risky` on these torrents, or files, can result in _many torrent files being downloaded_ for comparisons for matching only _one individual episode_.
+
+Remember, this would occur on just one (torrent) search, within the entire (all data) search.
+:::
+
 ---
 
 It is highly recommended to utilize [`excludeOlder` and `excludeRecentSearch`](./daemon.md#set-up-periodic-searches). Both of these are covered [here](./daemon.md#set-up-periodic-searches) as well as on the [options page](./options.md#excludeolder).
