@@ -227,7 +227,8 @@ Using [`safe`](./options.md#matchmode) matching will match torrents for snatchin
 :::
 
 :::caution
-There are some TV shows that do not have season packs, such as Jeopardy, talk shows and similar, with their naming including dates, rather than SeasonEpisode. Searching with `includeSingleEpisodes` and using `risky` on these files can result in *hundreds of torrents files being downloaded* so as to data match, *an individual episode*.
+There are TV shows that are not combined into season packs, such as Jeopardy, Talk Shows, or similar. These shows often have naming which specifies dates, rather than SeasonEpisode style. Searching with `includeSingleEpisodes` and using `risky` on these torrents, or files, can result in _many torrent files being downloaded_ for comparisons for matching only _one individual episode_.
+
 Remember, this would occur on just one (torrent) search, within the entire (all data) search.
 :::
 
