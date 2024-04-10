@@ -216,6 +216,11 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 Point this at a directory containing torrent files. If you don't know where your
 torrent client stores its files, the table below might help.
 
+:::note Data-Only Searching
+If you wish to search only your data, we previously recommended pointing this to an empty directory. You can
+now set this to `null` if you wish to search only your `dataDirs`.
+:::
+
 :::tip qBittorrent
 If you are using qBittorrent 4.6.x and/or `SQLite database` in `Preferences -> Advanced` you will
 need to switch to `fastresume` for compatibility with `cross-seed`. We have no ETA on SQLite integration
@@ -380,8 +385,8 @@ duplicateCategories: false,
 
 `cross-seed` will link (symlink/hardlink) in the path provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in the linkDir during data-based searchs where it cannot
-find a associated torrent file.
+to create a link to the original file in the `linkDir` during searches where the original
+data is accessible (both torrent and data-based matches).
 
 :::caution Docker
 
@@ -959,23 +964,19 @@ searchCadence: "4 weeks",
 [pr]: https://github.com/cross-seed/cross-seed.org/tree/master/docs/basics/options.md
 [ms]: https://github.com/vercel/ms#examples
 
-### `apiAuth`
+### `apiKey`
 
-| Config file name | CLI short form | CLI long form | Format    | Default |
-| ---------------- | -------------- | ------------- | --------- | ------- |
-| `apiAuth`        |                | `--api-auth`  | `boolean` | `false` |
+| Config file name | CLI short form | CLI long form     | Format   | Default     |
+| ---------------- | -------------- | ----------------- | -------- | ----------- |
+| `apiKey`         |                | `--api-key <key>` | `string` | `undefined` |
 
 :::info
-[`apiAuth`](../basics/options.md#apiauth) is enabled in the config file
-by default, if you want to disable [`apiAuth`](../basics/options.md#apiauth) set it to `false`.
+[`apiKey`](../basics/options.md#apikey) is disabled in the config file
+by default, if you want to specify a key set it to a valid key (24 character min).
 :::
 
-Set this to `true` to require an API key on all requests made to the
-[/api/announce](../reference/api.md#post-apiannounce) and
-[/api/webhook](../reference/api.md#post-apiwebhook) endpoints.
-
-To find your API key, run the `cross-seed api-key` command.
-The api key can be included with your requests in either of two ways:
+To find your generated API key, run the `cross-seed api-key` command.
+The API key can be included with your requests in either of two ways:
 
 ```shell
 # provide api key as a query param
@@ -984,18 +985,17 @@ curl -XPOST localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode ...
 curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlencode ...
 ```
 
-#### `apiAuth` Examples (CLI)
+#### `apiKey` Examples (CLI)
 
 ```shell
-cross-seed daemon --api-auth # will require auth on requests
-cross-seed daemon --no-api-auth # will allow any requests
+cross-seed daemon --api-key <key> # will require auth on requests
 ```
 
-#### `apiAuth` Examples (Config file)
+#### `apiKey` Examples (Config file)
 
 ```js
-apiAuth: true,
-apiAuth: false,
+apiKey: undefined,
+apiKey: "abcdefghijklmn0pqrstuvwxyz",
 ```
 
 ### `snatchTimeout`
@@ -1087,4 +1087,53 @@ cross-seed search --search-limit 150
 searchLimit: undefined, // disable search count limits
 
 searchLimit: 150,
+```
+
+### `legacyLinking`
+
+| Config file name | CLI short form | CLI long form      | Format    | Default |
+| ---------------- | -------------- | ------------------ | --------- | ------- |
+| `legacyLinking`  |                | `--legacy-linking` | `boolean` | `false` |
+
+Set this to `true` to use the flat-folder style linking previously used in v5. This option
+will otherwise link any matches to a tracker specific folder inside of `linkDir` (if set).
+
+:::warning qBittorrent
+Users of qBittorrent with AutoTorrentManagement enabled will need to set this to `true`.
+:::
+
+#### `legacyLinking` Examples (CLI)
+
+```shell
+cross-seed search --legacy-linking
+```
+
+#### `legacyLinking` Examples (Config file)
+
+```js
+legacyLinking: true,
+
+legacyLinking: false,
+```
+
+### `blockList`
+
+| Config file name | CLI short form           | CLI long form            | Format      | Default |
+| ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
+| `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
+
+`cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
+at startup. You can include keywords, infoHashes, or complete torrent/file names.
+
+#### `blockList` Examples (CLI)
+
+```shell
+cross-seed search --block-list "badRelease","blockedGroup","595ceca24d075435435313c319c3a5f3bec3965a"
+```
+
+#### `blockList` Examples (Config file)
+
+```js
+blockList: ["badRelease", "blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
+
 ```

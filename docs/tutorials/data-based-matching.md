@@ -6,9 +6,9 @@ title: Data-Based Matching
 
 ## Why?
 
-Before data-based matching, cross-seed relies on having torrent files to be able to search for cross-seeds. In this method, it analyzes the list of files stored in the `.torrent` file and searches your trackers for similar files. If the files found from the remote torrent (candidate) match the local torrent (searchee), this is a compatible cross-seed. To determine if the files match, the files in the candidate must be a subset of the searchee and contain the exact name and size as those in the searchee.
+Before data-based matching, cross-seed relied on torrent files to be able to search for cross-seeds. In this method, it analyzes the list of files stored in the `.torrent` file and searches your trackers for similar files. If the files found from the remote torrent (candidate) match the local torrent (searchee), this is a compatible cross-seed. To determine if the files match, the files in the candidate must be a subset of the searchee and contain the exact name and size as those in the searchee.
 
-Data-based matching allows cross seed to not require the `.torrent` file, and instead to look at actual files to search for matches. This is great if you have the actual files to cross-seed, but not the `.torrent` files (think usenet). It still generates a searchee, but the method by which it generates is different. For one, `.torrent`-based searchees are limited to the top-level directory if a torrent file contains a folder. Data-based searching can create this same searchee, but can also traverse into the folder to generate a searchee from an individual file within the folder. This allows cross-seed to take a searchee with a single nested file:
+Data-based matching allows cross seed to not require the `.torrent` file, and instead to look at actual files to search for matches. This is great if you have the actual files to cross-seed, but not the `.torrent` files (think usenet). It still generates a searchee, but the method by which it generates is different. For one, `.torrent`-based searchees are limited to matching files within the torrent file. Data-based searching can create this same searchee, but can also traverse into the folder to generate a searchee from an individual file within the folder. This allows cross-seed to take a searchee with a single nested file:
 
 ```
 torrent_name/

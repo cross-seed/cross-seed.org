@@ -2,7 +2,7 @@
 
 ## Updating to cross-seed v6
 
-If you are updating from version 5.x to version 6.0, you can visit the [v6 migration guide](../v6-migration) for the changes and settings that have been made and introduced. We recommend reading this page before seeking any support, as it should cover most of the questions you may encounter.
+If you are updating from version 5.x to version 6.x, you can visit the [v6 migration guide](../v6-migration) for the changes and settings that have been made and introduced. We recommend reading this page before seeking any support, as it should cover most of the immediate questions you may encounter.
 
 ### General Suggestions
 
@@ -56,7 +56,7 @@ You will be able to see the circumstances around the failure, and start investig
 ### My data-based results are paused at 100% after injection
 
 This is by design and due to the way data-based searches function. This is done to prevent automatically downloading
-missing files or files that failed rechecking. Until there is a way to guarantee you won't end up downloading
+missing files or files that failed to recheck. Until there is a way to guarantee you won't end up downloading
 extra (not cross-seeding) this is the best solution.
 
 Alternatively, if you wish for torrents to not inject in a paused state, you can enable `skipRecheck` in the config
@@ -78,7 +78,6 @@ Check the `/logs/verbose.*.log` files for the file causing this.
 
 :::tip
 If you do not link files within your `dataDirs` or have them outside of the [`maxDataDepth`](../tutorials/data-based-matching.md#setup) visibility, this is preventable.
-
 :::
 
 ### My torrents are injected (qBittorrent) but show `missing files` error!

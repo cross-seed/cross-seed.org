@@ -172,7 +172,8 @@ services:
       - /path/to/config/folder:/config
       - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
       - /path/to/output/folder:/cross-seeds
-      - /path/to/torrent/data:/data # OPTIONAL!!! this is dataDir path (for data-based matching) - will need to replicate your torrent client's container path (like Arr's do)
+      - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
+        # will need to mirror your torrent client's path (like Arr's do)
     command: search # this enables the search mode, change to daemon to specifically run the daemon
     restart: no # make sure to not enable it in search mode, otherwise it will keep rerunning constantly
 ```

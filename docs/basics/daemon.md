@@ -80,7 +80,8 @@ services:
       - /path/to/config/folder:/config
       - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
       - /path/to/output/folder:/cross-seeds
-      - /path/to/torrent/data:/data # OPTIONAL!!! this is dataDir path (for data-based matching) - will need to mirror your torrent client's path (like Arr's do)
+      - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
+        # will need to mirror your torrent client's path (like Arr's do)
     command: daemon # this enables the daemon, change to search to specifically run a search ONLY
     restart: unless-stopped
 ```
@@ -190,8 +191,8 @@ API call, you will need to [**set up data-based matching**](../tutorials/data-ba
 
 ### Step 1: Find your API key
 
-If you have the `apiAuth` option enabled (which you should),
-you will need to supply an API key with your `curl` commands. API keys can be included with your requests in one of two ways:
+If you have not defined your `apiKey` explicitly, `cross-seed` will generate a key for you automatically.
+You will need to supply an API key with your `curl` commands. API keys can be included with your requests in one of two ways:
 
 - an `X-Api-Key` HTTP header
 - an `apikey` query param
