@@ -23,7 +23,7 @@ it.
 
 ### Does cross-seed work on public trackers?
 
-While it is possible, in some cases, for you to cross-seed on public trackers; the majority of public trackers are serving the same torrent file (identical infohash) with different announce URLs. This results in cross-seed seeing what you would assume are matches on different trackers as being torrents you already have in your client. These "matches" will therefore be excluded in cross-seed's decisions. The torrent clients we support also do not allow for multiple torrents to be added with the same infohash, so it is entirely outside of our control, even if we somehow were able to support matching identical infohashes.
+While it is possible, in some cases, for you to cross-seed on public trackers; the majority of public trackers are serving the same torrent file (identical infohash) with different announce URLs. This results in cross-seed seeing what you would assume are matches on different trackers as being torrents you already have in your client. These "matches" will therefore be excluded in cross-seed's decisions. Private torrent sites also set the ['Private Flag'](https://wiki.theory.org/BitTorrentSpecification#Metainfo_File_Structure), meaning that torrent clients cannot add multiple trackers to the same torrent (indentical infohash) with a private flag set. So even if we somehow were able to support matching identical infohashes, it would only work with public trackers.
 
 Another problem is the naming schemes (or lack of one) that the majority of public trackers use. Due to the nature of "anyone can upload", you will get individuals or bots tagging releases with their names, or just otherwise butchering the naming conventions we depend on for properly parsing and matching torrents.
 
