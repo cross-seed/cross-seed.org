@@ -1128,7 +1128,7 @@ at startup. You can include keywords, infoHashes, or complete torrent/file names
 #### `blockList` Examples (CLI)
 
 ```shell
-cross-seed search --block-list "badRelease","blockedGroup","595ceca24d075435435313c319c3a5f3bec3965a"
+cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d075435435313c319c3a5f3bec3965a"
 ```
 
 #### `blockList` Examples (Config file)
