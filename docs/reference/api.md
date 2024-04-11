@@ -14,12 +14,12 @@ You can specify an API key using the [`apiKey`](../basics/options.md#apikey) opt
 `cross-seed` generate one for you (default).
 
 :::info
-API Authorization using an API key is now mandatory as of v6. The `apiAuth` option has been
+API authorization using an API key is now mandatory as of v6. The `apiAuth` option has been
 deprecated and removed.
 :::
 
 :::danger
-Even with API Authorization, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
+Even with API authorization, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
 :::
 
 To find your generated API key, run the `cross-seed api-key` command.

@@ -234,7 +234,7 @@ Remember, this would occur on just one (torrent) search, within the entire (all 
 
 ---
 
-It is highly recommended to utilize [`excludeOlder` and `excludeRecentSearch`](./daemon.md#set-up-periodic-searches). Both of these are covered [here](./daemon.md#set-up-periodic-searches) as well as on the [options page](./options.md#excludeolder).
+It is highly recommended to use [`excludeOlder` and `excludeRecentSearch`](./daemon.md#set-up-periodic-searches). Both of these are covered [here](./daemon.md#set-up-periodic-searches) as well as on the [options page](./options.md#excludeolder).
 
 Setting something reasonable for both of these based on the amount of content you download is crucial. While we cache your .torrents, it is not beneficial, for example, to repeatedly search the same torrents that are 6 months old every few days. There is no one-size-fits-all setting for this, but you can run cross-seed with your config and see how many torrents it will search and adjust accordingly.
 
