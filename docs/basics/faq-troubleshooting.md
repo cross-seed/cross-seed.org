@@ -7,7 +7,7 @@ If you are updating from version 5.x to version 6.x, you can visit the [v6 migra
 ### General Suggestions
 
 - Adjust [`excludeRecentSearch` `excludeOlder` and `searchCadence`](./daemon.md#set-up-periodic-searches) to reduce searching indexers needlessly.
-- If cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
+- If `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
 - The log files in `/logs` - specifically `verbose.*.log` - are your friend. If you experience undesired results from `cross-seed`, look to these files first for indicators of why `cross-seed` performed the way it did.
 
 ### Does cross-seed support music torrents?
@@ -18,18 +18,28 @@ While `cross-seed` may incidentally find _some_ music matches, it is not optimiz
 
 This means that the Prowlarr/Jackett download link didn't resolve to a torrent file. It's
 possible you've got rate-limited so you might want to try again later.
-Otherwise, just ignore it. There's nothing cross-seed will be able to do to fix
+Otherwise, just ignore it. There's nothing `cross-seed` will be able to do to fix
 it.
 
 ### Does cross-seed work on public trackers?
 
-While it is possible, in some cases, for you to cross-seed on public trackers; the majority of public trackers are serving the same torrent file (identical infohash) with different announce URLs. This results in cross-seed seeing what you would assume are matches on different trackers as being torrents you already have in your client. These "matches" will therefore be excluded in cross-seed's decisions. Private torrent sites also set the ['Private Flag'](https://wiki.theory.org/BitTorrentSpecification#Metainfo_File_Structure), meaning that torrent clients cannot add multiple trackers to the same torrent (indentical infohash) with a private flag set. So even if we somehow were able to support matching identical infohashes, it would only work with public trackers.
+While it is possible, in some cases, for you to `cross-seed` on public trackers; the majority of public trackers are serving the same torrent file (identical infohash) with different announce URLs. This results in `cross-seed` seeing what you would assume are matches on different trackers as being torrents you already have in your client. These "matches" will therefore be excluded in `cross-seed`'s decisions. Private torrent sites also set the ['Private Flag'](https://wiki.theory.org/BitTorrentSpecification#Metainfo_File_Structure), meaning that torrent clients cannot add multiple trackers to the same torrent (identical infohash) with a private flag set. So even if we somehow were able to support matching identical infohashes, it would only work with public trackers.
 
 Another problem is the naming schemes (or lack of one) that the majority of public trackers use. Due to the nature of "anyone can upload", you will get individuals or bots tagging releases with their names, or just otherwise butchering the naming conventions we depend on for properly parsing and matching torrents.
 
 Finally, given that there is no direct, lasting, benefit to you for cross-seeding on public trackers, as there is no account, ratio, reputation, or upload directly associated with you, the benefit YOU will receive if any matches are found is almost non-existent.
 
 All of these factors combine to yield extremely limited results, if any, and the inability, for us, to provide support beyond initial configurations and set up for use on public trackers.
+
+### What's the best way to add new trackers?
+
+If you are attempting to add a new tracker and perform a search for the first time on that tracker, it is as simple as adding the [`torznab url`](./options.md#torznab) to your config, setting [`excludeOlder`](./options.md#excludeolder) to `undefined` and [`excludeRecentSearch`](./options.md#excluderecentsearch) to something very high (e.g. `52 weeks`).
+
+[`excludeRecentSearch`](./options.md#excluderecentsearch) works on a per-tracker basis, and because you have unset [`excludeOlder`](./options.md#excludeolder), it will perform a full search on the new addition and only search anything that has not been searched in the last year on your older trackers.
+
+:::tip Be Advised!
+These settings are merely an example. You may need to adapt these settings for your setup based on your [`searchCadence`](./options.md#searchcadence) or recent search activity.
+:::
 
 ### Why do I get `Unsupported: magnet link detected at…`?
 
@@ -49,9 +59,9 @@ Alternatively, you could also be missing quotes around the value you provided. C
 
 ### Failed to inject, saving instead.
 
-Best way to start troubleshooting this is to check the `logs/verbose.*.log` and find this specific event.
+The best way to start troubleshooting this is to check the `logs/verbose.*.log` and find this specific event.
 
-You will be able to see the circumstances around the failure, and start investigating why this occurred.
+You will be able to see the circumstances around the failure and start investigating why this occurred.
 
 ### My data-based results are paused at 100% after injection
 
@@ -82,7 +92,7 @@ If you do not link files within your `dataDirs` or have them outside of the [`ma
 
 ### My torrents are injected (qBittorrent) but show `missing files` error!
 
-If you are seeing injected torrents show up with `missing files` error, it is likely because you do not have a save path set for the original torrent's category that cross-seed was cross-seeding from. You should also see a warning when the torrents are being injected telling you that there is no save path set.
+If you are seeing injected torrents show up with `missing files` error, it is likely because you do not have a save path set for the original torrent's category that `cross-seed` was cross-seeding from. You should also see a warning when the torrents are being injected telling you that there is no save path set.
 
 Set a save path for the files in that category to fix this.
 
@@ -115,7 +125,7 @@ Although we are providing the information given from hostingby.design, we are no
 1. Get your shared instance IP address (`cat .install/subnet.lock)
 2. Torznab URLs should be: `http://ip:port/prowlarr/[id]/api?apikey=[apikey]`
 3. Your torrent client should be on the same subnet (if installed after dec. 2023). If not, update the “bind ip” address in web ui settings to your ip from step 1 and restart the torrent client
-4. The torrent client address URL in cross-seed config should be http://user:pass@ip:port (note: no `/qbittorrent` or `/deluge` etc at the end)
+4. The torrent client address URL in `cross-seed` config should be http://user:pass@ip:port (note: no `/qbittorrent` or `/deluge` etc at the end)
 
 :::info
 The subnet/shared instances are reverse proxies so no https
@@ -134,7 +144,7 @@ If your setup is running with a VPN, you will need to either
 Generally, you won't be able to access local instances from services utilizing a VPN since localhost/LAN is not accessible from the VPN network by default.
 
 :::info
-There is no need to put cross-seed behind a VPN, all of its requests are directly made to the torrent client or Jackett/Prowlarr.
+There is no need to put `cross-seed` behind a VPN, all of its requests are directly made to the torrent client or Jackett/Prowlarr.
 :::
 :::danger
 Even with API auth enabled, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
@@ -145,7 +155,7 @@ If you are having issues, your best bet is to contact your VPN software/provider
 
 ### Searching media libraries vs. torrent data (data-based searching)
 
-You can search both your media libraries (Arr/Plex) and actual torrent data (downloaded files). If you are using the media libraries with renamed files, you will need to use `matchMode: "risky"` in your configuration file to allow cross-seed some leeway in its matching process. `"risky"` [`matchMode`](./options.md#matchmode) is not recommended to be used without skipRecheck set to false, as it could result in more false positives than `"safe"`.
+You can search both your media libraries (Arr/Plex) and actual torrent data (downloaded files). If you are using the media libraries with renamed files, you will need to use `matchMode: "risky"` in your configuration file to allow `cross-seed` some leeway in its matching process. `"risky"` [`matchMode`](./options.md#matchmode) is not recommended to be used without skipRecheck set to false, as it could result in more false positives than `"safe"`.
 
 - Due to the way data-based searching works, risky matching only matches renamed files if they are a single-file torrent. As TV libraries often include renamed files, data-based matching will not be able to pick up matches on multi-file torrents (such as season packs).
 
@@ -167,7 +177,7 @@ You can utilize the [`cross-seed diff`](../reference/utils#cross-seed-diff) comm
 
 ### How can I use [**autobrr**](https://autobrr.com/) with cross-seed?
 
-If you are using [**autobrr**](https://autobrr.com/) to cross-seed, you can use the [`/api/announce`](../reference/api#post-apiannounce) endpoint, rather than [`/api/webhook`](../reference/api#post-apiwebhook), to match against what cross-seed [already knows about your available media](../reference/architecture#prefiltering) (instead of searching your indexers every time).
+If you are using [**autobrr**](https://autobrr.com/) to cross-seed, you can use the [`/api/announce`](../reference/api#post-apiannounce) endpoint, rather than [`/api/webhook`](../reference/api#post-apiwebhook), to match against what `cross-seed` [already knows about your available media](../reference/architecture#prefiltering) (instead of searching your indexers every time).
 
 :::tip
 If you want to filter announces even further, consider setting up more specific filters or using [**omegabrr**](https://github.com/autobrr/omegabrr) (which filters based on monitored items in Arrs) to minimize calls to cross-seed.
@@ -182,7 +192,7 @@ For more help setting this up, you can head over to the [autobrr documentation f
 `cross-seed` searches for and compares potential match's contents and the size(s) of file(s) within those torrents. It is possible you are running searches too often, have configured `cross-seed` in a less-than-desirable way, are not keeping the torrent_cache folder, or are improperly utilizing [**autobrr**](https://autobrr.com/).
 
 :::caution
-It is important to note that your tracker may have opinions on the snatching of .torrent files that cross-seed can potentially do, and it is important to respect these or risk your account being disabled.
+It is important to note that your tracker may have opinions on the snatching of .torrent files that `cross-seed` can potentially do, and it is important to respect these or risk your account being disabled.
 :::
 
 We try to reduce unnecessary snatches of .torrent files as much as possible, but because we need to compare the files inside the torrent as well as their sizes, it is sometimes unavoidable.
@@ -236,7 +246,7 @@ Remember, this would occur on just one (torrent) search, within the entire (all 
 
 It is highly recommended to use [`excludeOlder` and `excludeRecentSearch`](./daemon.md#set-up-periodic-searches). Both of these are covered [here](./daemon.md#set-up-periodic-searches) as well as on the [options page](./options.md#excludeolder).
 
-Setting something reasonable for both of these based on the amount of content you download is crucial. While we cache your .torrents, it is not beneficial, for example, to repeatedly search the same torrents that are 6 months old every few days. There is no one-size-fits-all setting for this, but you can run cross-seed with your config and see how many torrents it will search and adjust accordingly.
+Setting something reasonable for both of these based on the amount of content you download is crucial. While we cache your .torrents, it is not beneficial, for example, to repeatedly search the same torrents that are 6 months old every few days. There is no one-size-fits-all setting for this, but you can run `cross-seed` with your config and see how many torrents it will search and adjust accordingly.
 
 A final set of options to consider are [`searchLimit`](./options.md#searchlimit) and [`searchCadence`](./options.md#searchcadence). These two options combined will limit the number of searches performed on your schedule ([`searchCadence`](./options.md#searchcadence)) and can ease the search queries you are making to your tracker.
 

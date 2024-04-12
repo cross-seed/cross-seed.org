@@ -302,7 +302,7 @@ find a associated torrent file.
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the data and linkDir.
+You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
 
 :::
 
@@ -332,7 +332,7 @@ use this category for all injected torrents.
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the data and linkDir.
+You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
 :::
 
 #### `dataCategory` Examples (CLI)
@@ -390,7 +390,7 @@ data is accessible (both torrent and data-based matches).
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the dataDir and linkDir.
+You will need to mount the volume for `cross-seed` to have access to the dataDir and linkDir.
 
 :::
 
@@ -426,7 +426,7 @@ Valid methods for linkType are `symlink` and `hardlink`.
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the `dataDirs` and `linkDir`.
+You will need to mount the volume for `cross-seed` to have access to the `dataDirs` and `linkDir`.
 :::
 
 #### `linkType` Examples (CLI)
@@ -704,7 +704,7 @@ The url of your **rTorrent** XMLRPC interface. Only relevant with
 [Injection](../tutorials/injection). Often ends in `/RPC2`.
 
 :::info
-If you use **Sonarr** or **Radarr**, cross-seed is configured the same way.
+If you use **Sonarr** or **Radarr**, `cross-seed` is configured the same way.
 **ruTorrent** installations come with this endpoint configured, but naked
 **rTorrent** does not provide this wrapper. If you don't use **ruTorrent**,
 you'll have to
@@ -849,7 +849,7 @@ Content-Type: application/json
 }
 ```
 
-Currently, cross-seed only sends the "RESULTS" and "TEST" events. In the future it may send
+Currently, `cross-seed` only sends the "RESULTS" and "TEST" events. In the future it may send
 more. This payload supports both
 [**apprise**](https://github.com/caronc/apprise-api) and
 [**Notifiarr**](https://github.com/Notifiarr/Notifiarr).
@@ -872,7 +872,7 @@ notificationWebhookUrl: "http://apprise:8000/notify",
 | ---------------- | -------------- | --------------- | -------- | ------- |
 | `port`           | `-p <port>`    | `--port <port>` | `number` | `2468`  |
 
-In [Daemon Mode](../basics/daemon.md), cross-seed runs a webserver listening for
+In [Daemon Mode](../basics/daemon.md), `cross-seed` runs a webserver listening for
 a few types of HTTP requests. You can use this option to change the port it
 listens on.
 

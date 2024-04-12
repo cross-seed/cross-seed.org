@@ -43,7 +43,7 @@ To achieve torrent linking, you simply have to mount or give permission (if nece
 
 The new folder structure in v6 for the [`linkDir`](./basics/options.md#linkdir) creates sub-folders for each indexer (for example, `/link_dir/Indexer 1/Name.of.Torrent.File.mkv`). This doesn't change previously matched torrents, but new matches will follow this new structure.
 
-There is, however, a new option introduced into `config.js` named [`legacyLinking`](./basics/options.md#legacylinking) mainly to accommodate users of qBittorrent who want to utilize the Auto Torrent Management (ATMM) feature. Setting [`legacyLinking`](./basics/options.md#legacylinking) to `true` will tell cross-seed to use the same style of linking as v5; one folder with all the linked torrents.
+There is, however, a new option introduced into `config.js` named [`legacyLinking`](./basics/options.md#legacylinking) mainly to accommodate users of qBittorrent who want to utilize the Auto Torrent Management (ATMM) feature. Setting [`legacyLinking`](./basics/options.md#legacylinking) to `true` will tell `cross-seed` to use the same style of linking as v5; one folder with all the linked torrents.
 
 ### Updated [`torrentDir`](./basics/options.md#torrentdir) Option
 

@@ -458,5 +458,5 @@ excludeOlder: "1 year",
 This will search once a week for any torrents that `cross-seed` first searched less than a year ago, and that have not been searched in the last year.
 
 :::tip
-If your cross-seed runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
+If your `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
 :::
