@@ -103,7 +103,7 @@ Example:
 Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.
 
 - Updated to Node v20, ES2022, and TypeScript v5
-- Non-rate limited indexer failures (status code `429`) will be cleared from the database when `cross-seed` is restarted.
+- Any indexer failures not related to rate limiting (status code `429`) will be cleared from the database when `cross-seed` is restarted.
 - Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
 - Improved logging messages, specifically around matching decisions.
 - There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present in full-disc Bluray/DVD releases, music files, RAR archives, and season folders in Sonarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
