@@ -16,8 +16,8 @@ While `cross-seed` may incidentally find _some_ music matches, it is not optimiz
 
 ### What can I do about `error parsing torrent at http://…`?
 
-This means that the Prowlarr/Jackett download link didn't resolve to a torrent file. It's
-possible you've got rate-limited so you might want to try again later.
+This means that the Prowlarr/Jackett download link didn't resolve to a torrent file.
+You may have been rate-limited, so you might want to try again later.
 Otherwise, just ignore it. There's nothing `cross-seed` will be able to do to fix
 it.
 
