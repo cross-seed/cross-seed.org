@@ -31,7 +31,7 @@ You can grab the new `config.template.js` and simply go through and migrate your
 
 One of the biggest changes made in v6 is better config validation and error messaging. Each option in the config file is validated for formatting and proper syntax. If either is incorrect, a detailed error message will tell you where and how to fix each option.
 
-The new error messages will also provide links to specific documentation for the option and point out bad paths or permission errors if you have any.
+The new error messages will also provide links to specific documentation for the option and point out bad paths or permission errors, if you have any.
 
 This is not going to automatically fix anything for you, but will give you a better starting point to try and solve the issue yourself before requiring outside assistance.
 
@@ -51,7 +51,7 @@ Previously, our recommendation if you wanted to strictly search only [`dataDirs`
 
 ### New [`blockList`](./basics/options.md#blocklist) Option
 
-Another new option added is called [`blockList`](./basics/options.md#blocklist). This option takes an array of strings (`["example", "example2"]`) and will block any matching strings both contained in the release name as well as _exact_ matches.
+Another new option added is called [`blockList`](./basics/options.md#blocklist). This option takes an array of strings (`["example", "example2"]`) and will block any matching strings contained in both the release name as well as _exact_ matches.
 
 You can include strings for the full, exact name of a torrent or file (e.g., `"The.Best.Movie.Ever.2024.DV.HDR.Atmos.mkv"`), partial name/keywords (e.g., `best.movie.ever`), or the infoHash from a torrent you wish to block.
 
