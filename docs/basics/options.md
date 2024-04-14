@@ -966,11 +966,58 @@ searchCadence: "4 weeks",
 [pr]: https://github.com/cross-seed/cross-seed.org/tree/master/docs/basics/options.md
 [ms]: https://github.com/vercel/ms#examples
 
+### `apiAuth`
+
+| Config file name | CLI short form | CLI long form | Format    | Default |
+| ---------------- | -------------- | ------------- | --------- | ------- |
+| `apiAuth`        |                | `--api-auth`  | `boolean` | `false` |
+
+:::warning NOTICE
+This feature is a v5 only feature and has been removed in v6 of `cross-seed` for [`apiKey`](#apikey)
+:::
+
+:::info
+[`apiAuth`](../basics/options.md#apiauth) is enabled in the config file
+by default, if you want to disable [`apiAuth`](../basics/options.md#apiauth) set it to `false`.
+:::
+
+Set this to `true` to require an API key on all requests made to the
+[/api/announce](../reference/api.md#post-apiannounce) and
+[/api/webhook](../reference/api.md#post-apiwebhook) endpoints.
+
+To find your API key, run the `cross-seed api-key` command.
+The api key can be included with your requests in either of two ways:
+
+```shell
+# provide api key as a query param
+curl -XPOST localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode ...
+# provide api key as an HTTP header
+curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlencode ...
+```
+
+#### `apiAuth` Examples (CLI)
+
+```shell
+cross-seed daemon --api-auth # will require auth on requests
+cross-seed daemon --no-api-auth # will allow any requests
+```
+
+#### `apiAuth` Examples (Config file)
+
+```js
+apiAuth: true,
+apiAuth: false,
+```
+
 ### `apiKey`
 
 | Config file name | CLI short form | CLI long form     | Format   | Default     |
 | ---------------- | -------------- | ----------------- | -------- | ----------- |
 | `apiKey`         |                | `--api-key <key>` | `string` | `undefined` |
+
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
 
 :::info
 [`apiKey`](../basics/options.md#apikey) is disabled in the config file
@@ -1097,6 +1144,10 @@ searchLimit: 150,
 | ---------------- | -------------- | ------------------ | --------- | ------- |
 | `legacyLinking`  |                | `--legacy-linking` | `boolean` | `false` |
 
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
+
 Set this to `true` to use the flat-folder style linking previously used in v5. This option
 will otherwise link any matches to a tracker specific folder inside of `linkDir` (if set).
 
@@ -1123,6 +1174,10 @@ legacyLinking: false,
 | Config file name | CLI short form           | CLI long form            | Format      | Default |
 | ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
+
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
 at startup. You can include keywords, infoHashes, or complete torrent/file names.

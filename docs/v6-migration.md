@@ -55,7 +55,7 @@ Another new option added is called [`blockList`](./basics/options.md#blocklist).
 
 You can include strings for the full, exact name of a torrent or file (e.g., `"The.Best.Movie.Ever.2024.DV.HDR.Atmos.mkv"`), partial name/keywords (e.g., `best.movie.ever`), or the infoHash from a torrent you wish to block.
 
-### `apiAuth` (removed) and [`apiKey`](./basics/options.md#apikey) (added) Options
+### [`apiAuth`](./basics/options.md#apiauth) (removed) and [`apiKey`](./basics/options.md#apikey) (added) Options
 
 `cross-seed` endpoints (announce and webhook) now _require_ API authentication. There are two ways to set up API authentication in v6:
 
