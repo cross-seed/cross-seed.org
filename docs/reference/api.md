@@ -10,21 +10,20 @@ You can easily configure your torrent client to [send search commands when a tor
 
 ## Authorization
 
-You can enable/disable the
-[`apiAuth` option](../basics/options.md#apiauth) to toggle authorization
-on all HTTP requests made to the cross-seed daemon.
+You can specify an API key using the [`apiKey`](../basics/options.md#apikey) option, or let
+`cross-seed` generate one for you (default).
 
 :::info
-[`apiAuth`](../basics/options.md#apiauth) is enabled in the config file
-by default, if you want to disable [`apiAuth`](../basics/options.md#apiauth) set it to `false`.
+API authorization using an API key is now mandatory as of v6. The `apiAuth` option has been
+deprecated and removed.
 :::
 
 :::danger
-Even with API auth enabled, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
+Even with API authorization, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
 :::
 
-To find your API key, run the `cross-seed api-key` command.
-The api key can be included with your requests in either of two ways:
+To find your generated API key, run the `cross-seed api-key` command.
+The API key can be included with your requests in either of two ways:
 
 ```shell
 # provide api key as a query param

@@ -216,6 +216,11 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 Point this at a directory containing torrent files. If you don't know where your
 torrent client stores its files, the table below might help.
 
+:::note Data-Only Searching
+If you wish to search only your data, we previously recommended pointing this to an empty directory. You can
+now set this to `null` if you wish to search only your `dataDirs`.
+:::
+
 :::tip qBittorrent
 If you are using qBittorrent 4.6.x and/or `SQLite database` in `Preferences -> Advanced` you will
 need to switch to `fastresume` for compatibility with `cross-seed`. We have no ETA on SQLite integration
@@ -297,7 +302,7 @@ find a associated torrent file.
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the data and linkDir.
+You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
 
 :::
 
@@ -327,7 +332,7 @@ use this category for all injected torrents.
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the data and linkDir.
+You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
 :::
 
 #### `dataCategory` Examples (CLI)
@@ -380,12 +385,12 @@ duplicateCategories: false,
 
 `cross-seed` will link (symlink/hardlink) in the path provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in the linkDir during data-based searchs where it cannot
-find a associated torrent file.
+to create a link to the original file in the `linkDir` during searches where the original
+data is accessible (both torrent and data-based matches).
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the dataDir and linkDir.
+You will need to mount the volume for `cross-seed` to have access to the dataDir and linkDir.
 
 :::
 
@@ -421,7 +426,7 @@ Valid methods for linkType are `symlink` and `hardlink`.
 
 :::caution Docker
 
-You will need to mount the volume for cross-seed to have access to the `dataDirs` and `linkDir`.
+You will need to mount the volume for `cross-seed` to have access to the `dataDirs` and `linkDir`.
 :::
 
 #### `linkType` Examples (CLI)
@@ -644,6 +649,13 @@ more recently than this long ago. This option is only relevant in
 `search` mode or in `daemon` mode with [`searchCadence`](#searchcadence) turned
 on.
 
+:::info Note
+
+**Search history is stored on a per-indexer basis.**
+
+Searches that failed on specific indexers (for example - due to timeout or rate-limiting) will not be marked as having been searched, and thus will not be excluded by this setting for those specific indexers on the next run.
+:::
+
 #### `excludeRecentSearch` Examples (CLI)
 
 ```shell
@@ -694,7 +706,7 @@ The url of your **rTorrent** XMLRPC interface. Only relevant with
 [Injection](../tutorials/injection). Often ends in `/RPC2`.
 
 :::info
-If you use **Sonarr** or **Radarr**, cross-seed is configured the same way.
+If you use **Sonarr** or **Radarr**, `cross-seed` is configured the same way.
 **ruTorrent** installations come with this endpoint configured, but naked
 **rTorrent** does not provide this wrapper. If you don't use **ruTorrent**,
 you'll have to
@@ -839,7 +851,7 @@ Content-Type: application/json
 }
 ```
 
-Currently, cross-seed only sends the "RESULTS" and "TEST" events. In the future it may send
+Currently, `cross-seed` only sends the "RESULTS" and "TEST" events. In the future it may send
 more. This payload supports both
 [**apprise**](https://github.com/caronc/apprise-api) and
 [**Notifiarr**](https://github.com/Notifiarr/Notifiarr).
@@ -862,7 +874,7 @@ notificationWebhookUrl: "http://apprise:8000/notify",
 | ---------------- | -------------- | --------------- | -------- | ------- |
 | `port`           | `-p <port>`    | `--port <port>` | `number` | `2468`  |
 
-In [Daemon Mode](../basics/daemon.md), cross-seed runs a webserver listening for
+In [Daemon Mode](../basics/daemon.md), `cross-seed` runs a webserver listening for
 a few types of HTTP requests. You can use this option to change the port it
 listens on.
 
@@ -960,6 +972,10 @@ searchCadence: "4 weeks",
 | ---------------- | -------------- | ------------- | --------- | ------- |
 | `apiAuth`        |                | `--api-auth`  | `boolean` | `false` |
 
+:::warning NOTICE
+This feature is a v5 only feature and has been removed in v6 of `cross-seed` for [`apiKey`](#apikey)
+:::
+
 :::info
 [`apiAuth`](../basics/options.md#apiauth) is enabled in the config file
 by default, if you want to disable [`apiAuth`](../basics/options.md#apiauth) set it to `false`.
@@ -991,6 +1007,44 @@ cross-seed daemon --no-api-auth # will allow any requests
 ```js
 apiAuth: true,
 apiAuth: false,
+```
+
+### `apiKey`
+
+| Config file name | CLI short form | CLI long form     | Format   | Default     |
+| ---------------- | -------------- | ----------------- | -------- | ----------- |
+| `apiKey`         |                | `--api-key <key>` | `string` | `undefined` |
+
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
+
+:::info
+[`apiKey`](../basics/options.md#apikey) is disabled in the config file
+by default, if you want to specify a key set it to a valid key (24 character min).
+:::
+
+To find your generated API key, run the `cross-seed api-key` command.
+The API key can be included with your requests in either of two ways:
+
+```shell
+# provide api key as a query param
+curl -XPOST localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode ...
+# provide api key as an HTTP header
+curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlencode ...
+```
+
+#### `apiKey` Examples (CLI)
+
+```shell
+cross-seed daemon --api-key <key> # will require auth on requests
+```
+
+#### `apiKey` Examples (Config file)
+
+```js
+apiKey: undefined,
+apiKey: "abcdefghijklmn0pqrstuvwxyz",
 ```
 
 ### `snatchTimeout`
@@ -1082,4 +1136,61 @@ cross-seed search --search-limit 150
 searchLimit: undefined, // disable search count limits
 
 searchLimit: 150,
+```
+
+### `legacyLinking`
+
+| Config file name | CLI short form | CLI long form      | Format    | Default |
+| ---------------- | -------------- | ------------------ | --------- | ------- |
+| `legacyLinking`  |                | `--legacy-linking` | `boolean` | `false` |
+
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
+
+Set this to `true` to use the flat-folder style linking previously used in v5. This option
+will otherwise link any matches to a tracker specific folder inside of `linkDir` (if set).
+
+:::warning qBittorrent
+Users of qBittorrent with AutoTorrentManagement enabled will need to set this to `true`.
+:::
+
+#### `legacyLinking` Examples (CLI)
+
+```shell
+cross-seed search --legacy-linking
+```
+
+#### `legacyLinking` Examples (Config file)
+
+```js
+legacyLinking: true,
+
+legacyLinking: false,
+```
+
+### `blockList`
+
+| Config file name | CLI short form           | CLI long form            | Format      | Default |
+| ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
+| `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
+
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
+
+`cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
+at startup. You can include keywords, infoHashes, or complete torrent/file names.
+
+#### `blockList` Examples (CLI)
+
+```shell
+cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d075435435313c319c3a5f3bec3965a"
+```
+
+#### `blockList` Examples (Config file)
+
+```js
+blockList: ["badRelease", "blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
+
 ```

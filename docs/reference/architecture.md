@@ -8,7 +8,7 @@ subgraph Matching
     sendResultsNotification
 end
 subgraph performAction
-    linking["linking (if data-backed)"] --> inject
+    linking["linking (if possible)"] --> inject
     linking --> save
 end
 subgraph checkNewCandidateMatch
