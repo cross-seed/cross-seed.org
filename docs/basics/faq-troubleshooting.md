@@ -78,8 +78,17 @@ Consider using `infoHash` if you are racing to prevent mismatches.
 
 ### My data-based search is searching torrent files!
 
-Torrent files in [`torrentDir`](./options.md#torrentdir) take precedence over data files with the same name and are de-duplicated. If you need to search
-specifically the [`dataDirs`](./options.md#datadirs), use an empty directory for [`torrentDir`](./options.md#torrentdir) temporarily. This will strictly search the data.
+Torrent files in [`torrentDir`](./options.md#torrentdir) take precedence over data files with the same name and are de-duplicated.
+
+#### v5
+
+If you need to search specifically the [`dataDirs`](./options.md#datadirs) (to acheive linking, for example), use an empty directory
+for [`torrentDir`](./options.md#torrentdir) temporarily. This will strictly search the data.
+
+#### v6
+
+If possible, `cross-seed` will always attempt to create links for torrents being injected into a client, unlike in v5.
+This includes torrent-based searches as well as data-based.
 
 ### Error: ENOENT: no such file or directory
 
