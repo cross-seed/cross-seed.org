@@ -71,33 +71,6 @@ The `apiAuth` option in previous versions of `cross-seed` has been removed.
 While we provide this option, we strongly urge you to use a generated key. If you are specifying a key, please make sure this is a secure and safe key. You are responsible for your security.
 :::
 
-### Support for .env file
-
-`cross-seed` v6 introduces native support for `.env` files. A `.env` file is a way to store and protect passwords and other sensitive information you don't want to add directly to your `config.js` file.
-
-The `.env` file must be in the **current working directory** when you run `cross-seed`. For Docker users, the `.env` file should be in the `/config` folder for the container to load. For a `systemd` daemon, you set the `WorkingDirectory` and the `.env` file should be in that directory.
-
-To access a value defined in the `.env` file, use `process.env.VALUE`.
-
-Example:
-
-- `.env`
-  ```
-  TRACKER1_URL = "http://prowlarr:9696/12/api?apikey=abcdefg";
-  TRACKER2_URL = "http://prowlarr:9696/13/api?apikey=abcdefg";
-  QBIT_URL = "http://username:password@qbittorrent:8080";
-  ```
-- `config.js`
-  ```js
-  module.exports = {
-    // ...
-    torznab: [process.env.TRACKER1_URL, process.env.TRACKER2_URL],
-    // ...
-    qbittorrentUrl: process.env.QBIT_URL,
-    // ...
-  };
-  ```
-
 ### Other Miscellaneous Changes
 
 Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.
