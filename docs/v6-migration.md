@@ -150,9 +150,8 @@ Anime is now supported in a **_somewhat limited_** capacity. Please note that th
 
 We've aimed to cover the inconsistent and unconventional naming conventions that prevail in anime content, but there may be certain naming styles, from specific groups or indexers, that we haven't accounted for.
 
-:::caution HELP
+:::tip HELP
 If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) that we've missed, please let us know [**via Discord**](https://discord.gg/jpbUFzS5Wb).
-:::
 
 #### Partial Matching
 
@@ -162,6 +161,18 @@ This mode is similar to `risky` but doesn't necessitate all files to be present.
 
 :::tip
 Torrents added via `partial` matchMode will always behave as if [`skipRecheck`](./basics/options.md#skiprecheck) is `false`. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files), **which could lead to the banning or disabling of your account on your trackers.**
+:::
+
+#### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
+
+`cross-seed` now has the ability to, when configured, query an instance of [Sonarr](./basics/options.md#sonarr) or [Radarr](./basics/options.md#radarr) for the metadata - specifically the TVDB, TMDB, and IMDB IDs. These can be used on supporting indexers to search more accurately and completely.
+
+You do not have to do anything besides add your Sonarr and Radarr API endpoints, with apikey (like [`torznab`](./basics/options.md#torznab) URL from [Prowlarr](https://prowlarr.com/) or [Jackett](https://github.com/Jackett/Jackett)), to the configuration options in `config.js`. `cross-seed` will use IDs to search wherever it can.
+
+:::info
+The show or movie must be added in your instance of Sonarr or Radarr. You **DO NOT** need to have media _imported_, but **the entry must exist** ("Missing" status is valid).
+
+**We do not query any external metadata servers.**
 :::
 
 ### Other Miscellaneous Changes
