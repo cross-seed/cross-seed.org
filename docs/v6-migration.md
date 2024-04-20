@@ -81,6 +81,14 @@ We've aimed to cover the inconsistent and unconventional naming conventions that
 If you come across any anime naming schemes (not just _ONE_ release) that we've missed, please let us know.
 :::
 
+### Partial Matching
+
+We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named `partial`.
+
+This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files.
+
+Torrents will be added in a paused state if [`skipRecheck`](./basics/options.md#skiprecheck) is `false` (recommended), and unpaused if `skipRecheck` is `true`. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files), **which could lead to the banning or disabling of your account on your trackers.**
+
 ### Other Miscellaneous Changes
 
 Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.

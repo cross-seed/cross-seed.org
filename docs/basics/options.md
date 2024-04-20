@@ -38,8 +38,8 @@ long-form option name as the `kebab-cased` variant. For example, the
 
 `cross-seed` will look for a configuration file at
 
-- **Mac**/**Linux**/**Unix**: `~/.cross-seed/config.js`
-- **Windows**: `AppData\Local\cross-seed\config.js`
+-   **Mac**/**Linux**/**Unix**: `~/.cross-seed/config.js`
+-   **Windows**: `AppData\Local\cross-seed\config.js`
 
 :::tip
 
@@ -65,10 +65,10 @@ configuration.
 
 The configuration file uses JavaScript syntax, which means:
 
-- Array/multi options must be enclosed in \['brac', 'kets'\].
-- Strings must be enclosed in "quotation" marks.
-- Array elements and options must be separated by commas.
-- **Windows users will need to use \\\\ for paths. (e.g. c:\\\\torrents)**
+-   Array/multi options must be enclosed in \['brac', 'kets'\].
+-   Strings must be enclosed in "quotation" marks.
+-   Array elements and options must be separated by commas.
+-   **Windows users will need to use \\\\ for paths. (e.g. c:\\\\torrents)**
 
 :::
 
@@ -84,6 +84,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`dataCategory`](#datacategory)                     |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
+| [`matchMode`](#matchMode)                           |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
@@ -98,8 +99,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`apiKey`](#apiKey)                                 |              |
 | [`legacyLinking`](#legacyLinking)                   |              |
 | [`blockList`](#blockList)                           |              |
-| [`sonarr`](#sonarr)                                 |              |
-| [`radarr`](#radarr)                                 |              |
 
 ## Options used in `cross-seed daemon`
 
@@ -113,6 +112,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`dataCategory`](#datacategory)                     |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
+| [`matchMode`](#matchMode)                           |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includeNonVideos)             |              |
@@ -130,8 +130,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`apiKey`](#apiKey)                                 |              |
 | [`legacyLinking`](#legacyLinking)                   |              |
 | [`blockList`](#blockList)                           |              |
-| [`sonarr`](#sonarr)                                 |              |
-| [`radarr`](#radarr)                                 |              |
 
 ## All options
 
@@ -456,18 +454,28 @@ linkType: "symlink",
 
 ### `matchMode`
 
-| Config file name | CLI short form        | CLI long form         | Format         | Default |
-| ---------------- | --------------------- | --------------------- | -------------- | ------- |
-| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky` | `safe`  |
+| Config file name | CLI short form        | CLI long form         | Format                    | Default |
+| ---------------- | --------------------- | --------------------- | ------------------------- | ------- |
+| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky`/`partial*` | `safe`  |
 
-`cross-seed` uses two types of matching algorithms, `safe` and `risky`. `safe` is the default and matches
-based on size and requires release groups match to snatch for further comparison. `risky` matches on size
-and will, if present, compare the release groups, but will still proceed to snatch if one is not.
+:::warning NOTICE
+[`partial`](../v6-migration.md#partial-matching) mode is a v6 only feature.
+:::
 
-For media library searches `risky` is necessary due to the renaming of files.
+`cross-seed` uses three types of matching algorithms `safe`, `risky`, and
+[`partial` (**only available in version 6**)](../v6-migration.md#partial-matching).
 
-:::tip
-Using skipRecheck in conjunction with `risky` is not recommended and could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
+| option    | description                                                                                                                                                             |
+| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `safe`    | the default which matches based on size and requires release groups match to snatch for further comparison                                                              |
+| `risky`   | matches on based on size. If release groups are present, it will compare the release groups, but will still proceed to snatch for comparison if one or both are missing |
+| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching)                                                                                                 |
+
+For media library searches `risky` or `partial` is necessary due to the renaming of files.
+
+:::danger Note
+Using skipRecheck in conjunction with `risky` or `partial` is not recommended and could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
+
 **Proceed with caution!**
 :::
 
@@ -484,6 +492,35 @@ cross-seed search --match-mode safe
 matchMode: "risky",
 
 matchMode: "safe",
+```
+
+### `skipRecheck`
+
+| Config file name | CLI short form | CLI long form    | Format    | Default |
+| ---------------- | -------------- | ---------------- | --------- | ------- |
+| `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
+
+Set this to `true` to skip rechecking torrents upon injection.
+
+:::danger Note
+Using skipRecheck in conjunction with `risky` or `partial` is not recommended and could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
+
+**Proceed with caution!**
+:::
+
+#### `skipRecheck` Examples (CLI)
+
+```shell
+cross-seed search --skip-recheck # will skip rechecking
+cross-seed search # will not skip rechecking
+```
+
+#### `skipRecheck` Examples (Config file)
+
+```js
+skipRecheck: true,
+
+skipRecheck: false,
 ```
 
 ### `includeEpisodes`
