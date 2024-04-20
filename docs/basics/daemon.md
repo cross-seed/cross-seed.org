@@ -7,15 +7,15 @@ title: Daemon Mode
 Daemon Mode lets you harness the full power of `cross-seed` by continuously running
 and enabling the following features:
 
-- instantly searching for cross-seeds for finished downloads
-  - using your torrent client using [`webhook`](../reference/api.md#post-apiwebhook) endpoint
-  - using a third-party script to trigger from an Arr's import/upgrade event
-    - [bakerboy448's Arr Import script](https://github.com/bakerboy448/StarrScripts#xseedsh)
-- watching for new releases:
-  - scanning RSS feeds periodically ([`rssCadence`](./options.md#rsscadence)) for matching content
-  - listening for new release announces and snatching them if you already
-    have the data (e.g. [autobrr](https://autobrr.com/) -> [`announce`](../reference/api.md#post-apiannounce) API endpoint)
-- Running batch searches on your full collection of torrents periodically ([`searchCadence`](./options.md#searchcadence))
+-   instantly searching for cross-seeds for finished downloads
+    -   using your torrent client using [`webhook`](../reference/api.md#post-apiwebhook) endpoint
+    -   using a third-party script to trigger from an Arr's import/upgrade event
+        -   [bakerboy448's Arr Import script](https://github.com/bakerboy448/StarrScripts#xseedsh)
+-   watching for new releases:
+    -   scanning RSS feeds periodically ([`rssCadence`](./options.md#rsscadence)) for matching content
+    -   listening for new release announces and snatching them if you already
+        have the data (e.g. [autobrr](https://autobrr.com/) -> [`announce`](../reference/api.md#post-apiannounce) API endpoint)
+-   Running batch searches on your full collection of torrents periodically ([`searchCadence`](./options.md#searchcadence))
 
 :::tip
 
@@ -50,16 +50,16 @@ cross-seed daemon
 
 However, that's not very sustainable.
 
-- If you run `cross-seed` on a server that you use `ssh` to log into, then
-  `cross-seed` will stop whenever your `ssh` session closes.
-- If the server restarts, then you'll have to start `cross-seed` manually.
+-   If you run `cross-seed` on a server that you use `ssh` to log into, then
+    `cross-seed` will stop whenever your `ssh` session closes.
+-   If the server restarts, then you'll have to start `cross-seed` manually.
 
 Below are a few ways you can set up `cross-seed daemon` to run on its own:
 
-- [Docker](#docker)
-- [Unraid](#unraid)
-- [`systemd`](#systemd-linux)
-- [`screen`](#screen)
+-   [Docker](#docker)
+-   [Unraid](#unraid)
+-   [`systemd`](#systemd-linux)
+-   [`screen`](#screen)
 
 ### Docker
 
@@ -70,20 +70,20 @@ service:
 ```yaml
 version: "2.1"
 services:
-  cross-seed:
-    image: ghcr.io/cross-seed/cross-seed
-    container_name: cross-seed
-    user: 1000:1000 # optional but recommended
-    ports:
-      - "2468:2468" # you'll need this if your torrent client runs outside of Docker
-    volumes:
-      - /path/to/config/folder:/config
-      - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
-      - /path/to/output/folder:/cross-seeds
-      - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
-        # will need to mirror your torrent client's path (like Arr's do)
-    command: daemon # this enables the daemon, change to search to specifically run a search ONLY
-    restart: unless-stopped
+    cross-seed:
+        image: ghcr.io/cross-seed/cross-seed
+        container_name: cross-seed
+        user: 1000:1000 # optional but recommended
+        ports:
+            - "2468:2468" # you'll need this if your torrent client runs outside of Docker
+        volumes:
+            - /path/to/config/folder:/config
+            - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
+            - /path/to/output/folder:/cross-seeds
+            - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
+              # will need to mirror your torrent client's path (like Arr's do)
+        command: daemon # this enables the daemon, change to search to specifically run a search ONLY
+        restart: unless-stopped
 ```
 
 After that, you can use the following commands to control it:
@@ -118,12 +118,12 @@ Open the file in your favorite editor, and paste the following code in. You'll
 want to customize the following variables and ensure proper permissions are set
 to allow this user/group to read/write/execute appropriately:
 
-- `{user}`: your user, or another user if you want to create a separate user
-  for `cross-seed`
-- `{group}`: your group, or another group if you want to create a separate
-  group for `cross-seed`
-- `/path/to/node`: run the command `which node` in your terminal, then paste
-  the output here.
+-   `{user}`: your user, or another user if you want to create a separate user
+    for `cross-seed`
+-   `{group}`: your group, or another group if you want to create a separate
+    group for `cross-seed`
+-   `/path/to/node`: run the command `which node` in your terminal, then paste
+    the output here.
 
 ```unit file (systemd)
 [Unit]
@@ -194,8 +194,8 @@ API call, you will need to [**set up data-based matching**](../tutorials/data-ba
 If you have not defined your `apiKey` explicitly, `cross-seed` will generate a key for you automatically.
 You will need to supply an API key with your `curl` commands. API keys can be included with your requests in one of two ways:
 
-- an `X-Api-Key` HTTP header
-- an `apikey` query param
+-   an `X-Api-Key` HTTP header
+-   an `apikey` query param
 
 In this doc we will use the query param version.
 
@@ -247,8 +247,8 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
 3.  Uncomment/Comment the appropriate lines to decide how you wish to use search.
 
-    - The hashtag/pound-sign `#` is used to "comment" the line - commented lines
-      will not be executed.
+    -   The hashtag/pound-sign `#` is used to "comment" the line - commented lines
+        will not be executed.
 
 4.  Run the following command (this will give rTorrent permission to execute
     your script):
@@ -273,25 +273,25 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
    folder from qBittorrent to be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not
    function properly.
 
-   :::
+    :::
 
-   **Name Based:**
+    **Name Based:**
 
-   ```shell
-   curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=%N"
-   ```
+    ```shell
+    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=%N"
+    ```
 
-   **InfoHash Based:**
+    **InfoHash Based:**
 
-   ```shell
-   curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"
-   ```
+    ```shell
+    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"
+    ```
 
-   [**Data Based:**](../tutorials/data-based-matching.md#setup)
+    [**Data Based:**](../tutorials/data-based-matching.md#setup)
 
-   ```shell
-   curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"
-   ```
+    ```shell
+    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"
+    ```
 
 :::tip Docker
 You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
@@ -405,8 +405,8 @@ You may need to adjust the variables above that qBittorrent sends to the script.
 
 2.  Uncomment/Comment the appropriate lines to decide how you wish to use search.
 
-    - The hastag/pound-sign `#` is used to "comment" the line - commented lines
-      will not be executed.
+    -   The hastag/pound-sign `#` is used to "comment" the line - commented lines
+        will not be executed.
 
 3.  Run the following command (this will give Deluge permission to execute your
     script):
@@ -416,10 +416,10 @@ You may need to adjust the variables above that qBittorrent sends to the script.
     ```
 
 4.  In the settings of **Deluge**:
-    - Enable the Execute plugin
-    - Under **Add Command** select event of **Torrent Complete** and input the Command: `/path/to/deluge-cross-seed.sh`
-    - Press **Add** and **Apply**
-    - Restart your Deluge client/daemon (this is required to hook torrent completion calls)
+    -   Enable the Execute plugin
+    -   Under **Add Command** select event of **Torrent Complete** and input the Command: `/path/to/deluge-cross-seed.sh`
+    -   Press **Add** and **Apply**
+    -   Restart your Deluge client/daemon (this is required to hook torrent completion calls)
 
 ## Set up RSS
 
@@ -445,9 +445,9 @@ You can combine [`searchCadence`](../basics/options#searchcadence) with [`exclud
 and [`excludeOlder`](../basics/options#excludeolder) - and even [`searchLimit`](../basics/options#searchlimit) for a more frequent and
 smoother search load. This results in searching with the following criteria applied:
 
-- `excludeRecentSearch` will exclude any torrents searched for **from the current moment back the specified time**.
+-   `excludeRecentSearch` will exclude any torrents searched for **from the current moment back the specified time**.
 
-- `excludeOlder` will exclude any torrents that were first discovered for cross-seeding a **longer time ago than the specified time**.
+-   `excludeOlder` will exclude any torrents that were first discovered for cross-seeding a **longer time ago than the specified time**.
 
 ```js
 searchCadence: "1 week",

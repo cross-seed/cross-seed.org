@@ -47,9 +47,9 @@ checkNewCandidateMatch --> getTorrentByFuzzyName
 
 #### Entry points
 
-- `cross-seed daemon --searchCadence <cadence>`
-- `cross-seed search`
-- `POST /api/search`
+-   `cross-seed daemon --searchCadence <cadence>`
+-   `cross-seed search`
+-   `POST /api/search`
 
 The search pipeline takes an owned torrent, parses its name, and then searches for
 its parsed name on all of your Torznab indexers. After that, it's given a list
@@ -61,8 +61,8 @@ against the owned torrent. Any resulting matches will then run through the confi
 
 #### Entry points
 
-- `cross-seed daemon --rssCadence <cadence>`
-- `POST /api/announce`
+-   `cross-seed daemon --rssCadence <cadence>`
+-   `POST /api/announce`
 
 The RSS pipeline takes a candidate torrent's metadata `{ name, size }` and
 searches through your local torrent collection to see if any existing torrents
@@ -76,15 +76,15 @@ Prefiltering occurs during the startup of `cross-seed`. This will index all the 
 [`torrentDir`](../basics/options.md#torrentdir) and data from any [`dataDirs`](../basics/options.md#datadirs)
 you may have added.
 
-- If you're using [injection](../tutorials/injection.md), the existence of any .torrent files implies their
-  presence in the client. If the torrent is not present in your client, it will fail injection and save instead.
+-   If you're using [injection](../tutorials/injection.md), the existence of any .torrent files implies their
+    presence in the client. If the torrent is not present in your client, it will fail injection and save instead.
 
-- Your [`torrentDir`](../basics/options.md#torrentdir) should not contain torrent files that are not present in your client.
+-   Your [`torrentDir`](../basics/options.md#torrentdir) should not contain torrent files that are not present in your client.
 
-- Prefiltering de-duplicates. Multiple files/torrents with the same name will not be searched multiple times.
-  :::info
-  .torrent files from your [`torrentDir`](../basics/options.md#torrentdir) will take precedence over files in your [`dataDirs`](../basics/options.md#datadirs) with the same name.
-  :::
+-   Prefiltering de-duplicates. Multiple files/torrents with the same name will not be searched multiple times.
+    :::info
+    .torrent files from your [`torrentDir`](../basics/options.md#torrentdir) will take precedence over files in your [`dataDirs`](../basics/options.md#datadirs) with the same name.
+    :::
 
 ## Matching algorithm
 
@@ -94,6 +94,6 @@ TODO
 
 Three things can happen during the `action` phase:
 
-- link data files (if data-based)
-- inject matching torrent file
-- save matching torrent file
+-   link data files (if data-based)
+-   inject matching torrent file
+-   save matching torrent file

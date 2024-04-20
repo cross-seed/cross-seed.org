@@ -22,8 +22,8 @@ Injecting to **qBittorrent/Deluge** and using an **Arr** can result in new cross
 category, causing them to get stuck in your Arr's import queue. The workaround is to enable the `duplicateCategories`
 option, which will append your category with `.cross-seed` and **if using qBittorrent** either...
 
-- use the same **pre/post import categories** in your Arr **OR**
-- your Arr's **pre/post import categories** have the same **save path** in qBittorrent.
+-   use the same **pre/post import categories** in your Arr **OR**
+-   your Arr's **pre/post import categories** have the same **save path** in qBittorrent.
 
 :::
 
@@ -44,12 +44,12 @@ option, which will append your category with `.cross-seed` and **if using qBitto
 `cross-seed` will inject torrents into **rTorrent** with a `cross-seed` label.
 
 1. Edit your config file:
-   1. Set your [`action`](../basics/options#action) option to `inject`.
-   2. Set your [`rtorrentRpcUrl`](../basics/options#rtorrentrpcurl) option.
-      It should look like an `http` url that looks like
-      `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
-      installed). See the [reference](../basics/options#rtorrentrpcurl) for
-      more details.
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`rtorrentRpcUrl`](../basics/options#rtorrentrpcurl) option.
+       It should look like an `http` url that looks like
+       `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
+       installed). See the [reference](../basics/options#rtorrentrpcurl) for
+       more details.
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to rTorrent.
 
@@ -72,30 +72,30 @@ Injection will work best if you use the `Original` content layout in qBittorrent
 :::
 
 1. Edit your config file:
-   1. Set your [`action`](../basics/options#action) option to `inject`.
-   2. Set your [`qbittorrentUrl`](../basics/options#qbittorrenturl) option.
-      It should look like an `http` url that looks like
-      `http://user:pass@localhost:8080/` See the
-      [reference](../basics/options#qbittorrenturl) for more details.
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`qbittorrentUrl`](../basics/options#qbittorrenturl) option.
+       It should look like an `http` url that looks like
+       `http://user:pass@localhost:8080/` See the
+       [reference](../basics/options#qbittorrenturl) for more details.
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to qBittorrent.
 
 ### `Transmission` setup
 
 1. Edit your config file:
-   1. Set your [`action`](../basics/options#action) option to `inject`.
-   2. Set your [`transmissionRpcUrl`](../basics/options#rtorrentrpcurl) option.
-      It should look like an `http` url that looks like
-      `http://user:pass@localhost:9091/transmission/rpc`
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`transmissionRpcUrl`](../basics/options#rtorrentrpcurl) option.
+       It should look like an `http` url that looks like
+       `http://user:pass@localhost:9091/transmission/rpc`
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to Transmission.
 
 ### `Deluge` setup
 
 1. Edit your config file:
-   1. Set your [`action`](../basics/options#action) option to `inject`.
-   2. Set your [`delugeRpcUrl`](../basics/options#delugerpcurl) option.
-      It should look like an `http` url that looks like
-      `http://:pass@localhost:8112/json` (the colon before `pass` is intentional)
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`delugeRpcUrl`](../basics/options#delugerpcurl) option.
+       It should look like an `http` url that looks like
+       `http://:pass@localhost:8112/json` (the colon before `pass` is intentional)
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to Deluge.

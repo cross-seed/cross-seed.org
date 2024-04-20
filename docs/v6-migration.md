@@ -19,11 +19,11 @@ This document outlines the changes made and the actions required to take advanta
 :::tip
 You can grab the new `config.template.js` and simply go through and migrate your missing options over to your current `config.js`. Alternatively, you can add them yourself by referencing our documentation.
 
-- [`legacyLinking`](./basics/options.md#legacylinking)
+-   [`legacyLinking`](./basics/options.md#legacylinking)
 
-- [`apiKey`](./basics/options.md#apikey)
+-   [`apiKey`](./basics/options.md#apikey)
 
-- [`blockList`](./basics/options.md#blocklist)
+-   [`blockList`](./basics/options.md#blocklist)
 
 :::
 
@@ -61,7 +61,7 @@ You can include strings for the full, exact name of a torrent or file (e.g., `"T
 
 1. Generated Key: By setting [`apiKey`](./basics/options.md#apikey) to `undefined`, `cross-seed` will continue to use a generated key. You can find this key by running `cross-seed api-key`.
 
-   **This is recommended for most users.**
+    **This is recommended for most users.**
 
 2. Designated Key: You can now set a designated API key for `cross-seed`. Setting `apiKey: "YOURkeyHereMak3It@good1"` in the config file will tell `cross-seed` to always use that key.
 
@@ -71,13 +71,31 @@ The `apiAuth` option in previous versions of `cross-seed` has been removed.
 While we provide this option, we strongly urge you to use a generated key. If you are specifying a key, please make sure this is a secure and safe key. You are responsible for your security.
 :::
 
+### Anime Support (experimental)
+
+Anime is now supported in a **_somewhat limited_** capacity. Please note that this is our first attempt at accommodating this content, so your experience may vary depending on your indexers and content.
+
+We've aimed to cover the inconsistent and unconventional naming conventions that prevail in anime content, but there may be certain naming styles, from specific groups or indexers, that we haven't accounted for.
+
+:::tip HELP
+If you come across any anime naming schemes (not just _ONE_ release) that we've missed, please let us know.
+:::
+
+### Partial Matching
+
+We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named `partial`.
+
+This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files.
+
+Torrents will be added in a paused state if [`skipRecheck`](./basics/options.md#skiprecheck) is `false` (recommended), and unpaused if `skipRecheck` is `true`. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files), **which could lead to the banning or disabling of your account on your trackers.**
+
 ### Other Miscellaneous Changes
 
 Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.
 
-- Updated to Node v20, ES2022, and TypeScript v5
-- Any indexer failures not related to rate limiting (status code `429`) will be cleared from the database when `cross-seed` is restarted.
-- Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
-- Improved logging messages, specifically around matching decisions.
-- There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present in full-disc Bluray/DVD releases, music files, RAR archives, and season folders in Sonarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
-- New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
+-   Updated to Node v20, ES2022, and TypeScript v5
+-   Any indexer failures not related to rate limiting (status code `429`) will be cleared from the database when `cross-seed` is restarted.
+-   Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
+-   Improved logging messages, specifically around matching decisions.
+-   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present in full-disc Bluray/DVD releases, music files, RAR archives, and season folders in Sonarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
+-   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
