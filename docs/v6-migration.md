@@ -152,6 +152,7 @@ We've aimed to cover the inconsistent and unconventional naming conventions that
 
 :::tip HELP
 If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) that we've missed, please let us know [**via Discord**](https://discord.gg/jpbUFzS5Wb).
+:::
 
 #### Partial Matching
 

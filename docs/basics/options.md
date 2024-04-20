@@ -240,85 +240,67 @@ torznab: [
 torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey=12345"],
 ```
 
-### `sonarr`\*
+### `sonarr`
 
-| Config file name | CLI short form | CLI Long form    | Format   | Default   |
-| ---------------- | -------------- | ---------------- | -------- | --------- |
-| `sonarr`         |                | `--sonarr <url>` | `string` | undefined |
+| Config file name | CLI short form | CLI Long form       | Format     | Default   |
+| ---------------- | -------------- | ------------------- | ---------- | --------- |
+| `sonarr`         |                | `--sonarr <url(s)>` | `string[]` | undefined |
 
-The URL to your [Sonarr](https://sonarr.tv) instance's API endpoint with an `apikey` parameter.
-
-This is going to be _ALMOST_ identical to the URLs you use for [`torznab`](#torznab).
-
-:::caution
-
-```
-http://localhost:9117/api?query=string
-└────────host───────┘└─path─┘└─query─┘
-```
-
-The **path** of the URL should end in `/api`.
-
+:::warning NOTICE
+This feature is a v6 only feature.
 :::
+
+The URL to your [Sonarr](https://sonarr.tv) instance with your `?apikey=` parameter appended to the end.
 
 #### Finding your Sonarr URL
 
-For [Sonarr](https://sonarr.tv) you can simply add `/api` to the end of your
-WebUI base URL with `?apikey=` and your API key appended.
+For [Sonarr](https://sonarr.tv) you can simply append `?apikey=` to the end of your
+WebUI base URL with your API key after the `=`.
 
 #### `sonarr` Examples (CLI)
 
 ```shell
-cross-seed search --sonarr https://localhost/api?apikey=12345
+cross-seed search --sonarr https://localhost/?apikey=12345
 ```
 
 #### `sonarr` Examples (Config file)
 
 ```js
-sonarr: "https://sonarr/api?apikey=12345",
+sonarr: "https://sonarr/?apikey=12345",
 
-sonarr: "http://sonarr:8989/api?apikey=12345",
-
-```
-
-### `radarr`\*
-
-| Config file name | CLI short form | CLI Long form    | Format   | Default   |
-| ---------------- | -------------- | ---------------- | -------- | --------- |
-| `radarr`         |                | `--radarr <url>` | `string` | undefined |
-
-The URL to your [Radarr](https://radarr.video) instance's API endpoint with `apikey` parameter.
-
-This is going to be _ALMOST_ identical to the URLs you use for [`torznab`](#torznab).
-
-:::caution
+sonarr: "http://sonarr:8989/?apikey=12345",
 
 ```
-http://localhost:9117/api?query=string
-└────────host───────┘└─path─┘└─query─┘
-```
 
-The **path** of the URL should end in `/api`.
+### `radarr`
 
+| Config file name | CLI short form | CLI Long form       | Format     | Default   |
+| ---------------- | -------------- | ------------------- | ---------- | --------- |
+| `radarr`         |                | `--radarr <url(s)>` | `string[]` | undefined |
+
+:::warning NOTICE
+This feature is a v6 only feature.
 :::
+
+The URL to your [Radarr](https://radarr.video) instance with your `?apikey=` parameter appended to the end.
 
 #### Finding your Radarr URL
 
-For [Radarr](https://radarr.video) you can simply add `/api` to the end of your
-WebUI base URL with `?apikey=` and your API key appended.
+For [Radarr](https://radarr.video) you can simply append `?apikey=` to the end of your
+WebUI base URL with your API key after the `=`.
 
 #### `radarr` Examples (CLI)
 
 ```shell
-cross-seed search --radarr https://localhost/api?apikey=12345
+cross-seed search --radarr https://localhost/?apikey=12345
 ```
 
 #### `radarr` Examples (Config file)
 
 ```js
-radarr: "https://radarr/api?apikey=12345",
+radarr: "https://radarr/?apikey=12345",
 
-radarr: "http://radarr:7878/api?apikey=12345",
+radarr: "http://radarr:7878/?apikey=12345",
 
 ```
 
