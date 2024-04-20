@@ -1213,7 +1213,7 @@ Set this to `true` to use the flat-folder style linking previously used in v5. T
 will otherwise link any matches to a tracker specific folder inside of `linkDir` (if set).
 
 :::warning qBittorrent
-Users of qBittorrent with AutoTorrentManagement enabled will need to set this to `true`.
+Users of qBittorrent with AutoTorrentManagement enabled by `qbit_manage` will need to set this to `true`.
 :::
 
 #### `legacyLinking` Examples (CLI)
