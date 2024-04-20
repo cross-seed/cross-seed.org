@@ -106,6 +106,8 @@ The configuration file uses JavaScript syntax, which means:
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
 | [`flatLinking`](#flatlinking)                       |              |
 | [`blockList`](#blockList)                           |              |
+| [`sonarr`](#sonarr)                                 |              |
+| [`radarr`](#radarr)                                 |              |
 
 ## Options used in `cross-seed daemon`
 
@@ -142,10 +144,12 @@ The configuration file uses JavaScript syntax, which means:
 | [`snatchTimeout`](#snatchtimeout)                   |              |
 | [`searchTimeout`](#searchtimeout)                   |              |
 | [`searchLimit`](#searchlimit)                       |              |
-| [`apiAuth`](#apiauth)                               |              |
-| [`apiKey`](#apikey)                                 |              |
+| [`apiAuth`](#apiAuth)                               |              |
+| [`apiKey`](#apiKey)                                 |              |
 | [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blocklist)                           |              |
+| [`blockList`](#blockList)                           |              |
+| [`sonarr`](#sonarr)                                 |              |
+| [`radarr`](#radarr)                                 |              |
 
 ## All options
 
