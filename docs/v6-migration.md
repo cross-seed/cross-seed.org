@@ -71,7 +71,7 @@ The `apiAuth` option in previous versions of `cross-seed` has been removed.
 While we provide this option, we strongly urge you to use a generated key. If you are specifying a key, please make sure this is a secure and safe key. You are responsible for your security.
 :::
 
-### Anime Support
+### Anime Support (experimental)
 
 Anime is now supported in a **_somewhat limited_** capacity. Please note that this is our first attempt at accommodating this content, so your experience may vary depending on your indexers and content.
 
