@@ -6,9 +6,9 @@ If you are updating from version 5.x to version 6.x, you can visit the [v6 migra
 
 ### General Suggestions
 
-- Adjust [`excludeRecentSearch` `excludeOlder` and `searchCadence`](./daemon.md#set-up-periodic-searches) to reduce searching indexers needlessly.
-- If `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
-- The log files in `/logs` - specifically `verbose.*.log` - are your friend. If you experience undesired results from `cross-seed`, look to these files first for indicators of why `cross-seed` performed the way it did.
+-   Adjust [`excludeRecentSearch` `excludeOlder` and `searchCadence`](./daemon.md#set-up-periodic-searches) to reduce searching indexers needlessly.
+-   If `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
+-   The log files in `/logs` - specifically `verbose.*.log` - are your friend. If you experience undesired results from `cross-seed`, look to these files first for indicators of why `cross-seed` performed the way it did.
 
 ### Does cross-seed support music torrents?
 
@@ -116,9 +116,9 @@ We have no current ETA on integration with qBittorrent's SQLite database.
 Your options are `"hardlink"` or `"symlink"`. These operate in seperate ways, and depending on your workflow you should choose appropriately. This is a brief description, however
 a more in depth guide is available at [Trash's Hardlinking Guide](https://trash-guides.info/Hardlinks/Hardlinks-and-Instant-Moves/).
 
-- symlinks are a "shortcut" of sorts, pointing at the original file from a new location. This can be used across mounts (Docker) or partitions/drives, and does not cost you any extra space. The only possible issue is that if the original file is deleted (when you remove a torrent,) the torrents in your client using the `symlink` will "break" and you will receive errors. If this sounds like a hassle, consider reading further about hardlinks.
+-   symlinks are a "shortcut" of sorts, pointing at the original file from a new location. This can be used across mounts (Docker) or partitions/drives, and does not cost you any extra space. The only possible issue is that if the original file is deleted (when you remove a torrent,) the torrents in your client using the `symlink` will "break" and you will receive errors. If this sounds like a hassle, consider reading further about hardlinks.
 
-- hardlinks are a tricky thing for someone not familiar with the concept but are worth understanding. They are a "direct line" to the actual data on the disk and, as far as the file system is concerned, are indistinguishable from the original. Hardlinks do not require any additional space and the file will remain on the disk until all references to said file are deleted. These linktypes are only possible on the same partition/disk/mount, and you will need to have your [`linkDir`](./options.md#linkdir) set to the same mount (Docker) or partition as your [`dataDirs`](./options.md#datadirs). This is the best approach if you do not always keep the source torrent in your client (due to them being deleted from the tracker) - which would then break symlinks and cross-seeds. This is the approach commonly used in Arr's on import.
+-   hardlinks are a tricky thing for someone not familiar with the concept but are worth understanding. They are a "direct line" to the actual data on the disk and, as far as the file system is concerned, are indistinguishable from the original. Hardlinks do not require any additional space and the file will remain on the disk until all references to said file are deleted. These linktypes are only possible on the same partition/disk/mount, and you will need to have your [`linkDir`](./options.md#linkdir) set to the same mount (Docker) or partition as your [`dataDirs`](./options.md#datadirs). This is the best approach if you do not always keep the source torrent in your client (due to them being deleted from the tracker) - which would then break symlinks and cross-seeds. This is the approach commonly used in Arr's on import.
 
 :::tip
 If you are using qBittorrent, consider checking out [qbit_manage](https://github.com/StuffAnThings/qbit_manage) to manage your hardlinks eligible for deletion.
@@ -166,7 +166,7 @@ If you are having issues, your best bet is to contact your VPN software/provider
 
 You can search both your media libraries (Arr/Plex) and actual torrent data (downloaded files). If you are using the media libraries with renamed files, you will need to use `matchMode: "risky"` in your configuration file to allow `cross-seed` some leeway in its matching process. `"risky"` [`matchMode`](./options.md#matchmode) is not recommended to be used without skipRecheck set to false, as it could result in more false positives than `"safe"`.
 
-- Due to the way data-based searching works, risky matching only matches renamed files if they are a single-file torrent. As TV libraries often include renamed files, data-based matching will not be able to pick up matches on multi-file torrents (such as season packs).
+-   Due to the way data-based searching works, risky matching only matches renamed files if they are a single-file torrent. As TV libraries often include renamed files, data-based matching will not be able to pick up matches on multi-file torrents (such as season packs).
 
 ### My season packs are cross-seeding individual episodes!
 

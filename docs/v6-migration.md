@@ -19,11 +19,11 @@ This document outlines the changes made and the actions required to take advanta
 :::tip
 You can grab the new `config.template.js` and simply go through and migrate your missing options over to your current `config.js`. Alternatively, you can add them yourself by referencing our documentation.
 
-- [`legacyLinking`](./basics/options.md#legacylinking)
+-   [`legacyLinking`](./basics/options.md#legacylinking)
 
-- [`apiKey`](./basics/options.md#apikey)
+-   [`apiKey`](./basics/options.md#apikey)
 
-- [`blockList`](./basics/options.md#blocklist)
+-   [`blockList`](./basics/options.md#blocklist)
 
 :::
 
@@ -61,7 +61,7 @@ You can include strings for the full, exact name of a torrent or file (e.g., `"T
 
 1. Generated Key: By setting [`apiKey`](./basics/options.md#apikey) to `undefined`, `cross-seed` will continue to use a generated key. You can find this key by running `cross-seed api-key`.
 
-   **This is recommended for most users.**
+    **This is recommended for most users.**
 
 2. Designated Key: You can now set a designated API key for `cross-seed`. Setting `apiKey: "YOURkeyHereMak3It@good1"` in the config file will tell `cross-seed` to always use that key.
 
@@ -75,9 +75,9 @@ While we provide this option, we strongly urge you to use a generated key. If yo
 
 Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.
 
-- Updated to Node v20, ES2022, and TypeScript v5
-- Any indexer failures not related to rate limiting (status code `429`) will be cleared from the database when `cross-seed` is restarted.
-- Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
-- Improved logging messages, specifically around matching decisions.
-- There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present in full-disc Bluray/DVD releases, music files, RAR archives, and season folders in Sonarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
-- New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
+-   Updated to Node v20, ES2022, and TypeScript v5
+-   Any indexer failures not related to rate limiting (status code `429`) will be cleared from the database when `cross-seed` is restarted.
+-   Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
+-   Improved logging messages, specifically around matching decisions.
+-   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present in full-disc Bluray/DVD releases, music files, RAR archives, and season folders in Sonarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
+-   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.

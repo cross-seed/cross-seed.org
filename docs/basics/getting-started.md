@@ -151,10 +151,10 @@ With Docker, any paths that you would provide as command-line arguments or in
 the config file should stay hardcoded. Instead, you can mount volumes to the
 Docker container.
 
-- `/config` - config dir (this follows a common Docker convention)
-- `/torrents` - your torrent input dir
-  - usually set to your rTorrent session dir, Deluge state dir, Transmission torrents dir, or your qBittorrent BT_backup dir
-- `/cross-seeds` - the output dir. People sometimes point this at a watch folder. If you use
+-   `/config` - config dir (this follows a common Docker convention)
+-   `/torrents` - your torrent input dir
+    -   usually set to your rTorrent session dir, Deluge state dir, Transmission torrents dir, or your qBittorrent BT_backup dir
+-   `/cross-seeds` - the output dir. People sometimes point this at a watch folder. If you use
 
 Create or open your existing `docker-compose.yml` file and add the `cross-seed`
 service:
@@ -162,20 +162,20 @@ service:
 ```yaml
 version: "2.1"
 services:
-  cross-seed:
-    image: ghcr.io/cross-seed/cross-seed
-    container_name: cross-seed
-    user: 1000:1000 # optional but recommended
-    ports:
-      - "2468:2468" # you'll need this for daemon mode only
-    volumes:
-      - /path/to/config/folder:/config
-      - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
-      - /path/to/output/folder:/cross-seeds
-      - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
-        # will need to mirror your torrent client's path (like Arr's do)
-    command: daemon # this enables the daemon, change to search to specifically run a search ONLY
-    restart: no # make sure to not enable it in search mode, otherwise it will keep rerunning constantly
+    cross-seed:
+        image: ghcr.io/cross-seed/cross-seed
+        container_name: cross-seed
+        user: 1000:1000 # optional but recommended
+        ports:
+            - "2468:2468" # you'll need this for daemon mode only
+        volumes:
+            - /path/to/config/folder:/config
+            - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
+            - /path/to/output/folder:/cross-seeds
+            - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
+              # will need to mirror your torrent client's path (like Arr's do)
+        command: daemon # this enables the daemon, change to search to specifically run a search ONLY
+        restart: no # make sure to not enable it in search mode, otherwise it will keep rerunning constantly
 ```
 
 #### Create a config file
@@ -197,8 +197,8 @@ started running through a full scan of your torrent directory!
 
 `cross-seed` has two subcommands: `search` and `daemon`.
 
-- [`search`](./getting-started.md#running-your-first-search) will scan each torrent and dataDir (optional) you provide and look for
-  cross-seeds, then exit.
+-   [`search`](./getting-started.md#running-your-first-search) will scan each torrent and dataDir (optional) you provide and look for
+    cross-seeds, then exit.
 
-- [`daemon`](./daemon.md) will run indefinitely. It can be configured to run searches periodically, watch RSS,
-  and be triggered to search for newly finished downloads.
+-   [`daemon`](./daemon.md) will run indefinitely. It can be configured to run searches periodically, watch RSS,
+    and be triggered to search for newly finished downloads.

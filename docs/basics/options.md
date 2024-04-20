@@ -95,6 +95,11 @@ The configuration file uses JavaScript syntax, which means:
 | [`qbittorrentUrl`](#qbittorrenturl)                 |              |
 | [`delugeRpcUrl`](#delugerpcurl)                     |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
+| [`apiKey`](#apiKey)                                 |              |
+| [`legacyLinking`](#legacyLinking)                   |              |
+| [`blockList`](#blockList)                           |              |
+| [`sonarr`](#sonarr)                                 |              |
+| [`radarr`](#radarr)                                 |              |
 
 ## Options used in `cross-seed daemon`
 
@@ -122,6 +127,11 @@ The configuration file uses JavaScript syntax, which means:
 | [`rssCadence`](#rssCadence)                         |              |
 | [`searchCadence`](#searchCadence)                   |              |
 | [`apiAuth`](#apiAuth)                               |              |
+| [`apiKey`](#apiKey)                                 |              |
+| [`legacyLinking`](#legacyLinking)                   |              |
+| [`blockList`](#blockList)                           |              |
+| [`sonarr`](#sonarr)                                 |              |
+| [`radarr`](#radarr)                                 |              |
 
 ## All options
 
