@@ -84,7 +84,9 @@ The configuration file uses JavaScript syntax, which means:
 | [`dataCategory`](#datacategory)                     |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
-| [`matchMode`](#matchMode)                           |              |
+| [`linkType`](#linktype)                             |              |
+| [`matchMode`](#matchmode)                           |              |
+| [`skipRecheck`](#skiprecheck)                       |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
@@ -92,11 +94,15 @@ The configuration file uses JavaScript syntax, which means:
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
 | [`action`](#action)                                 |              |
+| [`duplicateCategories`](#duplicateCategories)       |              |
 | [`rtorrentRpcUrl`](#rtorrentrpcurl)                 |              |
-| [`qbittorrentUrl`](#qbittorrenturl)                 |              |
 | [`delugeRpcUrl`](#delugerpcurl)                     |              |
+| [`transmissionRpcUrl`](#rtorrentrpcurl)             |              |
+| [`qbittorrentUrl`](#qbittorrentUrl)                 |              |
+| [`snatchTimeout`](#snatchtimeout)                   |              |
+| [`searchTimeout`](#searchtimeout)                   |              |
+| [`searchLimit`](#searchlimit)                       |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
-| [`apiKey`](#apiKey)                                 |              |
 | [`legacyLinking`](#legacyLinking)                   |              |
 | [`blockList`](#blockList)                           |              |
 
@@ -112,7 +118,9 @@ The configuration file uses JavaScript syntax, which means:
 | [`dataCategory`](#datacategory)                     |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
+| [`linkType`](#linktype)                             |              |
 | [`matchMode`](#matchMode)                           |              |
+| [`skipRecheck`](#skiprecheck)                       |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includeNonVideos)             |              |
@@ -120,12 +128,18 @@ The configuration file uses JavaScript syntax, which means:
 | [`excludeOlder`](#excludeOlder)                     |              |
 | [`excludeRecentSearch`](#excludeRecentSearch)       |              |
 | [`action`](#action)                                 |              |
+| [`duplicateCategories`](#duplicateCategories)       |              |
 | [`rtorrentRpcUrl`](#rtorrentRpcUrl)                 |              |
+| [`delugeRpcUrl`](#delugerpcurl)                     |              |
+| [`transmissionRpcUrl`](#rtorrentRpcUrl)             |              |
 | [`qbittorrentUrl`](#qbittorrentUrl)                 |              |
 | [`notificationWebhookUrl`](#notificationWebhookUrl) |              |
 | [`port`](#port)                                     |              |
 | [`rssCadence`](#rssCadence)                         |              |
 | [`searchCadence`](#searchCadence)                   |              |
+| [`snatchTimeout`](#snatchtimeout)                   |              |
+| [`searchTimeout`](#searchtimeout)                   |              |
+| [`searchLimit`](#searchlimit)                       |              |
 | [`apiAuth`](#apiAuth)                               |              |
 | [`apiKey`](#apiKey)                                 |              |
 | [`legacyLinking`](#legacyLinking)                   |              |
