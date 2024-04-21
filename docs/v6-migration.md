@@ -53,6 +53,23 @@ The new folder structure in v6 for the [`linkDir`](./basics/options.md#linkdir) 
 
 There is, however, a new option introduced into `config.js` named [`legacyLinking`](./basics/options.md#legacylinking) mainly to accommodate users of qBittorrent who want to utilize the Auto Torrent Management (ATMM) feature being automatically enabled by `qbit_manage`. Setting [`legacyLinking`](./basics/options.md#legacylinking) to `true` will tell `cross-seed` to use the same style of linking as v5; one folder with all the linked torrents.
 
+### autobrr Update
+
+If you're not using `legacyLinking: true`, when receiving announces with the old data payload in your cross-seed autobrr filter, you might notice inconsistencies in the folders created from ones from a search.
+
+To address this, [autobrr's documentation has been updated](https://autobrr.com/3rd-party-tools#cross-seed-filter), introducing a new macro to accommodate the new linking structure. By updating your data payload with the provided code, autobrr will now send the indexer's name from `Settings -> Indexers` instead of the "indexer identifier".
+
+```json
+{
+    "name": "{{ .TorrentName }}",
+    "guid": "{{ .TorrentUrl }}",
+    "link": "{{ .TorrentUrl }}",
+    "tracker": "{{ .IndexerName | js}}"
+}
+```
+
+Simply ensure that you've update your data and the indexer's name in autobrr matches the one in Prowlarr/Jackett, and everything will align correctly in your `linkDir`.
+
 ### Updated [`torrentDir`](./basics/options.md#torrentdir) Option
 
 Previously, our recommendation if you wanted to strictly search only [`dataDirs`](./basics/options.md#datadirs) for matches was to point [`torrentDir`](./basics/options.md#torrentdir) at an empty folder. This is no longer necessary. You can now set [`torrentDir`](./basics/options.md#torrentdir) to `null` to achieve a data-only search.
