@@ -4,6 +4,12 @@ title: v6 Migration Guide
 position: 0
 ---
 
+### Updates Since Initial
+
+-   [autobrr addition](#autobrr-update) and [linking section update](#linking-updates)
+
+    Last Updated: 4/21/24 @ 09:25 GMT -6
+
 ## Overview
 
 There are several changes in `cross-seed` version 6.x. Most of them do not require any action on your part, but some need to be addressed in both the configuration file ([`config.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs)) and potentially permissions or volumes/mounts.
@@ -45,19 +51,21 @@ This is not going to automatically fix anything for you but will give you a bett
 
 ### Linking Updates
 
-We have made drastic changes to the way linking operates, both in its implementation and in expanding its capabilities. Not only is linking more versatile in what can be matched now (for instance, previously, files inside a folder would not match to a single-file torrent - this has been fixed), but you can also take advantage of linking when searching .torrent files instead of solely applying to data-based matching.
+We have made drastic changes to the way linking operates, both in its implementation and in expanding its capabilities. Not only is linking more versatile in what can be matched now (for instance, previously, files inside/outside a folder would not match to a torrent in the opposite folder structure - this has been fixed), but you can also take advantage of linking when searching .torrent files instead of solely applying to data-based matching.
 
-To achieve torrent linking, you simply have to mount or give permission (if necessary) for `cross-seed` to read and write to the actual torrent data structure (downloaded files) your client uses. This will need to mirror (for docker) the mounts made in the client. Your client will also need to be able to read and write to the [`linkDir`](./basics/options.md#linkdir) folder. You do not need to specify a [`dataDirs`](./basics/options.md#datadirs) with this setup, but simply define a [`linkDir`](./basics/options.md#linkdir).
+To achieve torrent linking, you simply have to mount or give permission (if necessary) for `cross-seed` to read and write to the actual torrent data structure (downloaded files) your client uses. This will need to mirror (for docker) the mounts made in the client. Your client will also need to be able to read and write to the [`linkDir`](./basics/options.md#linkdir) folder. You do not need to specify a [`dataDirs`](./basics/options.md#datadirs) in your conig for this setup, but simply define a [`linkDir`](./basics/options.md#linkdir).
 
-The new folder structure in v6 for the [`linkDir`](./basics/options.md#linkdir) creates sub-folders for each indexer (for example, `/link_dir/Indexer 1/Name.of.Torrent.File.mkv`). This doesn't change previously matched torrents, but new matches will follow this new structure.
+The new folder structure in v6 for the [`linkDir`](./basics/options.md#linkdir) creates sub-folders for each indexer (for example, `/link_dir/Indexer 1/Name.of.Torrent.File.mkv`). This doesn't change previously matched torrents, but if enabled will follow this new structure.
 
-There is, however, a new option introduced into `config.js` named [`legacyLinking`](./basics/options.md#legacylinking) mainly to accommodate users of qBittorrent who want to utilize the Auto Torrent Management (ATMM) feature being automatically enabled by `qbit_manage`. Setting [`legacyLinking`](./basics/options.md#legacylinking) to `true` will tell `cross-seed` to use the same style of linking as v5; one folder with all the linked torrents.
+There is, however, a new option introduced into `config.js` named [`legacyLinking`](./basics/options.md#legacylinking); mainly to attempt accommodate some cases of users of qBittorrent who want to utilize Auto Torrent Management and possibly `cat_change` features with `qbit_manage`. \*\*This has not proven to be effective after testing has been performed by our pre-release testers.
+
+All that said, setting [`legacyLinking`](./basics/options.md#legacylinking) to `true` will tell `cross-seed` to use the same style of linking as v5, but support torrent-based linking in addition to data; one folder with all the linked torrent data directly inside.
 
 ### autobrr Update
 
-If you're not using `legacyLinking: true`, when receiving announces with the old data payload in your cross-seed autobrr filter, you might notice inconsistencies in the folders created from ones from a search.
+If you're using `legacyLinking: false`, when receiving announces with the old data payload in your cross-seed autobrr filter, you might notice inconsistencies in the folders created from ones created with a search.
 
-To address this, [autobrr's documentation has been updated](https://autobrr.com/3rd-party-tools#cross-seed-filter), introducing a new macro to accommodate the new linking structure. By updating your data payload with the provided code, autobrr will now send the indexer's name from `Settings -> Indexers` instead of the "indexer identifier".
+To address this, [autobrr's macros and documentation have been updated](https://autobrr.com/3rd-party-tools#cross-seed-filter). There is now a new macro to accommodate the new linking structure. By updating your data payload with the provided code, autobrr will now send the indexer's name from `Settings -> Indexers` instead of the "indexer identifier".
 
 ```json
 {
