@@ -6,9 +6,13 @@ position: 0
 
 ### Updates Since Initial
 
+-   qBittorrent users should stick with v5.9.2 for the time being if you use Auto Torrent Management in **ANY** capacity.
+
+    Updated: 4/21/24 @ 10:40 GMT -6
+
 -   [autobrr addition](#autobrr-update) and [linking section update](#linking-updates)
 
-    Last Updated: 4/21/24 @ 09:25 GMT -6
+    Updated: 4/21/24 @ 09:25 GMT -6
 
 ## Overview
 
