@@ -272,8 +272,7 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
    You will need to pick a method of search, **infoHash is recommended** - but requires the `BT_Backup`
    folder from qBittorrent to be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not
    function properly.
-
-    :::
+   :::
 
     **Name Based:**
 
