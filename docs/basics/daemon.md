@@ -265,32 +265,20 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
 ### qBittorrent
 
-1. In the **qBittorrent** Web UI, navigate to Tools > Options > Downloads.
-2. Check the **Run external program on torrent completion** box and enter one of
-   the following in the box:
-   :::tip
-   You will need to pick a method of search, **infoHash is recommended** - but requires the `BT_Backup`
-   folder from qBittorrent to be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not
-   function properly.
-   :::
+1.  In the **qBittorrent** Web UI, navigate to Tools > Options > Downloads.
+2.  Check the **Run external program on torrent completion** box and enter one of
+    the following in the box:
+    :::tip
+    You will need to pick a method of search, **infoHash is recommended** - but requires the `BT_Backup`
+    folder from qBittorrent to be mounted (Docker) and/or set to [`torrentDir`](./options.md#torrentdir) in the config or it will not
+    function properly.
+    :::
 
-    **Name Based:**
-
-    ```shell
-    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=%N"
-    ```
-
-    **InfoHash Based:**
-
-    ```shell
-    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"
-    ```
-
-    [**Data Based:**](../tutorials/data-based-matching.md#setup)
-
-    ```shell
-    curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"
-    ```
+    | Search/Criteria | Command                                                                                            |
+    | --------------- | -------------------------------------------------------------------------------------------------- |
+    | **Name**        | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=%N"`     |
+    | **InfoHash**    | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"` |
+    | **Data (Path)** | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"`     |
 
 :::tip Docker
 You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
