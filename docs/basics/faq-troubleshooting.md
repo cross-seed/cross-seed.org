@@ -92,7 +92,7 @@ for [`torrentDir`](./options.md#torrentdir) temporarily. This will strictly sear
 
 #### v6
 
-If possible, `cross-seed` will always attempt to create links for data and torrents being injected into a client, unlike in v5 (except when [`v5Linking`](./options.md#v5linking) is enabled).
+If possible, `cross-seed` will always attempt to create links for data and torrents being injected into a client, unlike in v5 where torrent matches were directly linked to the data.
 
 :::tip
 If you wish to search only data, please read the relevant version's instructions.

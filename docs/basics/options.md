@@ -82,7 +82,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputDir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadir)                              |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](#linkcategory)                     |              |
+| [`linkCategory`](linkcategory)                      |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -105,7 +105,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`searchLimit`](#searchlimit)                       |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
 | [`flatLinking`](#flatlinking)                       |              |
-| [`v5Linking`](#v5linking)                           |              |
 | [`blockList`](#blockList)                           |              |
 
 ## Options used in `cross-seed daemon`
@@ -118,7 +117,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputdir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadir)                              |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](#linkcategory)                     |              |
+| [`linkCategory`](linkcategory)                      |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -146,7 +145,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`apiAuth`](#apiauth)                               |              |
 | [`apiKey`](#apikey)                                 |              |
 | [`flatLinking`](#flatlinking)                       |              |
-| [`v5Linking`](#v5linking)                           |              |
 | [`blockList`](#blocklist)                           |              |
 
 ## All options
@@ -218,6 +216,8 @@ of unfiltered (no search query) results from the indexer.
 :::
 
 #### `torznab` Examples (CLI)
+
+c
 
 ```shell
 cross-seed search --torznab https://localhost/prowlarr/1/api?apikey=12345
@@ -419,7 +419,7 @@ duplicateCategories: false,
 | `dataCategory`   | `--data-category <category>` | N/A           | `string` |         |
 
 :::warning NOTICE
-This feature is a v5 only feature and has been removed in v6 of `cross-seed` for [`linkCategory`](#linkcategory)
+This feature is a v5 only feature and has been removed in v6 of `cross-seed` for [`linkCategory`](linkcategory)
 :::
 
 `cross-seed` will, when performing data-based searches with [injection](../tutorials/injection),
@@ -1281,7 +1281,7 @@ This feature is a v6 only feature.
 :::
 
 Set this to `true` to use the flat-folder style linking previously used in v5. This option
-will otherwise link any matches to a tracker specific folder inside of `linkDir` (if set).
+will otherwise link any matches to a tracker-specific folder inside of `linkDir` (if set).
 
 :::caution Be Advised
 If you are using `qbitmanage` and/or AutoTorrentManagement in any capacity, it is highly recommended that you enable this options.
@@ -1301,38 +1301,6 @@ cross-seed search --flat-linking
 flatLinking: true,
 
 flatLinking: false,
-```
-
-### `v5Linking`
-
-| Config file name | CLI short form | CLI long form  | Format    | Default |
-| ---------------- | -------------- | -------------- | --------- | ------- |
-| `v5Linking`      |                | `--v5-linking` | `boolean` | `false` |
-
-:::warning NOTICE
-This feature is a v6 only feature.
-:::
-
-Set this to `true` to revert the injection and linking behavior, in regards to torrent-based matches, to v5. This will disable the changes in linking and matching (**for torrent-based searches**) provided by v6.
-
-:::caution Be Advised
-If you are using `qbitmanage` and/or AutoTorrentManagement in any capacity, it is highly recommended that you enable this options.
-
-[**Read why**](../v6-migration.md#qbittorrent)
-:::
-
-#### `v5Linking` Examples (CLI)
-
-```shell
-cross-seed search --v5-linking
-```
-
-#### `v5Linking` Examples (Config file)
-
-```js
-v5Linking: true,
-
-v5Linking: false,
 ```
 
 ### `blockList`

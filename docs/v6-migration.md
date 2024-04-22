@@ -57,13 +57,11 @@ Please let us know if you run into any issues [**via Discord**](https://discord.
 :::tip
 You can grab the new [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs) and simply go through and migrate your missing options over to your current `config.js`. Alternatively, you can add them yourself by referencing our documentation.
 
--   [`dataCategory -> linkCategory`](./basics/options.md#datacategory)
+-   [`dataCategory -> linkCategory`](./basics/options.md#linkcategory)
 
 -   [`apiAuth -> apiKey`](./basics/options.md#apikey)
 
 -   [`flatLinking`](./basics/options.md#flatlinking)
-
--   [`v5Linking`](./basics/options.md#v5linking)
 
 -   [`blockList`](./basics/options.md#blocklist)
 
@@ -99,9 +97,11 @@ During this transitional process, you can get support [**via Discord**](https://
 
 #### qBittorrent
 
-Due to the limitations in place with qBittorrent and Auto Torrent Management, we've introduced and changed a few options for more granular support and configuration of the feature-sets we have added.
+Due to the limitations in place with qBittorrent and Auto Torrent Management, we've introduced a new option to support of the feature-sets we have added.
 
-If you are using Auto Torrent Management (AutoTMM) **in any capacity, we strongly recommend** that you enable [`v5Linking`](./basics/options.md#v5linking) and [`flatLinking`](./basics/options.md#flatlinking) to acheive the matching and linking behavior from v5. You will still be able to take advantage of the [matching enhancements](#partial-matching) in v6 with your [data-based searches](#updated-torrentdir-option).
+If you are using Auto Torrent Management (AutoTMM) **in any capacity, we strongly recommend** that you enable [`flatLinking`](./basics/options.md#flatlinking) to acheive the matching and linking behavior we've added to v6. You will still be able to take advantage of the [matching enhancements](#partial-matching) in v6 with your searches.
+
+`cross-seed` will inject all linked torrents directly to the [`linkCategory`](./basics/options.md#linkcategory) if linking is possible, otherwise direct torrent matches will behave the same as they did in v5.
 
 ### autobrr Update
 
@@ -146,7 +146,13 @@ The `apiAuth` option in previous versions of `cross-seed` has been removed.
 While we provide this option, we strongly urge you to use a generated key. If you are specifying a key, please make sure this is a secure and safe key. You are responsible for your security.
 :::
 
-### Anime Support (experimental)
+### Searching Improvements
+
+:::caution
+Currently, only Movies, TV Series, and Anime are officially supported.
+:::
+
+#### Anime Support (experimental)
 
 Anime is now supported in a **_somewhat limited_** capacity. Please note that this is our first attempt at accommodating this content, so your experience may vary depending on your indexers and content.
 
@@ -154,6 +160,16 @@ We've aimed to cover the inconsistent and unconventional naming conventions that
 
 :::caution HELP
 If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) that we've missed, please let us know [**via Discord**](https://discord.gg/jpbUFzS5Wb).
+:::
+
+#### Torznab Categories
+
+`cross-seed` will now check with Prowlarr or Jackett for the categories that the indexer supports. As a result, we no longer send searches for content that is not listed by Prowlarr/Jackett as available on the indexer.
+
+This should reduce the number of searches made for content that does not have a chance of existing on the indexer.
+
+:::info Note
+This requires no additional action to be taken on your part.
 :::
 
 ### Partial Matching

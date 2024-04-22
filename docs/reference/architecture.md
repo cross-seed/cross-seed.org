@@ -93,6 +93,6 @@ TODO
 
 Three things can happen during the `action` phase:
 
--   link files (if data-based in v5, or not using `v5Linking` in v6)
+-   link files (if data-based in v5, or all matches in v6 if possible/configured)
 -   inject matching torrent file
 -   save matching torrent file
