@@ -13,7 +13,7 @@ You can easily configure your torrent client to [send search commands when a tor
 You can specify an API key using the [`apiKey`](../basics/options.md#apikey) option, or let
 `cross-seed` generate one for you (default).
 
-:::info
+:::caution Be advised
 API authorization using an API key is now mandatory as of v6. The `apiAuth` option has been
 deprecated and removed.
 :::
@@ -84,18 +84,19 @@ curl -XPOST http://localhost:2468/api/webhook \
 
 Use this endpoint to feed announces into cross-seed. For each `announce`,
 `cross-seed` will check if the provided search criteria match any torrents you already
-have. If found, it will run the matching algorithm to verify that the torrents
-do match, and download/inject the announced torrent.
+have. If found, it will run our matching algorithm to verify that the torrents
+do indeed match, and inject the announced torrent.
 
-:::tip
-
-This is a real-time alternative to scanning RSS feeds. Consider turning the RSS
-scan off ([`rssCadence: null,`](../basics/options.md#rsscadence)) if you set up this feature.
-
+:::info
+This is a _real-time_ alternative to scanning RSS feeds via [`rssCadence`](../basics/options.md#rsscadence). Consider turning the RSS
+scan off ([`rssCadence: null,`](../basics/options.md#rsscadence)), or significantly raising the time if you set up this feature.
 :::
 
-This endpoint returns 200 if your request was received and a completed match was found, 202 if the match was found to be incomplete (still downloading), and if
-no match was found will respond with 204 No Content.
+This endpoint returns `200` if your request was received and a completed match was found in your client, if a match was found to be incomplete (still downloading) then `cross-seed` will return the status code `202`, and if no match was found `cross-seed` will respond with a `204 No Content`.
+
+:::tip
+The most common way to implement an "announce feed" is utilizing [autobrr](../basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed).
+:::
 
 ### Supported formats
 

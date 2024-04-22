@@ -38,7 +38,7 @@ dataDirs: ["/data/torrents/", "/data/media/"],
 
 [`matchMode`](../basics/options.md#matchmode): Either `"safe"` or `"risky"` for the time being. As explained above, `"risky"` matching will only use file size. `"safe"` uses the existing method of name + file sizes.
 
-`skipRecheck`: Currently only works in qBittorrent and Deluge. If set to false, `cross-seed` will inject the torrent as paused and tell qBitorrent to recheck the torrent contents. This is recommended with `matchMode: "risky"` due to potential false positives. As of 5.0.2, this applies to all torrents added, not just those found by data-based matching. This will change in a later revision.
+[`skipRecheck`](../basics/options.md#skiprecheck): Currently only works in qBittorrent and Deluge. If set to false, `cross-seed` will inject the torrent as paused and tell qBitorrent to recheck the torrent contents. This is recommended with `matchMode: "risky"` due to potential false positives. As of 5.0.2, this applies to all torrents added, not just those found by data-based matching. This will change in a later revision.
 
 `maxDataDepth`: Determines how deep to traverse the file tree for generating searches. If you specify a dataDir of `/data/torrents`, the depth is as follows:
 
@@ -65,4 +65,4 @@ Links also allow us to "normalize" the depth of matches. If a match is found at 
 
 ## Daemon mode
 
-Data-based matching does not support RSS but does allow you to [hit the cross-seed webhook endpoint with a path](../reference/api.md#post-apiwebhook) to use for data-based searching the same way you use the existing `name` parameter (but `path` instead).
+Data-based matching does not support RSS but does allow you to [hit the cross-seed webhook endpoint with a path](../reference/api.md#post-apiwebhook) to use for data-based searching the same way you use the existing `name` or `infoHash` parameter (but with `path`).
