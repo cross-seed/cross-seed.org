@@ -280,7 +280,7 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
     | **InfoHash**    | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"` |
     | **Data (Path)** | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"`     |
 
-:::tip Docker
+:::info Docker
 You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
 Docker networks. `localhost` will not work for Docker. You will need to use your
 host's IP (e.g. 192.x or 10.x) if not using custom Docker networks.
@@ -301,7 +301,7 @@ you should create a shell script with your preferred commands and parameters.
 If you're already using the following in the **Run external program on torrent completion** box
 
 ```shell
-oldcommand %N
+<curl command> %N
 ```
 
 You can add infoHash searching using the following script:
@@ -315,13 +315,11 @@ You can add infoHash searching using the following script:
 Then add this in qBittorrent's settings to execute the script:
 
 ```shell
-    /bin/bash ./qBittorrent/yourscriptname.sh "%N" "%I"
+/bin/bash ./qBittorrent/yourscriptname.sh "%N" "%I"
 ```
 
 :::info
-
 You may need to adjust the variables above that qBittorrent sends to the script.
-
 :::
 
 ### Transmission
@@ -335,7 +333,7 @@ You may need to adjust the variables above that qBittorrent sends to the script.
     curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$TR_TORRENT_HASH"
     ```
 
-    :::tip Docker
+    :::info Docker
 
     You can use `http://cross-seed:2468` instead of `http://localhost:2468` with
     Docker networks. `localhost` will not work for Docker. You will need to use your
@@ -375,7 +373,7 @@ You may need to adjust the variables above that qBittorrent sends to the script.
     # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=$torrentpath/$torrentname"
     ```
 
-    :::tip Docker
+    :::info Docker
 
     You can use `http://cross-seed:2468` instead of `http://localhost:2468` with Docker networks.
     `localhost` will not work for Docker. You will need to use your host's IP (e.g. 192.x or 10.x)
@@ -432,9 +430,9 @@ You can combine [`searchCadence`](../basics/options#searchcadence) with [`exclud
 and [`excludeOlder`](../basics/options#excludeolder) - and even [`searchLimit`](../basics/options#searchlimit) for a more frequent and
 smoother search load. This results in searching with the following criteria applied:
 
--   `excludeRecentSearch` will exclude any torrents searched for **from the current moment back the specified time**.
+-   [`excludeRecentSearch`](./options.md#excluderecentsearch) will exclude any torrents searched for **from the current moment back the specified time**.
 
--   `excludeOlder` will exclude any torrents that were first discovered for cross-seeding a **longer time ago than the specified time**.
+-   [`excludeOlder`](./options.md#excludeolder) will exclude any torrents that were first discovered for cross-seeding a **longer time ago than the specified time**.
 
 ```js
 searchCadence: "1 week",

@@ -51,3 +51,23 @@ Check a torrent's file tree from `cross-seed`'s perspective.
 ```shell
 cross-seed tree file.torrent
 ```
+
+### `cross-seed api-key`
+
+Show the api key.
+
+#### Usage
+
+```shell
+cross-seed api-key
+```
+
+### `cross-seed reset-api-key`
+
+Reset the api key.
+
+#### Usage
+
+```shell
+cross-seed reset-api-key
+```
