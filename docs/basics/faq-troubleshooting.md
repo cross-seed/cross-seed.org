@@ -176,6 +176,7 @@ Generally, you won't be able to access local instances from services utilizing a
 :::info
 There is no need to put `cross-seed` behind a VPN. All of its requests are made to your torrent client or Jackett/Prowlarr. The only exception is when announcements are made via the `/announce` API endpoint and are snatched during matching or for injection.
 :::
+
 :::danger
 Even with API authentication, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
 :::

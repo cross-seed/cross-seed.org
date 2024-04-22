@@ -106,6 +106,8 @@ The configuration file uses JavaScript syntax, which means:
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
 | [`flatLinking`](#flatlinking)                       |              |
 | [`blockList`](#blockList)                           |              |
+| [`sonarr`](#sonarr)                                 |              |
+| [`radarr`](#radarr)                                 |              |
 
 ## Options used in `cross-seed daemon`
 
@@ -145,7 +147,9 @@ The configuration file uses JavaScript syntax, which means:
 | [`apiAuth`](#apiauth)                               |              |
 | [`apiKey`](#apikey)                                 |              |
 | [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blocklist)                           |              |
+| [`blockList`](#blockList)                           |              |
+| [`sonarr`](#sonarr)                                 |              |
+| [`radarr`](#radarr)                                 |              |
 
 ## All options
 
@@ -234,6 +238,70 @@ torznab: [
 ],
 
 torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey=12345"],
+```
+
+### `sonarr`
+
+| Config file name | CLI short form | CLI Long form       | Format     | Default   |
+| ---------------- | -------------- | ------------------- | ---------- | --------- |
+| `sonarr`         |                | `--sonarr <url(s)>` | `string[]` | undefined |
+
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
+
+The URL to your [Sonarr](https://sonarr.tv) instance with your `?apikey=` parameter appended to the end.
+
+#### Finding your Sonarr URL
+
+For [Sonarr](https://sonarr.tv) you can simply append `?apikey=` to the end of your
+WebUI base URL with your API key after the `=`.
+
+#### `sonarr` Examples (CLI)
+
+```shell
+cross-seed search --sonarr https://localhost/?apikey=12345
+```
+
+#### `sonarr` Examples (Config file)
+
+```js
+sonarr: "https://sonarr/?apikey=12345",
+
+sonarr: "http://sonarr:8989/?apikey=12345",
+
+```
+
+### `radarr`
+
+| Config file name | CLI short form | CLI Long form       | Format     | Default   |
+| ---------------- | -------------- | ------------------- | ---------- | --------- |
+| `radarr`         |                | `--radarr <url(s)>` | `string[]` | undefined |
+
+:::warning NOTICE
+This feature is a v6 only feature.
+:::
+
+The URL to your [Radarr](https://radarr.video) instance with your `?apikey=` parameter appended to the end.
+
+#### Finding your Radarr URL
+
+For [Radarr](https://radarr.video) you can simply append `?apikey=` to the end of your
+WebUI base URL with your API key after the `=`.
+
+#### `radarr` Examples (CLI)
+
+```shell
+cross-seed search --radarr https://localhost/?apikey=12345
+```
+
+#### `radarr` Examples (Config file)
+
+```js
+radarr: "https://radarr/?apikey=12345",
+
+radarr: "http://radarr:7878/?apikey=12345",
+
 ```
 
 ### `torrentDir`\*
