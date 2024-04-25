@@ -283,8 +283,12 @@ cross-seed search -i ~/.config/transmission/torrents
 ```js
 torrentDir: "/home/<username>/.config/deluge/state",
 
-torrentDir: "/torrents",
+torrentDir: "C:\\torrents",
 ```
+
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+:::
 
 ### `outputDir`\*
 
@@ -320,6 +324,10 @@ outputDir: "/tmp/output",
 outputDir: ".",
 ```
 
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+:::
+
 ### `dataDirs`
 
 | Config file name | CLI short form          | CLI long form           | Format      | Default |
@@ -350,7 +358,12 @@ dataDirs: ["/data/torrents/completed"],
 
 dataDirs: ["/data/torrents/completed", "/media/library/movies"],
 
+dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 ```
+
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+:::
 
 ### `linkCategory`
 
@@ -500,9 +513,13 @@ cross-seed search --linkDir /data/torrents/xseeds
 ```js
 linkDir: "/links",
 
-linkDir: "/data/torrents/links",
+linkDir: "C:\\links",
 
 ```
+
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+:::
 
 ### `linkType`
 
