@@ -164,14 +164,28 @@ This mode is similar to `risky` but doesn't necessitate all files to be present.
 Torrents added via `partial` matchMode will always behave as if [`skipRecheck`](./basics/options.md#skiprecheck) is `false`. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files), **which could lead to the banning or disabling of your account on your trackers.**
 :::
 
+#### Torznab Categories
+
+`cross-seed` will now check with Prowlarr or Jackett for the categories that that indexer supports. As a result, we no longer send searches for content that is not listed by Prowlarr/Jackett as available on the indexer.
+
+This should reduce the number of searches made for content that does not have a chance of existing on the indexer.
+
+:::info Note
+This requires no additional action to be taken on your part.
+:::
+
 #### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
 
 `cross-seed` now has the ability to, when configured, query an instance of [Sonarr](./basics/options.md#sonarr) or [Radarr](./basics/options.md#radarr) for the metadata - specifically the TVDB, TMDB, and IMDB IDs. These can be used on supporting indexers to search more accurately and completely.
 
-You do not have to do anything besides add your Sonarr and Radarr API endpoints, with apikey (like [`torznab`](./basics/options.md#torznab) URL from [Prowlarr](https://prowlarr.com/) or [Jackett](https://github.com/Jackett/Jackett)), to the configuration options in `config.js`. `cross-seed` will use IDs to search wherever it can.
+You do not have to do anything besides add your Sonarr and Radarr instances, with apikey (similar to the [`torznab`](./basics/options.md#torznab) URL from [Prowlarr](https://prowlarr.com/) or [Jackett](https://github.com/Jackett/Jackett)), to the configuration options in `config.js`.
+
+`cross-seed` will use IDs to search wherever it can.
 
 :::info
-The show or movie must be added in your instance of Sonarr or Radarr. You **DO NOT** need to have media _imported_, but **the entry must exist** ("Missing" status is valid).
+The series or movie **must be added in your instance of Sonarr or Radarr.** You **DO NOT** need to have actual media _imported_, but **the entry must exist**
+
+"Missing" status is valid.
 
 **We do not query any external metadata servers.**
 :::

@@ -82,7 +82,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputDir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](#linkcategory)                      |              |
+| [`linkCategory`](#linkcategory)                     |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -119,7 +119,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputdir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](#linkcategory)                      |              |
+| [`linkCategory`](#linkcategory)                     |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |

@@ -153,10 +153,6 @@ If you are using qBittorrent, consider checking out [qbit_manage](https://github
 The subnet/shared instances are reverse proxies so no https
 :::
 
-:::tip
-Although we are providing the information given from hostingby.design, we are not able to support this directly. This is just what was passed to us. Contact them for details and further instructions if you have any issues
-:::
-
 ### I can't reach my Prowlarr/Jackett/cross-seed/torrent client (Using Docker/VPN)
 
 If you are using [Docker](./getting-started#with-docker), you cannot use `localhost` as an address to communicate across containers. Consider using your host's local IP address (usually a 192 or 10 address) or the container name (if using a "Custom Docker Network").
