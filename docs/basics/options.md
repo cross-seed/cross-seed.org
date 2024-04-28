@@ -217,8 +217,6 @@ of unfiltered (no search query) results from the indexer.
 
 #### `torznab` Examples (CLI)
 
-c
-
 ```shell
 cross-seed search --torznab https://localhost/prowlarr/1/api?apikey=12345
 cross-seed search -T http://prowlarr:9696/1/api?apikey=12345 http://prowlarr:9696/2/api?apikey=12345
@@ -254,14 +252,11 @@ now set this to `null` if you wish to search only your `dataDirs`.
 
 :::caution qBittorrent
 If you are using qBittorrent 4.6.x and/or `SQLite database` in `Preferences -> Advanced` you will
-need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no
-ETA on SQLite integration currently.
+need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite integration currently.
 :::
 
 :::danger Docker
-Leave the `torrentDir` as `/torrents` and use Docker to map your directory to
-`/torrents`.
-
+Leave the `torrentDir` as `/torrents` and use Docker to map your directory to `/torrents`.
 :::
 
 | Client           | Linux                                                      | Windows                                                   | Mac                                                   |

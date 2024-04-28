@@ -2,7 +2,7 @@
 
 ## Updating to cross-seed v6
 
-If you are updating from version 5.x to version 6.x, you can visit the [v6 migration guide](../v6-migration) for the changes and settings that have been made and introduced.
+If you are updating from version 5.x to version 6.x, you can visit the [v6 migration guide](../v6-migration) for the changes and updates.
 
 :::tip IMPORTANT
 We recommend reading [**this page**](../v6-migration) before seeking any support, as it should cover most of the immediate questions you may encounter as well as [**current changes to the state of v6 while it is in pre-release**](../v6-migration.md#updates-since-initial-release).
@@ -32,6 +32,7 @@ While it is possible, in some cases, for you to `cross-seed` on public trackers;
 Another problem is the naming schemes (or lack of one) that the majority of public trackers use. Due to the nature of "anyone can upload", you will get individuals or bots tagging releases with their names, or just otherwise butchering the naming conventions we depend on for properly parsing and matching torrents.
 
 Finally, given that there is no direct, lasting, benefit to you for cross-seeding on public trackers, as there is no account, ratio, reputation, or upload directly associated with you, the benefit YOU will receive if any matches are found is almost non-existent.
+
 :::caution TL;DR
 All of these factors combine to yield extremely limited results, if any, and the inability for us to provide support beyond initial configurations and set up for use on public trackers.
 :::
@@ -113,7 +114,7 @@ If you do not link files within your `dataDirs` or have them outside of the [`ma
 
 ### My torrents are injected (qBittorrent) but show `missing files` error!
 
-If you are seeing injected torrents show up with `missing files` error, it is likely because you do not have a save path set for the original torrent's category that `cross-seed` was cross-seeding from. You should also see a warning when the torrents are being injected telling you that there is no save path set.
+If you see injected torrents show up with a `missing files` error, it is likely because you do not have a save path set for the original torrent's category that `cross-seed` was cross-seeding from. You should also see a warning in the logs when the torrents are injected telling you there is no save path set.
 
 :::tip
 Set a save path for the files in that category to fix this.
@@ -151,6 +152,7 @@ If you are using qBittorrent, consider checking out [qbit_manage](https://github
 :::caution
 The subnet/shared instances are reverse proxies so no https
 :::
+
 :::tip
 Although we are providing the information given from hostingby.design, we are not able to support this directly. This is just what was passed to us. Contact them for details and further instructions if you have any issues
 :::
@@ -168,7 +170,7 @@ If your setup is running with a VPN, you will need to either
 Generally, you won't be able to access local instances from services utilizing a VPN since localhost/LAN is not accessible from the VPN network by default.
 
 :::info
-There is no need to put `cross-seed` behind a VPN, all of its requests are made to your torrent client or Jackett/Prowlarr, with the exception of when announcements made via the `/announce` API endpoint are snatched during matching or for injection.
+There is no need to put `cross-seed` behind a VPN. All of its requests are made to your torrent client or Jackett/Prowlarr. The only exception is when announcements are made via the `/announce` API endpoint and are snatched during matching or for injection.
 :::
 :::danger
 Even with API authentication, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
@@ -262,7 +264,7 @@ Using [`safe`](./options.md#matchmode) matching will match torrents for snatchin
 :::
 
 :::danger WARNING
-There are TV shows that are not combined into season packs, such as Jeopardy, Talk Shows, or similar. These shows often have naming which specifies dates, rather than SeasonEpisode style. Searching with `includeSingleEpisodes` and using `risky` on these torrents, or files, can result in _many torrent files being downloaded_ for comparisons for matching only _one individual episode_.
+There are TV shows that are not combined into season packs, such as Jeopardy, Talk Shows, and similar. These shows are known as dailies and often have naming which specifies dates, rather than SeasonEpisode (S02E03) style. Searching with `includeSingleEpisodes` and using `risky` on these torrents, or files, can result in _many torrent files being downloaded_ for comparisons for matching only _one individual episode_.
 
 Remember, this would occur on just one (torrent) search, within the entire (all data) search.
 :::
@@ -272,7 +274,7 @@ Remember, this would occur on just one (torrent) search, within the entire (all 
 ##### Final Notes
 
 :::tip Be ADVISED
-**There is no one-size-fits-all setting for this**, but you can run `cross-seed` with your config and see how many torrents it will search (noted as "suitable" prior to conducting the actual search) and adjust accordingly.
+**There is no one-size-fits-all setting for this**. You can run `cross-seed` with your config to see how many torrents it will search (noted as "suitable" before conducting the actual search) and adjust accordingly.
 :::
 
 -   It is highly recommended to use [`excludeOlder` and `excludeRecentSearch`](./daemon.md#set-up-periodic-searches). Both of these are covered [here](./daemon.md#set-up-periodic-searches) as well as on the [options page](./options.md#excludeolder).
