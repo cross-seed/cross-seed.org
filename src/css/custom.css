@@ -6,35 +6,57 @@
 
 /* You can override the default Infima variables here. */
 :root {
-    --ifm-color-primary: #d73833;
+    --ifm-color-primary: #25923f;
     --ifm-color-primary-dark: #cc2e28;
     --ifm-color-primary-darker: #bb2a25;
     --ifm-color-primary-darkest: #aa2622;
-    --ifm-navbar-search-input-background-color: rgba(88, 88, 88, 0.712);
+    --ifm-navbar-search-input-background-color: rgb(117, 117, 117);
     --ifm-navbar-search-input-color: rgb(226, 226, 226);
     --ifm-navbar-search-input-placeholder-color: rgb(200, 200, 200);
     --ifm-color-primary-light: #da4944;
     --ifm-color-primary-lighter: #dd5955;
     --ifm-color-primary-lightest: #e16a66;
+    --ifm-font-color-base-inverse: #ffffff;
     --ifm-code-font-size: 95%;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-    --ifm-color-primary: #dd2e28;
+    --ifm-color-primary: #45bb60;
     --ifm-color-primary-dark: #da4944;
     --ifm-color-primary-darker: #d73833;
     --ifm-font-color-base-inverse: #ffffff;
     --ifm-color-primary-darkest: #cc2e28;
+    --ifm-navbar-background-color: #242526;
     --ifm-color-primary-light: #e16a66;
     --ifm-color-primary-lighter: #e47a77;
     --ifm-color-primary-lightest: #e78b88;
     --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+@media only screen and (max-width: 1200px) {
+    /* For mobile phones: */
+    [class^="codeBlockLines"] {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+    }
+}
 html[data-theme="dark"] .github-link {
     align-items: center;
     display: flex;
+}
+[data-theme="dark"] .hero {
+    background-image: url("../../static/img/dark-hero-bw-bg.png"); /* Replace '/path/to/your/image.jpg' with the path to your image */
+    background-size: cover; /* Adjust background size as needed */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background image */
+}
+[data-theme="light"] .hero {
+    background-image: url("../../static/img/light-hero-bg.png"); /* Replace '/path/to/your/image.jpg' with the path to your image */
+    background-size: cover; /* Adjust background size as needed */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background image */
 }
 html[data-theme="dark"] .github-link:before {
     align-self: center;
