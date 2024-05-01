@@ -31,6 +31,11 @@ dataDirs: ["/data/torrents/", "/data/media/"],
 
 [`linkDir`](../basics/options.md#linkdir): This specifies where you want your links `cross-seed` generates to be placed. While technically possible to specify the same directory as your `dataDirs`, this is not recommended and could result in bad interactions between existing and new files. Instead, it should be a separate directory visible to both your torrent client and cross-seed.
 
+:::tip
+It is best if your [`linkDir`](../basics/options.md#linkdir) is not _INSIDE_ of your included [`dataDirs`](../basics/options.md#datadirs) folders. This is to prevent recursive and
+erroneous searches of folders used in linking folder structure.
+:::
+
 [`linkType`](../basics/options.md#linktype): Either `"hardlink"` or `"symlink"`. [**See FAQ for more information**](../basics/faq-troubleshooting#what-linktype-should-i-use-data-based-searching).
 
 -   `symlink`: If a source is removed for a `hardlink`, the new link still takes up space which may not be desirable. If a symlink's source is removed, it's merely a broken symlink taking up almost no space on your file system.

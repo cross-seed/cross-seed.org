@@ -80,9 +80,9 @@ The configuration file uses JavaScript syntax, which means:
 | [`torznab`](#torznab)                               | **Required** |
 | [`torrentDir`](#torrentdir)                         | **Required** |
 | [`outputDir`](#outputdir)                           | **Required** |
-| [`dataDirs`](#datadir)                              |              |
+| [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](linkcategory)                      |              |
+| [`linkCategory`](#linkcategory)                      |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -115,9 +115,9 @@ The configuration file uses JavaScript syntax, which means:
 | [`torznab`](#torznab)                               | **Required** |
 | [`torrentdir`](#torrentdir)                         | **Required** |
 | [`outputdir`](#outputdir)                           | **Required** |
-| [`dataDirs`](#datadir)                              |              |
+| [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](linkcategory)                      |              |
+| [`linkCategory`](#linkcategory)                      |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -334,6 +334,10 @@ It is necessary to insert double-slashes for your paths, as seen in the examples
 to create a link to the original file in the linkDir during data-based searchs where it cannot
 find a associated torrent file.
 
+:::tip
+
+We do not recommend you include your [`linkDir`](#linkdir) in the `dataDirs` option.
+:::
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
@@ -427,7 +431,7 @@ duplicateCategories: false,
 | `dataCategory`   | `--data-category <category>` | N/A           | `string` |         |
 
 :::warning NOTICE
-This feature is a v5 only feature and has been removed in v6 of `cross-seed` for [`linkCategory`](linkcategory)
+This feature is a v5 only feature and has been removed in v6 of `cross-seed` for [`linkCategory`](#linkcategory)
 :::
 
 `cross-seed` will, when performing data-based searches with [injection](../tutorials/injection),
@@ -491,6 +495,11 @@ duplicateCategories: false,
 to create a link to the original file in the `linkDir` during searches where the original
 data is accessible (both torrent and data-based matches).
 
+:::tip
+
+It is best if your `linkDir` is not _INSIDE_ of your included [`dataDirs`](#datadirs) folders. This is to prevent recursive and
+erroneous searches of folders used in linking folder structure.
+:::
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the dataDir and linkDir.
