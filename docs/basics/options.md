@@ -151,27 +151,34 @@ The configuration file uses JavaScript syntax, which means:
 
 | Config file name | CLI short form | CLI Long form     | Format             | Default |
 | ---------------- | -------------- | ----------------- | ------------------ | ------- |
-| `delay`          | `-d <value>`   | `--delay <value>` | `number` (seconds) | `10`    |
+| `delay`          | `-d <value>`   | `--delay <value>` | `number` (seconds) | `30`    |
 
 When running a search with `cross-seed search` or using `searchCadence` in
 daemon mode, the `delay` option lets you set how long you want `cross-seed` to
-sleep in between searching for each torrent. If you set it higher, it will
-smooth out load on your indexers, but if you set it lower, `cross-seed` will run
-faster. We don't recommend setting this lower than 2, as it could garner you
-unwanted attention from tracker staff.
+sleep in between searching for each torrent.
+
+If you set it higher, it will smooth out the load on your indexer, however setting this lower
+will result in `cross-seed` running faster. We don't recommend setting this lower than 15, as it could
+garner unwanted attention from tracker staff.
+
+:::warning DISCLAIMER
+You need to read your tracker's rules and be aware of their limits.
+
+**You and you alone are responsible for following your tracker's rules.**
+:::
 
 #### `delay` Examples (CLI)
 
 ```shell
-cross-seed search -d 10
-cross-seed search --delay 3
-cross-seed daemon -d 5
+cross-seed search -d 60
+cross-seed search --delay 30
+cross-seed daemon -d 20
 ```
 
 #### `delay` Examples (Config file)
 
 ```js
-delay: 20,
+delay: 30,
 ```
 
 ### `torznab`\*
