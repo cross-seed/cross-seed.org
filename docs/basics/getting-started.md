@@ -175,7 +175,7 @@ services:
             - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
               # will need to mirror your torrent client's path (like Arr's do)
         command: daemon # this enables the daemon, change to search to specifically run a search ONLY
-        restart: no # make sure to not enable it in search mode, otherwise it will keep rerunning constantly
+        restart: "no" # make sure to not enable it in search mode, otherwise it will keep rerunning constantly
 ```
 
 #### Create a config file
