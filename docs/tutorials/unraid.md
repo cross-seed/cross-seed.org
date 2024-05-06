@@ -70,8 +70,8 @@ After the container has been created, we need to add a configuration file. Open 
 
 ```
 cd /mnt/user/appdata/cross-seed
-curl https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.docker.cjs -o config.template.docker.js
-cp config.template.docker.js config.js
+curl https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs -o config.template.docker.js
+cp config.template.js config.js
 ```
 
 From here, you can [edit the configuration options](../basics/options.md#options-used-in-cross-seed-daemon) to your liking through your preferred text editor (`nano`, `vim`, etc).
