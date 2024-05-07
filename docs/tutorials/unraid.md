@@ -54,7 +54,7 @@ Below is a screenshot of what your Docker container configuration might look
 like. Now, you can try starting the Docker container and editing the resulting
 configuration file in the next step.
 
-![screenshot-cross-seed](https://github.com/cross-seed/cross-seed.org/assets/123845855/2ce0b912-e341-4622-b0a1-8dcd18557730)
+![screenshot-cross-seed](https://github.com/cross-seed/cross-seed/assets/123845855/93a4749e-1506-40de-91f5-ac7d8ec93334)
 
 :::tip
 
@@ -66,13 +66,13 @@ You can start the container to create the config file path.
 
 ### Configuration File
 
-After the container has been created, we need to add a configuration file. Open a terminal in Unraid and issue the following commands:
+After the container has been created, we need to generate and set up your configuration file. 
 
-```
-cd /mnt/user/appdata/cross-seed
-curl https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs -o config.template.docker.js
-cp config.template.js config.js
-```
+This file will be automatically generated when the container is ran for the first time.
+
+:::tip
+If for whatever reason this file is not generated, it may be due to permissions. Double-check that your appdata/config folder has the proper permissions for user:group `99:100`
+:::
 
 From here, you can [edit the configuration options](../basics/options.md#options-used-in-cross-seed-daemon) to your liking through your preferred text editor (`nano`, `vim`, etc).
 
