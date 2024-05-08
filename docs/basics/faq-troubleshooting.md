@@ -12,7 +12,11 @@ If you are updating from version 5.x to version 6.x, you can visit the [v6 migra
 
 ### Does cross-seed support music torrents?
 
-While `cross-seed` may incidentally find _some_ music matches, it is not optimized for music at all. You may find better results with [crops](https://github.com/soranosita/crops).
+While `cross-seed` may incidentally find _some_ music matches, it is not optimized for music _at all_. You will find better results with tools designed around music cross-seeding, examples of this are [crops](https://github.com/soranosita/crops) or Pollenizer.
+
+:::tip
+These appropriate tools for the job will usually be discussed and made available on the tracker's forums.
+:::
 
 ### What can I do about `error parsing torrent at http://…`?
 
