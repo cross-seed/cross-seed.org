@@ -1304,6 +1304,29 @@ This feature is a v6 only feature.
 Set this to `true` to use the flat-folder style linking previously used in v5. This option
 will otherwise link any matches to a tracker-specific folder inside of `linkDir` (if set).
 
+With `flatLinking: false` (default):
+```
+linkDir/
+	TrackerA/
+		Video.mkv
+		Video2/
+			Video2.mkv
+	TrackerB/
+		Pack/
+			Pack.1.mkv
+			Pack.2.mkv
+```
+With `flatLinking: true`:
+```
+linkDir/
+	Video.mkv
+	Video2/
+		Video2.mkv
+	Pack/
+		Pack.1.mkv
+		Pack.2.mkv
+```
+
 :::caution Be Advised
 If you are using `qbitmanage` and/or AutoTorrentManagement in any capacity, it is highly recommended that you enable this options.
 
