@@ -31,6 +31,11 @@ dataDirs: ["/data/torrents/", "/data/media/"],
 
 [`linkDir`](../basics/options.md#linkdir): This specifies where you want your links `cross-seed` generates to be placed. While technically possible to specify the same directory as your `dataDirs`, this is not recommended and could result in bad interactions between existing and new files. Instead, it should be a separate directory visible to both your torrent client and cross-seed.
 
+:::tip
+It is best if your [`linkDir`](../basics/options.md#linkdir) is not _INSIDE_ of your included [`dataDirs`](../basics/options.md#datadirs) folders. This is to prevent recursive and
+erroneous searches of folders used in linking folder structure.
+:::
+
 [`linkType`](../basics/options.md#linktype): Either `"hardlink"` or `"symlink"`. [**See FAQ for more information**](../basics/faq-troubleshooting#what-linktype-should-i-use-data-based-searching).
 
 -   `symlink`: If a source is removed for a `hardlink`, the new link still takes up space which may not be desirable. If a symlink's source is removed, it's merely a broken symlink taking up almost no space on your file system.
@@ -38,7 +43,7 @@ dataDirs: ["/data/torrents/", "/data/media/"],
 
 [`matchMode`](../basics/options.md#matchmode): Either `"safe"` or `"risky"` for the time being. As explained above, `"risky"` matching will only use file size. `"safe"` uses the existing method of name + file sizes.
 
-`skipRecheck`: Currently only works in qBittorrent and Deluge. If set to false, `cross-seed` will inject the torrent as paused and tell qBitorrent to recheck the torrent contents. This is recommended with `matchMode: "risky"` due to potential false positives. As of 5.0.2, this applies to all torrents added, not just those found by data-based matching. This will change in a later revision.
+[`skipRecheck`](../basics/options.md#skiprecheck): Currently only works in qBittorrent and Deluge. If set to false, `cross-seed` will inject the torrent as paused and tell qBitorrent to recheck the torrent contents. This is recommended with `matchMode: "risky"` due to potential false positives. As of 5.0.2, this applies to all torrents added, not just those found by data-based matching. This will change in a later revision.
 
 `maxDataDepth`: Determines how deep to traverse the file tree for generating searches. If you specify a dataDir of `/data/torrents`, the depth is as follows:
 
@@ -65,4 +70,4 @@ Links also allow us to "normalize" the depth of matches. If a match is found at 
 
 ## Daemon mode
 
-Data-based matching does not support RSS but does allow you to [hit the cross-seed webhook endpoint with a path](../reference/api.md#post-apiwebhook) to use for data-based searching the same way you use the existing `name` parameter (but `path` instead).
+Data-based matching does not support RSS but does allow you to [hit the cross-seed webhook endpoint with a path](../reference/api.md#post-apiwebhook) to use for data-based searching the same way you use the existing `name` or `infoHash` parameter (but with `path`).

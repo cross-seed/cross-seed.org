@@ -68,7 +68,7 @@ The configuration file uses JavaScript syntax, which means:
 -   Array/multi options must be enclosed in \['brac', 'kets'\].
 -   Strings must be enclosed in "quotation" marks.
 -   Array elements and options must be separated by commas.
--   **Windows users will need to use \\\\ for paths. (e.g. c:\\\\torrents)**
+-   **Windows users will need to use `\\` for paths. (e.g. `c:\\torrents`)**
 
 :::
 
@@ -80,8 +80,9 @@ The configuration file uses JavaScript syntax, which means:
 | [`torznab`](#torznab)                               | **Required** |
 | [`torrentDir`](#torrentdir)                         | **Required** |
 | [`outputDir`](#outputdir)                           | **Required** |
-| [`dataDirs`](#datadir)                              |              |
+| [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
+| [`linkCategory`](#linkcategory)                      |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -94,16 +95,16 @@ The configuration file uses JavaScript syntax, which means:
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
 | [`action`](#action)                                 |              |
-| [`duplicateCategories`](#duplicateCategories)       |              |
+| [`duplicateCategories`](#duplicatecategories)       |              |
 | [`rtorrentRpcUrl`](#rtorrentrpcurl)                 |              |
 | [`delugeRpcUrl`](#delugerpcurl)                     |              |
 | [`transmissionRpcUrl`](#rtorrentrpcurl)             |              |
-| [`qbittorrentUrl`](#qbittorrentUrl)                 |              |
+| [`qbittorrentUrl`](#qbittorrenturl)                 |              |
 | [`snatchTimeout`](#snatchtimeout)                   |              |
 | [`searchTimeout`](#searchtimeout)                   |              |
 | [`searchLimit`](#searchlimit)                       |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
-| [`legacyLinking`](#legacyLinking)                   |              |
+| [`flatLinking`](#flatlinking)                       |              |
 | [`blockList`](#blockList)                           |              |
 
 ## Options used in `cross-seed daemon`
@@ -112,38 +113,39 @@ The configuration file uses JavaScript syntax, which means:
 | --------------------------------------------------- | ------------ |
 | [`delay`](#delay)                                   |              |
 | [`torznab`](#torznab)                               | **Required** |
-| [`torrentDir`](#torrentDir)                         | **Required** |
-| [`outputDir`](#outputDir)                           | **Required** |
-| [`dataDirs`](#datadir)                              |              |
+| [`torrentdir`](#torrentdir)                         | **Required** |
+| [`outputdir`](#outputdir)                           | **Required** |
+| [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
+| [`linkCategory`](#linkcategory)                      |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
-| [`matchMode`](#matchMode)                           |              |
+| [`matchMode`](#matchmode)                           |              |
 | [`skipRecheck`](#skiprecheck)                       |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
-| [`includeNonVideos`](#includeNonVideos)             |              |
-| [`fuzzySizeThreshold`](#fuzzySizeThreshold)         |              |
-| [`excludeOlder`](#excludeOlder)                     |              |
-| [`excludeRecentSearch`](#excludeRecentSearch)       |              |
+| [`includeNonVideos`](#includeNonvideos)             |              |
+| [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
+| [`excludeOlder`](#excludeolder)                     |              |
+| [`excludeRecentSearch`](#excluderecentsearch)       |              |
 | [`action`](#action)                                 |              |
-| [`duplicateCategories`](#duplicateCategories)       |              |
-| [`rtorrentRpcUrl`](#rtorrentRpcUrl)                 |              |
+| [`duplicateCategories`](#duplicatecategories)       |              |
+| [`rtorrentRpcUrl`](#rtorrentrpcurl)                 |              |
 | [`delugeRpcUrl`](#delugerpcurl)                     |              |
-| [`transmissionRpcUrl`](#rtorrentRpcUrl)             |              |
-| [`qbittorrentUrl`](#qbittorrentUrl)                 |              |
-| [`notificationWebhookUrl`](#notificationWebhookUrl) |              |
+| [`transmissionRpcUrl`](#rtorrentrpcurl)             |              |
+| [`qbittorrentUrl`](#qbittorrenturl)                 |              |
+| [`notificationWebhookUrl`](#notificationwebhookurl) |              |
 | [`port`](#port)                                     |              |
 | [`rssCadence`](#rssCadence)                         |              |
-| [`searchCadence`](#searchCadence)                   |              |
+| [`searchCadence`](#searchcadence)                   |              |
 | [`snatchTimeout`](#snatchtimeout)                   |              |
 | [`searchTimeout`](#searchtimeout)                   |              |
 | [`searchLimit`](#searchlimit)                       |              |
-| [`apiAuth`](#apiAuth)                               |              |
-| [`apiKey`](#apiKey)                                 |              |
-| [`legacyLinking`](#legacyLinking)                   |              |
-| [`blockList`](#blockList)                           |              |
+| [`apiAuth`](#apiauth)                               |              |
+| [`apiKey`](#apikey)                                 |              |
+| [`flatLinking`](#flatlinking)                       |              |
+| [`blockList`](#blocklist)                           |              |
 
 ## All options
 
@@ -209,10 +211,8 @@ For [Prowlarr](https://github.com/Prowlarr/Prowlarr) and [Jackett](https://githu
 you can simply copy the **RSS URL** from the WebUI.
 
 :::note
-
 This works because in Torznab, "RSS feeds" are just a search for the first page
 of unfiltered (no search query) results from the indexer.
-
 :::
 
 #### `torznab` Examples (CLI)
@@ -245,27 +245,24 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 Point this at a directory containing torrent files. If you don't know where your
 torrent client stores its files, the table below might help.
 
-:::note Data-Only Searching
+:::tip Data-Only Searching
 If you wish to search only your data, we previously recommended pointing this to an empty directory. You can
 now set this to `null` if you wish to search only your `dataDirs`.
 :::
 
-:::tip qBittorrent
+:::caution qBittorrent
 If you are using qBittorrent 4.6.x and/or `SQLite database` in `Preferences -> Advanced` you will
-need to switch to `fastresume` for compatibility with `cross-seed`. We have no ETA on SQLite integration
-currently.
+need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite integration currently.
 :::
 
-:::caution Docker
-Leave the `torrentDir` as `/torrents` and use Docker to map your directory to
-`/torrents`.
-
+:::danger Docker
+Leave the `torrentDir` as `/torrents` and use Docker to map your directory to `/torrents`.
 :::
 
 | Client           | Linux                                                      | Windows                                                   | Mac                                                   |
 | ---------------- | ---------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
 | **rTorrent**     | your session directory as configured in .rtorrent.rc       | your session directory as configured in .rtorrent.rc      | your session directory as configured in .rtorrent.rc  |
-| **Deluge**       | `/home/<username>/.config/deluge/state`                    | %APPDATA%\deluge\state                                    | Currently Not Supported Officially                    |
+| **Deluge**       | `/home/<username>/.config/deluge/state`                    | %APPDATA%\deluge\state                                    | current version of Deluge not officially supported    |
 | **Transmission** | `/home/<username>/.config/transmission/torrents`           | Unknown (please submit a [PR][pr]!)                       | Unknown (please submit a [PR][pr]!)                   |
 | **qBittorrent**  | `/home/<username>/.local/share/data/qBittorrent/BT_backup` | `C:\Users\<username>\AppData\Local\qBittorrent\BT_backup` | `~/Library/Application Support/qBittorrent/BT_backup` |
 
@@ -281,8 +278,12 @@ cross-seed search -i ~/.config/transmission/torrents
 ```js
 torrentDir: "/home/<username>/.config/deluge/state",
 
-torrentDir: "/torrents",
+torrentDir: "C:\\torrents",
 ```
+
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+:::
 
 ### `outputDir`\*
 
@@ -318,6 +319,10 @@ outputDir: "/tmp/output",
 outputDir: ".",
 ```
 
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+:::
+
 ### `dataDirs`
 
 | Config file name | CLI short form          | CLI long form           | Format      | Default |
@@ -329,6 +334,10 @@ outputDir: ".",
 to create a link to the original file in the linkDir during data-based searchs where it cannot
 find a associated torrent file.
 
+:::tip
+
+We do not recommend you include your [`linkDir`](#linkdir) in the `dataDirs` option.
+:::
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
@@ -348,6 +357,71 @@ dataDirs: ["/data/torrents/completed"],
 
 dataDirs: ["/data/torrents/completed", "/media/library/movies"],
 
+dataDirs: ["C:\\My Data\\Downloads\\Movies"],
+```
+
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+:::
+
+### `linkCategory`
+
+| Config file name | CLI short form               | CLI long form | Format   | Default |
+| ---------------- | ---------------------------- | ------------- | -------- | ------- |
+| `linkCategory`   | `--link-category <category>` | N/A           | `string` |         |
+
+:::warning NOTICE
+[`linkCategory`](../v6-migration.md#linking-updates) mode is a v6 only feature. This option was previously called [`dataCategory`](#datacategory).
+:::
+
+`cross-seed` will, when performing **data-based** searches with [injection](../tutorials/injection),
+use this category for all injected torrents.
+
+:::caution Docker
+
+You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
+:::
+
+#### `linkCategory` Examples (CLI)
+
+```shell
+cross-seed search --link-category category
+```
+
+#### `linkCategory` Examples (Config file)
+
+```js
+linkCategory: "Category1",
+
+```
+
+### `duplicateCategories`
+
+| Config file name      | CLI short form | CLI long form            | Format    | Default |
+| --------------------- | -------------- | ------------------------ | --------- | ------- |
+| `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false` |
+
+`cross-seed` will inject using the original category, appending '.cross-seed', with the same save paths as your normal categories.
+
+:::info
+This will prevent an Arr from seeing duplicate torrents in Activity, and attempting to import cross-seeds.
+
+Example: if you have a category called "Movies", this will automatically inject cross-seeds to "Movies.cross-seed"
+:::
+
+#### `duplicateCategories` Examples (CLI)
+
+```shell
+cross-seed search --duplicate-categories
+```
+
+#### `duplicateCategories` Examples (Config file)
+
+```js
+duplicateCategories: true,
+
+duplicateCategories: false,
+
 ```
 
 ### `dataCategory`
@@ -355,6 +429,10 @@ dataDirs: ["/data/torrents/completed", "/media/library/movies"],
 | Config file name | CLI short form               | CLI long form | Format   | Default |
 | ---------------- | ---------------------------- | ------------- | -------- | ------- |
 | `dataCategory`   | `--data-category <category>` | N/A           | `string` |         |
+
+:::warning NOTICE
+This feature is a v5 only feature and has been removed in v6 of `cross-seed` for [`linkCategory`](#linkcategory)
+:::
 
 `cross-seed` will, when performing data-based searches with [injection](../tutorials/injection),
 use this category for all injected torrents.
@@ -417,6 +495,11 @@ duplicateCategories: false,
 to create a link to the original file in the `linkDir` during searches where the original
 data is accessible (both torrent and data-based matches).
 
+:::tip
+
+It is best if your `linkDir` is not _INSIDE_ of your included [`dataDirs`](#datadirs) folders. This is to prevent recursive and
+erroneous searches of folders used in linking folder structure.
+:::
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the dataDir and linkDir.
@@ -434,9 +517,13 @@ cross-seed search --linkDir /data/torrents/xseeds
 ```js
 linkDir: "/links",
 
-linkDir: "/data/torrents/links",
+linkDir: "C:\\links",
 
 ```
+
+:::info WINDOWS USERS
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+:::
 
 ### `linkType`
 
@@ -682,10 +769,8 @@ When running a search, this option excludes anything first searched more
 than this long ago. This option is only relevant in `search` mode or in `daemon`
 mode with [`searchCadence`](#searchcadence) turned on.
 
-:::note
-
-`excludeOlder` will never exclude torrents that are completely new.
-
+:::tip
+`excludeOlder` will never exclude torrents that are completely new to `cross-seed`.
 :::
 
 #### `excludeOlder` Examples (CLI)
@@ -901,7 +986,7 @@ delugeRpcUrl: "http://:pass@localhost:8112/json",
 
 `cross-seed` will send a POST request to this URL with the following payload:
 
-```http
+```json
 POST notificationWebhookUrl
 Content-Type: application/json
 
@@ -970,7 +1055,7 @@ will run periodic RSS searches on your configured indexers to check if any new
 uploads match torrents you already own. Setting this option to `null`, or not
 specifying it at all, will disable the feature.
 
-:::note
+:::tip
 
 There is a minimum cadence of `10 minutes`. We recommend keeping it at a
 relatively low number (10-30 mins) because if an indexer has a high frequency of
@@ -1206,31 +1291,37 @@ searchLimit: undefined, // disable search count limits
 searchLimit: 150,
 ```
 
-### `legacyLinking`
+### `flatLinking`
 
-| Config file name | CLI short form | CLI long form      | Format    | Default |
-| ---------------- | -------------- | ------------------ | --------- | ------- |
-| `legacyLinking`  |                | `--legacy-linking` | `boolean` | `false` |
+| Config file name | CLI short form | CLI long form    | Format    | Default |
+| ---------------- | -------------- | ---------------- | --------- | ------- |
+| `flatLinking`    |                | `--flat-linking` | `boolean` | `false` |
 
 :::warning NOTICE
 This feature is a v6 only feature.
 :::
 
 Set this to `true` to use the flat-folder style linking previously used in v5. This option
-will otherwise link any matches to a tracker specific folder inside of `linkDir` (if set).
+will otherwise link any matches to a tracker-specific folder inside of `linkDir` (if set).
 
-#### `legacyLinking` Examples (CLI)
+:::caution Be Advised
+If you are using `qbitmanage` and/or AutoTorrentManagement in any capacity, it is highly recommended that you enable this options.
+
+[**Read why**](../v6-migration.md#qbittorrent)
+:::
+
+#### `flatLinking` Examples (CLI)
 
 ```shell
-cross-seed search --legacy-linking
+cross-seed search --flat-linking
 ```
 
-#### `legacyLinking` Examples (Config file)
+#### `flatLinking` Examples (Config file)
 
 ```js
-legacyLinking: true,
+flatLinking: true,
 
-legacyLinking: false,
+flatLinking: false,
 ```
 
 ### `blockList`
