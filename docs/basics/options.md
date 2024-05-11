@@ -289,7 +289,7 @@ It is necessary to insert double-slashes for your paths, as seen in the examples
 
 | Config file name | CLI short form | CLI long form        | Format   | Default |
 | ---------------- | -------------- | -------------------- | -------- | ------- |
-| `outputDir`      | `-o <dir>`     | `--output-dir <dir>` | `string` |         |
+| `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` |         |
 
 `cross-seed` will store the torrent files it finds in this directory. If you use
 [Injection](../tutorials/injection) you'll need to make sure that the client has
@@ -305,7 +305,7 @@ Leave the `outputDir` as `/cross-seeds` and use Docker to map your directory to
 #### `outputDir` Examples (CLI)
 
 ```shell
-cross-seed search -o .
+cross-seed search -s .
 cross-seed search --output-dir /tmp/output
 ```
 
