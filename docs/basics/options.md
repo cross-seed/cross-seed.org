@@ -118,7 +118,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
 | [`linkCategory`](#linkcategory)                     |              |
-| [`duplicateCategory`](#duplicatecategory)           |              |
+| [`duplicateCategories`](#duplicatecategories)       |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
 | [`matchMode`](#matchmode)                           |              |
