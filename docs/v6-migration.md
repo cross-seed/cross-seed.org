@@ -14,6 +14,8 @@ The enhancements we've added and changes we've made are outlined in this migrati
 
 :::caution Be advised
 **Please read this guide thoroughly and keep in mind that it will be updated throughout the pre-release process, and after, as we fine-tune the details for clarity.**
+
+The latest pre-release versions can be installed by using the Docker tag `:master` or NPM tag of `@next` after `cross-seed`.
 :::
 
 :::tip QBittorrent
