@@ -82,8 +82,8 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputDir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](#linkcategory)                      |              |
-| [`duplicateCategory`](#duplicatecategory)           |              |
+| [`linkCategory`](#linkcategory)                     |              |
+| [`duplicateCategories`](#duplicatecategories)       |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
 | [`matchMode`](#matchmode)                           |              |
@@ -117,7 +117,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`outputdir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadirs)                             |              |
 | [`dataCategory`](#datacategory)                     |              |
-| [`linkCategory`](#linkcategory)                      |              |
+| [`linkCategory`](#linkcategory)                     |              |
 | [`duplicateCategory`](#duplicatecategory)           |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -392,35 +392,6 @@ cross-seed search --link-category category
 
 ```js
 linkCategory: "Category1",
-
-```
-
-### `duplicateCategories`
-
-| Config file name      | CLI short form | CLI long form            | Format    | Default |
-| --------------------- | -------------- | ------------------------ | --------- | ------- |
-| `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false` |
-
-`cross-seed` will inject using the original category, appending '.cross-seed', with the same save paths as your normal categories.
-
-:::info
-This will prevent an Arr from seeing duplicate torrents in Activity, and attempting to import cross-seeds.
-
-Example: if you have a category called "Movies", this will automatically inject cross-seeds to "Movies.cross-seed"
-:::
-
-#### `duplicateCategories` Examples (CLI)
-
-```shell
-cross-seed search --duplicate-categories
-```
-
-#### `duplicateCategories` Examples (Config file)
-
-```js
-duplicateCategories: true,
-
-duplicateCategories: false,
 
 ```
 
@@ -1305,6 +1276,7 @@ Set this to `true` to use the flat-folder style linking previously used in v5. T
 will otherwise link any matches to a tracker-specific folder inside of `linkDir` (if set).
 
 With `flatLinking: false` (default):
+
 ```
 linkDir/
 	TrackerA/
@@ -1316,7 +1288,9 @@ linkDir/
 			Pack.1.mkv
 			Pack.2.mkv
 ```
+
 With `flatLinking: true`:
+
 ```
 linkDir/
 	Video.mkv
