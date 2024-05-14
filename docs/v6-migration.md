@@ -93,7 +93,7 @@ During this transitional process, you can get support [**via Discord**](https://
 
 Due to the limitations in place with qBittorrent and Auto Torrent Management's behavior, we've introduced a new option in support of the feature-sets and changes we have added.
 
-If you are using Auto Torrent Management (AutoTMM) **in any capacity, we strongly recommend** that you enable [`flatLinking`](./basics/options.md#flatlinking) to acheive the matching and linking behavior we've added to v6. You will still be able to take advantage of the [matching enhancements](#partial-matching) in v6 with your searches.
+If you are using an external program/script to force Auto Torrent Management (AutoTMM) on all torrents, **you must** enable [`flatLinking`](./basics/options.md#flatlinking) for `cross-seed` to work. If the program/script has the ability to ignore modifying AutoTMM on torrents with the `cross-seed` tag, then you **should** enable that feature and set `flatLinking: false`. Even with `flatLinking: true`, you will still be able to take advantage of the [matching enhancements](#partial-matching) in v6 with your searches. However **we strongly recommended** to make changes in your workflow to support `flatLinking: false` to prevent cross seeds from conflicting with each other.
 
 `cross-seed` will inject all linked torrents directly to the [`linkCategory`](./basics/options.md#linkcategory) if linking is possible, otherwise direct torrent matches will behave the same as they did in v5.
 
