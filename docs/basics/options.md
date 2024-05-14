@@ -1272,8 +1272,17 @@ searchLimit: 150,
 This feature is a v6 only feature.
 :::
 
+:::caution Be Advised
+qBittorrent users using an external program or script, such as qbit_manage, to force
+AutoTMM on torrents (e.g. to apply share limits automatically) will need to enable
+`flatLinking` or modify your workflow accordingly.
+
+[**Read more about specific usage**](v6-migration.md#qbittorrent)
+:::
+
 Set this to `true` to use the flat-folder style linking previously used in v5. This option
 will otherwise link any matches to a tracker-specific folder inside of `linkDir` (if set).
+This prevents cross seeds from conflicting with each other.
 
 With `flatLinking: false` (default):
 
@@ -1287,25 +1296,20 @@ linkDir/
 		Pack/
 			Pack.1.mkv
 			Pack.2.mkv
+		Video.mkv
 ```
 
 With `flatLinking: true`:
 
 ```
 linkDir/
-	Video.mkv
+	Video.mkv   <--- Both TrackerA and TrackerB cross seeds share the same file
 	Video2/
 		Video2.mkv
 	Pack/
 		Pack.1.mkv
 		Pack.2.mkv
 ```
-
-:::caution Be Advised
-If you are using `qbitmanage` and/or AutoTorrentManagement in any capacity, it is highly recommended that you enable this options.
-
-[**Read why**](../v6-migration.md#qbittorrent)
-:::
 
 #### `flatLinking` Examples (CLI)
 
