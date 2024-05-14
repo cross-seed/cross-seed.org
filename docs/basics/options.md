@@ -1273,10 +1273,11 @@ This feature is a v6 only feature.
 :::
 
 :::caution Be Advised
-For `qBittorrent` users, if you are using an external program/script to force AutoTMM
-you will need to enable `flatLinking` or preferably modify your workflow.
+qBittorrent users using an external program or script, such as qbit_manage, to force
+AutoTMM on torrents (e.g. to apply share limits automatically) will need to enable
+`flatLinking` or modify your workflow accordingly.
 
-[**Learn more**](../v6-migration.md#qbittorrent)
+[**Read more about specific usage**](v6-migration.md#qbittorrent)
 :::
 
 Set this to `true` to use the flat-folder style linking previously used in v5. This option
