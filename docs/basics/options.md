@@ -261,14 +261,15 @@ WebUI base URL with your API key after the `=`.
 
 ```shell
 cross-seed search --sonarr https://localhost/?apikey=12345
+cross-seed search --sonarr https://localhost/?apikey=12345 https://localhost4k/?apikey=12345
 ```
 
 #### `sonarr` Examples (Config file)
 
 ```js
-sonarr: "https://sonarr/?apikey=12345",
+sonarr: ["https://sonarr/?apikey=12345"],
 
-sonarr: "http://sonarr:8989/?apikey=12345",
+sonarr: ["http://sonarr:8989/?apikey=12345","http://sonarr4k:8990/?apikey=12345"],
 
 ```
 
@@ -293,14 +294,15 @@ WebUI base URL with your API key after the `=`.
 
 ```shell
 cross-seed search --radarr https://localhost/?apikey=12345
+cross-seed search --radarr https://localhost/?apikey=12345 https://localhost4k/?apikey=12345
 ```
 
 #### `radarr` Examples (Config file)
 
 ```js
-radarr: "https://radarr/?apikey=12345",
+radarr: ["https://radarr/?apikey=12345"],
 
-radarr: "http://radarr:7878/?apikey=12345",
+radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345"],
 
 ```
 
