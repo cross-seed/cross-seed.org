@@ -65,6 +65,10 @@ You can grab the new [`config.template.js`](https://raw.githubusercontent.com/cr
 
 -   [`blockList`](./basics/options.md#blocklist)
 
+-   [`sonarr`](./basics/options.md#sonarr)
+
+-   [`radarr`](./basics/options.md#radarr)
+
 :::
 
 ### Stricter `config.js` Validation
