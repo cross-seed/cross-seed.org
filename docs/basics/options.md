@@ -536,6 +536,8 @@ duplicateCategories: false,
 to create a link to the original file in the `linkDir` during searches where the original
 data is accessible (both torrent and data-based matches).
 
+[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
+
 :::tip
 
 It is best if your `linkDir` is not _INSIDE_ of your included [`dataDirs`](#datadirs) folders. This is to prevent recursive and
@@ -544,8 +546,6 @@ erroneous searches of folders used in linking folder structure.
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the dataDir and linkDir.
-
-[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
 
 :::
 
