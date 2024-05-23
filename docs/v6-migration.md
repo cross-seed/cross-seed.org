@@ -18,6 +18,12 @@ The enhancements we've added and changes we've made are outlined in this migrati
 The latest pre-release versions can be installed by using the Docker tag `:master` or NPM tag of `@next` after `cross-seed`.
 :::
 
+:::danger DANGER
+It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+
+We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
+:::
+
 :::tip QBittorrent
 While we previously advised qBittorrent users to hold off on the initial pre-release (`6.0.0-0`), we feel we now have `cross-seed` in a usable state for those users. There are [some changes](#qbittorrent) that should be noted before updating to help test. We recommend backing up your configuration directory before testing any pre-release versions.
 :::
