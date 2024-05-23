@@ -132,7 +132,7 @@ If you are using qBittorrent 4.6.x or later and have the option to use `SQLite d
 We have no current ETA on integration with qBittorrent's SQLite database.
 :::
 
-### What [`linkType`](./options.md#linktype) should I use? (data-based searching)
+### What [`linkType`](./options.md#linktype) should I use?
 
 Your options are `"hardlink"` or `"symlink"`. These operate in seperate ways, and depending on your workflow you should choose appropriately. This is a brief description, however
 a more in depth guide is available at [Trash's Hardlinking Guide](https://trash-guides.info/Hardlinks/Hardlinks-and-Instant-Moves/).
@@ -140,6 +140,12 @@ a more in depth guide is available at [Trash's Hardlinking Guide](https://trash-
 -   symlinks are a "shortcut" of sorts, pointing at the original file from a new location. This can be used across mounts (Docker) or partitions/drives, and does not cost you any extra space. The only possible issue is that if the original file is deleted (when you remove a torrent,) the torrents in your client using the `symlink` will "break" and you will receive errors. If this sounds like a hassle, consider reading further about hardlinks.
 
 -   hardlinks are a tricky thing for someone not familiar with the concept but are worth understanding. They are a "direct line" to the actual data on the disk and, as far as the file system is concerned, are indistinguishable from the original. Hardlinks do not require any additional space and the file will remain on the disk until all references to said file are deleted. These linktypes are only possible on the same partition/disk/mount, and you will need to have your [`linkDir`](./options.md#linkdir) set to the same mount (Docker) or partition as your [`dataDirs`](./options.md#datadirs). This is the best approach if you do not always keep the source torrent in your client (due to them being deleted from the tracker) - which would then break symlinks and cross-seeds. This is the approach commonly used in Arr's on import.
+
+:::warning BE ADVISED
+If your client is using a folder for incomplete download, using matchMode [`partial`](./options.md#matchmode) could break `cross-seed` linking. **If the incomplete download folder is on a different drive from the completed path**, you will need to use the linkType [`symlink`](./options.md#linktype) when using `partial` matchMode. If using linkType `hardlink`, your download client will break the hardlink and copy between drives causing the files to be duplicated.
+
+For qBittorrent users, `cross-seed` sets the download path in addtion to save path which prevents this issue from happening. For other clients, you must ensure your paths follow standard hardlinking requirements.
+:::
 
 :::tip
 If you are using qBittorrent, consider checking out [qbit_manage](https://github.com/StuffAnThings/qbit_manage) to manage your hardlinks eligible for deletion.
@@ -176,6 +182,7 @@ Generally, you won't be able to access local instances from services utilizing a
 :::info
 There is no need to put `cross-seed` behind a VPN. All of its requests are made to your torrent client or Jackett/Prowlarr. The only exception is when announcements are made via the `/announce` API endpoint and are snatched during matching or for injection.
 :::
+
 :::danger
 Even with API authentication, we still recommend that you **do not expose its port to untrusted networks (such as the Internet).**
 :::

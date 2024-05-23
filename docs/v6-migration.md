@@ -18,6 +18,12 @@ The enhancements we've added and changes we've made are outlined in this migrati
 The latest pre-release versions can be installed by using the Docker tag `:master` or NPM tag of `@next` after `cross-seed`.
 :::
 
+:::danger DANGER
+It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+
+We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
+:::
+
 :::tip QBittorrent
 While we previously advised qBittorrent users to hold off on the initial pre-release (`6.0.0-0`), we feel we now have `cross-seed` in a usable state for those users. There are [some changes](#qbittorrent) that should be noted before updating to help test. We recommend backing up your configuration directory before testing any pre-release versions.
 :::
@@ -144,6 +150,12 @@ While we provide this option, we strongly urge you to use a generated key. If yo
 
 ### Searching Improvements
 
+:::danger DANGER
+It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+
+We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
+:::
+
 :::caution
 Currently, only Movies, TV Series, and Anime are officially supported.
 :::
@@ -154,7 +166,7 @@ Anime is now supported in a **_somewhat limited_** capacity. Please note that th
 
 We've aimed to cover the inconsistent and unconventional naming conventions that prevail in anime content, but there may be certain naming styles, from specific groups or indexers, that we haven't accounted for.
 
-:::caution HELP
+:::tip HELP
 If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) that we've missed, please let us know [**via Discord**](https://discord.gg/jpbUFzS5Wb).
 :::
 
@@ -168,6 +180,43 @@ This mode is similar to `risky` but doesn't necessitate all files to be present.
 Torrents matched and added via a `partial` match will always recheck and pause. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files).
 
 **Failing to consider your settings and their impact could lead to the banning or disabling of your account on trackers.**
+
+[Also, please read the update FAQ entry on linking.](./basics/faq-troubleshooting.md#what-linktype-should-i-use)
+:::
+
+#### Torznab Categories
+
+`cross-seed` will now check with Prowlarr or Jackett for the categories that that indexer supports. As a result, we no longer send searches for content that is not listed by Prowlarr/Jackett as available on the indexer.
+
+This should reduce the number of searches made for content that does not have a chance of existing on the indexer.
+
+:::info Note
+This requires no additional action to be taken on your part.
+:::
+
+#### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
+
+:::danger DANGER
+It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+
+We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
+:::
+
+`cross-seed` now has the ability to, when configured, query an instances of [Sonarr](./basics/options.md#sonarr) or [Radarr](./basics/options.md#radarr) for the metadata - specifically the TVDB, TMDB, and IMDB IDs. These can be used on supporting indexers to search more accurately and completely.
+
+You do not have to do anything besides add your Sonarr and Radarr instances, with apikey (similar to the [`torznab`](./basics/options.md#torznab) URL from [Prowlarr](https://prowlarr.com/) or [Jackett](https://github.com/Jackett/Jackett)), to the configuration options in `config.js`.
+
+-   [**Sonarr Option**](./basics/options.md#sonarr)
+-   [**Radarr Option**](./basics/options.md#radarr)
+
+`cross-seed` will use IDs to search wherever it can.
+
+:::tip INFO
+The series or movie _must be added in your instance of Sonarr or Radarr._ You **DO NOT** need to have actual media _imported_, but **the entry must exist**
+
+_"Missing"_ status is valid.
+
+**We do not query any external metadata servers.**
 :::
 
 ### Other Miscellaneous Changes
@@ -178,5 +227,5 @@ Here is a short list of other changes made in v6. These are all behind-the-scene
 -   Any indexer failures not related to rate limiting (status code: `429`) will be cleared from the database when `cross-seed` is restarted.
 -   Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
 -   Improved logging messages, specifically around matching decisions.
--   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present inside full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR archives, and season folders (e.g. "Season 01") in Sonarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
+-   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present inside full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR archives, season (e.g. "Season 01") and main series/movie folders in Sonarr and Radarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
 -   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.

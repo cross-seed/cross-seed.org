@@ -36,7 +36,7 @@ It is best if your [`linkDir`](../basics/options.md#linkdir) is not _INSIDE_ of 
 erroneous searches of folders used in linking folder structure.
 :::
 
-[`linkType`](../basics/options.md#linktype): Either `"hardlink"` or `"symlink"`. [**See FAQ for more information**](../basics/faq-troubleshooting#what-linktype-should-i-use-data-based-searching).
+[`linkType`](../basics/options.md#linktype): Either `"hardlink"` or `"symlink"`. [**See FAQ for more information**](../basics/faq-troubleshooting#what-linktype-should-i-use).
 
 -   `symlink`: If a source is removed for a `hardlink`, the new link still takes up space which may not be desirable. If a symlink's source is removed, it's merely a broken symlink taking up almost no space on your file system.
 -   `hardlink`: These can be more flexible. For `hardlink`s, only the linkDir will need to be visible (with a matching path mapping) to your torrent client, whereas for `symlink` both the `linkDir` and all specified `dataDirs` need to be visible with matching path mappings to your torrent client.
