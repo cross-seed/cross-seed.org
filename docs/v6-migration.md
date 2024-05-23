@@ -188,6 +188,12 @@ This requires no additional action to be taken on your part.
 
 #### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
 
+:::danger DANGER
+It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+
+We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
+:::
+
 `cross-seed` now has the ability to, when configured, query an instances of [Sonarr](./basics/options.md#sonarr) or [Radarr](./basics/options.md#radarr) for the metadata - specifically the TVDB, TMDB, and IMDB IDs. These can be used on supporting indexers to search more accurately and completely.
 
 You do not have to do anything besides add your Sonarr and Radarr instances, with apikey (similar to the [`torznab`](./basics/options.md#torznab) URL from [Prowlarr](https://prowlarr.com/) or [Jackett](https://github.com/Jackett/Jackett)), to the configuration options in `config.js`.
