@@ -172,6 +172,8 @@ This mode is similar to `risky` but doesn't necessitate all files to be present.
 Torrents matched and added via a `partial` match will always recheck and pause. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files).
 
 **Failing to consider your settings and their impact could lead to the banning or disabling of your account on trackers.**
+
+[Also, please read the update FAQ entry on linking.](./basics/faq-troubleshooting.md#what-linktype-should-i-use)
 :::
 
 #### Torznab Categories

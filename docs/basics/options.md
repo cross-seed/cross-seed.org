@@ -543,6 +543,8 @@ erroneous searches of folders used in linking folder structure.
 
 You will need to mount the volume for `cross-seed` to have access to the dataDir and linkDir.
 
+[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
+
 :::
 
 #### `linkDir` Examples (CLI)
@@ -577,7 +579,7 @@ find a associated torrent file.
 
 Valid methods for linkType are `symlink` and `hardlink`.
 
-[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use-data-based-searching)
+[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
 
 :::caution Docker
 
@@ -622,6 +624,8 @@ For media library searches `risky` or `partial` is necessary due to the renaming
 
 :::danger Note
 Using skipRecheck in conjunction with `risky` or `partial` is not recommended and could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
+
+[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
 
 **Proceed with caution!**
 :::
