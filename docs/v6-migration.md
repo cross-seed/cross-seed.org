@@ -188,16 +188,19 @@ This requires no additional action to be taken on your part.
 
 #### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
 
-`cross-seed` now has the ability to, when configured, query an instance of [Sonarr](./basics/options.md#sonarr) or [Radarr](./basics/options.md#radarr) for the metadata - specifically the TVDB, TMDB, and IMDB IDs. These can be used on supporting indexers to search more accurately and completely.
+`cross-seed` now has the ability to, when configured, query an instances of [Sonarr](./basics/options.md#sonarr) or [Radarr](./basics/options.md#radarr) for the metadata - specifically the TVDB, TMDB, and IMDB IDs. These can be used on supporting indexers to search more accurately and completely.
 
 You do not have to do anything besides add your Sonarr and Radarr instances, with apikey (similar to the [`torznab`](./basics/options.md#torznab) URL from [Prowlarr](https://prowlarr.com/) or [Jackett](https://github.com/Jackett/Jackett)), to the configuration options in `config.js`.
 
+-   [**Sonarr Option**](./basics/options.md#sonarr)
+-   [**Radarr Option**](./basics/options.md#radarr)
+
 `cross-seed` will use IDs to search wherever it can.
 
-:::tip
+:::tip INFO
 The series or movie _must be added in your instance of Sonarr or Radarr._ You **DO NOT** need to have actual media _imported_, but **the entry must exist**
 
-"Missing" status is valid.
+_"Missing"_ status is valid.
 
 **We do not query any external metadata servers.**
 :::
