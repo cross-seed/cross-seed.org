@@ -138,6 +138,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`transmissionRpcUrl`](#rtorrentrpcurl)             |              |
 | [`qbittorrentUrl`](#qbittorrenturl)                 |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
+| [`host`](#host)                                     |              |
 | [`port`](#port)                                     |              |
 | [`rssCadence`](#rssCadence)                         |              |
 | [`searchCadence`](#searchcadence)                   |              |
@@ -1064,6 +1065,32 @@ cross-seed daemon --notification-webhook-url http://apprise:8000/notify
 
 ```js
 notificationWebhookUrl: "http://apprise:8000/notify",
+```
+
+### `host`
+
+| Config file name | CLI short form  | CLI long form | Format    | Default   |
+| ---------------- | --------------- | ------------- | --------- | --------- |
+| `host`           | `--host <host>` |               | `host/ip` | `0.0.0.0` |
+
+In [Daemon Mode](../basics/daemon.md), `cross-seed` runs a webserver listening for
+a few types of HTTP requests. You can use this option to change the host to bind to and
+listen on.
+
+:::tip DOCKER
+If you are using Docker, you do not need to set this. Leave the option as `undefined`.
+:::
+
+#### `host` Examples (CLI)
+
+```shell
+cross-seed daemon --host 192.168.1.100
+```
+
+#### `host` Examples (Config file)
+
+```js
+host: "1.3.3.7",
 ```
 
 ### `port`\*
