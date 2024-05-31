@@ -654,10 +654,14 @@ matchMode: "safe",
 | ---------------- | -------------- | ---------------- | --------- | ------- |
 | `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
 
+:::warning NOTICE
+This feature is a v5 only feature and has been removed in v6 of `cross-seed`.
+:::
+
 Set this to `true` to skip rechecking torrents upon injection.
 
 :::danger Note
-Using skipRecheck in conjunction with `risky` or `partial` is not recommended and could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
+Using skipRecheck in conjunction with `risky` could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
 
 **Proceed with caution!**
 :::
