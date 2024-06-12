@@ -105,7 +105,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`searchLimit`](#searchlimit)                       |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
 | [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blockList)                           |              |
+| [`blockList`](#blocklist)                           |              |
 | [`sonarr`](#sonarr)                                 |              |
 | [`radarr`](#radarr)                                 |              |
 
@@ -127,7 +127,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`skipRecheck`](#skiprecheck)                       |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
-| [`includeNonVideos`](#includeNonvideos)             |              |
+| [`includeNonVideos`](#includenonvideos)             |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -140,7 +140,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
 | [`host`](#host)                                     |              |
 | [`port`](#port)                                     |              |
-| [`rssCadence`](#rssCadence)                         |              |
+| [`rssCadence`](#rsscadence)                         |              |
 | [`searchCadence`](#searchcadence)                   |              |
 | [`snatchTimeout`](#snatchtimeout)                   |              |
 | [`searchTimeout`](#searchtimeout)                   |              |
@@ -148,7 +148,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`apiAuth`](#apiauth)                               |              |
 | [`apiKey`](#apikey)                                 |              |
 | [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blockList)                           |              |
+| [`blockList`](#blocklist)                           |              |
 | [`sonarr`](#sonarr)                                 |              |
 | [`radarr`](#radarr)                                 |              |
 
