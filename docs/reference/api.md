@@ -96,6 +96,8 @@ This endpoint returns `200` if your request was received and a completed match w
 
 :::tip
 The most common way to implement an "announce feed" is utilizing [autobrr](../basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed).
+
+**You can use the "retry on status code" function (_code: 202_) in autobrr's filter settings to retry currently incomplete (downloading) torrents**
 :::
 
 ### Supported formats
