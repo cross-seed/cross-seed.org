@@ -71,3 +71,17 @@ Reset the api key.
 ```shell
 cross-seed reset-api-key
 ```
+
+### `cross-seed clear-indexer-failures`
+
+Clears all indexer failures from the database
+
+:::caution
+This should be used sparingly, and never repeatedly (back-to-back) in a short period, to clear failures that are otherwise latent/expired or erroneous in Prowlarr/Jackett due to indexers being down.
+:::
+
+#### Usage
+
+```shell
+cross-seed clear-indexer-failures
+```
