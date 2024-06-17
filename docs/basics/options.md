@@ -1048,7 +1048,7 @@ Content-Type: application/json
     "name": "string",
     "infoHashes": "string[]",
     "trackers": "string[]",
-    "source": "reverselookup | search",
+    "source": "announce | inject | rss | search | webhook",
     "result": "SAVED | INJECTED | FAILURE"
   }
 }
