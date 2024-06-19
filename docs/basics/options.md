@@ -757,7 +757,11 @@ includeSingleEpisodes: false,
 | ------------------ | -------------- | ---------------------- | --------- | ------- |
 | `includeNonVideos` |                | `--include-non-videos` | `boolean` | `false` |
 
-Set this to `true` to include torrents which contain files other than video files (`.mp4`, `.avi`, `.mkv`) in the search.
+:::warning NOTICE
+Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includenonvideos-behavior) for details on the implementation during the pre-release process.
+:::
+
+Set this to `true` to include torrents that contain files other than video files (`.mp4`, `.avi`, `.mkv`) in the search.
 
 :::info
 If your torrents contain `.nfo`,`.srt`, or `.txt`, for example, they will otherwise be ignored by default.
