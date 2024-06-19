@@ -249,6 +249,8 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 
 :::warning NOTICE
 This feature is a v6 only feature.
+
+Read about the functionality in the [v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
 :::
 
 The URL to your [Sonarr](https://sonarr.tv) instance with your `?apikey=` parameter appended to the end.
@@ -282,6 +284,8 @@ sonarr: ["http://sonarr:8989/?apikey=12345","http://sonarr4k:8990/?apikey=12345"
 
 :::warning NOTICE
 This feature is a v6 only feature.
+
+Read about the functionality in the [v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
 :::
 
 The URL to your [Radarr](https://radarr.video) instance with your `?apikey=` parameter appended to the end.
