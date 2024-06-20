@@ -186,7 +186,7 @@ If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) 
 
 We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named `partial`.
 
-This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files.
+This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files. You can avoid downloading the same missing data on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 
 :::warning BE ADVISED
 Torrents matched and added via a `partial` match will always recheck and pause. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files).
@@ -237,6 +237,16 @@ _"Missing"_ status is valid.
 
 :::danger Please Note
 `cross-seed` tries to use its cache as much as possible to reduce the burden it places on indexers. With all the changes in v6, it will **NEVER** be necessary to delete your database or `torrent_cache` folder to perform a "fresh search". Doing so offers no benefits, is slower, and only puts undue stress on indexers. If you make changes to your config, please follow the steps listed here to take advantage [Adding new trackers](./basics/faq-troubleshooting#whats-the-best-way-to-add-new-trackers).
+:::
+
+### Failed injection (saved) retry
+
+Previously whenever an injection attempt failed to complete, your torrent would be saved and require manual intervention (or a subsequent successful search and injection) to complete the cross-seeding process. We've now added a inject "job" which will run on an hourly cadence that will retry .torrent files which have been saved to your [`outputDir`](./basics/options.md#outputdir). Additionally, `cross-seed` will now also save .torrent files that fail injection due it's source being incomplete.
+
+This feature is also available for use on .torrent files never seen by `cross-seed`. Please see the following entry in [Direct Injection Page](./tutorials/injection.md#manual-or-scheduled-injection) and our [`utils`](./reference/utils.md#cross-seed-inject) for detailed information about behavior.
+
+:::caution
+It is important to note that this function performs minimal filtering on injection attempts, and could result in slightly increased chance of false-positives for **torrent files YOU add for injection**.
 :::
 
 ### Other Miscellaneous Changes

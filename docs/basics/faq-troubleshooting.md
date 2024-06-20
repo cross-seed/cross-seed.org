@@ -220,6 +220,18 @@ We try to reduce unnecessary snatches of .torrent files as much as possible, but
 **We highly recommend you read your tracker's rules, investigate the number of potential searches you will be performing, and thoroughly read the documentation on the options in the config template as well as on this site.**
 :::
 
+### My partial matches from related searches are missing the same data, how can I only download it once?
+
+`cross-seed` is not aware of what matches will happen ahead of time, each is performed with zero knowledge of the previous or the following. As such it possible to have situations where a partial match when complete would become a perfect match for another otherwise partial match. This is usually neglibile since the missing data is small, but in cases where it is significant such as with [seasonFromEpisodes](./options.md#seasonFromEpisodes), you can use the [inject](../reference/utils.md#cross-seed-inject) feature.
+
+If you have not recently deleted files in your [outputDir](./options.md#outputDir), then these torrents will still have their .torrent file present. If so, simply pick one torrent to complete the download on. Once complete, remove the others from your client (do **NOT** delete the torrent data files). Now either wait for the hourly inject cadence, or run `cross-seed inject`. `cross-seed` will automatically use the newly completed torrent over the previous (or ensemble) that caused the partial match.
+
+For the rare case that the .torrent files are not present in `outputDir`. First, choose which tracker you'd like to complete the download on and start the torrent. Then copy (or export) the .torrent files from the other related partial matches to a safe place and remove them from the client (do **NOT** delete the torrent data files). Once the download is complete, follow the steps [here](../tutorials/injection.md#manual-or-scheduled-injection) to re-inject the copied and renamed .torrent files. `cross-seed` will automatically use the newly completed torrent over the previous (or ensemble) that caused the partial match.
+
+:::danger WARNING
+Manual injections such as what is performed here requires the renaming of .torrent files for proper linking. [**Read More**](../tutorials/injection.md#manual-or-scheduled-injection)
+:::
+
 #### Settings to consider when looking to minimize snatches
 
 ---
