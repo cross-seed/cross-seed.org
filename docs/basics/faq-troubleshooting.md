@@ -43,13 +43,7 @@ All of these factors combine to yield extremely limited results, if any, and the
 
 ### What's the best way to add new trackers?
 
-If you are attempting to add a new tracker, and perform a search for the first time on that tracker, it is as simple as adding the [`torznab url`](./options.md#torznab) to your config, setting [`excludeOlder`](./options.md#excludeolder) to `null` and [`excludeRecentSearch`](./options.md#excluderecentsearch) to something very high (e.g. `52 weeks`).
-
-[`excludeRecentSearch`](./options.md#excluderecentsearch) works on a per-tracker basis, and because you have unset [`excludeOlder`](./options.md#excludeolder), it will perform a full search on the new addition and only search anything that has not been searched in the last year on your other trackers.
-
-:::tip Be Advised!
-These settings are merely an example. You may need to adapt these settings for your setup based on your [`searchCadence`](./options.md#searchcadence) or recent search activity.
-:::
+If you are attempting to add a new tracker, and perform a search for the first time on that tracker, it is as simple as adding the [`torznab url`](./options.md#torznab) to your config. You do not need to change any other options.
 
 ### Why do I get `Unsupported: magnet link detected at…`?
 
@@ -72,19 +66,6 @@ Alternatively, you could also be missing quotes around the value you provided. C
 The best way to start troubleshooting this is to check the `logs/verbose.*.log` and find this specific event.
 
 You will be able to see the circumstances around the failure and start investigating why this occurred.
-
-### My data-based results are paused at 100% after injection
-
-This is by design and due to the way data-based searches function. This is done to prevent automatically downloading
-missing files or files that failed to recheck. Until there is a way to guarantee you won't end up downloading
-extra (not cross-seeding) this is the best solution.
-
-Alternatively, if you wish for torrents to not inject in a paused state, you can enable `skipRecheck` in the config
-file, and this will instead Error on missing/incomplete files.
-
-:::tip
-Consider using `infoHash` if you are racing to prevent mismatches.
-:::
 
 ### My data-based search is searching torrent files!
 
@@ -205,7 +186,7 @@ Specific configurations for episode and season inclusion can be found in the [co
 
 ### Why do I see `filetree is different` in my logs?
 
-This is a result of the matching algorithm used by `cross-seed`, and is most commonly associated with only a few scenarios. These include the presence of additional .nfo/.srt files in a torrent, differences in the organization of files (one torrent having a folder while the potential match does not, or vice versa), and discrepancies in the filenames within the torrent.
+This is a result of the matching algorithm used by `cross-seed`, and is most commonly associated with only a few scenarios. These include the presence of additional .nfo/.srt files in a torrent, differences in the organization of files (one torrent having a folder while the potential match does not, or vice versa), and discrepancies in the filenames within the torrent. Switching to matchMode [`partial`](./options.md#matchmode) will eliminate nearly all mismatches due to filetree.
 
 :::tip
 You can utilize the [`cross-seed diff`](../reference/utils#cross-seed-diff) command to compare the torrents.
@@ -272,6 +253,8 @@ matchMode: "safe",
 Using [`risky`](./options.md#matchmode) matching will match torrents for snatching based on the size of the torrents and whether the release groups match (if both are present) and compare them regardless of file structures. This will always result in more .torrent files being snatched from the tracker.
 
 Using [`safe`](./options.md#matchmode) matching will match torrents for snatching based on the size and require that the release groups match and compare them, requiring file structure to match.
+
+Using [`partial`](./options.md#matchmode) matching works the same as `risky` but it will ignore missing files up to your [`fuzzySizeThreshold`](./options.md#fuzzysizethreshold).
 :::
 
 :::danger WARNING

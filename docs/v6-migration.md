@@ -4,6 +4,10 @@ title: v6 Migration Guide
 position: 0
 ---
 
+:::danger Please Note
+With all these changes and improvements in v6, it might be tempting to delete your database and perform a "fresh search". **THIS IS UNCESSARY** and only serves to create more load for indexers. With v6 and onwards, performing a "fresh search" is ***NEVER*** needed or required to take advantage of your config changes or features we add. Please be kind to your indexers. ["Read More"](#expanded-caching-system)
+:::
+
 ### Updates Since Initial Pre-Release
 
 Since the initial pre-release (`6.0.0-0`) we've worked with our users and friends to iron out implementations in the most reasonable and usable way possible. As we proceed through the pre-release/testing phase for v6, further changes may be made. They will all be documented here prior to releases.
@@ -225,6 +229,14 @@ The series or movie _must be added in your instance of Sonarr or Radarr._ You **
 _"Missing"_ status is valid.
 
 **We do not query any external metadata servers.**
+:::
+
+#### Expanded caching system
+
+`cross-seed` will now cache more aggressively and in more situations not only speeding up the process but reducing uncessary load on indexers. When searching, torrents with identical torznab queries will have their results cached and shared. This most commonly applies to torrents of the same media but from different release groups, resolution, source, formats, etc. This will drastically reduce the number of unique queries that `cross-seed` makes to indexers. Torrent snatches are also now cached in more scenarios and are used more aggresively during the decide stage. A torrent will now only be snatched ONCE for the lifetime of `cross-seed`. Finally, past decisions will be reassessed as necessary so any changes made to your config or future improvements we make to `cross-seed` will be applied to previously rejected cross seeds.
+
+:::danger Please Note
+`cross-seed` tries to use its cache as much as possible to reduce the burden it places on indexers. With all the changes in v6, it will **NEVER** be necessary to delete your database or `torrent_cache` folder to perform a "fresh search". Doing so offers no benefits, is slower, and only puts undue stress on indexers. If you make changes to your config, please follow the steps listed here to take advantage [Adding new trackers](./basics/faq-troubleshooting#whats-the-best-way-to-add-new-trackers).
 :::
 
 ### Other Miscellaneous Changes

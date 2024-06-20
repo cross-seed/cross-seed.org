@@ -623,19 +623,11 @@ linkType: "symlink",
 
 | option    | description                                                                                                                                                             |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `safe`    | the default which matches based on size and requires release groups match to snatch for further comparison                                                              |
-| `risky`   | matches on based on size. If release groups are present, it will compare the release groups, but will still proceed to snatch for comparison if one or both are missing |
+| `safe`    | The default which matches based on size and requires release groups match to snatch for further comparison. Torrents will be added unpaused.                                                              |
+| `risky`   | Matches on based on size. If release groups are present, it will compare the release groups, but will still proceed to snatch for comparison if one or both are missing. Torrents will be added unpaused. |
 | `partial` | can be read about in detail [here](../v6-migration.md#partial-matching)                                                                                                 |
 
 For media library searches `risky` or `partial` is necessary due to the renaming of files.
-
-:::danger Note
-Using skipRecheck in conjunction with `risky` or `partial` is not recommended and could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
-
-[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
-
-**Proceed with caution!**
-:::
 
 #### `matchMode` Examples (CLI)
 
@@ -1282,9 +1274,9 @@ apiKey: "abcdefghijklmn0pqrstuvwxyz",
 
 ### `snatchTimeout`
 
-| Config file name | CLI short form | CLI long form                | Format                          | Default   |
-| ---------------- | -------------- | ---------------------------- | ------------------------------- | --------- |
-| `snatchTimeout`  |                | `--snatch-timeout <timeout>` | `string` in the [ms][ms] format | undefined |
+| Config file name | CLI short form | CLI long form                | Format                          | Default      |
+| ---------------- | -------------- | ---------------------------- | ------------------------------- | ------------ |
+| `snatchTimeout`  |                | `--snatch-timeout <timeout>` | `string` in the [ms][ms] format | `30 seconds` |
 
 This option applies to any snatch (download) of a .torrent file via Torznab.
 If a response is not given in the amount of time specified then it will
@@ -1313,9 +1305,9 @@ snatchTimeout: "15s",
 
 ### `searchTimeout`
 
-| Config file name | CLI short form | CLI long form                | Format                          | Default   |
-| ---------------- | -------------- | ---------------------------- | ------------------------------- | --------- |
-| `searchTimeout`  |                | `--search-timeout <timeout>` | `string` in the [ms][ms] format | undefined |
+| Config file name | CLI short form | CLI long form                | Format                          | Default     |
+| ---------------- | -------------- | ---------------------------- | ------------------------------- | ----------- |
+| `searchTimeout`  |                | `--search-timeout <timeout>` | `string` in the [ms][ms] format | `2 minutes` |
 
 This option applies to any search via Torznab. If the search response is not
 given in the amount of time specified then it will consider the search failed.
