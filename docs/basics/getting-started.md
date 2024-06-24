@@ -62,11 +62,21 @@ Applications app. Check out the [Unraid guide](../tutorials/unraid) for details.
 
 :::tip
 
-Docker users can skip ahead to [Scaling Up](#with-docker).
+Docker users can skip ahead to [Scaling Up](#with-docker-1).
 
 :::
 
 To get started, you can use CLI.
+
+If you already have a `config.js` file set up, then you can simply run the following to use those settings:
+
+```shell
+cross-seed search
+```
+
+:::tip
+Any CLI argument provided will override the settings used in your `config.js`
+:::
 
 For CLI commands, a basic example is below:
 
