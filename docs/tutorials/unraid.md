@@ -20,7 +20,7 @@ button. This will take you to the template configuration.
 
 Once you have verified your settings and `config.js` are correct (after your initial configuration) and are only encountering errors intermittently,
 you can utilize the `Extra Parameters` section of the `Advanced Settings` in the container template to automatically restart the container.
-Add `--restart unless stopped` to `Extra Parameters`, as seen in the screenshot.
+Add `--restart unless-stopped` to `Extra Parameters`, as seen in the screenshot.
 
 ![screenshot-cross-seed-extra-param-config](https://github.com/cross-seed/cross-seed.org/assets/9668239/7e365d63-1f0d-467c-b6df-e3a53183abac)
 
