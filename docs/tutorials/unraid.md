@@ -13,6 +13,17 @@ button. This will take you to the template configuration.
 
 ## Configuration
 
+### Auto-Restart
+
+`cross-seed`, by default, will stop the container if a configuration option is suspected to be bad or transient network failures occur during startup validation
+(such as failing to connect to the torrent client or Torznab endpoints).
+
+Once you have verified your settings and `config.js` are correct (after your initial configuration) and are only encountering errors intermittently,
+you can utilize the `Extra Parameters` section of the `Advanced Settings` in the container template to automatically restart the container.
+Add `--restart unless stopped` to `Extra Parameters`, as seen in the screenshot.
+
+![screenshot-cross-seed-extra-param-config](https://github.com/cross-seed/cross-seed.org/assets/9668239/7e365d63-1f0d-467c-b6df-e3a53183abac)
+
 ### Volume Mappings
 
 Cross-seed **needs** to access 3 directories: an input directory with torrent files,
@@ -62,7 +73,7 @@ You can start the container to create the config file path.
 
 ### Configuration File
 
-After the container has been created, we need to generate and set up your configuration file. 
+After the container has been created, we need to generate and set up your configuration file.
 
 This file will be automatically generated when the container is ran for the first time.
 
@@ -80,17 +91,6 @@ info: Validating your configuration...
 info: Your configuration is valid!
 info: [server] Server is running on port 2468, ^C to stop.
 ```
-
-### Auto-Restart
-
-`cross-seed`, by default, will stop the container if a configuration option is suspected to be bad or transient network failures occur during startup validation
-(such as failing to connect to the torrent client or Torznab endpoints).
-
-If you have verified your settings after your initial setup and are only encountering errors intermittently,
-you can utilize the `Extra Parameters` section of the `Advanced Settings` in the container template to automatically restart the container.
-Add `--restart unless stopped` to `Extra Parameters`, as seen in the screenshot.
-
-![screenshot-cross-seed-extra-param-config](https://github.com/cross-seed/cross-seed.org/assets/9668239/7e365d63-1f0d-467c-b6df-e3a53183abac)
 
 ## Automation/Scheduling
 
