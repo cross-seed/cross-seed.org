@@ -81,6 +81,17 @@ info: Your configuration is valid!
 info: [server] Server is running on port 2468, ^C to stop.
 ```
 
+### Auto-Restart
+
+`cross-seed`, by default, will stop the container if a configuration option is suspected to be bad or transient network failures occur during startup validation
+(such as failing to connect to the torrent client or Torznab endpoints).
+
+If you have verified your settings after your initial setup and are only encountering errors intermittently,
+you can utilize the `Extra Parameters` section of the `Advanced Settings` in the container template to automatically restart the container.
+Add `--restart unless stopped` to `Extra Parameters`, as seen in the screenshot.
+
+![screenshot-cross-seed-extra-param-config](https://github.com/cross-seed/cross-seed.org/assets/9668239/7e365d63-1f0d-467c-b6df-e3a53183abac)
+
 ## Automation/Scheduling
 
 `cross-seed` runs in [Daemon mode](../basics/daemon.md) by default on Unraid.
@@ -90,19 +101,3 @@ If you would like to schedule a periodic scan of your library, use the [`searchC
 If you would like to set up RSS scans, use the [`rssCadence`](../basics/options.md#rsscadence) option.
 
 If you would like to automatically check for cross-seeds when a download finishes, learn how to [set up with automatic searches](../basics/daemon#set-up-automatic-searches-for-finished-downloads).
-
-## Auto-Restart
-
-`cross-seed` by default will stop the container if a configuration option is suspected to be bad. This includes bad config options for the torrent client.
-
-This can lead to issues where `cross-seed` may fail to start because of a temporary issue with the torrent client, like long start time, network issues, etc.
-After this happens, the container will stay **stopped** until you manually start it again, or another scheduled process turns it back on.
-
-Because of this, it is recommended to add the auto-restart parameter to your `Extra Parameters` section in Unraid.
-
-![screenshot-cross-seed-extra-param-config](../../static/img/unraid-extra-parameters-restart.png)
-
-:::tip
-You need to toggle from `Basic View` to `Advanced View` to see this option
-![screenshot-cross-seed-extra-param-config](../../static/img/toggle-advanced-view-unraid.png)
-:::
