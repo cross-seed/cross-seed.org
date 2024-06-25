@@ -22,3 +22,4 @@ yarn-error.log*
 .frontmatter/database/pinnedItemsDb.json
 .frontmatter/database/taxonomyDb.json
 frontmatter.json
+yarn.lock
