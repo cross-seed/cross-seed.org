@@ -251,6 +251,22 @@ _"Missing"_ status is valid.
 **We do not query any external metadata servers.**
 :::
 
+#### Sonarr TV Library Searching
+
+Previously you may have noticed that [data-matching](./tutorials/data-based-matching.md) a Sonarr TV Library would not perform searches "properly", mainly due to the nested folder structures and lack of risky matching supporting multi-file folders. We have now enhanced the search capabilities to correctly identify series and seasons in Sonarr's organized libraries, and with risky multi-file matching, can match season packs you've previously downloaded, from your Sonarr Library data back to torrents for cross-seeding.
+
+:::tip
+It is recommended that you use the TRaSH naming scheme to perserve as much irrecoverable metadata as possible. You can find this relevant naming schemes [here for Sonarr](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/) and [here for Radarr](https://trash-guides.info/Radarr/Radarr-recommended-naming-scheme/) if you are not already using it.
+
+It is also **_REQUIRED_** that you use ["Season Folders"](https://wiki.servarr.com/en/sonarr/library) with your Sonarr Library.
+:::
+
+This also opens up the possibility of effectively cross-seeding season packs downloaded from usenet post import/completion. We are awaiting a feature in Sonarr that will enable you to, with the [bakerboy448 Arr Import script](https://github.com/bakerboy448/StarrScripts?tab=readme-ov-file#cross-seed-trigger-for-starr-apps), replicate the immediate "search, match, and cross-seed" behavior you can achieve with torrent downloads.
+
+:::info
+We are working with both the Sonarr Team and bakerboy448 to get the supporting features ironed out for this to be as effective as possible, but in the mean time you can already match Sonarr Library seasons with a manual/scheduled search of the season folder.
+:::
+
 ### Other Miscellaneous Changes
 
 Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.
