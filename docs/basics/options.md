@@ -691,6 +691,10 @@ skipRecheck: false,
 | ----------------- | -------------- | -------------------- | --------- | ------- |
 | `includeEpisodes` | `-e`           | `--include-episodes` | `boolean` | `false` |
 
+:::warning NOTICE
+This feature is a v5 only feature and has been removed in v6 of `cross-seed`, please see the [migration guide](../v6-migration.md#removed-includeepisodes)
+:::
+
 Set this to `true` to include **ALL** episodes (which are ignored by default).
 
 :::info
@@ -725,7 +729,11 @@ includeEpisodes: false,
 | ----------------------- | -------------- | --------------------------- | --------- | ------- |
 | `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
 
-Set this to `true` to include **ALL SINGLE** episodes (which are ignored by default).
+:::warning NOTICE
+Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includesingleepisodes-behavior) for details on the implementation during the pre-release process.
+:::
+
+Set this to `true` to include **ALL SINGLE** episodes when searching (which are ignored by default).
 
 :::info
 This will **NOT** include episodes present inside season packs (data-based searches).

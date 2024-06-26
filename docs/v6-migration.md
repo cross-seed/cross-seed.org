@@ -134,7 +134,19 @@ Simply ensure that you've updated your data and the indexer's name in autobrr ma
 
 Previously, our recommendation if you wanted to strictly search only [`dataDirs`](./basics/options.md#datadirs) for matches was to point [`torrentDir`](./basics/options.md#torrentdir) at an empty folder. This is no longer necessary. You can now set [`torrentDir`](./basics/options.md#torrentdir) to `null` to achieve a data-only search.
 
-### Updated [`includeNonVideos`](./basics/options.md#includenonvideos) Behavior
+### `include` Option Changes
+
+#### Removed [`includeEpisodes`](./basics/options.md#includeepisodes)
+
+In `cross-seed` version 5, `includeSingleEpisodes` was added as it allowed searching for episodes while excluding ones from season packs. In v6, `includeSingleEpisodes` will be the only option for searching episodes as `includeEpisodes` is likely to produce searches for trumped/dead episode torrents.
+
+#### Updated [`includeSingleEpisodes`](./basics/options.md#includesingleepisodes) Behavior
+
+Previously in version 5, `includeSingleEpisodes: false` would ignore searching episode torrents in addition to matching ones from rss and announce. `includeSingleEpisodes` will now only affect searching. Episodes matched from rss and announce will _ALWAYS_ be matched, if possible, even if `includeSingleEpisodes: false`.
+
+This serves the purpose of preventing searching for episodes that trackers will usually have trumped in favor of season packs. If you're currently using `includeSingleEpisodes: true`, please consider switching to `false` if it now meets your needs as it will reduce unecessary load on trackers.
+
+#### Updated [`includeNonVideos`](./basics/options.md#includenonvideos) Behavior
 
 Previously in version 5, `cross-seed` would exclude torrents or folders for searching based on the presence of any non-video files irregardless of their size (think nfo or srt) when this was set to `false`. This behavior could result in you using this option to exclude music, games, or apps but losing out on searches of a movie due to a nfo, text, or srt file being included in the torrent.
 
