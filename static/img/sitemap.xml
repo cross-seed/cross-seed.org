@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta name="viewport" content="width=device-width" /><title>DOM Source of Selection</title><link rel="stylesheet" type="text/css" href="resource://content-accessible/viewsource.css" /></head><body id="viewsource" class="wrap highlight" style="tab-size: 4"><pre id="line1"><span></span><span>&lt;<span class="start-tag">urlset</span> <span class="attribute-name">xmlns</span>="<a class="attribute-value">http://www.sitemaps.org/schemas/sitemap/0.9</a>" <span class="attribute-name">xmlns:xsi</span>="<a class="attribute-value">http://www.w3.org/2001/XMLSchema-instance</a>" <span class="attribute-name">xsi:schemaLocation</span>="<a class="attribute-value">http://www.sitemaps.org/schemas/sitemap/0.9             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd</a>"&gt;</span><span>
+<span id="line2"></span></span><span class="comment">&lt;!-- created with Free Online Sitemap Generator www.xml-sitemaps.com --&gt;</span><span>
+<span id="line3"></span>
+<span id="line4"></span>
+<span id="line5"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line6"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line7"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line8"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>1.00</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line9"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line10"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line11"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/basics/getting-started</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line12"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:38+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line13"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.80</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line14"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line15"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line16"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/category/basics</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line17"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line18"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line19"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line20"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line21"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/basics/daemon</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line22"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line23"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line24"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line25"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line26"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/basics/faq-troubleshooting</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line27"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line28"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line29"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line30"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line31"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/basics/options</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line32"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line33"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line34"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line35"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line36"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/category/tutorials</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line37"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line38"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line39"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line40"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line41"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/category/reference</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line42"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line43"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line44"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line45"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line46"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/v6-migration</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line47"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line48"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line49"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line50"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line51"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/tutorials/unraid</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line52"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line53"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.64</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line54"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line55"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line56"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/reference/api</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line57"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line58"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.51</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line59"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line60"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line61"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/tutorials/data-based-matching</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line62"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line63"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.51</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line64"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line65"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line66"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/reference/utils</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line67"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line68"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.51</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line69"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line70"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line71"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/reference/architecture</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line72"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line73"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.51</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line74"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line75"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line76"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/tutorials/injection</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line77"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line78"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.51</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line79"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line80"></span></span><span>&lt;<span class="start-tag">url</span>&gt;</span><span>
+<span id="line81"></span>  </span><span>&lt;<span class="start-tag">loc</span>&gt;</span><span>https://www.cross-seed.org/docs/tutorials/v4-migration-guide</span><span>&lt;/<span class="end-tag">loc</span>&gt;</span><span>
+<span id="line82"></span>  </span><span>&lt;<span class="start-tag">lastmod</span>&gt;</span><span>2024-06-25T22:35:39+00:00</span><span>&lt;/<span class="end-tag">lastmod</span>&gt;</span><span>
+<span id="line83"></span>  </span><span>&lt;<span class="start-tag">priority</span>&gt;</span><span>0.51</span><span>&lt;/<span class="end-tag">priority</span>&gt;</span><span>
+<span id="line84"></span></span><span>&lt;/<span class="end-tag">url</span>&gt;</span><span>
+<span id="line85"></span>
+<span id="line86"></span>
+<span id="line87"></span></span><span>&lt;/<span class="end-tag">urlset</span>&gt;</span><span></span></pre></body></html>
