@@ -189,8 +189,16 @@ We recommend if you are going to conduct searches to find what you've "missed" p
 :::
 
 :::caution
-Currently, only Movies, TV Series, and Anime are officially supported.
+Currently, only Movies, Episodes, Seasons, and Anime are officially supported. If [`includeNonVideos`](./basics/options.md#includenonvideos) is enabled, `cross-seed` can and will find matches for ***ANY*** torrent, not just the ones explicitly supported. However these will likely need to be a perfect `MATCH` as it does not optimize for these.
 :::
+
+#### Usage of [`torrentDir`](./basics/options.md#torrentdir) and [`dataDirs`](./basics/options.md#datadirs)
+
+Previously in v5, there were many scenarios where using `dataDirs` would offer benefits over `torrentDir`. As such, it would be typical to have both enabled to get all possible matches. This is still allowed but no longer necessary. Aside from two execptions, we recommend all users of v6 to **exclusively** use `torrentDir`. These contain far more information to aide `cross-seed` in better and safer matching.
+
+The first scenario where you should also use `dataDirs` is if you are downloading through usenet. This will always necessary if you want `cross-seed` to match against this content.
+
+The second scenario is if you have content in your media directories not inside your torrent client. Here you only need to perform a search with `dataDirs` **ONCE**. You should never keep `dataDirs` enabled if the first scenario doesn't apply to you. At the most, you can add your media `dataDirs` and perform a search every few months but this is unlikely to yield any results and only puts undue stress on indexers.
 
 #### Anime Support (experimental)
 
