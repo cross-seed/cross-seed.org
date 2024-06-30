@@ -266,6 +266,7 @@ Here is a short list of other changes made in v6. These are all behind-the-scene
 -   Updated to Node v20, ES2022, and TypeScript v5
 -   Any indexer failures not related to rate limiting (status code: `429`) will be cleared from the database when `cross-seed` is restarted.
 -   Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
+-   Better RSS/Announce parsing. This new method better handles different naming schemes and is much faster to process. If the reverse lookup does match, we also check against all valid matches instead of only the first.
 -   Improved logging messages, specifically around matching decisions.
 -   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present inside full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR archives, season (e.g. "Season 01") and main series/movie folders in Sonarr and Radarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
 -   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
