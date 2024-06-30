@@ -75,6 +75,8 @@ You can grab the new [`config.template.js`](https://raw.githubusercontent.com/cr
 
 -   [`skipRecheck`](./basics/options.md#skiprecheck) (_removed_)
 
+-   [`seasonFromEpisodes`](./basics/options.md#seasonfromepisodes)
+
 :::
 
 ### Stricter `config.js` Validation
@@ -283,6 +285,16 @@ This feature is also available for use on .torrent files never seen by `cross-se
 
 :::caution
 It is important to note that this function performs minimal filtering on injection attempts, and could result in slightly increased chance of false-positives for **torrent files YOU add for injection**.
+:::
+
+#### Ensemble or "Torrent Aggregation"
+
+Many of you may be familiar with things like [seasonpackarr](https://github.com/nuxencs/seasonpackarr) which will aggregate/join your already downloaded episodes into season packs when they are combined and uploaded on your trackers, and inject them. `cross-seed` can now do the same, linking and then creating a "combined" set of matching torrents or data to get you seeding data you already have faster. Currently, only season packs from individual episodes is supported but we may support additional aggregation in the future.
+
+This functionality for season packs is linked to the new option [seasonFromEpisodes](./basics/options.md#seasonFromEpisodes) - which is a ratio of episodes you need to have for a match.
+
+:::tip
+This feature works best with [partial matching](#partial-matching) and [Sonarr](./basics/options.md#sonarr). You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 :::
 
 ### Other Miscellaneous Changes
