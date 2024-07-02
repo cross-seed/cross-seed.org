@@ -67,6 +67,20 @@ Commonly: `schedule2 = untied_directory, 5, 5, (cat,"stop_untied=",(cfg.watch),"
 
 Alternatively, you could also be missing quotes around the value you provided. Check the syntax before and around the config setting given in the error.
 
+### `RangeError: WebAssembly.instantiate(): Out of memory` error when starting
+
+If you receive this error when trying to start `cross-seed`, usually presenting on v6 or in shared seedbox environments, it is likely caused by a limitation in the VMEM able to be allocated to your instance of `cross-seed`.
+
+To fix this error, it is necessary to [use at least Node v20.15 and set the `NODE_OPTIONS` to include the flag `--disable-wasm-trap-handler`.](https://nodejs.org/en/blog/release/v20.15.0#cli-allow-running-wasm-in-limited-vmem-with---disable-wasm-trap-handler)
+
+To ensure a successful startup of cross-seed, you can simply execute cross-seed with the following command.
+
+```shell
+NODE_OPTIONS=--disable-wasm-trap-handler cross-seed daemon
+```
+
+Adjust the command accordingly if you intend to perform another action such as a search with cross-seed.
+
 ### Failed to inject, saving instead.
 
 The best way to start troubleshooting this is to check the `logs/verbose.*.log` and find this specific event.
