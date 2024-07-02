@@ -134,6 +134,18 @@ Simply ensure that you've updated your data and the indexer's name in autobrr ma
 
 Previously, our recommendation if you wanted to strictly search only [`dataDirs`](./basics/options.md#datadirs) for matches was to point [`torrentDir`](./basics/options.md#torrentdir) at an empty folder. This is no longer necessary. You can now set [`torrentDir`](./basics/options.md#torrentdir) to `null` to achieve a data-only search.
 
+### Updated [`includeNonVideos`](./basics/options.md#includenonvideos) Behavior
+
+Previously in version 5, `cross-seed` would exclude torrents or folders for searching based on the presence of any non-video files irregardless of their size (think nfo or srt) when this was set to `false`. This behavior could result in you using this option to exclude music, games, or apps but losing out on searches of a movie due to a nfo, text, or srt file being included in the torrent.
+
+`includeNonVideos` will now, while set to `false`, exclude based on _HOW MUCH_ of the torrent or folder is comprised of video files. For instance, when set to `false`, if you have a 100MB torrent and your [`fuzzySizeThreshold`](./basics/options.md#fuzzysizethreshold) is set to `0.02`, then you can have up to 2MB of non-video files before it is excluded from searching.
+
+:::tip
+For some configurations, particularly when searching media libraries from Sonarr or Radarr with subs or metadata/cover images in the media folders, it may be necessary to enable [partial matching](#partial-matching) in order to take advantage of these searches at all.
+:::
+
+This option will now be able to effectively exclude the actual non-video **BASED** searches, rather than merely a "yes" or "no" for a search containing a non-video file.
+
 ### New [`blockList`](./basics/options.md#blocklist) Option
 
 Another new option added is called [`blockList`](./basics/options.md#blocklist). This option takes an array of strings (e.g. `["example", "example2"]` ) and will block any matching strings contained **in** both the .torrent itself or the file/folder name of a path found during data indexing, as well as _exact_ matches.
