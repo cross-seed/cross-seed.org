@@ -71,6 +71,8 @@ You can grab the new [`config.template.js`](https://raw.githubusercontent.com/cr
 
 -   [`skipRecheck`](./basics/options.md#skiprecheck) (_removed_)
 
+-   [`includeEpisodes`](#removed-includeepisodes) (_removed_)
+
 :::
 
 ### Stricter `config.js` Validation
