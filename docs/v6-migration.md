@@ -189,7 +189,7 @@ We recommend if you are going to conduct searches to find what you've "missed" p
 :::
 
 :::caution
-Currently, only Movies, Episodes, Seasons, and Anime are officially supported. If [`includeNonVideos`](./basics/options.md#includenonvideos) is enabled, `cross-seed` can and will find matches for ***ANY*** torrent, not just the ones explicitly supported. However these will likely need to be a perfect `MATCH` as it does not optimize for these.
+Currently, only Movies, Episodes, Seasons, and Anime are officially supported. If [`includeNonVideos`](./basics/options.md#includenonvideos) is enabled, `cross-seed` can and will find matches for **_ANY_** torrent, not just the ones explicitly supported. However these will likely need to be a perfect `MATCH` as it does not optimize for these.
 :::
 
 #### Usage of [`torrentDir`](./basics/options.md#torrentdir) and [`dataDirs`](./basics/options.md#datadirs)
@@ -259,6 +259,31 @@ _"Missing"_ status is valid.
 **We do not query any external metadata servers.**
 :::
 
+#### Sonarr TV Library Searching
+
+We always recommend, whenever possible, to feed original un-renamed data files or (preferably) .torrent files (using `torrentDir`) into cross-seed for searching. However, certain cases, primarily Usenet season pack downloads, could be searched using [data-matching](./tutorials/data-based-matching.md) from a Sonarr TV Library but would not always perform searches "properly" due to the nested folder structures and lack of risky matching supporting multi-file searches.
+
+```
+My Show/
+    Season 1/
+        My Show.S01E01
+        My Show.S01E02
+```
+
+We have enhanced the search capabilities to correctly identify series and individual seasons, where possible, in Sonarr's organized libraries - and with `matchMode: "risky"` or `"partial"` - can match season packs previously downloaded and imported from your Sonarr Library.
+
+:::tip
+It is recommended that you use the TRaSH naming scheme to perserve as much irrecoverable metadata as possible. You can find this relevant naming schemes [here for Sonarr](https://trash-guides.info/Sonarr/Sonarr-recommended-naming-scheme/) and [here for Radarr](https://trash-guides.info/Radarr/Radarr-recommended-naming-scheme/) if you are not already using it.
+
+It is also **_REQUIRED_** that you use ["Season Folders"](https://wiki.servarr.com/en/sonarr/library) with your Sonarr Library.
+:::
+
+This also opens up the possibility of effectively cross-seeding season packs downloaded from usenet post import/completion. We are awaiting a feature in Sonarr that will enable you to, with the [bakerboy448 Arr Import script](https://github.com/bakerboy448/StarrScripts?tab=readme-ov-file#cross-seed-trigger-for-starr-apps), replicate the immediate "search, match, and cross-seed" behavior you can achieve with torrent downloads.
+
+:::info
+We are working with both the Sonarr Team and bakerboy448 to get the supporting features ironed out for this to be as effective as possible, but in the mean time you can already match Sonarr Library seasons with a manual/scheduled search of the season folder.
+:::
+
 ### Other Miscellaneous Changes
 
 Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.
@@ -270,3 +295,7 @@ Here is a short list of other changes made in v6. These are all behind-the-scene
 -   Improved logging messages, specifically around matching decisions.
 -   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present inside full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR archives, season (e.g. "Season 01") and main series/movie folders in Sonarr and Radarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
 -   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
+
+```
+
+```
