@@ -295,7 +295,3 @@ Here is a short list of other changes made in v6. These are all behind-the-scene
 -   Improved logging messages, specifically around matching decisions.
 -   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present inside full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR archives, season (e.g. "Season 01") and main series/movie folders in Sonarr and Radarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
 -   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
-
-```
-
-```
