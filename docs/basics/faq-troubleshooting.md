@@ -211,10 +211,14 @@ Due to the way data-based searching works, risky matching only matches renamed f
 
 ### My season packs are cross-seeding individual episodes!
 
+:::caution
+The include options detailed below have changed for v6. You can reference the [migration guide](https://www.cross-seed.org/docs/v6-migration#include-option-changes) for the updated behavior. The explanation below applies to v5 only.
+:::
+
 You can use [`includeSingleEpisodes`](./options.md#includesingleepisodes), which expands from [`includeEpisodes`](./options.md#includeepisodes). If you wish to search for season packs as a whole and individual episodes _not_ from a season pack, you will need to set [`includeEpisodes`](./options.md#includeepisodes) to `false`, and [`includeSingleEpisodes`](./options.md#includesingleepisodes) to `true`. Both options would be best utilized with [`includeNonVideos`](./options.md#includenonvideos) set to `true`.
 
 :::tip
-Specific configurations for episode and season inclusion can be found in the [config file's option descriptions.](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L196-L226)
+Specific configurations for episode and season inclusion can be found in the [config file's option descriptions.](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L240-L276)
 :::
 
 ### Why do I see `filetree is different` in my logs?
