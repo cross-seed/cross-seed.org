@@ -218,6 +218,10 @@ We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named 
 
 This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files.
 
+:::info Note
+Nearly all partial matches will have the existing files at 99.9% instead of 100%. This is expected and is due to how torrent piece hashing works.
+:::
+
 :::warning BE ADVISED
 Torrents matched and added via a `partial` match will always recheck and pause. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files).
 
