@@ -43,12 +43,12 @@ All of these factors combine to yield extremely limited results, if any, and the
 
 ### What's the best way to add new trackers?
 
-If you are attempting to add a new tracker, and perform a search for the first time on that tracker, it is as simple as adding the [`torznab url`](./options.md#torznab) to your config, setting [`excludeOlder`](./options.md#excludeolder) to `null` and [`excludeRecentSearch`](./options.md#excluderecentsearch) to something very high (e.g. `52 weeks`).
+If you are attempting to add a new tracker to an existing setup, and perform a search for the first time on that tracker, it is as simple as adding the [`torznab url`](./options.md#torznab) to your config, setting [`excludeOlder`](./options.md#excludeolder) to `null` to include all torrents regardless of their "age" in respect to cross-seed.
 
-[`excludeRecentSearch`](./options.md#excluderecentsearch) works on a per-tracker basis, and because you have unset [`excludeOlder`](./options.md#excludeolder), it will perform a full search on the new addition and only search anything that has not been searched in the last year on your other trackers.
+[`excludeRecentSearch`](./options.md#excluderecentsearch) works on a per-tracker basis, and because you have unset [`excludeOlder`](./options.md#excludeolder), it will perform a full search on the new tracker, after which it will resume any other search results that qualify on _ALL_ trackers you have in your config.
 
 :::tip Be Advised!
-These settings are merely an example. You may need to adapt these settings for your setup based on your [`searchCadence`](./options.md#searchcadence) or recent search activity.
+These settings are an example. You may need to adapt these settings for your setup based on your [`searchCadence`](./options.md#searchcadence) or recent search activity to get the results you want.
 :::
 
 ### Why do I get `Unsupported: magnet link detected at…`?
