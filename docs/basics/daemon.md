@@ -227,7 +227,6 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
     ```shell
     #!/bin/sh
-    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=$1"
     curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$2"
     # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=$3"
     ```
@@ -276,7 +275,6 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
     | Search/Criteria | Command                                                                                            |
     | --------------- | -------------------------------------------------------------------------------------------------- |
-    | **Name**        | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=%N"`     |
     | **InfoHash**    | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"` |
     | **Data (Path)** | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"`     |
 
@@ -368,7 +366,6 @@ You may need to adjust the variables above that qBittorrent sends to the script.
     torrentid=$1
     torrentname=$2
     torrentpath=$3
-    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=$torrentname"
     curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$torrentid"
     # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=$torrentpath/$torrentname"
     ```

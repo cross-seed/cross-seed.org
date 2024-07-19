@@ -34,16 +34,12 @@ curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlen
 
 ## POST `/api/webhook`
 
-This endpoint invokes a search, on all configured trackers, for a specific
-torrent name, infoHash, or torrent data. You can provide the name directly,
-or you can provide an infoHash or path to search for, which `cross-seed` will
-use to either look up the torrent in your [`torrentDir`](../basics/options#torrentdir) or parse the
-filename directly. It will respond with `204 No Content` once it has received your
-request successfully.
+This endpoint invokes a search, on all configured trackers, for a specific torrent infoHash or torrent data.
+`cross-seed` will either look up the torrent in your [`torrentDir`](../basics/options#torrentdir) or parse the filename directly.
+It will respond with `204 No Content` once it has received your request successfully.
 
 :::tip
 Searches that match a torrent file always take precedence, even in data-based searching.
-
 :::
 
 ### Supported formats
@@ -58,8 +54,7 @@ Searches that match a torrent file always take precedence, even in data-based se
 ```js
 POST /api/webhook
 {
-	// one of { name, infoHash, path } is required
-	name: "<torrent name here>",
+	// infoHash or path is required
 	infoHash: "<infoHash of torrent>",
 	path: "/path/to/torrent/file.mkv",
 	outputDir: "/path/to/output/dir", // optional
@@ -68,7 +63,7 @@ POST /api/webhook
 
 ```shell script
 curl -XPOST http://localhost:2468/api/webhook \
-  --data-urlencode 'name=<torrent name here>' \
+  --data-urlencode 'infoHash=<torrent infoHash here>' \
   --data-urlencode 'outputDir=/path/to/output/dir'
 ```
 
@@ -77,7 +72,7 @@ Alternatively, you can use JSON:
 ```shell script
 curl -XPOST http://localhost:2468/api/webhook \
   -H 'Content-Type: application/json' \
-  --data '{"name":"<torrent name here>"}'
+  --data '{"infoHash":"<torrent infoHash here>"}'
 ```
 
 ## POST `/api/announce`
