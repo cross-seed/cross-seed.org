@@ -227,7 +227,6 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
     ```shell
     #!/bin/sh
-    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=$1"
     curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$2"
     # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=$3"
     ```
@@ -276,7 +275,6 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
 
     | Search/Criteria | Command                                                                                            |
     | --------------- | -------------------------------------------------------------------------------------------------- |
-    | **Name**        | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=%N"`     |
     | **InfoHash**    | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=%I"` |
     | **Data (Path)** | `curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=%F"`     |
 
@@ -368,7 +366,6 @@ You may need to adjust the variables above that qBittorrent sends to the script.
     torrentid=$1
     torrentname=$2
     torrentpath=$3
-    # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "name=$torrentname"
     curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "infoHash=$torrentid"
     # curl -XPOST http://localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode "path=$torrentpath/$torrentname"
     ```
@@ -423,25 +420,37 @@ weeks (biannual) for _FULL_ searches, however, you can schedule smaller searches
 further configuration:
 
 ```js
-searchCadence: "26 weeks",
+searchCadence: "1 week",
 ```
 
-You can combine [`searchCadence`](../basics/options#searchcadence) with [`excludeRecentSearch`](../basics/options.md#excluderecentsearch)
-and [`excludeOlder`](../basics/options#excludeolder) - and even [`searchLimit`](../basics/options#searchlimit) for a more frequent and
+:::caution
+New (fresh) instances of cross-seed will often take time to even out the searching performed during a `searchCadence`. This is unavoidable, and the best way to mitigate any negative effects is to utilize [`searchLimit`](./options.md#searchlimit) somewhat aggressively after the initial "full-search" is performed.
+:::
+
+Combining [`searchCadence`](../basics/options#searchcadence) with [`excludeRecentSearch`](../basics/options.md#excluderecentsearch)
+and [`excludeOlder`](../basics/options#excludeolder) - and even [`searchLimit`](../basics/options#searchlimit) will result in a more frequent and
 smoother search load. This results in searching with the following criteria applied:
 
 -   [`excludeRecentSearch`](./options.md#excluderecentsearch) will exclude any torrents searched for **from the current moment back the specified time**.
 
--   [`excludeOlder`](./options.md#excludeolder) will exclude any torrents that were first discovered for cross-seeding a **longer time ago than the specified time**.
+-   [`excludeOlder`](./options.md#excludeolder) will exclude any torrents that were first discovered and indexed in `cross-seed` a **longer time ago than the specified time**.
 
 ```js
-searchCadence: "1 week",
-excludeRecentSearch: "1 year",
+searchCadence: "1 day",
+excludeRecentSearch: "3 days",
+excludeOlder: "2 weeks",
+```
+
+This will search daily for any torrents that `cross-seed` first searched less than 2 weeks ago that have not been searched in the last 3 days.
+
+For an even longer duration of searching with more spread out searching behavior, something like the following can be used.
+
+```js
+searchCadence: "1 day",
+excludeRecentSearch: "90 days",
 excludeOlder: "1 year",
 ```
 
-This will search once a week for any torrents that `cross-seed` first searched less than a year ago, and that have not been searched in the last year.
-
 :::tip
-If your `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence), consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS is capable of catching all releases if ran 24/7.
+If your `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence) or [autobrr](./faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed) integration, consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS/announce is capable of catching all releases if ran 24/7.
 :::

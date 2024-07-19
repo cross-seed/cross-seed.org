@@ -20,7 +20,7 @@ cross-seed gen-config -d
 
 ### `cross-seed clear-cache`
 
-Clear the cache of previous decisions.
+Clear the cache of previous decisions that are never rechecked, usually unnecessary.
 
 ### `cross-seed test-notification`
 

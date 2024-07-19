@@ -4,6 +4,10 @@ title: v6 Migration Guide
 position: 0
 ---
 
+:::danger Please Note
+With all these changes and improvements in v6, it might be tempting to delete your database and perform a "fresh search". **THIS IS UNCESSARY** and only serves to create more load for indexers. With v6 and onwards, performing a "fresh search" is **_NEVER_** needed or required to take advantage of your config changes or features we add. Please be kind to your indexers. ["Read More"](#expanded-caching-system)
+:::
+
 ### Updates Since Initial Pre-Release
 
 Since the initial pre-release (`6.0.0-0`) we've worked with our users and friends to iron out implementations in the most reasonable and usable way possible. As we proceed through the pre-release/testing phase for v6, further changes may be made. They will all be documented here prior to releases.
@@ -83,6 +87,14 @@ One of the biggest changes made in v6 is better config validation and error mess
 The new error messages will also provide links to specific documentation for the option and point out bad paths or permission errors if you have any.
 
 This is not going to automatically fix anything for you, but will give you a better starting point to try and solve the issue yourself before requiring outside assistance.
+
+:::note
+We have implemented specific "ratio-based" ranges for the [excludeOlder](./basics/options.md#excludeolder), [excludeRecentSearch](./basics/options.md#excluderecentsearch), and [searchCadence](./basics/options.md#searchcadence) options. These ratios are meant to ensure that you appropriately utilize the intended functionality of these options.
+
+Examples of implementations can be seen [in the daemon section of the documentation](./basics/daemon.md#set-up-periodic-searches).
+
+If you encounter problems with these restrictions which you feel are invalid, please reach out to us on [Discord](https://discord.gg/jpbUFzS5Wb) to discuss this further.
+:::
 
 ### Linking Updates
 
@@ -203,7 +215,7 @@ The first scenario where you should also use `dataDirs` is if you are downloadin
 
 The second scenario is if you have content in your media directories not inside your torrent client. Here you only need to perform a search with `dataDirs` **ONCE**. You should never keep `dataDirs` enabled if the first scenario doesn't apply to you. At the most, you can add your media `dataDirs` and perform a search every few months but this is unlikely to yield any results and only puts undue stress on indexers.
 
-#### Anime Support (experimental)
+#### Anime Support
 
 Anime is now supported in a **_somewhat limited_** capacity. Please note that this is our first attempt at accommodating this content, so your experience may vary depending on your indexers and content.
 
@@ -264,6 +276,16 @@ The series or movie _must be added in your instance of Sonarr or Radarr._ You **
 _"Missing"_ status is valid.
 
 **We do not query any external metadata servers.**
+:::
+
+#### Expanded Caching System
+
+`cross-seed` will now cache more aggressively and in more situations, not only speeding up the process but reducing uncessary load on indexers. When searching, torrents with identical torznab queries will have their results cached and shared. This most commonly applies to torrents of the same media but from different release groups, resolution, source, formats, etc. This will drastically reduce the number of unique queries that `cross-seed` makes to indexers.
+
+Torrent snatches are now also cached in more scenarios and are used more aggresively during the decide stage. A torrent will only be snatched ONCE for the lifetime of `cross-seed`. Finally, past decisions will be reassessed as necessary, so any changes made to your config or future improvements we make to `cross-seed` will be applied to previously rejected cross seeds.
+
+:::danger Please Note
+`cross-seed` tries to use its cache as much as possible to reduce the burden it places on indexers. With all of the changes in v6, it will **NEVER** be necessary to delete your database or `torrent_cache` folder to perform a "fresh search". Doing so offers no benefits, is slower, and only puts undue stress on indexers. If you make changes to your config, [please follow the steps listed here to take advantage](./basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config-file).
 :::
 
 #### Sonarr TV Library Searching
