@@ -88,6 +88,14 @@ The new error messages will also provide links to specific documentation for the
 
 This is not going to automatically fix anything for you, but will give you a better starting point to try and solve the issue yourself before requiring outside assistance.
 
+:::note
+We have implemented specific "ratio-based" ranges for the [excludeOlder](./basics/options.md#excludeolder), [excludeRecentSearch](./basics/options.md#excluderecentsearch), and [searchCadence](./basics/options.md#searchcadence) options. These ratios are meant to ensure that you appropriately utilize the intended functionality of these options.
+
+Examples of implementations can be seen [in the daemon section of the documentation](./basics/daemon.md#set-up-periodic-searches).
+
+If you encounter problems with these restrictions which you feel are invalid, please reach out to us on [Discord](https://discord.gg/jpbUFzS5Wb) to discuss this further.
+:::
+
 ### Linking Updates
 
 We have made drastic changes to the way linking operates, both in its implementation and in expanding its capabilities. Not only is linking more versatile in what can be matched now (for instance, previously, files inside/outside a folder would not match to a torrent in the opposite folder structure - this has been fixed), but you can also take advantage of linking when searching .torrent files instead of solely applying to data-based matching.
