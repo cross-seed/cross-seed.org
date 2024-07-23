@@ -5,7 +5,9 @@ position: 0
 ---
 
 :::danger Please Note
-With all these changes and improvements in v6, it might be tempting to delete your database and perform a "fresh search". **THIS IS UNCESSARY** and only serves to create more load for indexers. With v6 and onwards, performing a "fresh search" is **_NEVER_** needed or required to take advantage of your config changes or features we add. Please be kind to your indexers. ["Read More"](#expanded-caching-system)
+With all these changes and improvements in v6, it might be tempting to delete your database and perform a "fresh search". **THIS IS UNCESSARY** and only serves to create more load for indexers. With v6 and onwards, performing a "fresh search" is **_NEVER_** needed or required to take advantage of your config changes or features we add. Please be kind to your indexers.
+
+[**Read More**](#expanded-caching-system)
 :::
 
 ### Updates Since Initial Pre-Release
