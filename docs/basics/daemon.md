@@ -9,7 +9,7 @@ and enabling the following features:
 
 -   instantly searching for cross-seeds for finished downloads
     -   using your torrent client using [`webhook`](../reference/api.md#post-apiwebhook) endpoint
-    -   using a third-party script to trigger from an Arr's import/upgrade event
+    -   using a third-party script to trigger from an Arr's import/import complete/upgrade event (if using v6, please see [this section](../v6-migration.md#sonarr-tv-library-searching) for updates to this script usage.)
         -   [bakerboy448's Arr Import script](https://github.com/bakerboy448/StarrScripts?tab=readme-ov-file#cross-seed-trigger-for-starr-apps)
 -   watching for new releases:
     -   scanning RSS feeds periodically ([`rssCadence`](./options.md#rsscadence)) for matching content

@@ -307,10 +307,12 @@ It is recommended that you use the TRaSH naming scheme to perserve as much irrec
 It is also **_REQUIRED_** that you use ["Season Folders"](https://wiki.servarr.com/en/sonarr/library) with your Sonarr Library.
 :::
 
-This also opens up the possibility of effectively cross-seeding season packs downloaded from usenet post import/completion. We are awaiting a feature in Sonarr that will enable you to, with the [bakerboy448 Arr Import script](https://github.com/bakerboy448/StarrScripts?tab=readme-ov-file#cross-seed-trigger-for-starr-apps), replicate the immediate "search, match, and cross-seed" behavior you can achieve with torrent downloads.
+This also opens up the possibility of effectively cross-seeding season packs downloaded from usenet post import/completion. [bakerboy448 Arr Import script](https://github.com/bakerboy448/StarrScripts?tab=readme-ov-file#cross-seed-trigger-for-starr-apps) has now been updated to replicate the immediate "search, match, and cross-seed" behavior you can achieve with torrent downloads.
 
-:::info
-We are working with both the Sonarr Team and bakerboy448 to get the supporting features ironed out for this to be as effective as possible, but in the mean time you can already match Sonarr Library seasons with a manual/scheduled search of the season folder.
+:::note
+Strictly in Sonarr, you will need to update your script and _CHANGE_ your event types in your "Settings -> Connect -> Custom Script" to "On Import Complete."
+
+**This only needs to be done in Sonarr, Radarr does not need to be changed.**
 :::
 
 ### Other Miscellaneous Changes
