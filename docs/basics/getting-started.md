@@ -15,7 +15,7 @@ This software is designed to work mainly with private trackers. If you are attem
 :::
 
 :::note
-The primary documentation for v6 of `cross-seed` during pre-release is located [here](../v6-migration.md) in the v6 migration guide. Please refer to this guide if you are using v6 and have questions about the change. Set up and basic configurations described elsewhere in this documentation that is not present in the migration guide is still valid.
+The primary documentation for v6 of `cross-seed` during pre-release is located [here](../v6-migration.md) in the v6 migration guide. Please refer to this guide if you are using v6 and have questions about the changes. Set up and basic configurations described elsewhere in this documentation that are not present in the migration guide are still valid.
 
 If you have any questions please feel free to contact us on Discord or the Discussions section of GitHub. There are links located as icons in the top right of every page.
 :::
