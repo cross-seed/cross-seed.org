@@ -246,7 +246,7 @@ If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) 
 
 We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named `partial`.
 
-This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files.
+This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files. You can avoid downloading the same missing data on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 
 :::info Note
 Nearly all partial matches will have the existing files at 99.9% instead of 100%. This is expected and is due to how torrent piece hashing works.
@@ -305,6 +305,32 @@ Torrent snatches are now also cached in more scenarios and are used more aggresi
 `cross-seed` tries to use its cache as much as possible to reduce the burden it places on indexers. With all of the changes in v6, it will **NEVER** be necessary to delete your database or `torrent_cache` folder to perform a "fresh search". Doing so offers no benefits, is slower, and only puts undue stress on indexers. If you make changes to your config, [please follow the steps listed here to take advantage](./basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config-file).
 :::
 
+#### Failed injection (saved) retry
+
+:::warning
+With all the improvements in v6, some `cross-seed` matches can be highly sophisticated. As such, you should **NEVER** use any external programs or scripts to inject torrents from [`outputDir`](./basics/options.md#outputdir). This is likely to cause errors or bad injections into your client. `cross-seed` will handle all failed injections automatically with _ZERO_ manual input. There is never a need to interact with `outputDir`.
+:::
+
+Previously whenever an injection attempt failed to complete, your torrent would be saved and require manual intervention (or a subsequent successful search and injection) to complete the cross-seeding process. We've now added a inject "job" which will run on an hourly cadence that will retry .torrent files which have been saved to your [`outputDir`](./basics/options.md#outputdir). Additionally, matches will now save in more failure scenarios such as an incomplete source or instead of a linking failure fallback.
+
+:::tip
+This inject feature uniquely has the ability to source files from all matches, not just the best. In addition, all partial matches will also have their .torrent file saved, even on successful injection. This is to better assist you for [optimizing your partial downloads](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once). You can also potentially revive dead torrents with this feature [in certain scenarios](./basics/faq-troubleshooting.md#how-can-i-force-inject-a-cross-seed-if-its-source-is-incomplete).
+:::
+
+This feature is also available for use on .torrent files never seen by `cross-seed`. Please see the following entry in [Direct Injection Page](./tutorials/injection.md#manual-or-scheduled-injection) and our [`utils`](./reference/utils.md#cross-seed-inject) for detailed information about behavior.
+
+:::caution
+It is important to note that this function performs minimal filtering on injection attempts, and could result in slightly increased chance of false-positives for **torrent files YOU add for injection**.
+:::
+
+#### [`RSS`](./basics/options.md#rsscadence) and [`Announce`](./reference/api.md#post-apiannounce) Improvements
+
+The algorithms used for reverse lookup to match with your existing content has been significantly improved. It now parses titles more accurately and completely regardless of naming formats. Additionally, candidates are compared against all matches with your existing content instead of the best for a more comprehensive lookup. If you notice any inaccuracies, please let use know [**via Discord**](https://discord.gg/jpbUFzS5Wb).
+
+`cross-seed` now supports pagination for rss feeds. If the last rss search time is more than your [rssCadence](./basics/options.md#rsscadence), `cross-seed` will page back on trackers that support it. This should cover a few hours to a few days of `cross-seed` downtime depending on the tracker's api limits and upload frequency.
+
+With the new retrying capabilities in v6, the scenarios for a succesful [`announce`](./reference/api.md#post-apiannounce) response have expanded. A status code of `200` will now be returned even on injection failure since it will be later retried. `200` will also be returned if the torrent has already been injected, likely between [`autobrr`](./basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed) retries. A code of `200` should now be interpreted that a complete match was found, instead of a succesful injection. A code of `202` is still reported for incomplete torrents which allows for quicker retires over the [`inject job`](#failed-injection-saved-retry) cadence.
+
 #### Sonarr TV Library Searching
 
 We always recommend, whenever possible, to feed original un-renamed data files or (preferably) .torrent files (using `torrentDir`) into cross-seed for searching. However, certain cases, primarily Usenet season pack downloads, could be searched using [data-matching](./tutorials/data-based-matching.md) from a Sonarr TV Library but would not always perform searches "properly" due to the nested folder structures and lack of risky matching supporting multi-file searches.
@@ -339,7 +365,6 @@ Here is a short list of other changes made in v6. These are all behind-the-scene
 -   Updated to Node v20, ES2022, and TypeScript v5
 -   Any indexer failures not related to rate limiting (status code: `429`) will be cleared from the database when `cross-seed` is restarted.
 -   Regex improvements. Some trackers rename search results or have non-standard naming conventions. The updated regex takes more of those into account and should find more matches.
--   Better RSS/Announce parsing. This new method better handles different naming schemes and is much faster to process. If the reverse lookup does match, we also check against all valid matches instead of only the first.
 -   Improved logging messages, specifically around matching decisions.
 -   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present inside full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR archives, season (e.g. "Season 01") and main series/movie folders in Sonarr and Radarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
 -   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
