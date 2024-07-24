@@ -627,11 +627,13 @@ linkType: "symlink",
 
 `cross-seed` uses three types of matching algorithms `safe`, `risky`, and
 [`partial` (**only available in version 6**)](../v6-migration.md#partial-matching).
+These algorithms can only be ran if `cross-seed` has snatched the torrent files. The vast majority of
+candidates get rejected before a snatch has happened by parsing information from the title.
 
 | option    | description                                                                                                                                                                                               |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `safe`    | the default which matches based on size and requires release groups match to snatch for further comparison. Torrents will be added unpaused.                                                              |
-| `risky`   | matches on based on size. If release groups are present, it will compare the release groups, but will still proceed to snatch for comparison if one or both are missing. Torrents will be added unpaused. |
+| `safe`    | the default which matches based on file naming and sizes. Torrents will always be rechecked then resumed if complete for maximum safety.                                                              |
+| `risky`   | matches based on file sizes only. Torrents will be added unpaused. |
 | `partial` | can be read about in detail [here](../v6-migration.md#partial-matching)                                                                                                                                   |
 
 For media library searches `risky` or `partial` is necessary due to the renaming of files.
