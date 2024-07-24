@@ -59,6 +59,12 @@ Most settings will not require you to perform a search if changed and requires `
 It will **NEVER** be necessary to delete your database or `torrent_cache` folder to perform a "fresh search". Doing so offers no benefits, is slower, and only puts undue stress on indexers.
 :::
 
+### Can I use special characters in my URLs?
+
+To use special characters (`!@#$%^&*`) in your URLs for user/passwords, you will have to use URL encoding for ONLY the portion of the URL containing the special characters.
+
+For instance, if your user or password contains a special character `#`, you will need to go to [URLEncoder.org](https://www.urlencoder.org/) and encode **THIS PORTION OF YOUR URL ONLY** - and then place this in the appropriate place in the URL in your config file.
+
 ### My data-based results are paused at 100% after injection
 
 This is by design and due to the way data-based searches function. This is done to prevent automatically downloading
