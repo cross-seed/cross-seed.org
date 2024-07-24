@@ -12,7 +12,12 @@ Since you already have the torrent's files, this results in zero download and in
 
 :::info
 This software is designed to work mainly with private trackers. If you are attempting to `cross-seed` on public trackers, please see our [FAQ entry](./faq-troubleshooting.md#does-cross-seed-work-on-public-trackers) for details before proceeding.
+:::
 
+:::note
+The primary documentation for v6 of `cross-seed` during pre-release is located [here](../v6-migration.md) in the v6 migration guide. Please refer to this guide if you are using v6 and have questions about the change. Set up and basic configurations described elsewhere in this documentation that is not present in the migration guide is still valid.
+
+If you have any questions please feel free to contact us on Discord or the Discussions section of GitHub. There are links located as icons in the top right of every page.
 :::
 
 :::danger
@@ -21,6 +26,7 @@ Certain `cross-seed` configurations can result in downloading an excessive numbe
 [See this FAQ post for details](./faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files)
 :::
 
+<hr/>
 Now we will install `cross-seed` and run our first search.
 
 ## Installation
