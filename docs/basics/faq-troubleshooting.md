@@ -43,7 +43,13 @@ All of these factors combine to yield extremely limited results, if any, and the
 
 ### What's the best way to add new trackers?
 
-If you are attempting to add a new tracker, and perform a search for the first time on that tracker, it is as simple as adding the [`torznab url`](./options.md#torznab) to your config. You do not need to change any other options.
+In v6, if you are attempting to add a tracker, and perform a initial search on that tracker, it is as simple as adding the [`torznab` url](./options.md#torznab) to your config. You do not need to change any other options.
+
+:::info v5 note
+If you are still on v5 and attempting to add a new tracker to an existing setup to perform a search for the first time on that tracker, it is as simple as adding the [`torznab` url](./options.md#torznab) to your config, setting [`excludeOlder`](./options.md#excludeolder) to `null` to include all torrents regardless of their "age" in respect to cross-seed. You will need to return this setting to its previous value after your search.
+
+[`excludeRecentSearch`](./options.md#excluderecentsearch) works on a per-tracker basis, and because you have unset [`excludeOlder`](./options.md#excludeolder), it will perform a full search on the new tracker, after which it will resume any other search results that qualify on _ALL_ trackers you have in your config.
+:::
 
 ### What should I do after updating my config file?
 
