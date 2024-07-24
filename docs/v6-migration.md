@@ -247,7 +247,11 @@ If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) 
 
 We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named `partial`.
 
-This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files. You can avoid downloading the same missing data on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files.
+
+`cross-seed` will monitor injections for partial matches for up to an hour and then check with the [inject job](#failed-injection-saved-retry). If it has finished rechecking, `cross-seed` will automatically resume the torrent if the remaining download is less than 50MB. For torrents with a larger amount remaining, you will need to manually resume as you can avoid downloading the same missing data on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+
+`cross-seed` will monitor injections for partial matches for up to an hour. If it has finished rechecking, `cross-seed` will automatically resume the torrent if the remaining download is less than 50MB. For torrents with a larger amount remaining, you will need to manually resume as you can avoid downloading the same missing data on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 
 :::info Note
 Nearly all partial matches will have the existing files at 99.9% instead of 100%. This is expected and is due to how torrent piece hashing works.
@@ -313,6 +317,8 @@ With all the improvements in v6, some `cross-seed` matches can be highly sophist
 :::
 
 Previously whenever an injection attempt failed to complete, your torrent would be saved and require manual intervention (or a subsequent successful search and injection) to complete the cross-seeding process. We've now added a inject "job" which will run on an hourly cadence that will retry .torrent files which have been saved to your [`outputDir`](./basics/options.md#outputdir). Additionally, matches will now save in more failure scenarios such as an incomplete source or instead of a linking failure fallback.
+
+When the inject job is ran, `cross-seed` will use the .torrent files in your outputDir to resume any previously injected torrent. This allows partial matches to automaitcally be resumed even if the [initial timeout](#partial-matching) elapses.
 
 :::tip
 This inject feature uniquely has the ability to source files from all matches, not just the best. In addition, all partial matches will also have their .torrent file saved, even on successful injection. This is to better assist you for [optimizing your partial downloads](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once). You can also potentially revive dead torrents with this feature [in certain scenarios](./basics/faq-troubleshooting.md#how-can-i-force-inject-a-cross-seed-if-its-source-is-incomplete).
