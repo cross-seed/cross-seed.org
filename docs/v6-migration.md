@@ -95,6 +95,8 @@ We have implemented specific "ratio-based" ranges for the [excludeOlder](./basic
 
 Examples of implementations can be seen [in the daemon section of the documentation](./basics/daemon.md#set-up-periodic-searches).
 
+If you need to do a full search, running a `cross-seed search` rather than daemon mode will be exempt from these restrictions.
+
 If you encounter problems with these restrictions which you feel are invalid, please reach out to us on [Discord](https://discord.gg/jpbUFzS5Wb) to discuss this further.
 :::
 
