@@ -100,6 +100,15 @@ If you need to do a full search, running a `cross-seed search` rather than daemo
 If you encounter problems with these restrictions which you feel are invalid, please reach out to us on [Discord](https://discord.gg/jpbUFzS5Wb) to discuss this further.
 :::
 
+:::tip
+It is now also possible to use `--no-exclude-recent-search` and `--no-exclude-older` as arguements in your CLI command if you wish to override them without changing your config file.
+
+```shell
+cross-seed search --no-exclude-older
+```
+
+:::
+
 ### Linking Updates
 
 We have made drastic changes to the way linking operates, both in its implementation and in expanding its capabilities. Not only is linking more versatile in what can be matched now (for instance, previously, files inside/outside a folder would not match to a torrent in the opposite folder structure - this has been fixed), but you can also take advantage of linking when searching .torrent files instead of solely applying to data-based matching.
@@ -161,7 +170,11 @@ In `cross-seed` version 5, `includeSingleEpisodes` was added as it allowed searc
 
 #### Updated [`includeSingleEpisodes`](./basics/options.md#includesingleepisodes) Behavior
 
-Previously in version 5, `includeSingleEpisodes: false` would ignore searching episode torrents in addition to matching ones from rss and announce. `includeSingleEpisodes` will now only affect searching. Episodes matched from rss and announce will _ALWAYS_ be matched, if possible, even if `includeSingleEpisodes: false`.
+Previously in version 5, `includeSingleEpisodes: false` would ignore searching episode torrents in addition to matching ones from rss and announce. `includeSingleEpisodes` will now only affect rss and searching. Episodes from announce will _ALWAYS_ be cross seeded, if possible, even if `includeSingleEpisodes: false`.
+
+:::tip
+To prevent cross-seeding episodes from announce, configure your filters in [autobrr](#autobrr-update).
+:::
 
 This serves the purpose of preventing searching for episodes that trackers will usually have trumped in favor of season packs. If you're currently using `includeSingleEpisodes: true`, please consider switching to `false` if it now meets your needs as it will reduce unecessary load on trackers.
 
@@ -179,7 +192,7 @@ This option will now be able to effectively exclude the actual non-video **BASED
 
 ### New [`blockList`](./basics/options.md#blocklist) Option
 
-Another new option added is called [`blockList`](./basics/options.md#blocklist). This option takes an array of strings (e.g. `["example", "example2"]` ) and will block any matching strings contained **in** both the .torrent itself or the file/folder name of a path found during data indexing, as well as _exact_ matches.
+Another new option added is called [`blockList`](./basics/options.md#blocklist). This option takes an array of strings (e.g. `["example", "example2"]` ) and will block any matching strings contained **in** both the .torrent itself or the main file/folder name (or parent folder for files) of a path found during data indexing, as well as _exact_ matches.
 
 You can include strings for the full, exact name of a .torrent or file (e.g., `"The.Best.Movie.Ever.2024.DV.HDR.Atmos.mkv"`), a folder itself for data-based exclusions - but not the full path, partial names/keywords (e.g., `best.movie.ever`), or the infoHash from a torrent you wish to block.
 
