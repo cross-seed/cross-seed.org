@@ -621,11 +621,11 @@ linkType: "symlink",
 `cross-seed` uses three types of matching algorithms `safe`, `risky`, and
 [`partial` (**only available in version 6**)](../v6-migration.md#partial-matching).
 
-| option    | description                                                                                                                                                             |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| option    | description                                                                                                                                                                                               |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `safe`    | the default which matches based on size and requires release groups match to snatch for further comparison. Torrents will be added unpaused.                                                              |
 | `risky`   | matches on based on size. If release groups are present, it will compare the release groups, but will still proceed to snatch for comparison if one or both are missing. Torrents will be added unpaused. |
-| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching)                                                                                                 |
+| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching)                                                                                                                                   |
 
 For media library searches `risky` or `partial` is necessary due to the renaming of files.
 
@@ -1449,7 +1449,8 @@ This feature is a v6 only feature.
 :::
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
-at startup. You can include keywords, infoHashes, folder or file names - not the full path, or torrent names to match.
+at startup. You can include keywords, infoHashes, parent folder of files or file names for data-based
+searches, or torrent names to match.
 
 #### `blockList` Examples (CLI)
 
