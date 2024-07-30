@@ -192,7 +192,7 @@ This option will now be able to effectively exclude the actual non-video **BASED
 
 ### New [`blockList`](./basics/options.md#blocklist) Option
 
-Another new option added is called [`blockList`](./basics/options.md#blocklist). This option takes an array of strings (e.g. `["example", "example2"]` ) and will block any matching strings contained **in** both the .torrent itself or the main file/folder name (or parent folder for files) of a path found during data indexing, as well as _exact_ matches.
+Another new option added is called [`blockList`](./basics/options.md#blocklist). This option takes an array of strings (case-sensitive) (e.g. `["example", "example2"]` ) and will block any matching strings contained **in** both the .torrent itself or the main file/folder name (or parent folder for files) of a path found during data indexing, as well as _exact_ matches.
 
 You can include strings for the full, exact name of a .torrent or file (e.g., `"The.Best.Movie.Ever.2024.DV.HDR.Atmos.mkv"`), a folder itself for data-based exclusions - but not the full path, partial names/keywords (e.g., `best.movie.ever`), or the infoHash from a torrent you wish to block.
 

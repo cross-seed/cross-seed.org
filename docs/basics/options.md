@@ -1450,7 +1450,7 @@ This feature is a v6 only feature.
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
 at startup. You can include keywords, infoHashes, parent folder of files or file names for data-based
-searches, or torrent names to match.
+searches, or torrent names to match. This is case-sensitive.
 
 #### `blockList` Examples (CLI)
 
