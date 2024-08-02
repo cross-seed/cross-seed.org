@@ -180,7 +180,7 @@ This serves the purpose of preventing searching for episodes that trackers will 
 
 #### Updated [`includeNonVideos`](./basics/options.md#includenonvideos) Behavior
 
-Previously in version 5, `cross-seed` would exclude torrents or folders for searching based on the presence of any non-video files irregardless of their size (think nfo or srt) when this was set to `false`. This behavior could result in you using this option to exclude music, games, or apps but losing out on searches of a movie due to a nfo, text, or srt file being included in the torrent.
+Previously in version 5, `cross-seed` would exclude torrents or folders for searching based on the presence of any non-video files regardless of their size (think nfo or srt) when this was set to `false`. This behavior could result in you using this option to exclude music, games, or apps but losing out on searches of a movie due to a nfo, text, or srt file being included in the torrent.
 
 `includeNonVideos` will now, while set to `false`, exclude based on _HOW MUCH_ of the torrent or folder is comprised of video files. For instance, when set to `false`, if you have a 100MB torrent and your [`fuzzySizeThreshold`](./basics/options.md#fuzzysizethreshold) is set to `0.02`, then you can have up to 2MB of non-video files before it is excluded from searching.
 
