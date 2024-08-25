@@ -85,3 +85,19 @@ This should be used sparingly, and never repeatedly (back-to-back) in a short pe
 ```shell
 cross-seed clear-indexer-failures
 ```
+
+### `cross-seed inject`
+
+Injects previously saved, or manually added, torrents from [`outputDir`](../basics/options.md#outputdir).
+
+By default this command will use [`outputDir`](../basics/options.md#outputdir), however, you can also specify
+an `inject dir` by providing the argument.
+
+[Read More...](../tutorials/injection.md#manual-or-scheduled-injection)
+
+#### Usage
+
+```shell
+cross-seed inject
+cross-seed inject --inject-dir /path/to/dir
+```
