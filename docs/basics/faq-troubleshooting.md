@@ -271,6 +271,28 @@ We try to reduce unnecessary snatches of .torrent files as much as possible, but
 **We highly recommend you read your tracker's rules, investigate the number of potential searches you will be performing, and thoroughly read the documentation on the options in the config template as well as on this site.**
 :::
 
+### My partial matches from related searches are missing the same data, how can I only download it once?
+
+`cross-seed` is not aware of what matches will happen ahead of time, each is performed with zero knowledge of the previous or the following. As such it possible to have situations where a partial match when complete would become a perfect match for another otherwise partial match. This is usually neglibile since the missing data is small, but in cases where it is significant you can use the [inject](../reference/utils.md#cross-seed-inject) feature.
+
+If you have not recently deleted files in your [outputDir](./options.md#outputDir), then these torrents will still have their .torrent file present. If so, simply pick one torrent to complete the download on and that's it! `cross-seed` uses all possibles matches to source files with the inject job or when using `cross-seed inject`. It will automatically detect the newly downloaded files, link them to the other torrents, and trigger a recheck for those torrents.
+
+For the rare case that the .torrent files are not present in `outputDir`. First, choose which tracker you'd like to complete the download on and start the torrent. Then copy (or export) the .torrent files from the other related partial matches to a safe place and remove them from the client (do **NOT** delete the torrent data files). Once the download is complete, follow the steps [here](../tutorials/injection.md#manual-or-scheduled-injection) to re-inject the copied and renamed .torrent files. `cross-seed` will automatically use the newly completed torrent over the previous (or ensemble) that caused the partial match.
+
+:::danger WARNING
+Manual injections such as what is performed here requires the renaming of .torrent files for proper linking. [**Read More**](../tutorials/injection.md#manual-or-scheduled-injection)
+:::
+
+### How can I force inject a cross seed if its source is incomplete?
+
+`cross-seed` will not inject matches if the source is incomplete in most scenarios. The only time `cross-seed` will, is from the `cross-seed inject` command or from the inject job. If the age of the saved .torrent file (determined my last modified time) is older than a day, `cross-seed` will inject and link files even from an incomplete source if [`linkDir`](./options.md#linkdir) and [`partial`](./options.md#matchmode) is enabled. These injections will always be treated as `partial` matches which are paused and rechecked.
+
+Once the torrent has finished rechecking, it's progress could be anywhere from 0% to 100%. You will then have to choose between resuming the torrent or removing it from client with the corresponding .torrent file in [`outputDir`](./options.md#outputdir). Of course this is no longer "cross seeding", but it does allows the possibility of reviving the stalled torrent used as the source. In order to do this, you may need to follow the manual steps outlined in the [faq entry](#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once) above on the stalled torrent.
+
+:::caution
+This is not really "cross seeding" anymore and likely will incur significant download for the matched torrent. This should be rarely needed as `cross-seed` can match from multiple sources. `cross-seed` is simply offering you the ability to revive the stalled torrents inside your client.
+:::
+
 #### Settings to consider when looking to minimize snatches
 
 ---
