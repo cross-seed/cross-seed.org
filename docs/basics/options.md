@@ -828,7 +828,7 @@ than this long ago. This option is only relevant in `search` mode or in `daemon`
 mode with [`searchCadence`](#searchcadence) turned on.
 
 :::tip
-`excludeOlder` will never exclude torrents that are completely new to `cross-seed`.
+`excludeOlder` will never exclude torrents that are completely new to `cross-seed` or torrents seen via RSS or Announce API.
 :::
 
 #### `excludeOlder` Examples (CLI)
@@ -860,6 +860,9 @@ more recently than this long ago. This option is only relevant in
 `search` mode or in `daemon` mode with [`searchCadence`](#searchcadence) turned
 on.
 
+:::tip
+`excludeRecentSearch will never exclude torrents seen via RSS or Announce API.
+:::
 :::info Note
 
 **Search history is stored on a per-indexer basis.**
