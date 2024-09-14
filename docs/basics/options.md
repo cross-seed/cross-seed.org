@@ -1447,12 +1447,19 @@ flatLinking: false,
 | ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
 
-:::warning NOTICE
-This feature is a v6 only feature.
+:::danger
+This feature is partially implemented for v6.
 :::
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
-for each search/inject/rss/announce/webhook use. The full list of supported prefixes are:
+for each search/inject/rss/announce/webhook use. Currently, this only takes strings that are
+directly applied to only the torrent names, folders, and hash. e.g
+
+```js
+blockList: ["badRelease", "-blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
+```
+
+The full list of upcoming supported prefixes are:
 - `name:`
 - `nameRegex:`
 - `folder:`
