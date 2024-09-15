@@ -101,7 +101,7 @@ If you encounter problems with these restrictions which you feel are invalid, pl
 :::
 
 :::tip
-It is now also possible to use `--no-exclude-recent-search` and `--no-exclude-older` as arguements in your CLI command if you wish to override them without changing your config file.
+It is now also possible to use `--no-exclude-recent-search` and `--no-exclude-older` as arguments in your CLI command if you wish to override them without changing your config file.
 
 ```shell
 cross-seed search --no-exclude-older
