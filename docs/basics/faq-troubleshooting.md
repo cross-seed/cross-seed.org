@@ -252,7 +252,7 @@ If you want to filter announces even further, consider setting up more specific 
 :::
 
 :::info
-For more help setting this up, you can head over to the [autobrr documentation for 3rd-party-tools](https://autobrr.com/3rd-party-tools/#cross-seed-filter).
+For more help setting this up, you can head over to the [autobrr documentation for 3rd-party-tools](https://autobrr.com/3rd-party-tools/cross-seed#cross-seed-filter).
 :::
 
 ### My tracker is mad at me for snatching too many .torrent files!
