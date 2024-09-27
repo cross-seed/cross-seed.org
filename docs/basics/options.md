@@ -1447,13 +1447,39 @@ flatLinking: false,
 | ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
 
-:::warning NOTICE
-This feature is a v6 only feature.
+:::danger
+This feature is partially implemented for v6.
 :::
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
-at startup. You can include keywords, infoHashes, parent folder of files or file names for data-based
-searches, or torrent names to match. This is case-sensitive.
+for each search/inject/rss/announce/webhook use. Currently, this only takes strings that are
+directly applied to only the torrent names, folders, and hash. e.g
+
+```js
+blockList: ["badRelease", "-blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
+```
+
+The full list of upcoming supported prefixes are:
+- `name:`
+- `nameRegex:`
+- `folder:`
+- `folderRegex:`
+- `category:`
+- `tag:`
+- `tracker:`
+- `hash:`
+- `sizeBelow:`
+- `sizeAbove:`
+
+:::danger
+The regex (ECMAScript flavor) options are for advanced users only. Do not use without rigorous testing as `cross-seed`
+is unable to perform any checks. Use at your own risk.
+:::
+
+All options, including the regex, are case-sensitive. `name:` can be a substring of the name of inside the .torrent file
+while all others must match exactly. `category:` `tag:` `tracker:` are read from source torrents (labels are considered `tag:`).
+When blocklisting by `tracker:`, if the announce url is https://user:pass@tracker.example.com:8080/announce/key,
+you must use host "tracker:tracker.example.com:8080". The blockList sizes are an integer of the number of bytes.
 
 #### `blockList` Examples (CLI)
 
@@ -1464,6 +1490,18 @@ cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d0754354353
 #### `blockList` Examples (Config file)
 
 ```js
-blockList: ["badRelease", "blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
-
+blockList: [
+	"name:Release.Name",
+	"name:-excludedGroup",
+	"name:x265",
+	"nameRegex:[Rr]elease[.\s][Nn]ame",
+	"folder:folderName",
+	"folderRegex:folder\d+",
+	"category:icycool",
+	"tag:everybody",
+	"tracker:tracker.example.com:8080",
+	"hash:3317e6485454354751555555366a8308c1e92093",
+	"sizeBelow:12345",
+	"sizeAbove:98765",
+],
 ```
