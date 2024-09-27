@@ -657,7 +657,7 @@ matchMode: "safe",
 | `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
 
 :::tip
-In v6, torrents will now be resumed even with `skipRecheck: false` if applicable. [`Read more`](../v6-migration.md#updated-skiprecheck-option)
+In an upcoming version of v6, torrents will now be resumed even with `skipRecheck: false` if applicable. [`Read more`](../v6-migration.md#updated-skiprecheck-option)
 :::
 
 Set this to `true` to skip rechecking torrents upon injection.
@@ -793,6 +793,10 @@ seasonFromEpisodes: undefined,
 | Config file name         | CLI short form | CLI long form                 | Format             | Default |
 | ------------------------ | -------------- | ----------------------------- | ------------------ | ------- |
 | `maxRemainingForResume`  | `N/A`          | `--max-remaining-for-resume`  | `number` (0 to 50) | `50`    |
+
+:::danger
+This is an upcoming feature for v6.
+:::
 
 The amount remaining for an injected torrent in MiB for `cross-seed` to resume. Complete matches will always be resumed.
 

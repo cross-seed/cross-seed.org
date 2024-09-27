@@ -165,6 +165,10 @@ Previously, our recommendation if you wanted to strictly search only [`dataDirs`
 
 ### Updated [`skipRecheck`](./basics/options.md#skiprecheck) Option
 
+:::danger
+This is an upcoming feature for v6.
+:::
+
 `skipRecheck` will no longer have an affect resuming torrents on injection. `skipRecheck: true` behaves as before, injecting resumed at 100% for complete matches. Now, `skipRecheck: false` will simply start a recheck then resume once completed. This allows `cross-seed` to detect the rare case of corrupted torrents for cross seeding purposes. Paused torrents within your [`maxRemainingForResume`](./basics/options.md#maxremainingforresume) limit are likely corrupted and should be removed (possibly [`blocklisted`](#new-blocklist-option)).
 
 ### `include` Option Changes
