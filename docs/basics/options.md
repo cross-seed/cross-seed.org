@@ -91,6 +91,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
+| [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -127,7 +128,8 @@ The configuration file uses JavaScript syntax, which means:
 | [`skipRecheck`](#skiprecheck)                       |              |
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
-| [`includeNonVideos`](#includenonvideos)             |              |
+| [`includeNonVideos`](#includeNonvideos)             |              |
+| [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -749,6 +751,33 @@ cross-seed search # will not include episodes
 includeSingleEpisodes: true,
 
 includeSingleEpisodes: false,
+```
+
+### `seasonFromEpisodes`
+
+| Config file name     | CLI short form | CLI long form            | Format                         | Default |
+| -------------------- | -------------- | ------------------------ | ------------------------------ | ------- |
+| `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `1`     |
+
+`cross-seed` will also aggregate individual episodes into season packs
+for searching (when applicable) or to match with season packs from rss/announce.
+This will only match season packs where you have at least the specified ratio of episodes.
+`undefined` or `null` disables this feature.
+If enabled, values below 1 requires matchMode [partial](#matchmode).
+
+#### `seasonFromEpisodes` Examples (CLI)
+
+```shell
+cross-seed search --season-from-episodes 0.8 # will also combine episodes into season packs if you have at least 80% of the episodes
+cross-seed search # will not join episodes to season packs
+```
+
+#### `seasonFromEpisodes` Examples (Config file)
+
+```js
+seasonFromEpisodes: 0.8,
+
+seasonFromEpisodes: undefined,
 ```
 
 ### `includeNonVideos`
