@@ -759,6 +759,10 @@ includeSingleEpisodes: false,
 | -------------------- | -------------- | ------------------------ | ------------------------------ | ------- |
 | `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `1`     |
 
+:::danger
+This is an upcoming feature for v6.
+:::
+
 `cross-seed` will also aggregate individual episodes into season packs
 for searching (when applicable) or to match with season packs from rss/announce.
 This will only match season packs where you have at least the specified ratio of episodes.

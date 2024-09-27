@@ -332,6 +332,10 @@ With the new retrying capabilities in v6, the scenarios for a succesful [`announ
 
 #### Ensemble or "Torrent Aggregation"
 
+:::danger
+This is an upcoming feature for v6.
+:::
+
 Many of you may be familiar with things like [seasonpackarr](https://github.com/nuxencs/seasonpackarr) which will aggregate/join your already downloaded episodes into season packs when they are combined and uploaded on your trackers, and inject them. `cross-seed` can now do the same, linking and then creating a "combined" set of matching torrents or data to get you seeding data you already have faster. Currently, only season packs from individual episodes is supported but we may support additional aggregation in the future.
 
 This functionality for season packs is linked to the new option [seasonFromEpisodes](./basics/options.md#seasonFromEpisodes) - which is a ratio of episodes you need to have for a match.
