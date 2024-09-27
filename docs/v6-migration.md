@@ -385,7 +385,7 @@ Strictly in Sonarr, you will need to update your script and _CHANGE_ your event 
 
 ### Other Miscellaneous Changes
 
-Here is a short list of other changes made in v6. These are all behind-the-scenes updates made to improve `cross-seed`.
+Here is a short list of other changes made in v6. These are some of the behind-the-scenes updates made to improve `cross-seed`.
 
 -   Updated to Node v20, ES2022, and TypeScript v5
 -   Any indexer failures not related to rate limiting (status code: `429`) will be cleared from the database when `cross-seed` is restarted.
@@ -393,3 +393,26 @@ Here is a short list of other changes made in v6. These are all behind-the-scene
 -   Improved logging messages, specifically around matching decisions.
 -   There are now lists of files/folders integrated into `cross-seed` that are blocked during prefiltering at startup. These include folders present inside full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR archives, season (e.g. "Season 01") and main series/movie folders in Sonarr and Radarr libraries. Excluding these from the `cross-seed` index (for data-based searches) will result in fewer "bad" searches that would otherwise yield no viable results.
 -   New recommended defaults in [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs). These settings are what we consider to be the best starting options when setting up `cross-seed`.
+
+## Extra
+
+### [`flatLinking`](./basics/options.md#flatlinking) Migration
+
+:::caution
+If for any reason you are hesitant or confused, please seek support via Discord or GitHub.
+:::
+
+If you've been using `flatLinking: true`, or are a legacy user upgrading, and would like to switch to the new linking structure in `cross-seed` v6, you can now migrate previously injected torrents and folder structures.
+
+:::warning
+ALWAYS MAKE YOUR OWN BACKUPS PRIOR TO RUNNING ANY SCRIPTS THAT MODIFY YOUR SETUP OR CONFIGURATION FILES.
+:::
+
+This is completely optional and an advanced procedure, do not attempt this if you're unfamiliar with terminal/ssh. These scripts are currently only written for `qBittorrent` and `Deluge`.
+
+If you are willing, you can follow these as guidelines to implement for other clients and we'll add them here.
+
+| Client       |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| `qBittorent` | [Gist link to latest version](https://gist.github.com/ShanaryS/6fbc60327ad5f7043c81e5b1f33da404) |
+| `Deluge`     | [Gist link to latest version](https://gist.github.com/zakkarry/3f690bcd56bbfa00c4d72c97d24f2620) |
