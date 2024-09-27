@@ -76,10 +76,11 @@ You can grab the new [`config.template.js`](https://raw.githubusercontent.com/cr
 
 -   [`radarr`](./basics/options.md#radarr)
 
+-   [`seasonFromEpisodes`](./basics/options.md#seasonfromepisodes)
+
 -   [`skipRecheck`](./basics/options.md#skiprecheck) (_removed_)
 
 -   [`includeEpisodes`](#removed-includeepisodes) (_removed_)
-
 :::
 
 ### Stricter `config.js` Validation
@@ -328,6 +329,20 @@ The algorithms used for reverse lookup to match with your existing content has b
 `cross-seed` now supports pagination for rss feeds. If the last rss search time is more than your [rssCadence](./basics/options.md#rsscadence), `cross-seed` will page back on trackers that support it. This should cover a few hours to a few days of `cross-seed` downtime depending on the tracker's api limits and upload frequency.
 
 With the new retrying capabilities in v6, the scenarios for a succesful [`announce`](./reference/api.md#post-apiannounce) response have expanded. A status code of `200` will now be returned even on injection failure since it will be later retried. `200` will also be returned if the torrent has already been injected, likely between [`autobrr`](./basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed) retries. A code of `200` should now be interpreted that a complete match was found, instead of a succesful injection. A code of `202` is still reported for incomplete torrents which allows for quicker retires over the [`inject job`](#failed-injection-saved-retry) cadence.
+
+#### Ensemble or "Torrent Aggregation"
+
+:::danger
+This is an upcoming feature for v6.
+:::
+
+Many of you may be familiar with things like [seasonpackarr](https://github.com/nuxencs/seasonpackarr) which will aggregate/join your already downloaded episodes into season packs when they are combined and uploaded on your trackers, and inject them. `cross-seed` can now do the same, linking and then creating a "combined" set of matching torrents or data to get you seeding data you already have faster. Currently, only season packs from individual episodes is supported but we may support additional aggregation in the future.
+
+This functionality for season packs is linked to the new option [seasonFromEpisodes](./basics/options.md#seasonFromEpisodes) - which is a ratio of episodes you need to have for a match.
+
+:::tip
+This feature works best with [partial matching](#partial-matching) and [Sonarr](./basics/options.md#sonarr). You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+:::
 
 #### Sonarr TV Library Searching
 
