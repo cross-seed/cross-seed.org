@@ -398,10 +398,21 @@ Here is a short list of other changes made in v6. These are some of the behind-t
 
 ### [`flatLinking`](./basics/options.md#flatlinking) Migration
 
-If you've been using `flatLinking: true` or `cross-seed` pre v6, you will need to migrate previously injected torrents if you desire.
-This is completely optional and an advanced procedure, do not use if you're uncomfortable. These scripts are currently only written for `qBittorrent` and `Deluge`. If you are willing, you can follow these as guidelines to implement for other clients and we'll add them here.
+:::caution
+If for any reason you are hesitant or confused, please seek support via Discord or GitHub.
+:::
 
-| Client                                                                            |
-| --------------------------------------------------------------------------------- |
-| [`qBittorent`](https://gist.github.com/ShanaryS/6fbc60327ad5f7043c81e5b1f33da404) |
-| `Deluge` |
+If you've been using `flatLinking: true`, or are a legacy user upgrading, and would like to switch to the new linking structure in `cross-seed` v6, you can now migrate previously injected torrents and folder structures.
+
+:::warning
+ALWAYS MAKE YOUR OWN BACKUPS PRIOR TO RUNNING ANY SCRIPTS THAT MODIFY YOUR SETUP OR CONFIGURATION FILES.
+:::
+
+This is completely optional and an advanced procedure, do not attempt this if you're unfamiliar with terminal/ssh. These scripts are currently only written for `qBittorrent` and `Deluge`.
+
+If you are willing, you can follow these as guidelines to implement for other clients and we'll add them here.
+
+| Client       |
+| ------------ | ------------------------------------------------------------------------------------------------ |
+| `qBittorent` | [Gist link to latest version](https://gist.github.com/ShanaryS/6fbc60327ad5f7043c81e5b1f33da404) |
+| `Deluge`     | [Gist link to latest version](https://gist.github.com/zakkarry/3f690bcd56bbfa00c4d72c97d24f2620) |
