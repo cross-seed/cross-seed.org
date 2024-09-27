@@ -78,7 +78,7 @@ You can grab the new [`config.template.js`](https://raw.githubusercontent.com/cr
 
 -   [`seasonFromEpisodes`](./basics/options.md#seasonfromepisodes)
 
--   [`skipRecheck`](./basics/options.md#skiprecheck) (_removed_)
+-   [`maxRemainingForResume`](./basics/options.md#maxremainingforresume)
 
 -   [`includeEpisodes`](#removed-includeepisodes) (_removed_)
 :::
@@ -163,6 +163,10 @@ Simply ensure that you've updated your data and the indexer's name in autobrr ma
 
 Previously, our recommendation if you wanted to strictly search only [`dataDirs`](./basics/options.md#datadirs) for matches was to point [`torrentDir`](./basics/options.md#torrentdir) at an empty folder. This is no longer necessary. You can now set [`torrentDir`](./basics/options.md#torrentdir) to `null` to achieve a data-only search.
 
+### Updated [`skipRecheck`](./basics/options.md#skiprecheck) Option
+
+`skipRecheck` will no longer have an affect resuming torrents on injection. `skipRecheck: true` behaves as before, injecting resumed at 100% for complete matches. Now, `skipRecheck: false` will simply start a recheck then resume once completed. This allows `cross-seed` to detect the rare case of corrupted torrents for cross seeding purposes. Paused torrents within your [`maxRemainingForResume`](./basics/options.md#maxremainingforresume) limit are likely corrupted and should be removed (possibly [`blocklisted`](#new-blocklist-option)).
+
 ### `include` Option Changes
 
 #### Removed [`includeEpisodes`](./basics/options.md#includeepisodes)
@@ -245,14 +249,16 @@ If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) 
 
 We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named `partial`.
 
-This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files. You can avoid downloading the same missing data on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+This mode is similar to `risky` but doesn't necessitate all files to be present. The minimum required "match size" is determined by `1 - fuzzySizeThreshold`. For instance, with a `fuzzySizeThreshold` of `0.05`, potential cross-seeds containing only 95% of the original size will match. This mode is designed to identify cross-seeds missing small files such as nfo, srt, or sample files.
+
+`cross-seed` will monitor injections for partial matches for up to an hour and then check with the [inject job](#failed-injection-saved-retry). If it has finished rechecking, `cross-seed` will automatically resume the torrent if the remaining download is less than [`maxRemainingForResume`](./basics/options.md#maxremainingforresume). For torrents with a larger amount remaining, you will need to manually resume as you can avoid downloading the same missing data on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 
 :::info Note
-Nearly all partial matches will have the existing files at 99.9% instead of 100%. This is expected and is due to how torrent piece hashing works.
+Torrents matched and added via a `partial` match will always be rechecked. Nearly all partial matches will have the existing files at 99.9% instead of 100%. This is expected and is due to how torrent piece hashing works.
 :::
 
 :::warning BE ADVISED
-Torrents matched and added via a `partial` match will always recheck and pause. It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files).
+It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethreshold) above `0.1` to avoid [triggering excessive snatches](./basics/faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files).
 
 **Failing to consider your settings and their impact could lead to the banning or disabling of your account on trackers.**
 
@@ -311,6 +317,8 @@ With all the improvements in v6, some `cross-seed` matches can be highly sophist
 :::
 
 Previously whenever an injection attempt failed to complete, your torrent would be saved and require manual intervention (or a subsequent successful search and injection) to complete the cross-seeding process. We've now added a inject "job" which will run on an hourly cadence that will retry .torrent files which have been saved to your [`outputDir`](./basics/options.md#outputdir). Additionally, matches will now save in more failure scenarios such as an incomplete source or instead of a linking failure fallback.
+
+When the inject job is ran, `cross-seed` will use the .torrent files in your outputDir to resume any previously injected torrent. This allows partial matches to automatically be resumed even if the [initial timeout](#partial-matching) elapses.
 
 :::tip
 This inject feature uniquely has the ability to source files from all matches, not just the best. In addition, all partial matches will also have their .torrent file saved, even on successful injection. This is to better assist you for [optimizing your partial downloads](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once). You can also potentially revive dead torrents with this feature [in certain scenarios](./basics/faq-troubleshooting.md#how-can-i-force-inject-a-cross-seed-if-its-source-is-incomplete).

@@ -92,6 +92,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
 | [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
+| [`maxRemainingForResume`](#maxremainingforresume)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -130,6 +131,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includeNonvideos)             |              |
 | [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
+| [`maxRemainingForResume`](#maxremainingforresume)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -622,11 +624,13 @@ linkType: "symlink",
 
 `cross-seed` uses three types of matching algorithms `safe`, `risky`, and
 [`partial` (**only available in version 6**)](../v6-migration.md#partial-matching).
+These algorithms can only be ran if `cross-seed` has snatched the torrent files. The vast majority of
+candidates get rejected before a snatch has happened by parsing information from the title.
 
 | option    | description                                                                                                                                                                                               |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `safe`    | the default which matches based on size and requires release groups match to snatch for further comparison. Torrents will be added unpaused.                                                              |
-| `risky`   | matches on based on size. If release groups are present, it will compare the release groups, but will still proceed to snatch for comparison if one or both are missing. Torrents will be added unpaused. |
+| `safe`    | the default which matches based on file naming and sizes.                                                              |
+| `risky`   | matches based on file sizes only. |
 | `partial` | can be read about in detail [here](../v6-migration.md#partial-matching)                                                                                                                                   |
 
 For media library searches `risky` or `partial` is necessary due to the renaming of files.
@@ -652,8 +656,8 @@ matchMode: "safe",
 | ---------------- | -------------- | ---------------- | --------- | ------- |
 | `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
 
-:::warning NOTICE
-This feature is a v5 only feature and has been removed in v6 of `cross-seed`.
+:::tip
+In v6, torrents will now be resumed even with `skipRecheck: false` if applicable. [`Read more`](../v6-migration.md#updated-skiprecheck-option)
 :::
 
 Set this to `true` to skip rechecking torrents upon injection.
@@ -782,6 +786,28 @@ cross-seed search # will not join episodes to season packs
 seasonFromEpisodes: 0.8,
 
 seasonFromEpisodes: undefined,
+```
+
+### `maxRemainingForResume`
+
+| Config file name         | CLI short form | CLI long form                 | Format             | Default |
+| ------------------------ | -------------- | ----------------------------- | ------------------ | ------- |
+| `maxRemainingForResume`  | `N/A`          | `--max-remaining-for-resume`  | `number` (0 to 50) | `50`    |
+
+The amount remaining for an injected torrent in MiB for `cross-seed` to resume. Complete matches will always be resumed.
+
+#### `maxRemainingForResume` Examples (CLI)
+
+```shell
+cross-seed search --max-remaining-for-resume 0 # only resume complete matches
+```
+
+#### `maxRemainingForResume` Examples (Config file)
+
+```js
+maxRemainingForResume: 50,
+
+maxRemainingForResume: 0,
 ```
 
 ### `includeNonVideos`
