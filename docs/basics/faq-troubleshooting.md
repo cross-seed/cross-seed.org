@@ -273,7 +273,7 @@ We try to reduce unnecessary snatches of .torrent files as much as possible, but
 
 ### My partial matches from related searches are missing the same data, how can I only download it once?
 
-`cross-seed` is not aware of what matches will happen ahead of time, each is performed with zero knowledge of the previous or the following. As such it possible to have situations where a partial match when complete would become a perfect match for another otherwise partial match. This is usually neglibile since the missing data is small, but in cases where it is significant such as with [seasonFromEpisodes](./options.md#seasonFromEpisodes), you can use the [inject](../reference/utils.md#cross-seed-inject) feature.
+`cross-seed` is not aware of what matches will happen ahead of time, each is performed with zero knowledge of the previous or the following. As such it possible to have situations where a partial match when complete would become a perfect match for another otherwise partial match. This is usually neglibile since the missing data is small, but in cases where it is significant such as with [seasonFromEpisodes](./options.md#seasonfromepisodes), you can use the [inject](../reference/utils.md#cross-seed-inject) feature.
 
 If you have not recently deleted files in your [outputDir](./options.md#outputDir), then these torrents will still have their .torrent file present. If so, simply pick one torrent to complete the download on and that's it! `cross-seed` uses all possibles matches to source files with the inject job or when using `cross-seed inject`. It will automatically detect the newly downloaded files, link them to the other torrents, and trigger a recheck for those torrents.
 
