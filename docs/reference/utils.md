@@ -101,3 +101,15 @@ an `inject dir` by providing the argument.
 cross-seed inject
 cross-seed inject --inject-dir /path/to/dir
 ```
+
+### `cross-seed rss`
+
+Runs a manual RSS scan (like [`rssCadence`](../basics/options.md#rsscadence)) and performs your specified [`action`](../basics/options.md#action) on the trackers in your [`torznab`](../basics/options.md#torznab) option.
+
+[Read about automating this with "daemon" mode...](../basics/daemon.md#set-up-rss)
+
+#### Usage
+
+```shell
+cross-seed rss
+```
