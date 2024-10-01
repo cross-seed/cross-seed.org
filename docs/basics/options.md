@@ -1076,7 +1076,7 @@ transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
 
 | Config file name | CLI short form | CLI long form           | Format | Default |
 | ---------------- | -------------- | ----------------------- | ------ | ------- |
-| `delugeRpcUrl`   |                | `--delugerpc-url <url>` | URL    |         |
+| `delugeRpcUrl`   |                | `--deluge-rpc-url <url>` | URL    |         |
 
 The url of your **Deluge** JSON-RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
@@ -1090,8 +1090,8 @@ The url of your **Deluge** JSON-RPC Interface. Only relevant with
 #### `delugeRpcUrl` Examples (CLI)
 
 ```shell
-cross-seed search --delugerpc-url http://deluge:8112/json
-cross-seed search --delugerpc-url http://:pass@localhost:8112/json
+cross-seed search --deluge-rpc-url http://deluge:8112/json
+cross-seed search --deluge-rpc-url http://:pass@localhost:8112/json
 ```
 
 #### `delugeRpcUrl` Examples (Config file)
