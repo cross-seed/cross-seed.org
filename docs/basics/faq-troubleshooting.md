@@ -154,7 +154,7 @@ Set a save path for the files in that category to fix this.
 
 ### I am getting `0 torrents found` with qBittorrent and I set my `torrentDir`
 
-If you are using qBittorrent 4.6.x or later and have the option to use `SQLite database` in the Advanced menu in preferences, you will not be able to do torrent based searches. To be compatible with `cross-seed` you will need to switch this to `fastresume` mode and restart qBittorrent. This will store actual torrent files in your BT_Backup folder. `cross-seed` depends on, and indexes, the torrent files for searching.
+If you are using qBittorrent 4.6.x, 5.x, or later, and have the option to use `SQLite database` in the Advanced menu in preferences, you will not be able to do torrent based searches. To be compatible with `cross-seed` you will need to switch this to `fastresume` mode and restart qBittorrent. This will store actual torrent files in your BT_Backup folder. `cross-seed` depends on, and indexes, the torrent files for searching.
 
 :::danger TL;DR
 We have no current ETA on integration with qBittorrent's SQLite database.

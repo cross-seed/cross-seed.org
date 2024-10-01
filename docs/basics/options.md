@@ -330,7 +330,7 @@ now set this to `null` if you wish to search only your `dataDirs`.
 :::
 
 :::caution qBittorrent
-If you are using qBittorrent 4.6.x and/or `SQLite database` in `Preferences -> Advanced` you will
+If you are using qBittorrent 4.6.x, 5.x (or later) and `SQLite database` in `Preferences -> Advanced` you will
 need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite integration currently.
 :::
 
@@ -627,11 +627,11 @@ linkType: "symlink",
 These algorithms can only be ran if `cross-seed` has snatched the torrent files. The vast majority of
 candidates get rejected before a snatch has happened by parsing information from the title.
 
-| option    | description                                                                                                                                                                                               |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `safe`    | the default which matches based on file naming and sizes.                                                              |
-| `risky`   | matches based on file sizes only. |
-| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching)                                                                                                                                   |
+| option    | description                                                             |
+| --------- | ----------------------------------------------------------------------- |
+| `safe`    | the default which matches based on file naming and sizes.               |
+| `risky`   | matches based on file sizes only.                                       |
+| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching) |
 
 For media library searches `risky` or `partial` is necessary due to the renaming of files.
 
@@ -790,9 +790,9 @@ seasonFromEpisodes: undefined,
 
 ### `maxRemainingForResume`
 
-| Config file name         | CLI short form | CLI long form                 | Format             | Default |
-| ------------------------ | -------------- | ----------------------------- | ------------------ | ------- |
-| `maxRemainingForResume`  | `N/A`          | `--max-remaining-for-resume`  | `number` (0 to 50) | `50`    |
+| Config file name        | CLI short form | CLI long form                | Format             | Default |
+| ----------------------- | -------------- | ---------------------------- | ------------------ | ------- |
+| `maxRemainingForResume` | `N/A`          | `--max-remaining-for-resume` | `number` (0 to 50) | `50`    |
 
 :::danger
 This is an upcoming feature for v6.
@@ -1523,16 +1523,17 @@ blockList: ["badRelease", "-blockedGroup", "595ceca24d075435435313c319c3a5f3bec3
 ```
 
 The full list of upcoming supported prefixes are:
-- `name:`
-- `nameRegex:`
-- `folder:`
-- `folderRegex:`
-- `category:`
-- `tag:`
-- `tracker:`
-- `hash:`
-- `sizeBelow:`
-- `sizeAbove:`
+
+-   `name:`
+-   `nameRegex:`
+-   `folder:`
+-   `folderRegex:`
+-   `category:`
+-   `tag:`
+-   `tracker:`
+-   `hash:`
+-   `sizeBelow:`
+-   `sizeAbove:`
 
 :::danger
 The regex (ECMAScript flavor) options are for advanced users only. Do not use without rigorous testing as `cross-seed`
