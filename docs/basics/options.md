@@ -1046,7 +1046,7 @@ qbittorrentUrl: "http://user:pass@localhost:8080",
 
 | Config file name     | CLI short form | CLI long form                 | Format | Default |
 | -------------------- | -------------- | ----------------------------- | ------ | ------- |
-| `transmissionRpcUrl` |                | `--transmissionrpc-url <url>` | URL    |         |
+| `transmissionRpcUrl` |                | `--transmission-rpc-url <url>` | URL    |         |
 
 The url of your **Transmission** RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
@@ -1060,8 +1060,8 @@ The url of your **Transmission** RPC Interface. Only relevant with
 #### `transmissionRpcUrl` Examples (CLI)
 
 ```shell
-cross-seed search --transmissionrpc-url http://transmission:8080/transmission/rpc
-cross-seed search --transmissionrpc-url http://user:pass@localhost:8080
+cross-seed search --transmission-rpc-url http://transmission:8080/transmission/rpc
+cross-seed search --transmission-rpc-url http://user:pass@localhost:8080
 ```
 
 #### `transmissionRpcUrl` Examples (Config file)
