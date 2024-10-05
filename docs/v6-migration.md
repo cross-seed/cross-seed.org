@@ -317,7 +317,7 @@ Torrent snatches are now also cached in more scenarios and are used more aggresi
 #### Failed injection (saved) retry
 
 :::warning
-With all the improvements in v6, some `cross-seed` matches can be highly sophisticated. As such, you should **NEVER** use any external programs or scripts to inject torrents from [`outputDir`](./basics/options.md#outputdir). This is likely to cause errors or bad injections into your client. `cross-seed` will handle all failed injections automatically with _ZERO_ manual input. There is never a need to interact with `outputDir`.
+With all the improvements in v6, some `cross-seed` matches can be highly sophisticated. As such, you should **NEVER** use any external programs or scripts to inject torrents from [`outputDir`](./basics/options.md#outputdir). This is likely to cause errors or bad injections into your client. `cross-seed` will handle all failed injections automatically with _ZERO_ manual input. There is never a need to interact with `outputDir` unless you are removing a stalled injection from your client and want to prevent further re-injections. [Read More...](./tutorials/injection.md#manual-or-scheduled-injection)
 :::
 
 Previously whenever an injection attempt failed to complete, your torrent would be saved and require manual intervention (or a subsequent successful search and injection) to complete the cross-seeding process. We've now added a inject "job" which will run on an hourly cadence that will retry .torrent files which have been saved to your [`outputDir`](./basics/options.md#outputdir). Additionally, matches will now save in more failure scenarios such as an incomplete source or instead of a linking failure fallback.
