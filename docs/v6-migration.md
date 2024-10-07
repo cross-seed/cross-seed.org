@@ -396,6 +396,18 @@ Here is a short list of other changes made in v6. These are some of the behind-t
 
 ## Extra
 
+### Step-by-Step Guide
+
+:::danger
+Do **_NOT_** skip straight to this section. All the information covered on this page is important and can potentially cause disastrous consequences if ignored.
+:::
+
+-   Update your config to modify, add, and remove the options covered in the [breaking changes section](#breaking-changes-tldr).
+-   Ensure you've read through this page and have updated your options to take advantage of the new capabilities and modified behavior.
+-   Set [rssCadence](./basics/options.md#rsscadence) and [searchCadence](./basics/options.md#searchcadence) to `null`. Start `cross-seed` and correct any configuration errors that `cross-seed` displays.
+-   Once `cross-seed` is running, check the verbose logs to ensure autobrr announces are not failing.
+-   Finally, set your desired `rssCadence` and `searchCadence` and restart `cross-seed`.
+
 ### [`flatLinking`](./basics/options.md#flatlinking) Migration
 
 :::caution
