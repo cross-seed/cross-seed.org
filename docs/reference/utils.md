@@ -20,7 +20,11 @@ cross-seed gen-config -d
 
 ### `cross-seed clear-cache`
 
-Clear the cache of previous decisions that are never rechecked, usually unnecessary.
+:::danger
+Do not use unless instructed to, this rarely necessary. Seek support if you believe it's necessary.
+:::
+
+Clear the cache without causing torrents to be re-snatched and reset the timestamps for [`excludeOlder`](../basics/options.md#excludeolder) and [`excludeRecentSearch`](../basics/options.md#excluderecentsearch).
 
 ### `cross-seed test-notification`
 
