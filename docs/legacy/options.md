@@ -1,6 +1,6 @@
 ---
-id: options
-title: Options
+id: options-v5
+title: Options (v5)
 ---
 
 `cross-seed` has several program options, which can either be specified on the
@@ -81,16 +81,15 @@ The configuration file uses JavaScript syntax, which means:
 | [`torrentDir`](#torrentdir)                         | **Required** |
 | [`outputDir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadirs)                             |              |
-| [`linkCategory`](#linkcategory)                     |              |
+| [`dataCategory`](#datacategory)                     |              |
 | [`duplicateCategories`](#duplicatecategories)       |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
 | [`matchMode`](#matchmode)                           |              |
 | [`skipRecheck`](#skiprecheck)                       |              |
+| [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
-| [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`maxRemainingForResume`](#maxremainingforresume)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -104,10 +103,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`searchTimeout`](#searchtimeout)                   |              |
 | [`searchLimit`](#searchlimit)                       |              |
 | [`notificationWebhookUrl`](#notificationwebhookurl) |              |
-| [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blocklist)                           |              |
-| [`sonarr`](#sonarr)                                 |              |
-| [`radarr`](#radarr)                                 |              |
 
 ## Options used in `cross-seed daemon`
 
@@ -118,7 +113,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`torrentdir`](#torrentdir)                         | **Required** |
 | [`outputdir`](#outputdir)                           | **Required** |
 | [`dataDirs`](#datadirs)                             |              |
-| [`linkCategory`](#linkcategory)                     |              |
+| [`dataCategory`](#datacategory)                     |              |
 | [`duplicateCategories`](#duplicatecategories)       |              |
 | [`linkDir`](#linkdir)                               |              |
 | [`linkType`](#linktype)                             |              |
@@ -127,8 +122,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeEpisodes`](#includeepisodes)               |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includeNonvideos)             |              |
-| [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`maxRemainingForResume`](#maxremainingforresume)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -146,19 +139,15 @@ The configuration file uses JavaScript syntax, which means:
 | [`snatchTimeout`](#snatchtimeout)                   |              |
 | [`searchTimeout`](#searchtimeout)                   |              |
 | [`searchLimit`](#searchlimit)                       |              |
-| [`apiKey`](#apikey)                                 |              |
-| [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blocklist)                           |              |
-| [`sonarr`](#sonarr)                                 |              |
-| [`radarr`](#radarr)                                 |              |
+| [`apiAuth`](#apiauth)                               |              |
 
 ## All options
 
 ### `delay`\*
 
-| Config file name | CLI short form | CLI Long form     | Format             | Default |
-| ---------------- | -------------- | ----------------- | ------------------ | ------- |
-| `delay`          | `-d <value>`   | `--delay <value>` | `number` (seconds) | `30`    |
+| Config file name | CLI short `for`m | CLI Long form     | Format             | Default |
+| ---------------- | ---------------- | ----------------- | ------------------ | ------- |
+| `delay`          | `-d <value>`     | `--delay <value>` | `number` (seconds) | `30`    |
 
 When running a search with `cross-seed search` or using `searchCadence` in
 daemon mode, the `delay` option lets you set how long you want `cross-seed` to
@@ -239,72 +228,6 @@ torznab: [
 ],
 
 torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey=12345"],
-```
-
-### `sonarr`
-
-| Config file name | CLI short form | CLI Long form       | Format     | Default   |
-| ---------------- | -------------- | ------------------- | ---------- | --------- |
-| `sonarr`         |                | `--sonarr <url(s)>` | `string[]` | undefined |
-
-:::info NOTICE
-Read about the functionality in the [v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
-:::
-
-The URL to your [Sonarr](https://sonarr.tv) instance with your `?apikey=` parameter appended to the end.
-
-#### Finding your Sonarr URL
-
-For [Sonarr](https://sonarr.tv) you can simply append `?apikey=` to the end of your
-WebUI base URL with your API key after the `=`.
-
-#### `sonarr` Examples (CLI)
-
-```shell
-cross-seed search --sonarr https://localhost/?apikey=12345
-cross-seed search --sonarr https://localhost/?apikey=12345 https://localhost4k/?apikey=12345
-```
-
-#### `sonarr` Examples (Config file)
-
-```js
-sonarr: ["https://sonarr/?apikey=12345"],
-
-sonarr: ["http://sonarr:8989/?apikey=12345","http://sonarr4k:8990/?apikey=12345"],
-
-```
-
-### `radarr`
-
-| Config file name | CLI short form | CLI Long form       | Format     | Default   |
-| ---------------- | -------------- | ------------------- | ---------- | --------- |
-| `radarr`         |                | `--radarr <url(s)>` | `string[]` | undefined |
-
-:::warning NOTICE
-Read about the functionality in the [v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
-:::
-
-The URL to your [Radarr](https://radarr.video) instance with your `?apikey=` parameter appended to the end.
-
-#### Finding your Radarr URL
-
-For [Radarr](https://radarr.video) you can simply append `?apikey=` to the end of your
-WebUI base URL with your API key after the `=`.
-
-#### `radarr` Examples (CLI)
-
-```shell
-cross-seed search --radarr https://localhost/?apikey=12345
-cross-seed search --radarr https://localhost/?apikey=12345 https://localhost4k/?apikey=12345
-```
-
-#### `radarr` Examples (Config file)
-
-```js
-radarr: ["https://radarr/?apikey=12345"],
-
-radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345"],
-
 ```
 
 ### `torrentDir`\*
@@ -435,17 +358,13 @@ dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
 :::
 
-### `linkCategory`
+### `dataCategory`
 
 | Config file name | CLI short form               | CLI long form | Format   | Default |
 | ---------------- | ---------------------------- | ------------- | -------- | ------- |
-| `linkCategory`   | `--link-category <category>` | N/A           | `string` |         |
+| `dataCategory`   | `--data-category <category>` | N/A           | `string` |         |
 
-:::warning NOTICE
-[`linkCategory`](../v6-migration.md#linking-updates) was previously called [`dataCategory`](#datacategory).
-:::
-
-`cross-seed` will, when performing **data-based** searches with [injection](../tutorials/injection),
+`cross-seed` will, when performing data-based searches with [injection](../tutorials/injection),
 use this category for all injected torrents.
 
 :::caution Docker
@@ -453,16 +372,16 @@ use this category for all injected torrents.
 You will need to mount the volume for `cross-seed` to have access to the data and linkDir.
 :::
 
-#### `linkCategory` Examples (CLI)
+#### `dataCategory` Examples (CLI)
 
 ```shell
-cross-seed search --link-category category
+cross-seed search --data-category category
 ```
 
-#### `linkCategory` Examples (Config file)
+#### `dataCategory` Examples (Config file)
 
 ```js
-linkCategory: "Category1",
+dataCategory: "Category1",
 
 ```
 
@@ -579,18 +498,16 @@ linkType: "symlink",
 | ---------------- | --------------------- | --------------------- | ------------------------- | ------- |
 | `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky`/`partial*` | `safe`  |
 
-`cross-seed` uses three types of matching algorithms `safe`, `risky`, and
-[`partial` (**only available in version 6**)](../v6-migration.md#partial-matching).
+`cross-seed` uses three types of matching algorithms `safe` and `risky`.
 These algorithms can only be ran if `cross-seed` has snatched the torrent files. The vast majority of
 candidates get rejected before a snatch has happened by parsing information from the title.
 
-| option    | description                                                             |
-| --------- | ----------------------------------------------------------------------- |
-| `safe`    | the default which matches based on file naming and sizes.               |
-| `risky`   | matches based on file sizes only.                                       |
-| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching) |
+| option  | description                                               |
+| ------- | --------------------------------------------------------- |
+| `safe`  | the default which matches based on file naming and sizes. |
+| `risky` | matches based on file sizes only.                         |
 
-For media library searches `risky` or `partial` is necessary due to the renaming of files.
+For media library searches `risky` is necessary due to the renaming of files.
 
 #### `matchMode` Examples (CLI)
 
@@ -612,10 +529,6 @@ matchMode: "safe",
 | Config file name | CLI short form | CLI long form    | Format    | Default |
 | ---------------- | -------------- | ---------------- | --------- | ------- |
 | `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
-
-:::tip
-In an upcoming version of v6, torrents will be resumed even with `skipRecheck: false`, if applicable. [`Read more`](../v6-migration.md#updated-skiprecheck-option)
-:::
 
 Set this to `true` to skip rechecking torrents upon injection.
 
@@ -640,15 +553,45 @@ skipRecheck: true,
 skipRecheck: false,
 ```
 
+### `includeEpisodes`
+
+| Config file name  | CLI short form | CLI long form        | Format    | Default |
+| ----------------- | -------------- | -------------------- | --------- | ------- |
+| `includeEpisodes` | `-e`           | `--include-episodes` | `boolean` | `false` |
+
+Set this to `true` to include **ALL** episodes (which are ignored by default).
+
+:::info
+This **WILL** include episodes present inside season packs (for data-based searches).
+:::
+
+:::tip
+This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+which outlines the most common scenarios.
+:::
+
+#### `includeEpisodes` Examples (CLI)
+
+```shell
+cross-seed search -e # will include all episodes
+cross-seed search --include-episodes # will include all episodes
+cross-seed search --no-include-episodes # will not include episodes
+cross-seed search # will not include episodes
+```
+
+#### `includeEpisodes` Examples (Config file)
+
+```js
+includeEpisodes: true,
+
+includeEpisodes: false,
+```
+
 ### `includeSingleEpisodes`
 
 | Config file name        | CLI short form | CLI long form               | Format    | Default |
 | ----------------------- | -------------- | --------------------------- | --------- | ------- |
 | `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
-
-:::warning NOTICE
-Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includesingleepisodes-behavior) for details on the implementation's changes'.
-:::
 
 Set this to `true` to include **ALL SINGLE** episodes when searching (which are ignored by default).
 
@@ -676,74 +619,22 @@ includeSingleEpisodes: true,
 includeSingleEpisodes: false,
 ```
 
-### `seasonFromEpisodes`
-
-| Config file name     | CLI short form | CLI long form            | Format                         | Default |
-| -------------------- | -------------- | ------------------------ | ------------------------------ | ------- |
-| `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `1`     |
-
-:::danger
-This is an upcoming feature for v6.
-:::
-
-`cross-seed` will also aggregate individual episodes into season packs
-for searching (when applicable) or to match with season packs from rss/announce.
-This will only match season packs where you have at least the specified ratio of episodes.
-`undefined` or `null` disables this feature.
-If enabled, values below 1 requires matchMode [partial](#matchmode).
-
-#### `seasonFromEpisodes` Examples (CLI)
-
-```shell
-cross-seed search --season-from-episodes 0.8 # will also combine episodes into season packs if you have at least 80% of the episodes
-cross-seed search # will not join episodes to season packs
-```
-
-#### `seasonFromEpisodes` Examples (Config file)
-
-```js
-seasonFromEpisodes: 0.8,
-
-seasonFromEpisodes: undefined,
-```
-
-### `maxRemainingForResume`
-
-| Config file name        | CLI short form | CLI long form                | Format             | Default |
-| ----------------------- | -------------- | ---------------------------- | ------------------ | ------- |
-| `maxRemainingForResume` | `N/A`          | `--max-remaining-for-resume` | `number` (0 to 50) | `50`    |
-
-:::danger
-This is an upcoming feature for v6.
-:::
-
-The amount remaining for an injected torrent in MiB for `cross-seed` to resume. Complete matches will always be resumed.
-
-#### `maxRemainingForResume` Examples (CLI)
-
-```shell
-cross-seed search --max-remaining-for-resume 0 # only resume complete matches
-```
-
-#### `maxRemainingForResume` Examples (Config file)
-
-```js
-maxRemainingForResume: 50,
-
-maxRemainingForResume: 0,
-```
-
 ### `includeNonVideos`
 
 | Config file name   | CLI short form | CLI long form          | Format    | Default |
 | ------------------ | -------------- | ---------------------- | --------- | ------- |
 | `includeNonVideos` |                | `--include-non-videos` | `boolean` | `false` |
 
-:::warning NOTICE
-Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includenonvideos-behavior) for details on the implementation's changes.
+Set this to `true` to include torrents that contain files other than video files (`.mp4`, `.avi`, `.mkv`) in the search.
+
+:::info
+If your torrents contain `.nfo`,`.srt`, or `.txt`, for example, they will otherwise be ignored by default.
 :::
 
-Set this to `true` to include torrents that contain a majority of files other than video files (`.mp4`, `.avi`, `.mkv`) in the search.
+:::tip
+This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+which outlines the most common scenarios.
+:::
 
 #### `includeNonVideos` Examples (CLI)
 
@@ -834,7 +725,7 @@ more recently than this long ago. This option is only relevant in
 on.
 
 :::tip
-`excludeRecentSearch` will never exclude torrents seen via RSS or Announce API.
+`excludeRecentSearch will never exclude torrents seen via RSS or Announce API.
 :::
 :::info Note
 
@@ -1179,19 +1070,23 @@ searchCadence: "4 weeks",
 [pr]: https://github.com/cross-seed/cross-seed.org/tree/master/docs/basics/options.md
 [ms]: https://github.com/vercel/ms#examples
 
-### `apiKey`
+### `apiAuth`
 
-| Config file name | CLI short form | CLI long form     | Format   | Default     |
-| ---------------- | -------------- | ----------------- | -------- | ----------- |
-| `apiKey`         |                | `--api-key <key>` | `string` | `undefined` |
+| Config file name | CLI short form | CLI long form | Format    | Default |
+| ---------------- | -------------- | ------------- | --------- | ------- |
+| `apiAuth`        |                | `--api-auth`  | `boolean` | `false` |
 
 :::info
-[`apiKey`](../basics/options.md#apikey) is disabled in the config file
-by default, if you want to specify a key set it to a valid key (24 character min).
+[`apiAuth`](../basics/options.md#apiauth) is enabled in the config file
+by default, if you want to disable [`apiAuth`](../basics/options.md#apiauth) set it to `false`.
 :::
 
-To find your generated API key, run the `cross-seed api-key` command.
-The API key can be included with your requests in either of two ways:
+Set this to `true` to require an API key on all requests made to the
+[/api/announce](../reference/api.md#post-apiannounce) and
+[/api/webhook](../reference/api.md#post-apiwebhook) endpoints.
+
+To find your API key, run the `cross-seed api-key` command.
+The api key can be included with your requests in either of two ways:
 
 ```shell
 # provide api key as a query param
@@ -1200,17 +1095,18 @@ curl -XPOST localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode ...
 curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlencode ...
 ```
 
-#### `apiKey` Examples (CLI)
+#### `apiAuth` Examples (CLI)
 
 ```shell
-cross-seed daemon --api-key <key> # will require auth on requests
+cross-seed daemon --api-auth # will require auth on requests
+cross-seed daemon --no-api-auth # will allow any requests
 ```
 
-#### `apiKey` Examples (Config file)
+#### `apiAuth` Examples (Config file)
 
 ```js
-apiKey: undefined,
-apiKey: "abcdefghijklmn0pqrstuvwxyz",
+apiAuth: true,
+apiAuth: false,
 ```
 
 ### `snatchTimeout`
@@ -1302,129 +1198,4 @@ cross-seed search --search-limit 150
 searchLimit: undefined, // disable search count limits
 
 searchLimit: 150,
-```
-
-### `flatLinking`
-
-| Config file name | CLI short form | CLI long form    | Format    | Default |
-| ---------------- | -------------- | ---------------- | --------- | ------- |
-| `flatLinking`    |                | `--flat-linking` | `boolean` | `false` |
-
-:::caution Be Advised
-qBittorrent users using an external program or script, such as qbit_manage, to force
-AutoTMM on torrents (e.g. to apply share limits automatically) will need to enable
-`flatLinking` or modify your workflow accordingly.
-
-[**Read more about specific usage**](v6-migration.md#qbittorrent)
-:::
-
-Set this to `true` to use the flat-folder style linking previously used in v5. This option
-will otherwise link any matches to a tracker-specific folder inside of `linkDir` (if set).
-This prevents cross seeds from conflicting with each other.
-
-With `flatLinking: false` (default):
-
-```
-linkDir/
-	TrackerA/
-		Video.mkv
-		Video2/
-			Video2.mkv
-	TrackerB/
-		Pack/
-			Pack.1.mkv
-			Pack.2.mkv
-		Video.mkv
-```
-
-With `flatLinking: true`:
-
-```
-linkDir/
-	Video.mkv   <--- Both TrackerA and TrackerB cross seeds share the same file
-	Video2/
-		Video2.mkv
-	Pack/
-		Pack.1.mkv
-		Pack.2.mkv
-```
-
-#### `flatLinking` Examples (CLI)
-
-```shell
-cross-seed search --flat-linking
-```
-
-#### `flatLinking` Examples (Config file)
-
-```js
-flatLinking: true,
-
-flatLinking: false,
-```
-
-### `blockList`
-
-| Config file name | CLI short form           | CLI long form            | Format      | Default |
-| ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
-| `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
-
-:::danger
-This feature is currently only partially implemented for v6.
-:::
-
-`cross-seed` will exclude any of the files/releases from cross-seeding during the prefiltering done
-for each search/inject/rss/announce/webhook use. Currently, this only takes strings that are
-directly applied to only the torrent names, folders, and hash. e.g
-
-#### `blockList` Examples (Config file)
-
-```js
-blockList: ["badRelease", "-blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
-```
-
-#### `blockList` Examples (CLI)
-
-```shell
-cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d075435435313c319c3a5f3bec3965a"
-```
-
-The full list of upcoming supported prefixes are:
-
--   `name:`
--   `nameRegex:`
--   `folder:`
--   `folderRegex:`
--   `category:`
--   `tag:`
--   `tracker:`
--   `hash:`
--   `sizeBelow:`
--   `sizeAbove:`
-
-:::danger
-The regex (ECMAScript flavor) options are for advanced users only. Do not use without rigorous testing as `cross-seed`
-is unable to perform any checks. Use at your own risk.
-:::
-
-All options, including the regex, are case-sensitive. `name:` can be a substring of the name of inside the .torrent file. `folder:` can be a substring of any folder in the path for data based searches. All other prefixes must match exactly. `category:` `tag:` `tracker:` are read from source torrents (labels are considered `tag:`). When blocklisting by `tracker:`, if the announce url is `https://user:pass@tracker.example.com:8080/announce/key`,
-you must use host `"tracker:tracker.example.com:8080"`. The blockList sizes are an integer of the number of bytes.
-
-#### `blockList` Examples (Config file)
-
-```js
-blockList: [
-	"name:Release.Name",
-	"name:-excludedGroup",
-	"name:x265",
-	"nameRegex:[Rr]elease[.\s][Nn]ame",
-	"folder:folderName",
-	"folderRegex:folder\d+",
-	"category:icycool",
-	"tag:everybody",
-	"tracker:tracker.example.com:8080",
-	"hash:3317e6485454354751555555366a8308c1e92093",
-	"sizeBelow:12345",
-	"sizeAbove:98765",
-],
 ```
