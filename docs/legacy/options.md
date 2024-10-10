@@ -3,6 +3,11 @@ id: options-v5
 title: Options (v5)
 ---
 
+:::warning BE ADVISED
+This section is made up of legacy (older version's) documentation and is not maintained
+or meant for use in current versions of cross-seed.
+:::
+
 `cross-seed` has several program options, which can either be specified on the
 command line or in a configuration file. The priority is shown below.
 
@@ -425,7 +430,7 @@ duplicateCategories: false,
 to create a link to the original file in the `linkDir` during searches where the original
 data is accessible (both torrent and data-based matches).
 
-[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
+[**What `linkType` should I use?**](../basics/faq-troubleshooting.md#what-linktype-should-i-use)
 
 :::tip
 
@@ -470,7 +475,7 @@ find a associated torrent file.
 
 Valid methods for linkType are `symlink` and `hardlink`.
 
-[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
+[**What `linkType` should I use?**](../basics/faq-troubleshooting.md#what-linktype-should-i-use)
 
 :::caution Docker
 

@@ -4,6 +4,10 @@ sidebar_position: 2
 title: Data-Based Matching
 ---
 
+## Version 6
+
+Data-based matching's use-case and necessity have changed with the introduction of torrent-based linking in version 6. Because of this, before proceeding, we recommend you [read the migration guide's outline of general use-cases](../v6-migration.md#usage-of-torrentdir-and-datadirs) that data-based matching applies to. If you have any questions about this functionality or whether it is appropriate to use we recommend you [visit us at our discord for support](https://discord.gg/jpbUFzS5Wb).
+
 ## Why?
 
 Before data-based matching, `cross-seed` relied on torrent files to be able to search for cross-seeds. In this method, it analyzes the list of files stored in the `.torrent` file and searches your trackers for similar files. If the files found from the remote torrent (candidate) match the local torrent (searchee), this is a compatible cross-seed. To determine if the files match, the files in the candidate must be a subset of the searchee and contain the exact name and size as those in the searchee.
