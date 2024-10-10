@@ -12,26 +12,20 @@ With all these changes and improvements in v6, it might be tempting to delete yo
 
 ### Updates Since Initial Pre-Release
 
-Since the initial pre-release (`6.0.0-0`) we've worked with our users and friends to iron out implementations in the most reasonable and usable way possible. As we proceed through the pre-release/testing phase for v6, further changes may be made. They will all be documented here prior to releases.
+Since the initial pre-release (`6.0.0-0`) we've worked with our users and friends to iron out implementations in the most reasonable and usable way possible. As we've made our way through the extensive pre-release/testing phase for v6, many changes were made to best suit the needs of both our users and trackers.
 
-The majority of the trade-offs we've had to make have been for enhancements and meaningful features. While this update will require some users to rethink, or reconfigure, certain aspects of their setup or workflow to accommodate this; these changes were, unfortunately, unavoidable.
+The majority of the trade-offs we've had to make have been for meaningful enhancements and features. While this update may require some users to rethink, or reconfigure, certain aspects of their setup or workflows; these changes were, unfortunately, unavoidable.
 
-The enhancements we've added and changes we've made are outlined in this migration guide.
-
-:::caution Be advised
-**Please read this guide thoroughly and keep in mind that it will be updated throughout the pre-release process, and after, as we fine-tune the details for clarity.**
-
-The latest pre-release versions can be installed by using the Docker tag `:master` or NPM tag of `@next` after `cross-seed`.
-:::
+The changes we've made are outlined in this migration guide.
 
 :::danger DANGER
-It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+It may be tempting upon updating to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
 
 We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
 :::
 
 :::tip QBittorrent
-While we previously advised qBittorrent users to hold off on the initial pre-release (`6.0.0-0`), we feel we now have `cross-seed` in a usable state for those users. There are [some changes](#qbittorrent) that should be noted before updating to help test. We recommend backing up your configuration directory before testing any pre-release versions.
+There are [some changes](#qbittorrent) that should be noted before updating. We always recommend backing up your configuration directory before updating major versions of any application, including `cross-seed`.
 :::
 
 ## Overview
@@ -41,7 +35,7 @@ There are several changes in `cross-seed` version 6.x. Most of them do not requi
 This document outlines the changes made and the actions required to take advantage of all the new features and capabilities.
 
 :::danger Please Note
-**This is currently a pre-release of v6.** Your mileage _may vary_ on behavior and performance. We **always** recommend that before updating you make a backup of your **entire** configuration directory.
+We **always** recommend that before updating you make a backup of your **entire** configuration directory.
 
 Please let us know if you run into any issues [**via Discord**](https://discord.gg/jpbUFzS5Wb)
 :::
@@ -223,7 +217,7 @@ While we provide this option, we strongly urge you to use a generated key. If yo
 ### Searching Improvements
 
 :::danger DANGER
-It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+It may be tempting after updating to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
 
 We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
 :::
@@ -283,7 +277,7 @@ This requires no additional action to be taken on your part.
 #### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
 
 :::danger DANGER
-It may be tempting as we go through pre-release and release 6.0.0 stable to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
+It may be tempting after updating to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
 
 We recommend if you are going to conduct searches to find what you've "missed" previously, set a higher than normal [`delay`](./basics/options.md#delay) and a [`searchLimit`](./basics/options.md#searchlimit) to smooth out the load on indexers.
 :::
