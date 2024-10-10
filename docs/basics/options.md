@@ -442,7 +442,7 @@ It is necessary to insert double-slashes for your paths, as seen in the examples
 | `linkCategory`   | `--link-category <category>` | N/A           | `string` |         |
 
 :::warning NOTICE
-[`linkCategory`](../v6-migration.md#linking-updates) was previously called [`dataCategory`](#datacategory).
+[`linkCategory`](../v6-migration.md#linking-updates) was previously called [`dataCategory`](../legacy/options.md#datacategory).
 :::
 
 `cross-seed` will, when performing **data-based** searches with [injection](../tutorials/injection),
