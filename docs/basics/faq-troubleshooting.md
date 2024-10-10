@@ -5,7 +5,7 @@
 If you are updating from version 5.x to version 6.x, you can visit the [v6 migration guide](../v6-migration) for the changes and updates.
 
 :::tip IMPORTANT
-We recommend reading [**this page**](../v6-migration) before seeking any support, as it should cover most of the immediate questions you may encounter as well as [**current changes to the state of v6 while it is in pre-release**](../v6-migration.md#updates-since-initial-release).
+We recommend reading [**this page**](../v6-migration) before seeking any support, as it should cover most of the immediate questions you may encounter as well as [**changes made in version 6.0.0**](../v6-migration.md#updates-since-initial-release).
 :::
 
 ### General Suggestions
