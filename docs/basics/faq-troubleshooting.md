@@ -235,7 +235,7 @@ You can use [`includeSingleEpisodes`](./options.md#includesingleepisodes), which
 Specific configurations for episode and season inclusion can be found in the [config file's option descriptions.](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L240-L276)
 :::
 
-### Why do I see `filetree is different` in my logs?
+### Why do I see `it has a different file tree` in my logs?
 
 This is a result of the matching algorithm used by `cross-seed`, and is most commonly associated with only a few scenarios. These include the presence of additional .nfo/.srt files in a torrent, differences in the organization of files (one torrent having a folder while the potential match does not, or vice versa), and discrepancies in the filenames within the torrent. Switching to matchMode [`partial`](./options.md#matchmode) will eliminate nearly all mismatches due to filetree.
 
