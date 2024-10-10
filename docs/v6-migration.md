@@ -4,13 +4,13 @@ title: v6 Migration Guide
 position: 0
 ---
 
-:::danger Please Note
+:::caution Please Note
 With all these changes and improvements in v6, it might be tempting to delete your database and perform a "fresh search". **THIS IS UNCESSARY** and only serves to create more load for indexers. With v6 and onwards, performing a "fresh search" is **_NEVER_** needed or required to take advantage of your config changes or features we add. Please be kind to your indexers.
 
 [**Read More**](#expanded-caching-system)
 :::
 
-### Updates Since Initial Pre-Release
+## Overview
 
 Since the initial pre-release (`6.0.0-0`) we've worked with our users and friends to iron out implementations in the most reasonable and usable way possible. As we've made our way through the extensive pre-release/testing phase for v6, many changes were made to best suit the needs of both our users and trackers.
 
@@ -28,7 +28,7 @@ We recommend if you are going to conduct searches to find what you've "missed" p
 There are [some changes](#qbittorrent) that should be noted before updating. We always recommend backing up your configuration directory before updating major versions of any application, including `cross-seed`.
 :::
 
-## Overview
+---
 
 There are several changes in `cross-seed` version 6.x. Most of them do not require any action on your part while some need to be addressed in both the configuration file ([`config.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs)) and potentially permissions or volumes/mounts.
 
@@ -214,7 +214,7 @@ The `apiAuth` option in previous versions of `cross-seed` has been removed.
 While we provide this option, we strongly urge you to use a generated key. If you are specifying a key, please make sure this is a secure and safe key. You are responsible for your security.
 :::
 
-### Searching Improvements
+## Searching Improvements
 
 :::danger DANGER
 It may be tempting after updating to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
@@ -226,7 +226,7 @@ We recommend if you are going to conduct searches to find what you've "missed" p
 Currently, only Movies, Episodes, Seasons, and Anime are officially supported. If [`includeNonVideos`](./basics/options.md#includenonvideos) is enabled, `cross-seed` can and will find matches for **_ANY_** torrent, not just the ones explicitly supported. However these will likely need to be a perfect `MATCH` as it does not optimize for these.
 :::
 
-#### Usage of [`torrentDir`](./basics/options.md#torrentdir) and [`dataDirs`](./basics/options.md#datadirs)
+### Usage of [`torrentDir`](./basics/options.md#torrentdir) and [`dataDirs`](./basics/options.md#datadirs)
 
 Previously in v5, there were many scenarios where using `dataDirs` would offer benefits over `torrentDir`. As such, it would be typical to have both enabled to get all possible matches. This is still allowed but no longer necessary. Aside from two execptions, we recommend all users of v6 to **exclusively** use `torrentDir`. These contain far more information to aide `cross-seed` in better and safer matching.
 
@@ -234,7 +234,7 @@ The first scenario where you should also use `dataDirs` is if you are downloadin
 
 The second scenario is if you have content in your media directories not inside your torrent client. Here you only need to perform a search with `dataDirs` **ONCE**. You should never keep `dataDirs` enabled if the first scenario doesn't apply to you. At the most, you can add your media `dataDirs` and perform a search every few months but this is unlikely to yield any results and only puts undue stress on indexers.
 
-#### Anime Support
+### Anime Support
 
 Anime is now supported in a **_somewhat limited_** capacity. Please note that this is our first attempt at accommodating this content, so your experience may vary depending on your indexers and content.
 
@@ -244,7 +244,7 @@ We've aimed to cover the inconsistent and unconventional naming conventions that
 If you come across any anime naming schemes (**not _ONE_ "edge-case" release**) that we've missed, please let us know [**via Discord**](https://discord.gg/jpbUFzS5Wb).
 :::
 
-#### Partial Matching
+### Partial Matching
 
 We've introduced a new mode for [`matchMode`](./basics/options#matchmode) named `partial`.
 
@@ -264,7 +264,7 @@ It's advised not to set [`fuzzySizeThreshold`](./basics/options#fuzzysizethresho
 [Also, please read the update FAQ entry on linking.](./basics/faq-troubleshooting.md#what-linktype-should-i-use)
 :::
 
-#### Torznab Categories
+### Torznab Categories
 
 `cross-seed` will now check with Prowlarr or Jackett for the categories that that indexer supports. As a result, we no longer send searches for content that is not listed by Prowlarr/Jackett as available on the indexer.
 
@@ -274,7 +274,7 @@ This should reduce the number of searches made for content that does not have a 
 This requires no additional action to be taken on your part.
 :::
 
-#### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
+### [`Sonarr`](./basics/options.md#sonarr) and [`Radarr`](./basics/options.md#radarr) ID Lookup (searching)
 
 :::danger DANGER
 It may be tempting after updating to take advantage of these searching improvements with "full" searches. While this idea is understandable, we must caution you to not disrespect your indexers by slamming them with API queries.
@@ -299,7 +299,7 @@ _"Missing"_ status is valid.
 **We do not query any external metadata servers.**
 :::
 
-#### Expanded Caching System
+### Expanded Caching System
 
 `cross-seed` will now cache more aggressively and in more situations, not only speeding up the process but reducing uncessary load on indexers. When searching, torrents with identical torznab queries will have their results cached and shared. This most commonly applies to torrents of the same media but from different release groups, resolution, source, formats, etc. This will drastically reduce the number of unique queries that `cross-seed` makes to indexers.
 
@@ -309,7 +309,7 @@ Torrent snatches are now also cached in more scenarios and are used more aggresi
 `cross-seed` tries to use its cache as much as possible to reduce the burden it places on indexers. With all of the changes in v6, it will **NEVER** be necessary to delete your database or `torrent_cache` folder to perform a "fresh search". Doing so offers no benefits, is slower, and only puts undue stress on indexers. If you make changes to your config, [please follow the steps listed here to take advantage](./basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config-file).
 :::
 
-#### Failed injection (saved) retry
+### Failed injection (saved) retry
 
 :::warning
 With all the improvements in v6, some `cross-seed` matches can be highly sophisticated. As such, you should **NEVER** use any external programs or scripts to inject torrents from [`outputDir`](./basics/options.md#outputdir). This is likely to cause errors or bad injections into your client. `cross-seed` will handle all failed injections automatically with _ZERO_ manual input. There is never a need to interact with `outputDir` unless you are removing a stalled injection from your client and want to prevent further re-injections. [Read More...](./tutorials/injection.md#manual-or-scheduled-injection)
@@ -329,7 +329,7 @@ This feature is also available for use on .torrent files never seen by `cross-se
 It is important to note that this function performs minimal filtering on injection attempts, and could result in slightly increased chance of false-positives for **torrent files YOU add for injection**.
 :::
 
-#### [`RSS`](./basics/options.md#rsscadence) and [`Announce`](./reference/api.md#post-apiannounce) Improvements
+### [`RSS`](./basics/options.md#rsscadence) and [`Announce`](./reference/api.md#post-apiannounce) Improvements
 
 The algorithms used for reverse lookup to match with your existing content has been significantly improved. It now parses titles more accurately and completely regardless of naming formats. Additionally, candidates are compared against all matches with your existing content instead of the best for a more comprehensive lookup. If you notice any inaccuracies, please let use know [**via Discord**](https://discord.gg/jpbUFzS5Wb).
 
@@ -337,7 +337,7 @@ The algorithms used for reverse lookup to match with your existing content has b
 
 With the new retrying capabilities in v6, the scenarios for a succesful [`announce`](./reference/api.md#post-apiannounce) response have expanded. A status code of `200` will now be returned even on injection failure since it will be later retried. `200` will also be returned if the torrent has already been injected, likely between [`autobrr`](./basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed) retries. A code of `200` should now be interpreted that a complete match was found, instead of a succesful injection. A code of `202` is still reported for incomplete torrents which allows for quicker retires over the [`inject job`](#failed-injection-saved-retry) cadence.
 
-#### Ensemble or "Torrent Aggregation"
+### Ensemble or "Torrent Aggregation"
 
 :::danger
 This is an upcoming feature for v6.
@@ -351,7 +351,7 @@ This functionality for season packs is linked to the new option [seasonFromEpiso
 This feature works best with [partial matching](#partial-matching) and [Sonarr](./basics/options.md#sonarr). You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 :::
 
-#### Sonarr TV Library Searching
+### Sonarr TV Library Searching
 
 We always recommend, whenever possible, to feed original un-renamed data files or (preferably) .torrent files (using `torrentDir`) into cross-seed for searching. However, certain cases, primarily Usenet season pack downloads, could be searched using [data-matching](./tutorials/data-based-matching.md) from a Sonarr TV Library but would not always perform searches "properly" due to the nested folder structures and lack of risky matching supporting multi-file searches.
 
