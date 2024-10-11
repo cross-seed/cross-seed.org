@@ -1518,8 +1518,16 @@ This feature is partially implemented for v6.
 for each search/inject/rss/announce/webhook use. Currently, this only takes strings that are
 directly applied to only the torrent names, folders, and hash. e.g
 
+#### `blockList` Examples (Config file)
+
 ```js
 blockList: ["badRelease", "-blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
+```
+
+#### `blockList` Examples (CLI)
+
+```shell
+cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d075435435313c319c3a5f3bec3965a"
 ```
 
 The full list of upcoming supported prefixes are:
@@ -1540,16 +1548,8 @@ The regex (ECMAScript flavor) options are for advanced users only. Do not use wi
 is unable to perform any checks. Use at your own risk.
 :::
 
-All options, including the regex, are case-sensitive. `name:` can be a substring of the name of inside the .torrent file
-while all others must match exactly. `category:` `tag:` `tracker:` are read from source torrents (labels are considered `tag:`).
-When blocklisting by `tracker:`, if the announce url is https://user:pass@tracker.example.com:8080/announce/key,
-you must use host "tracker:tracker.example.com:8080". The blockList sizes are an integer of the number of bytes.
-
-#### `blockList` Examples (CLI)
-
-```shell
-cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d075435435313c319c3a5f3bec3965a"
-```
+All options, including the regex, are case-sensitive. `name:` can be a substring of the name of inside the .torrent file. `folder:` can be a substring of any folder in the path for data based searches. All other prefixes must match exactly. `category:` `tag:` `tracker:` are read from source torrents (labels are considered `tag:`). When blocklisting by `tracker:`, if the announce url is `https://user:pass@tracker.example.com:8080/announce/key`,
+you must use host `"tracker:tracker.example.com:8080"`. The blockList sizes are an integer of the number of bytes.
 
 #### `blockList` Examples (Config file)
 
