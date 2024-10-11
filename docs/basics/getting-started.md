@@ -6,22 +6,29 @@ sidebar_position: 0
 
 ## Introduction
 
-Cross-seeding is the term used for downloading a torrent from one tracker and then using that data to seed across different trackers. Generally, this is not against the rules, but you should always check and abide by your trackers' rules.
+Cross-seeding is the term used for downloading a torrent from one tracker and then using that data to seed across different trackers.
+Generally, this is not against the rules, but you should always check and abide by your trackers' rules.
 
-Since you already have the torrent's files, this results in zero download and instant seeding. This is a great way to build ratio (especially on your new trackers) and contribute to the torrenting community.
+Since you already have the torrent's files, this results in zero download and instant seeding. This is a great way to build ratio
+(especially on your new trackers) and contribute to the torrenting community.
 
 :::info
-This software is designed to work mainly with private trackers. If you are attempting to `cross-seed` on public trackers, please see our [FAQ entry](./faq-troubleshooting.md#does-cross-seed-work-on-public-trackers) for details before proceeding.
+This software is designed to work mainly with private trackers. If you are attempting to `cross-seed` on public trackers, please
+see our [FAQ entry](./faq-troubleshooting.md#does-cross-seed-work-on-public-trackers) for details before proceeding.
 :::
 
 :::note
-The primary documentation for v6 of `cross-seed` during pre-release is located [here](../v6-migration.md) in the v6 migration guide. Please refer to this guide if you are using v6 and have questions about the changes. Set up and basic configurations described elsewhere in this documentation that are not present in the migration guide are still valid.
+The primary documentation for v6 of `cross-seed` during pre-release is located [here](../v6-migration.md) in the v6 migration guide.
+Please refer to this guide if you are using v6 and have questions about the changes. Set up and basic configurations described elsewhere
+in this documentation that are not present in the migration guide are still valid.
 
-If you have any questions please feel free to contact us on Discord or the Discussions section of GitHub. There are links located as icons in the top right of every page.
+If you have any questions please feel free to contact us on Discord or the Discussions section of GitHub. There are links located as
+icons in the top right of every page.
 :::
 
 :::danger
-Certain `cross-seed` configurations can result in downloading an excessive number of torrent files in a short amount of time. Trackers may, as a result, forbid this or require specific settings to minimize this behavior as much as possible.
+Certain `cross-seed` configurations can result in downloading an excessive number of torrent files in a short amount of time.
+Trackers may, as a result, forbid this or require specific settings to minimize this behavior as much as possible.
 
 [See this FAQ post for details](./faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files)
 :::
@@ -32,7 +39,8 @@ Now we will install `cross-seed` and run our first search.
 ## Installation
 
 :::tip
-If you are not already using Docker, and/or especially if you are on Windows, it is not recommended to install Docker specifically for `cross-seed`. Use one of the other methods ([npm](#with-npm) or [yarn](#with-yarn)) which we refer to as running "natively".
+If you are not already using Docker, and/or especially if you are on Windows, it is not recommended to install Docker specifically
+for `cross-seed`. Use one of the other methods ([npm](#with-npm) or [yarn](#with-yarn)) which we refer to as running "natively".
 :::
 
 ### with Docker

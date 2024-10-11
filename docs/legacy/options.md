@@ -251,7 +251,8 @@ now set this to `null` if you wish to search only your `dataDirs`.
 
 :::caution qBittorrent
 If you are using qBittorrent 4.6.x, 5.x (or later) and `SQLite database` in `Preferences -> Advanced` you will
-need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite integration currently.
+need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no ETA on
+SQLite integration currently.
 :::
 
 :::danger Docker
@@ -281,7 +282,8 @@ torrentDir: "C:\\torrents",
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\" equates to "\"
 :::
 
 ### `outputDir`\*
@@ -319,7 +321,8 @@ outputDir: ".",
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\" equates to "\"
 :::
 
 ### `dataDirs`
@@ -360,7 +363,8 @@ dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\\\" equates to "\"
 :::
 
 ### `dataCategory`
@@ -459,7 +463,8 @@ linkDir: "C:\\links",
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\\\" equates to "\"
 :::
 
 ### `linkType`
@@ -538,7 +543,8 @@ matchMode: "safe",
 Set this to `true` to skip rechecking torrents upon injection.
 
 :::danger Note
-Using skipRecheck in conjunction with `risky` could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
+Using skipRecheck in conjunction with `risky` could result in you downloading incorrect/missing pieces rather than
+cross-seeding properly.
 
 **Proceed with caution!**
 :::
@@ -571,7 +577,8 @@ This **WILL** include episodes present inside season packs (for data-based searc
 :::
 
 :::tip
-This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+This option has explicit usage examples given in the
+[config templates](https://github.com/cross-seed/cross-seed/blob/34ec9c22b12eba0afd7e1c0977632c69149e356c/src/config.template.cjs#L98-L106)
 which outlines the most common scenarios.
 :::
 
@@ -605,7 +612,8 @@ This will **NOT** include episodes present inside season packs (data-based searc
 :::
 
 :::tip
-This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+This option has explicit usage examples given in the
+[config templates](https://github.com/cross-seed/cross-seed/blob/34ec9c22b12eba0afd7e1c0977632c69149e356c/src/config.template.cjs#L98-L106)
 which outlines the most common scenarios.
 :::
 
@@ -637,7 +645,8 @@ If your torrents contain `.nfo`,`.srt`, or `.txt`, for example, they will otherw
 :::
 
 :::tip
-This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+This option has explicit usage examples given in the
+[config templates](https://github.com/cross-seed/cross-seed/blob/34ec9c22b12eba0afd7e1c0977632c69149e356c/src/config.template.cjs#L98-L106)
 which outlines the most common scenarios.
 :::
 
@@ -736,7 +745,8 @@ on.
 
 **Search history is stored on a per-indexer basis.**
 
-Searches that failed on specific indexers (for example - due to timeout or rate-limiting) will not be marked as having been searched, and thus will not be excluded by this setting for those specific indexers on the next run.
+Searches that failed on specific indexers (for example - due to timeout or rate-limiting) will not be marked as having
+been searched, and thus will not be excluded by this setting for those specific indexers on the next run.
 :::
 
 #### `excludeRecentSearch` Examples (CLI)
