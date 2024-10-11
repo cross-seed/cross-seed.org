@@ -87,7 +87,9 @@ This is a _real-time_ alternative to scanning RSS feeds via [`rssCadence`](../ba
 scan off ([`rssCadence: null,`](../basics/options.md#rsscadence)), or significantly raising the time if you set up this feature.
 :::
 
-This endpoint returns `200` if your request was received and a completed match was found in your client, if a match was found to be incomplete (still downloading) then `cross-seed` will return the status code `202`, and if no match was found `cross-seed` will respond with a `204 No Content`.
+This endpoint returns `200` if your request was received and a completed match was found in your client, if a match was found to be
+incomplete (still downloading) then `cross-seed` will return the status code `202`, and if no match was found `cross-seed` will respond
+with a `204 No Content`.
 
 :::tip
 The most common way to implement an "announce feed" is utilizing [autobrr](../basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed).

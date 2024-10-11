@@ -9,7 +9,8 @@ can inject the torrents it finds directly into your torrent client. This feature
 robust and can be leveraged manually or through automation external to `cross-seed`.
 
 :::tip
-If you are having issues with injection errors, and it reverting to save, please [check our FAQ](../basics/faq-troubleshooting.md#failed-to-inject-saving-instead)
+If you are having issues with injection errors, and it reverting to save, please
+[check our FAQ](../basics/faq-troubleshooting.md#failed-to-inject-saving-instead)
 :::
 
 :::caution Arr Users
@@ -40,26 +41,38 @@ option, which will append your category with `.cross-seed` and **if using qBitto
 
 ### Manual or Scheduled Injection
 
-In v6, `cross-seed` has the ability to add .torrent files for injection directly. You can either opt to wait for the hourly cadence, or alternatively run the [`cross-seed inject`](../reference/utils.md#cross-seed-inject) command to attempt injection for .torrent files in your [`outputDir`](../basics/options.md#outputdir). You can alternatively use `cross-seed inject --inject-dir /path/to/folder` to specify another directory.
+In v6, `cross-seed` has the ability to add .torrent files for injection directly. You can either opt to wait for the hourly cadence, or
+alternatively run the [`cross-seed inject`](../reference/utils.md#cross-seed-inject) command to attempt injection for .torrent files in
+your [`outputDir`](../basics/options.md#outputdir). You can alternatively use `cross-seed inject --inject-dir /path/to/folder` to specify
+another directory.
 
-For torrent files being injected manually, if using [`flatLinking: false`](../basics/options.md#flatlinking) will require a `[mediatype][tracker]` prefix (where tracker is the name corresponding to that tracker's `linkDir` folder) in order to inject within your existing folder structure.
+For torrent files being injected manually, if using [`flatLinking: false`](../basics/options.md#flatlinking) will require a
+`[mediatype][tracker]` prefix (where tracker is the name corresponding to that tracker's `linkDir` folder) in order to inject within your
+existing folder structure.
 
 :::tip
-To achieve optimal injection behavior, adding the prefix `[mediatype][tracker-name]` as you would normally see it in [`outputDir`](../basics/options.md#outputdir) when saving the torrent file is recommended.
+To achieve optimal injection behavior, adding the prefix `[mediatype][tracker-name]` as you would normally see it in
+[`outputDir`](../basics/options.md#outputdir) when saving the torrent file is recommended.
 
 Current "mediatypes" support are `episode`, `pack`, `movie`, `anime`, `video`, `audio`, `book`, and `unknown`.
 :::
 
-This is the same format in which `cross-seed` normally saves .torrent files. If you do not specify both of these parameters, `cross-seed` will link the torrents into the `UnknownTracker` directory for you, and will require your intervention to sort them if you wish to do so.
+This is the same format in which `cross-seed` normally saves .torrent files. If you do not specify both of these parameters,
+`cross-seed` will link the torrents into the `UnknownTracker` directory for you, and will require your intervention to sort them
+if you wish to do so.
 
-Using this command or utilizing the injection hourly cadence will perform minimal filtering on injection attempts. This means there is the possibility of slightly increased chance of false-positives with .torrent files you add for injection. All torrent files saved by `cross-seed` for retrying have already been filtered for matching.
+Using this command or utilizing the injection hourly cadence will perform minimal filtering on injection attempts. This means there is the
+possibility of slightly increased chance of false-positives with .torrent files you add for injection. All torrent files saved by `cross-seed`
+for retrying have already been filtered for matching.
 
 If the .torrent files follow the naming format above, they will be elligible for cleanup if they fall into one of these categories:
-- The torrent is in client and complete (successful injection or already exists)
-- The torrent has no matches (source torrent/data was likely removed)
-- The torrent matches your blocklist
 
-Stalled torrents (either the cross seeded torrent or it's source) will require your intervention before `cross-seed` will remove the .torrent file. You will need to remove these torrents from your client or remove the .torrent file from outputDir manually if you wish to keep them.
+-   The torrent is in client and complete (successful injection or already exists)
+-   The torrent has no matches (source torrent/data was likely removed)
+-   The torrent matches your blocklist
+
+Stalled torrents (either the cross seeded torrent or it's source) will require your intervention before `cross-seed` will remove the .torrent file.
+You will need to remove these torrents from your client or remove the .torrent file from outputDir manually if you wish to keep them.
 
 :::tip
 You can find more information about this feature in the [`v6 migration guide`](../v6-migration.md#failed-injection-saved-retry).

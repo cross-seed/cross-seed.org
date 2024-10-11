@@ -24,7 +24,8 @@ cross-seed gen-config -d
 Do not use unless instructed to, this rarely necessary. Seek support if you believe it's necessary.
 :::
 
-Clear the cache without causing torrents to be re-snatched and reset the timestamps for [`excludeOlder`](../basics/options.md#excludeolder) and [`excludeRecentSearch`](../basics/options.md#excluderecentsearch).
+Clear the cache without causing torrents to be re-snatched and reset the timestamps for [`excludeOlder`](../basics/options.md#excludeolder)
+and [`excludeRecentSearch`](../basics/options.md#excluderecentsearch).
 
 ### `cross-seed test-notification`
 
@@ -81,7 +82,8 @@ cross-seed reset-api-key
 Clears all indexer failures from the database
 
 :::caution
-This should be used sparingly, and never repeatedly (back-to-back) in a short period, to clear failures that are otherwise latent/expired or erroneous in Prowlarr/Jackett due to indexers being down.
+This should be used sparingly, and never repeatedly (back-to-back) in a short period, to clear failures that are otherwise
+latent/expired or erroneous in Prowlarr/Jackett due to indexers being down.
 :::
 
 #### Usage
@@ -108,7 +110,8 @@ cross-seed inject --inject-dir /path/to/dir
 
 ### `cross-seed rss`
 
-Runs a manual RSS scan (like [`rssCadence`](../basics/options.md#rsscadence)) and performs your specified [`action`](../basics/options.md#action) on the trackers in your [`torznab`](../basics/options.md#torznab) option.
+Runs a manual RSS scan (like [`rssCadence`](../basics/options.md#rsscadence)) and performs your specified
+[`action`](../basics/options.md#action) on the trackers in your [`torznab`](../basics/options.md#torznab) option.
 
 [Read about automating this with "daemon" mode...](../basics/daemon.md#set-up-rss)
 

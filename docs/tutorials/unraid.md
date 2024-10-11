@@ -38,7 +38,8 @@ directory.
 | Path (Optional) | dataDir    | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 
 :::tip
-The "dataDir" path is used only for [**data-based searching**](./data-based-matching.md). If you wish to add this, you will need to edit the path for `dataDir`.
+The "dataDir" path is used only for [**data-based searching**](./data-based-matching.md). If you wish to add this, you will need to edit
+the path for `dataDir`.
 
 The container path for `cross-seed` will need to be the same as how your torrent client's container path is configured.
 :::
@@ -66,7 +67,8 @@ configuration file in the next step.
 ![screenshot-cross-seed](https://github.com/cross-seed/cross-seed/assets/123845855/93a4749e-1506-40de-91f5-ac7d8ec93334)
 
 :::tip
-In the top right if you enable "Advanced View" it will reveal the `Post Argument` field, this can be changed from `daemon` to `search` (for example) to run the search command.
+In the top right if you enable "Advanced View" it will reveal the `Post Argument` field, this can be changed from `daemon` to `search`
+(for example) to run the search command.
 :::
 
 You can start the container to create the config file path.
@@ -78,10 +80,12 @@ After the container has been created, we need to generate and set up your config
 This file will be automatically generated when the container is ran for the first time.
 
 :::tip
-If for whatever reason this file is not generated, it may be due to permissions. Double-check that your appdata/config folder has the proper permissions for user:group `99:100`
+If for whatever reason this file is not generated, it may be due to permissions. Double-check that your appdata/config folder has the proper
+permissions for user:group `99:100`
 :::
 
-From here, you can [edit the configuration options](../basics/options.md#options-used-in-cross-seed-daemon) to your liking through your preferred text editor (`nano`, `vim`, etc).
+From here, you can [edit the configuration options](../basics/options.md#options-used-in-cross-seed-daemon) to your liking through your
+preferred text editor (`nano`, `vim`, etc).
 
 Start your container and check the logs. You should see something along the lines of:
 
@@ -100,4 +104,5 @@ If you would like to schedule a periodic scan of your library, use the [`searchC
 
 If you would like to set up RSS scans, use the [`rssCadence`](../basics/options.md#rsscadence) option.
 
-If you would like to automatically check for cross-seeds when a download finishes, learn how to [set up with automatic searches](../basics/daemon#set-up-automatic-searches-for-finished-downloads).
+If you would like to automatically check for cross-seeds when a download finishes, learn how to
+[set up with automatic searches](../basics/daemon#set-up-automatic-searches-for-finished-downloads).

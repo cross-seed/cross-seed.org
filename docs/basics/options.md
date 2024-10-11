@@ -323,7 +323,8 @@ now set this to `null` if you wish to search only your `dataDirs`.
 
 :::caution qBittorrent
 If you are using qBittorrent 4.6.x, 5.x (or later) and `SQLite database` in `Preferences -> Advanced` you will
-need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite integration currently.
+need to switch to `fastresume` and restart qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite
+integration currently.
 :::
 
 :::danger Docker
@@ -353,7 +354,8 @@ torrentDir: "C:\\torrents",
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\" equates to "\"
 :::
 
 ### `outputDir`\*
@@ -391,7 +393,8 @@ outputDir: ".",
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\" equates to "\"
 :::
 
 ### `dataDirs`
@@ -432,7 +435,8 @@ dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\\\" equates to "\"
 :::
 
 ### `linkCategory`
@@ -535,7 +539,8 @@ linkDir: "C:\\links",
 ```
 
 :::info WINDOWS USERS
-It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+It is necessary to insert double-slashes for your paths, as seen in the examples above. Back-slashes are "escape characters"
+and "\\\\" equates to "\"
 :::
 
 ### `linkType`
@@ -613,16 +618,18 @@ matchMode: "safe",
 | ---------------- | -------------- | ---------------- | --------- | ------- |
 | `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
 
-:::tip
-In an upcoming version of v6, torrents will be resumed even with `skipRecheck: false`, if applicable. [`Read more`](../v6-migration.md#updated-skiprecheck-option)
-:::
-
-Set this to `true` to skip rechecking torrents upon injection.
-
 :::danger Note
 Using skipRecheck in conjunction with `risky` could result in you downloading incorrect/missing pieces rather than cross-seeding properly.
 
 **Proceed with caution!**
+:::
+
+Set this to `true` to skip rechecking torrents upon injection.
+
+:::tip
+In an upcoming version of v6, torrents will be resumed even with `skipRecheck: false`, if applicable.
+
+[`Read more`](../v6-migration.md#updated-skiprecheck-option)
 :::
 
 #### `skipRecheck` Examples (CLI)
@@ -647,7 +654,8 @@ skipRecheck: false,
 | `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
 
 :::warning NOTICE
-Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includesingleepisodes-behavior) for details on the implementation's changes'.
+Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includesingleepisodes-behavior)
+for details on the implementation's changes'.
 :::
 
 Set this to `true` to include **ALL SINGLE** episodes when searching (which are ignored by default).
@@ -657,7 +665,7 @@ This will **NOT** include episodes present inside season packs (data-based searc
 :::
 
 :::tip
-This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L93-L96)
+This option has explicit usage examples given in the [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L261-L275)
 which outlines the most common scenarios.
 :::
 
@@ -740,7 +748,8 @@ maxRemainingForResume: 0,
 | `includeNonVideos` |                | `--include-non-videos` | `boolean` | `false` |
 
 :::warning NOTICE
-Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includenonvideos-behavior) for details on the implementation's changes.
+Behavior of this option has changed in v6, please see the [migration guide](../v6-migration.md#updated-includenonvideos-behavior)
+for details on the implementation's changes.
 :::
 
 Set this to `true` to include torrents that contain a majority of files other than video files (`.mp4`, `.avi`, `.mkv`) in the search.
@@ -840,7 +849,8 @@ on.
 
 **Search history is stored on a per-indexer basis.**
 
-Searches that failed on specific indexers (for example - due to timeout or rate-limiting) will not be marked as having been searched, and thus will not be excluded by this setting for those specific indexers on the next run.
+Searches that failed on specific indexers (for example - due to timeout or rate-limiting) will not be marked as having been searched,
+and thus will not be excluded by this setting for those specific indexers on the next run.
 :::
 
 #### `excludeRecentSearch` Examples (CLI)
@@ -1407,8 +1417,11 @@ The regex (ECMAScript flavor) options are for advanced users only. Do not use wi
 is unable to perform any checks. Use at your own risk.
 :::
 
-All options, including the regex, are case-sensitive. `name:` can be a substring of the name of inside the .torrent file. `folder:` can be a substring of any folder in the path for data based searches. All other prefixes must match exactly. `category:` `tag:` `tracker:` are read from source torrents (labels are considered `tag:`). When blocklisting by `tracker:`, if the announce url is `https://user:pass@tracker.example.com:8080/announce/key`,
-you must use host `"tracker:tracker.example.com:8080"`. The blockList sizes are an integer of the number of bytes.
+All options, including the regex, are case-sensitive. `name:` can be a substring of the name of inside the .torrent file.
+`folder:` can be a substring of any folder in the path for data based searches. All other prefixes must match exactly.
+`category:` `tag:` `tracker:` are read from source torrents (labels are considered `tag:`). When blocklisting by `tracker:`,
+if the announce url is `https://user:pass@tracker.example.com:8080/announce/key`, you must use host `"tracker:tracker.example.com:8080"`.
+The blockList sizes are an integer of the number of bytes.
 
 #### `blockList` Examples (Config file)
 

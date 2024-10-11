@@ -427,7 +427,9 @@ searchCadence: "1 week",
 ```
 
 :::caution
-New (fresh) instances of cross-seed will often take time to even out the searching performed during a `searchCadence`. This is unavoidable, and the best way to mitigate any negative effects is to utilize [`searchLimit`](./options.md#searchlimit) somewhat aggressively after the initial "full-search" is performed.
+New (fresh) instances of cross-seed will often take time to even out the searching performed during a `searchCadence`.
+This is unavoidable, and the best way to mitigate any negative effects is to utilize [`searchLimit`](./options.md#searchlimit) somewhat
+aggressively after the initial "full-search" is performed.
 :::
 
 Combining [`searchCadence`](../basics/options#searchcadence) with [`excludeRecentSearch`](../basics/options.md#excluderecentsearch)
@@ -455,5 +457,7 @@ excludeOlder: "1 year",
 ```
 
 :::tip
-If your `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence) or [autobrr](./faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed) integration, consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS/announce is capable of catching all releases if ran 24/7.
+If your `cross-seed` runs continuously with an [`rssCadence`](./options.md#rsscadence) or [autobrr](./faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed)
+integration, consider reducing the frequency of, or eliminating, searching via [`searchCadence`](./options.md#searchcadence). RSS/announce is capable of
+catching all releases if ran 24/7.
 :::
