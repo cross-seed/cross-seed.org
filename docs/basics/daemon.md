@@ -257,10 +257,13 @@ For rTorrent, you'll have to edit your `.rtorrent.rc` file.
     ```
 
 5.  Run the following commands (this will add variables and tell rTorrent to execute your script):
+
     ```shell
     echo 'method.insert=d.data_path,simple,"if=(d.is_multi_file),(cat,(d.directory),/),(cat,(d.directory),/,(d.name))"' >> .rtorrent.rc
     echo 'method.set_key=event.download.finished,cross_seed,"execute={'`pwd`/rtorrent-cross-seed.sh',$d.name=,$d.hash=,$d.data_path=}"' >> .rtorrent.rc
     ```
+
+6.  Restart rTorrent
 
 ### qBittorrent
 
