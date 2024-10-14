@@ -81,6 +81,7 @@ You can grab the new [`config.template.js`](https://raw.githubusercontent.com/cr
 -   [`maxRemainingForResume`](./basics/options.md#maxremainingforresume)
 
 -   [`includeEpisodes`](#removed-includeepisodes) (_removed_)
+
 :::
 
 ### Stricter `config.js` Validation
@@ -146,7 +147,7 @@ Even with `flatLinking: true`, you can still take advantage of the [matching enh
 
 If you're using [`flatLinking: false`](./basics/options.md#flatlinking), when receiving announces with the old data payload in your cross-seed autobrr filter, you might notice inconsistencies in the folders created from ones created with a search.
 
-To address this, [autobrr's macros and documentation have been updated](https://autobrr.com/3rd-party-tools/cross-seed#cross-seed-filter). There is now a new macro to accommodate the new linking structure. By updating your data payload with the provided code, autobrr will now send the indexer's name from `Settings -> Indexers` instead of the "indexer identifier".
+To address this, [autobrr's macros and documentation have been updated](https://autobrr.com/3rd-party-tools/cross-seed#cross-seed-filter). There is now a new macro to accommodate the new linking structure. By updating your data payload with the provided code, autobrr will now send "Name" from `Settings -> Indexers` instead.
 
 ```json
 {
