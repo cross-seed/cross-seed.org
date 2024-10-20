@@ -38,18 +38,7 @@ Now we will install `cross-seed` and run our first search.
 
 ## Installation
 
-:::tip
-If you are not already using Docker, and/or especially if you are on Windows, it is not recommended to install Docker specifically
-for `cross-seed`. Use one of the other methods ([npm](#with-npm) or [yarn](#with-yarn)) which we refer to as running "natively".
-:::
-
-### with Docker
-
-```shell
-docker run ghcr.io/cross-seed/cross-seed --version
-```
-
-### with `npm`
+### with `npm` (recommended if you're not already using Docker)
 
 Requires [node](https://nodejs.org/en/download/) 16 or greater.
 
@@ -58,13 +47,10 @@ npm install -g cross-seed
 cross-seed --version
 ```
 
-### with `yarn`
-
-Requires [node](https://nodejs.org/en/download/) 16 or greater.
+### with Docker
 
 ```shell
-yarn global add cross-seed
-cross-seed --version
+docker run ghcr.io/cross-seed/cross-seed --version
 ```
 
 ### with Unraid
