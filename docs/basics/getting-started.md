@@ -1,210 +1,159 @@
----
-id: getting-started
-title: Getting Started
-sidebar_position: 0
----
+# Getting Started
 
 ## Introduction
 
-Cross-seeding is the term used for downloading a torrent from one tracker and then using that data to seed across different trackers.
-Generally, this is not against the rules, but you should always check and abide by your trackers' rules.
-
-Since you already have the torrent's files, this results in zero download and instant seeding. This is a great way to build ratio
-(especially on your new trackers) and contribute to the torrenting community.
+Cross-seeding is the practice of downloading a torrent from one tracker and
+using that data to seed across other trackers. This results in minimal downloads
+and instant seeding, making it a great way to build ratio and contribute to the
+community.
 
 :::info
-This software is designed to work mainly with private trackers. If you are attempting to `cross-seed` on public trackers, please
-see our [FAQ entry](./faq-troubleshooting.md#does-cross-seed-work-on-public-trackers) for details before proceeding.
+
+This software is designed primarily for **private trackers**. If you plan on
+cross-seeding on public trackers,
+[please see our FAQ](./faq-troubleshooting.md#does-cross-seed-work-on-public-trackers)
+for more details.
+
 :::
 
-:::note
-The primary documentation for v6 of `cross-seed` during pre-release is located [here](../v6-migration.md) in the v6 migration guide.
-Please refer to this guide if you are using v6 and have questions about the changes. Set up and basic configurations described elsewhere
-in this documentation that are not present in the migration guide are still valid.
+---
 
-If you have any questions please feel free to contact us on Discord or the Discussions section of GitHub. There are links located as
-icons in the top right of every page.
-:::
+## Setting Up the Daemon
 
-:::danger
-Certain `cross-seed` configurations can result in downloading an excessive number of torrent files in a short amount of time.
-Trackers may, as a result, forbid this or require specific settings to minimize this behavior as much as possible.
+The most efficient way to use `cross-seed` is to run it in **daemon mode**,
+which continuously monitors for new downloads and cross-seeds them
+automatically. Here’s how to get everything up and running.
 
-[See this FAQ post for details](./faq-troubleshooting.md#my-tracker-is-mad-at-me-for-snatching-too-many-torrent-files)
-:::
+### 1. Install `cross-seed`
 
-<hr/>
-Now we will install `cross-seed` and run our first search.
+You can install `cross-seed` using one of the following methods:
 
-## Installation
+#### With `npm` (recommended if you're not using Docker)
 
-### with `npm` (recommended if you're not already using Docker)
-
-Requires [node](https://nodejs.org/en/download/) 16 or greater.
+You’ll need **Node.js 20** or greater.
 
 ```shell
 npm install -g cross-seed
 cross-seed --version
 ```
 
-### with Docker
+#### With Docker
 
 ```shell
 docker run ghcr.io/cross-seed/cross-seed --version
 ```
 
-### with Unraid
+#### With Unraid
+For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
 
-In Unraid, you can install `cross-seed` from Docker Hub with the Community
-Applications app. Check out the [Unraid guide](../tutorials/unraid) for details.
+---
 
-## Running your first search
+### 2. Create a Config File
 
-:::tip
+You’ll need to generate a configuration file before running the daemon. Both
+Docker and non-Docker users will use the same method for this.
 
-Docker users can skip ahead to [Scaling Up](#with-docker-1).
+#### For non-Docker users:
 
-:::
-
-To get started, you can use CLI.
-
-If you already have a `config.js` file set up, then you can simply run the following to use those settings:
-
-```shell
-cross-seed search
-```
-
-:::tip
-Any CLI argument provided will override the settings used in your `config.js`
-:::
-
-For CLI commands, a basic example is below:
-
-```shell
-# one liner
-cross-seed search --torrent-dir /path/to/dir/with/.torrent/files --output-dir . --torznab https://localhost/prowlarr/1/api?apikey=12345
-# readable
-cross-seed search \
-  --torrent-dir /path/to/dir/with/torrent/files \ # folder containing .torrent files
-  -o . \ # any directory, cross-seed will put its output torrents here
-  --torznab https://localhost/prowlarr/1/api?apikey=12345 # any valid torznab link, separated by spaces
-```
-
-If you were lucky, you've already got your first cross-seed in your current
-directory!
-
-:::info
-`cross-seed`, by default, is particular about the contents of torrents you feed
-it. It will ignore torrents with non-video files in them, and it will ignore
-torrents that look like single episodes.
-
-Use the command line flags to override any defaults:
-`--include-episodes --include-non-videos`
-
-These command line arguments are always configurable in the config.js file (generated with gen-config).
-You won't have to specify them if they are set unless you wish to override the settings temporarily.
-
-Below we will cover the configuration process.
-:::
-
-## Scaling Up
-
-Searching like the above is nice, but it's pretty manual and not very useful in
-practice. In this section, we'll set up a configuration file. A configuration
-file is not necessary to use cross-seed, but it makes things a lot easier.
-
-### without Docker
-
-#### Create and edit your config file
-
-Start by running the following command.
+Run the following command to generate a config file:
 
 ```shell
 cross-seed gen-config
 ```
 
-After that, you will find an autogenerated config file at
-`~/.cross-seed/config.js` or `AppData\Local\cross-seed\config.js`. Open this file
-in your editor of choice, and start editing.
+This will create a basic `config.js` file at `~/.cross-seed/config.js` or
+`AppData\Local\cross-seed\config.js`. You can then edit this file to add the
+necessary configurations.
 
-:::info
-The config file uses JavaScript syntax. Each option in the config (and each
-element in a list) must be separated by a comma, and make sure to wrap your
-strings in "quotation marks" or array (multiple strings) objects in []'s
-:::
+#### For Docker users:
 
-The only **required** options are [`torznab`](../basics/options.md#torznab),
-[`torrentDir`](../basics/options.md#torrentdir), and
-[`outputDir`](../basics/options.md#outputdir).
-
-:::tip
-There are many other [config options available](./options.md#all-options) that
-you should thoroughly look through to achieve your desired results.
-:::
-
-Once you've finished with your config file, the following command can get you
-started running a full scan of your torrent directory!
+Docker users can generate the config file by running the following command:
 
 ```shell
-cross-seed search
+docker run \
+-v /path/to/config:/config \
+ghcr.io/cross-seed/cross-seed gen-config
 ```
 
-### with Docker
+This will create a `config.js` file inside the `/config` directory you
+specified. You’ll need to open this file and edit it as described below.
 
-#### Set up your container
+---
 
-With Docker, any paths that you would provide as command-line arguments or in
-the config file should stay hardcoded. Instead, you can mount volumes to the
-Docker container.
+### 3. Edit the Config File
 
--   `/config` - config dir (this follows a common Docker convention)
--   `/torrents` - your torrent input dir
-    -   usually set to your rTorrent session dir, Deluge state dir, Transmission torrents dir, or your qBittorrent BT_backup dir
--   `/cross-seeds` - the output dir. People sometimes point this at a watch folder. If you use
+Once you’ve created your config file, you’ll need to fill in the necessary
+fields to connect to your torrent client and indexer. At a minimum, you should
+configure the following:
 
-Create or open your existing `docker-compose.yml` file and add the `cross-seed`
-service:
+-   **`torznab`**: URLs of your Torznab indexers (from Prowlarr or Jackett).
+-   **`torrentDir`**: The directory where your .torrent files are located (from
+    your torrent client).
+-   **`outputDir`**: Create a new directory somewhere to house the torrent files `cross-seed` outputs.
+-   **Connection to your torrent client**: Depending on your client, you'll need
+    to specify one of the following:
+    -   `rtorrentRpcUrl`: For rTorrent users. Often looks like `http://user:pass@localhost:8080/RPC2`
+    -   `qbittorrentUrl`: For qBittorrent users. Often looks like `http://user:pass@localhost:8080`
+    -   `transmissionRpcUrl`: For Transmission users. Often looks like `http://user:pass@localhost:9091/transmission/rpc`
+    -   `delugeRpcUrl`: For Deluge users. Often looks like `http://:pass@localhost:8112/json` (the colon before pass is intentional)
 
-```yaml
-version: "2.1"
-services:
-    cross-seed:
-        image: ghcr.io/cross-seed/cross-seed
-        container_name: cross-seed
-        user: 1000:1000 # optional but recommended
-        ports:
-            - "2468:2468" # you'll need this for daemon mode only
-        volumes:
-            - /path/to/config/folder:/config
-            - /path/to/torrent_dir:/torrents:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit: `BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
-            - /path/to/output/folder:/cross-seeds
-            - /path/to/torrent/data:/data # OPTIONAL!!! this is location of your data (used for data-based searches or linking)
-              # will need to mirror your torrent client's path (like Arr's do)
-        command: daemon # this enables the daemon, change to search to specifically run a search ONLY
-        restart: "no" # make sure to not enable it in search mode, otherwise it will keep rerunning constantly
+Here’s an example of what your `config.js` might look like:
+
+```js
+module.exports = {
+	torznab: ["http://localhost:9696/1/api?apikey=123456"],
+	torrentDir: "/path/to/torrent_dir",
+    outputDir: "/path/to/output_dir",
+	qbittorrentUrl: "http://username:password@localhost:8080",
+	... several other settings you can read later ...
+};
 ```
 
-#### Create a config file
+For more details on configuring the connection to your torrent client, refer to
+the [reference guide on torrent client configuration](../tutorials/injection.md).
 
-When you run the container the first time, it will create a config file at
-`/config/config.js`. Open this file in your favorite editor. Since you've
-already configured your volume mappings, the only required config option is
-[`torznab`](../basics/options.md#torznab).
+---
 
-:::tip
-There are many other [config options available](./options.md#all-options) that
-you should thoroughly look through to achieve your desired results.
-:::
+### 4. Run the Daemon
 
-Once you set that up, you can run your Docker container and it should get
-started running through a full scan of your torrent directory!
+Once you’ve set up your configuration, you’re ready to run the daemon. Start the
+daemon with this command:
+
+```shell
+cross-seed daemon
+```
+
+Or, if you are using Docker, make sure to expose the paths cross-seed needs to
+access:
+
+```shell
+docker run \
+-v /path/to/config:/config \
+-v /path/to/torrent_dir:/path/to/torrent_dir \
+-v /path/to/output:/path/to/output \
+ghcr.io/cross-seed/cross-seed daemon
+```
+
+After a few moments, you should see `cross-seed` automatically starting to
+search for things in your catalog. It will also automatically scan your
+trackers' RSS feeds for new releases you can cross-seed.
+
+For now, you can leave the terminal open to keep the daemon running. If any
+configuration issues arise, `cross-seed` will provide feedback in the terminal,
+which helps guide you through fixing them.
+
+---
 
 ## Next Steps
 
-`cross-seed` has two subcommands: `search` and `daemon`.
+Once you have the daemon up and running, here are a few additional features you
+might want to explore:
 
--   [`search`](./getting-started.md#running-your-first-search) will scan each torrent and dataDir (optional) you provide and look for
-    cross-seeds, then exit.
+-   **Managing the daemon** with Docker or systemd for long-term use.
+-   **Notifying cross-seed of completed downloads** to search for new things
+    more quickly.
+-   **Setting up partial matches** to increase your seed size even more (at the
+    cost of downloading a few extra NFO files).
 
--   [`daemon`](./daemon.md) will run indefinitely. It can be configured to run searches periodically, watch RSS,
-    and be triggered to search for newly finished downloads.
+For more information on these topics, check out the [Daemon Mode](./daemon.md)
+guide.
