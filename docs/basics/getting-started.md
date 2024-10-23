@@ -2,7 +2,7 @@
  id: getting-started
  title: Getting Started
  sidebar_position: 0
- ---
+---
 
 ## Introduction
 
@@ -48,6 +48,7 @@ docker run ghcr.io/cross-seed/cross-seed --version
 ```
 
 #### With Unraid
+
 For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
 
 ---
@@ -93,13 +94,19 @@ configure the following:
 -   **`torznab`**: URLs of your Torznab indexers (from Prowlarr or Jackett).
 -   **`torrentDir`**: The directory where your .torrent files are located (from
     your torrent client).
--   **`outputDir`**: Create a new directory somewhere to house the torrent files `cross-seed` outputs.
+-   **`outputDir`**: Create a new directory somewhere to house the torrent files
+    `cross-seed` outputs.
 -   **Connection to your torrent client**: Depending on your client, you'll need
     to specify one of the following:
-    -   `rtorrentRpcUrl`: For rTorrent users. Often looks like `http://user:pass@localhost:8080/RPC2`
-    -   `qbittorrentUrl`: For qBittorrent users. Often looks like `http://user:pass@localhost:8080`
-    -   `transmissionRpcUrl`: For Transmission users. Often looks like `http://user:pass@localhost:9091/transmission/rpc`
-    -   `delugeRpcUrl`: For Deluge users. Often looks like `http://:pass@localhost:8112/json` (the colon before pass is intentional)
+    -   `rtorrentRpcUrl`: For rTorrent users. Often looks like
+        `http://user:pass@localhost:8080/RPC2`
+    -   `qbittorrentUrl`: For qBittorrent users. Often looks like
+        `http://user:pass@localhost:8080`
+    -   `transmissionRpcUrl`: For Transmission users. Often looks like
+        `http://user:pass@localhost:9091/transmission/rpc`
+    -   `delugeRpcUrl`: For Deluge users. Often looks like
+        `http://:pass@localhost:8112/json` (the colon before pass is
+        intentional)
 
 Here’s an example of what your `config.js` might look like:
 
@@ -114,7 +121,8 @@ module.exports = {
 ```
 
 For more details on configuring the connection to your torrent client, refer to
-the [reference guide on torrent client configuration](../tutorials/injection.md).
+the
+[reference guide on torrent client configuration](../tutorials/injection.md).
 
 ---
 
