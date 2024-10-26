@@ -1,7 +1,7 @@
 ---
- id: getting-started
- title: Getting Started
- sidebar_position: 0
+id: getting-started
+sidebar_position: 0
+title: Getting Started
 ---
 
 ## Introduction
@@ -162,10 +162,7 @@ Once you have the daemon up and running, here are a few additional features you
 might want to explore:
 
 -   **Managing the daemon** with Docker or systemd for long-term use.
--   **Notifying cross-seed of completed downloads** to search for new things
-    more quickly.
+-   **Notifying cross-seed of completed downloads and announced releases** to
+    search for new things more quickly.
 -   **Setting up partial matches** to increase your seed size even more (at the
     cost of downloading a few extra NFO files).
-
-For more information on these topics, check out the [Daemon Mode](./daemon.md)
-guide.
