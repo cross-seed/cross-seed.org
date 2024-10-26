@@ -47,6 +47,10 @@ cross-seed --version
 docker run ghcr.io/cross-seed/cross-seed --version
 ```
 
+##### TLDR—just show me the Docker Compose copypasta.
+
+Skip ahead to the [Managing the Daemon page](managing-the-daemon.md#docker).
+
 #### With Unraid
 
 For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
@@ -161,9 +165,9 @@ which helps guide you through fixing them.
 Once you have the daemon up and running, here are a few additional features you
 might want to explore:
 
--   [**Managing the daemon**](managing-the-daemon.md) with Docker or systemd
-    for long-term use.
--   [**Notifying cross-seed of completed downloads and announced releases**](../tutorials/triggering-searches.md) to
-    search for new things more quickly.
--   [**Setting up partial matches**](partial-matching.md) to increase your seed size even more (at the
-    cost of downloading a few extra NFO files).
+-   [**Managing the daemon**](managing-the-daemon.md) with Docker or systemd for
+    long-term use.
+-   [**Notifying cross-seed of completed downloads and announced releases**](../tutorials/triggering-searches.md)
+    to search for new things more quickly.
+-   [**Setting up partial matches**](partial-matching.md) to increase your seed
+    size even more (at the cost of downloading a few extra NFO files).
