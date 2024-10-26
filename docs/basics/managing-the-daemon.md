@@ -101,8 +101,12 @@ ExecStart=cross-seed daemon
 WantedBy=multi-user.target
 ```
 
-:::info Depending on how you installed cross-seed, you may need to specify
-absolute paths to `node` and/or `cross-seed`. :::
+:::info 
+
+Depending on how you installed cross-seed, you may need to specify
+absolute paths to `node` and/or `cross-seed`.
+
+:::
 
 After installing the unit file, you can use these commands to control the
 daemon:

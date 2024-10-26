@@ -161,8 +161,9 @@ which helps guide you through fixing them.
 Once you have the daemon up and running, here are a few additional features you
 might want to explore:
 
--   **Managing the daemon** with Docker or systemd for long-term use.
--   **Notifying cross-seed of completed downloads and announced releases** to
+-   [**Managing the daemon**](managing-the-daemon.md) with Docker or systemd
+    for long-term use.
+-   [**Notifying cross-seed of completed downloads and announced releases**](../tutorials/triggering-searches.md) to
     search for new things more quickly.
--   **Setting up partial matches** to increase your seed size even more (at the
+-   [**Setting up partial matches**](partial-matching.md) to increase your seed size even more (at the
     cost of downloading a few extra NFO files).
