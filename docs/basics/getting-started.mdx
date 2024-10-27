@@ -3,6 +3,7 @@ id: getting-started
 sidebar_position: 0
 title: Getting Started
 ---
+import DockerCompose from './_docker-compose.md'
 
 ## Introduction
 
@@ -41,6 +42,11 @@ npm install -g cross-seed
 cross-seed --version
 ```
 
+#### With Unraid
+
+For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
+
+
 #### With Docker
 
 ```shell
@@ -49,11 +55,11 @@ docker run ghcr.io/cross-seed/cross-seed --version
 
 ##### TLDR—just show me the Docker Compose copypasta.
 
-Skip ahead to the [Managing the Daemon page](managing-the-daemon.md#docker).
+Here you go:
+<DockerCompose/>
 
-#### With Unraid
-
-For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
+- Run the container once which will generate the config file.
+- Then skip to [editing your config file](#3-edit-the-config-file).
 
 ---
 

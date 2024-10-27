@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2e4c51ca-092a-4340-86fb-f80253cdeed1" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/docs/basics/_docker-compose.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/basics/getting-started.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basics/getting-started.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basics/getting-started.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basics/getting-started.mdx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/basics/managing-the-daemon.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/basics/managing-the-daemon.mdx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1729648394898</updated>
-      <workItem from="1729648396163" duration="21474000" />
+      <workItem from="1729648396163" duration="23971000" />
     </task>
     <servers />
   </component>
