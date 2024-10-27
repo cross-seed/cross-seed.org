@@ -70,12 +70,12 @@ const config = {
                     src: "img/cross-seed.svg",
                 },
                 items: [
-                    //{
-                    //  type: "doc",
-                    //  docId: "basics/getting-started",
-                    //  position: "left",
-                    //  label: "Tutorial",
-                    //},
+                    {
+                     type: "doc",
+                     docId: "basics/getting-started",
+                     position: "left",
+                     label: "Documentation",
+                    },
                     {
                         to: "https://discord.gg/jpbUFzS5Wb",
                         label: "Discord",
