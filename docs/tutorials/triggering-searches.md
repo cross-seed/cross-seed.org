@@ -22,6 +22,15 @@ curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY>&infoHash=<infoHash>
 
 ### Step 1: Find Your API Key
 
+:::info Docker
+
+Start by shelling into your docker container:
+```shell
+docker exec -it cross-seed bash
+```
+
+:::
+
 Use the command:
 
 ```shell
