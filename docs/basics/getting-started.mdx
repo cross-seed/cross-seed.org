@@ -3,7 +3,8 @@ id: getting-started
 sidebar_position: 0
 title: Getting Started
 ---
-import DockerCompose from './_docker-compose.md'
+
+import DockerCompose from "./_docker-compose.md";
 
 ## Introduction
 
@@ -46,7 +47,6 @@ cross-seed --version
 
 For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
 
-
 #### With Docker
 
 ```shell
@@ -56,10 +56,11 @@ docker run ghcr.io/cross-seed/cross-seed --version
 ##### TLDR—just show me the Docker Compose copypasta.
 
 Here you go:
-<DockerCompose/>
 
-- Run the container once which will generate the config file.
-- Then skip to [editing your config file](#3-edit-the-config-file).
+<DockerCompose />
+
+-   Run the container once which will generate the config file.
+-   Then skip to [editing your config file](#3-edit-the-config-file).
 
 ---
 
@@ -160,9 +161,22 @@ After a few moments, you should see `cross-seed` automatically starting to
 search for things in your catalog. It will also automatically scan your
 trackers' RSS feeds for new releases you can cross-seed.
 
-For now, you can leave the terminal open to keep the daemon running. If any
-configuration issues arise, `cross-seed` will provide feedback in the terminal,
-which helps guide you through fixing them.
+For now, you can leave the terminal open to keep the daemon running.
+
+#### Troubleshooting
+
+If any configuration issues arise, `cross-seed` will provide feedback in the
+terminal, which helps guide you through fixing them. To see more detailed
+output, which may help you debug your errors, you can use the `--verbose` flag:
+
+```shell
+cross-seed daemon --verbose
+```
+
+Regardless of the `--verbose` flag, `cross-seed` will also always log the
+verbose output to `<your cross-seed config dir>/logs/verbose.current.log`.
+
+Some common errors are also listed in the [FAQ and Troubleshooting page](./faq-troubleshooting).
 
 ---
 
@@ -177,3 +191,5 @@ might want to explore:
     to search for new things more quickly.
 -   [**Setting up partial matches**](partial-matching.md) to increase your seed
     size even more (at the cost of downloading a few extra NFO files).
+-   [**Explore cross-seed's configuration options**](./options.md) to customize
+    `cross-seed`'s behavior to your liking.
