@@ -1,4 +1,4 @@
-```
+```yaml
 version: "2.1"
 services:
   cross-seed:
