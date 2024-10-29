@@ -111,13 +111,25 @@ partial matching algorithm can handle the extra files.
 
 #### Backlog searching 100 items per day
 
-By default, `cross-seed` only searches 100 items per day. We do this for a few
-reasons:
+By default, `cross-seed` only searches 100 items from your backlog per day. We
+do this for a few reasons:
 
 -   If you have a high `excludeRecentSearch` of one year for example, intending
     to do a rolling daily search of the torrents that were last searched a year
-    ago, starting with the first time you use cross-seed causes all the
-    preexisting torrents to "bunch up" once a year to be searched back to back,
-    potentially causing rate limiting problems for your other automations due to
-    the high search volume (Sonarr, Radarr, etc.).
--   TODO
+    ago, torrent searches will "bunch up" once a year (depending on when you
+    first set up `cross-seed`) to be searched back to back, potentially causing
+    rate limiting problems for your other automations due to the high search
+    volume (Sonarr, Radarr, etc.).
+-   Long-lived bulk search runs encounter **drift** - while they run, your other
+    automations will be downloading new torrents, moving data files around, and
+    deleting torrents and/or data files, and the snapshot `cross-seed` took of
+    your torrents at the beginning of the search goes out of date. Keeping bulk
+    search runs short helps a lot.
+
+You may have an **instant gratification mindset**, and we get it! Seeing your
+total number of cross-seeds and your final seed size on a tracker is exciting.
+With that said, please try to balance that mindset with being friendly to your
+trackers.
+
+The important thing is that you seed for a long time - not that you start
+seeding as early as possible.
