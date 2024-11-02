@@ -21,11 +21,29 @@ cross-seed gen-config -d
 ### `cross-seed clear-cache`
 
 :::danger
-Do not use unless instructed to, this rarely necessary. Seek support if you believe it's necessary.
+Do not use unless instructed to, this rarely necessary. Please seek support if you believe it's needed.
 :::
 
 Clear the cache without causing torrents to be re-snatched and reset the timestamps for [`excludeOlder`](../basics/options.md#excludeolder)
 and [`excludeRecentSearch`](../basics/options.md#excluderecentsearch).
+
+#### Usage
+
+```shell
+cross-seed clear-cache
+```
+
+### `cross-seed restore`
+
+Use snatched torrents from the torrent_cache to attempt to restore cross seeds. You will need to run `cross-seed inject` afterwards with dataDirs configured.
+
+This can be helpful if you have lost your torrent client session information but still have the downloaded data.
+
+#### Usage
+
+```shell
+cross-seed restore
+```
 
 ### `cross-seed test-notification`
 
@@ -113,10 +131,24 @@ cross-seed inject --inject-dir /path/to/dir
 Runs a manual RSS scan (like [`rssCadence`](../basics/options.md#rsscadence)) and performs your specified
 [`action`](../basics/options.md#action) on the trackers in your [`torznab`](../basics/options.md#torznab) option.
 
-[Read about automating this with "daemon" mode...](../basics/daemon.md#set-up-rss)
-
+[Read about automating this with "daemon" mode...](../basics/getting-started.mdx)
 #### Usage
 
 ```shell
 cross-seed rss
+```
+
+### `cross-seed search`
+
+Runs a manual search (like [`searchCadence`](../basics/options.md#searchcadence)) and performs your specified [`action`](../basics/options.md#action) on the trackers in your [`torznab`](../basics/options.md#torznab) option.
+
+You can optionally override the [time based exclusions](../v6-migration.md#stricter-configjs-validation) in your config for this search only.
+
+[Read about automating this with "daemon" mode...](../basics/getting-started.mdx)
+
+#### Usage
+
+```shell
+cross-seed search
+cross-seed search --no-exclude-recent-search --no-exclude-older
 ```
