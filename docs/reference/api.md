@@ -54,10 +54,9 @@ Searches that match a torrent file always take precedence, even in data-based se
 ```js
 POST /api/webhook
 {
-	// infoHash or path is required
+	// infoHash or path is required but not both (infoHash is recommended)
 	infoHash: "<infoHash of torrent>",
 	path: "/path/to/torrent/file.mkv",
-	outputDir: "/path/to/output/dir", // optional
 }
 ```
 
@@ -110,9 +109,8 @@ The most common way to implement an "announce feed" is utilizing [autobrr](../ba
 POST /api/announce
 {
 	"name": "string", // torrent name
-	"guid": "string", // ideally the torrent's comments/listing url, would be for caching purposes
+	"guid": "string", // usually the download link, used for caching purposes
 	"link": "string", // download link
-	"size": "number", // in bytes
-	"tracker": "string" // this is for logging purposes
+	"tracker": "string" // used for linking path and logging
 }
 ```
