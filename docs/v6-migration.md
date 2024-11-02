@@ -151,10 +151,10 @@ To address this, [autobrr's macros and documentation have been updated](https://
 
 ```json
 {
-    "name": "{{ .TorrentName }}",
-    "guid": "{{ .TorrentUrl }}",
-    "link": "{{ .TorrentUrl }}",
-    "tracker": "{{ .IndexerName | js}}"
+  "name": {{ toRawJson .TorrentName }},
+  "guid": "{{ .TorrentUrl }}",
+  "link": "{{ .TorrentUrl }}",
+  "tracker": {{ toRawJson .IndexerName }}
 }
 ```
 
