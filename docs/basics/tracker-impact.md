@@ -133,3 +133,18 @@ trackers.
 
 The important thing is that you seed for a long time - not that you start
 seeding as early as possible.
+
+If you have more than 36525 torrents, `cross-seed` will never catch up. In that
+case, you should increase your [`searchLimit`](options.md#searchlimit).
+
+#### Preventing Repetitive Searches
+
+`cross-seed` caches the snatches it makes, but does not cache search results as
+they can change over time.
+
+For this reason, `cross-seed` enforces that you have configured the
+`excludeRecentSearch` and `excludeOlder` options, and its defaults are set such
+that `cross-seed` will search for things recently downloaded a few times, but
+only search once for things downloaded far in the past. These settings will
+build your backlog of cross-seeds, and sufficiently catch new releases
+trickling to other trackers.
