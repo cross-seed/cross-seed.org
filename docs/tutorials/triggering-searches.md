@@ -1,5 +1,5 @@
 ---
-id: daemon
+id: triggering-searches
 sidebar_position: 2
 title: Triggering Searches
 ---
