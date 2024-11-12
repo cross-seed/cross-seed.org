@@ -924,7 +924,7 @@ more recently than this long ago. This option is only relevant in
 on.
 
 :::tip
-`excludeRecentSearch will never exclude torrents seen via RSS or Announce API.
+`excludeRecentSearch` will never exclude torrents seen via RSS or Announce API.
 :::
 :::info Note
 
@@ -1044,8 +1044,8 @@ qbittorrentUrl: "http://user:pass@localhost:8080",
 
 ### `transmissionRpcUrl`
 
-| Config file name     | CLI short form | CLI long form                 | Format | Default |
-| -------------------- | -------------- | ----------------------------- | ------ | ------- |
+| Config file name     | CLI short form | CLI long form                  | Format | Default |
+| -------------------- | -------------- | ------------------------------ | ------ | ------- |
 | `transmissionRpcUrl` |                | `--transmission-rpc-url <url>` | URL    |         |
 
 The url of your **Transmission** RPC Interface. Only relevant with
@@ -1074,8 +1074,8 @@ transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
 
 ### `delugeRpcUrl`
 
-| Config file name | CLI short form | CLI long form           | Format | Default |
-| ---------------- | -------------- | ----------------------- | ------ | ------- |
+| Config file name | CLI short form | CLI long form            | Format | Default |
+| ---------------- | -------------- | ------------------------ | ------ | ------- |
 | `delugeRpcUrl`   |                | `--deluge-rpc-url <url>` | URL    |         |
 
 The url of your **Deluge** JSON-RPC Interface. Only relevant with
