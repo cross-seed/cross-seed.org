@@ -5,9 +5,10 @@ that are similar but may lack minor files, like `.nfo`, `.srt`, or `sample`
 files. This method allows you to seed more torrents across multiple trackers
 without needing a full 1:1 match for each file.
 
-The key technology that unlocks partial matching is **linking files**, which
-lets you seed two torrents that share a big file like an `mkv`, while also
-keeping their own separate copies of small files that don't match each other.
+The key technology that unlocks partial matching is
+[**linking files**](../basics/linking.md), which lets you seed two torrents that
+share a big file like an `mkv`, while also keeping their own separate copies of
+small files that don't match each other.
 
 So, what's the outcome?
 
@@ -35,23 +36,15 @@ If a partial match is found, cross-seed will:
 
 To enable partial matching, follow these three simple steps:
 
-1.  **Set `linkDir`**
+1. **Enable linking**
 
-    Define a directory where `cross-seed` will create links to your existing
-    files. This directory should be accessible to your torrent
-    client—`cross-seed` will use the `linkDir` as the save path for the partial
-    torrents it injects.
+    Follow the instructions in the [linking](../basics/linking.md) guide to set
+    up linking.
 
-    ```js
-    module.exports = {
-    	// ... other settings ...
-    	linkDir: "/path/to/linkDir",
-    };
-    ```
+2. **Set `matchMode` to `partial`**
 
-2.  **Set `matchMode` to `partial`**
-
-    Enable partial matching by setting the `matchMode` option to `partial`.
+    Enable partial matching by setting the
+    [`matchMode`](../basics/options.md#matchmode) option to `partial`.
 
     ```js
     module.exports = {
@@ -60,27 +53,6 @@ To enable partial matching, follow these three simple steps:
     };
     ```
 
-3.  **For Docker Users**: there are a few more specific requirements for linking
-    to work properly.
-
-    -   Your torrent client will need access to the `linkDir` you've set, seeing
-        the same path `cross-seed` sees.
-    -   `cross-seed`'s container needs to be able to see the **original data
-        files**, again at the same path that your torrent client sees.
-    -   If you are using **hardlinks**, these paths all need to be _within the
-        same docker volume_.
-
-    In practice, this means that you should mount a **common ancestor path** of
-    the original data files _and_ your `linkDir`.
-
-That's it! For further customization, such as adjusting the size threshold for
-partial matches, check the following options:
-
--   [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) if you want
-    looser/tighter partial matching
--   [`linkType`](../basics/options.md#linktype) (choose between `hardlink` and
-    `symlink`)
--   [`flatLinking`](../basics/options.md#flatlinking) if needed (not recommended
-    for new users)
--   [**What linkType should I use?**](../basics/faq-troubleshooting.md#what-linktype-should-i-use)
-    for more information about hardlinks and symlinks
+That's it! If you want to further customize partial matching, you can adjust the
+[`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) option depending
+on whether you are willing to incur more or less DL on partial matches.

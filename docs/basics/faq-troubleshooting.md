@@ -111,8 +111,8 @@ prevent mismatches if you are racing.
 
 ### Why do I get `Unsupported: magnet link detected at…`?
 
-`cross-seed` does not support magnet links. If your indexer
-supports torrent files you will need to switch your settings.
+`cross-seed` does not support magnet links. If your indexer supports torrent
+files you will need to switch your settings.
 
 ### rtorrent injected torrents don't check (or start at all) until force rechecked
 
@@ -209,56 +209,6 @@ the torrent files for searching.
 
 We have no current ETA on integration with qBittorrent's `SQLite database`
 storage mode.
-
-### What [`linkType`](./options.md#linktype) should I use?
-
-Your options are `"hardlink"` or `"symlink"`. These operate in seperate ways,
-and depending on your workflow you should choose appropriately. This is a brief
-description, howeverba more in depth guide is available at
-[Trash's Hardlinking Guide](https://trash-guides.info/Hardlinks/Hardlinks-and-Instant-Moves/).
-
--   symlinks are a "shortcut" of sorts, pointing at the original file from a new
-    location. This can be used across mounts (Docker) or partitions/drives, and
-    does not cost you any extra space. The only possible issue is that if the
-    original file is deleted (when you remove a torrent,) the torrents in your
-    client using the `symlink` will "break" and you will receive errors. If this
-    sounds like a hassle, consider reading further about hardlinks.
-
--   hardlinks are a tricky thing for someone not familiar with the concept but
-    are worth understanding. They are a "direct line" to the actual data on the
-    disk and, as far as the file system is concerned, are indistinguishable from
-    the original. Hardlinks do not require any additional space and the file
-    will remain on the disk until all references to said file are deleted. These
-    linktypes are only possible on the same partition/disk/mount, and you will
-    need to have your [`linkDir`](./options.md#linkdir) set to the same mount
-    (Docker) or partition as your [`dataDirs`](./options.md#datadirs). This is
-    the best approach if you do not always keep the source torrent in your
-    client (due to them being deleted from the tracker) - which would then break
-    symlinks and cross-seeds. This is the approach commonly used in Arr's on
-    import.
-
-:::warning
-
-If your client is using a folder for incomplete download, using matchMode
-[`partial`](./options.md#matchmode) could break `cross-seed` linking. **If the
-incomplete download folder is on a different drive from the completed path**,
-you will need to use the linkType [`symlink`](./options.md#linktype) when using
-`partial` matchMode. If using linkType `hardlink`, your download client will
-break the hardlink and copy between drives causing the files to be duplicated.
-
-For qBittorrent users, `cross-seed` sets the download path in addtion to save
-path which prevents this issue from happening. For other clients, you must
-ensure your paths follow standard hardlinking requirements.
-
-:::
-
-:::tip
-
-If you are using qBittorrent, consider checking out
-[qbit_manage](https://github.com/StuffAnThings/qbit_manage) to manage your
-hardlinks eligible for deletion.
-
-:::
 
 ### I'm getting errors in cross-seed on hostingby.design seedbox
 
@@ -399,12 +349,12 @@ and it is important to respect these or risk your account being disabled.
 
 :::
 
-`cross-seed` reduces unnecessary snatches of .torrent files as much as possible, but
-because it needs to compare the files inside the torrent as well as their sizes,
-it is sometimes unavoidable. To improve matching efficiency, **consider setting up
-[ID-based searching](../tutorials/id-searching.md)**, which searches based on IMDb
-IDs and often results in less strain on trackers, more specific search results,
-and less unnecessary snatches.
+`cross-seed` reduces unnecessary snatches of .torrent files as much as possible,
+but because it needs to compare the files inside the torrent as well as their
+sizes, it is sometimes unavoidable. To improve matching efficiency, **consider
+setting up [ID-based searching](../tutorials/id-searching.md)**, which searches
+based on IMDb IDs and often results in less strain on trackers, more specific
+search results, and less unnecessary snatches.
 
 ### My partial matches from related searches are missing the same data, how can I only download it once?
 
@@ -470,4 +420,3 @@ can match from multiple sources. `cross-seed` is simply offering you the ability
 to revive the stalled torrents inside your client.
 
 :::
-

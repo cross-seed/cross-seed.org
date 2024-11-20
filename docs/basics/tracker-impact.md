@@ -70,7 +70,7 @@ being selective about which torrents it searches, and by working through its
 backlog slowly.
 [See the latest default config file.](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs)
 
-#### Skipping episodes
+### Skipping episodes
 
 It's usually not worth it to bother cross-seeding episodes since they will be
 deleted in the near future (when season packs come out). By default,
@@ -94,7 +94,7 @@ data) search.
 
 :::
 
-#### Skipping torrents with unknown/extra files
+### Skipping torrents with unknown/extra files
 
 Torrents that are "purely" video files are the most likely to find matches. By
 default, `cross-seed` restricts searches to just these torrents.
@@ -109,7 +109,7 @@ If you enable [Partial Matching](../tutorials/partial-matching.md), you should
 **set [`includeNonVideos`](options.md#includenonvideos) to `true`** because the
 partial matching algorithm can handle the extra files.
 
-#### Backlog searching 100 items per day
+### Backlog searching 100 items per day
 
 By default, `cross-seed` only searches 100 items from your backlog per day. We
 do this for a few reasons:
@@ -137,7 +137,7 @@ seeding as early as possible.
 If you have more than 36525 torrents, `cross-seed` will never catch up. In that
 case, you should increase your [`searchLimit`](options.md#searchlimit).
 
-#### Preventing Repetitive Searches
+### Preventing Repetitive Searches
 
 `cross-seed` caches the snatches it makes, but does not cache search results as
 they can change over time.
@@ -146,5 +146,11 @@ For this reason, `cross-seed` enforces that you have configured the
 `excludeRecentSearch` and `excludeOlder` options, and its defaults are set such
 that `cross-seed` will search for things recently downloaded a few times, but
 only search once for things downloaded far in the past. These settings will
-build your backlog of cross-seeds, and sufficiently catch new releases
-trickling to other trackers.
+build your backlog of cross-seeds, and sufficiently catch new releases trickling
+to other trackers.
+
+### Pausing between searches
+
+As of version 6, `cross-seed` enforces a minimum 30 second pause between
+individual searches during any bulk search. This only applies to bulk searches,
+not [webhook-triggered searches](../tutorials/triggering-searches.md).
