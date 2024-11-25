@@ -22,7 +22,7 @@ So, what's the outcome?
 
 Partial matching relies on a new [`matchMode`](../basics/options.md#matchmode)
 setting called `partial`. This mode matches torrents with a size close to (but
-not exactly) your existing files. cross-seed uses the
+not exactly) your existing files. `cross-seed` uses the
 [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) to set a minimum
 size for partial matches (default 0.05, allowing up to 5% size variance).
 

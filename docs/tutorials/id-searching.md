@@ -5,9 +5,20 @@ id: id-searching
 
 As of v6, `cross-seed` can query Sonarr and Radarr instances to look up IMDb,
 TheTVDB, TheMovieDB, and TVMaze IDs for your content and forward the IDs to
-indexers resulting in **far better search results and match rates**. 
+indexers resulting in **far better search results and match rates**.
 
-If cross-seed doesn't find any IDs for an item, it will fall back to text-based searching. 
+If cross-seed doesn't find any IDs for an item, it will fall back to text-based
+searching.
+
+:::tip
+
+INFO The series or movie _must be added in your instance of Sonarr or Radarr._
+You don't need to have actual media _imported_, but **the entry must exist**.
+_"Missing"_ or _"Unmonitored"_ status is valid.
+
+**We do not query any external metadata servers.**
+
+:::
 
 ### Benefits
 
@@ -68,4 +79,5 @@ module.exports = {
 };
 ```
 
-Many thanks to [**zakary**](https://github.com/zakkarry) for implementing this feature.
+Many thanks to [**zakary**](https://github.com/zakkarry) for implementing this
+feature.
