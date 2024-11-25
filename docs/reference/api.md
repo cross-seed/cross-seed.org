@@ -1,9 +1,9 @@
 # HTTP API
 
-`cross-seed` has an HTTP API as part of [Daemon Mode](../basics/daemon.md). When
-you run the `cross-seed daemon` command, the app starts an HTTP server,
-listening on port 2468 (configurable with the [`port`](../basics/options#port)
-option).
+`cross-seed` has an HTTP API as part of
+[Daemon Mode](../basics/managing-the-daemon). When you run the
+`cross-seed daemon` command, the app starts an HTTP server, listening on port
+2468 (configurable with the [`port`](../basics/options#port) option).
 
 :::tip You can easily configure your torrent client to
 [send search commands when a torrent finishes.](../basics/daemon#set-up-automatic-searches-for-finished-downloads)
