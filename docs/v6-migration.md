@@ -132,7 +132,7 @@ to data-based matching.
 To achieve torrent linking, you simply have to mount or give permission (if necessary) for `cross-seed` to read and write to the actual
 torrent data structure (downloaded files) your client uses. This will need to mirror (for docker) the mounts made in the client. Your
 client will also need to be able to read and write to the [`linkDir`](./basics/options.md#linkdir) folder. You do not need to specify a
-[`dataDirs`](./basics/options.md#datadirs) in your conig for this setup, but simply define a [`linkDir`](./basics/options.md#linkdir).
+[`dataDirs`](./basics/options.md#datadirs) in your config for this setup, but simply define a [`linkDir`](./basics/options.md#linkdir).
 
 :::tip
 You can still include a [`dataDirs`](./basics/options.md#datadirs) if you wish to also index and search your data, but
