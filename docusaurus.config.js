@@ -16,8 +16,8 @@ const config = {
 
 	// GitHub pages deployment config.
 	// If you aren't using GitHub pages, you don't need these.
-	organizationName: "cross-seed", // Usually your GitHub org/user name.
-	projectName: "cross-seed.org", // Usually your repo name.
+	organizationName: "cross-seed",
+	projectName: "cross-seed.org",
 	deploymentBranch: "dist",
 	trailingSlash: false,
 
@@ -37,18 +37,9 @@ const config = {
 				docs: {
 					sidebarPath: require.resolve("./sidebars.js"),
 					sidebarCollapsed: false,
-					// Please change this to your repo.
-					// Remove this to remove the "edit this page" links.
 					editUrl:
 						"https://github.com/cross-seed/cross-seed.org/edit/master/",
 				},
-				// blog: {
-				// 	showReadingTime: true,
-				// 	// Please change this to your repo.
-				// 	// Remove this to remove the "edit this page" links.
-				// 	editUrl:
-				// 		"https://github.com/cross-seed/cross-seed.org/edit/master/",
-				// },
 				theme: {
 					customCss: require.resolve("./src/css/custom.css"),
 				},
@@ -66,9 +57,7 @@ const config = {
 			},
 			navbar: {
 				title: "cross-seed",
-				logo: {
-					src: "img/cross-seed.svg",
-				},
+				logo: { src: "img/cross-seed.svg" },
 				items: [
 					{
 						type: "doc",
@@ -108,7 +97,7 @@ const config = {
 							{
 								label: "Discord",
 								to: "https://discord.gg/jpbUFzS5Wb",
-								//className: "discord-link",
+								className: "discord-link",
 							},
 						],
 					},
@@ -118,7 +107,7 @@ const config = {
 							{
 								label: "GitHub",
 								to: "https://github.com/cross-seed/cross-seed",
-								//className: "github-link",
+								className: "github-link",
 							},
 						],
 					},

@@ -1,7 +1,7 @@
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 jobs:
     # Build job
     build:
@@ -17,7 +17,7 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v3
               with:
-                  node-version: "16"
+                  node-version: "22"
 
             - name: Install dependencies
               run: npm ci
@@ -28,7 +28,7 @@ jobs:
             - name: Upload artifacts
               uses: actions/upload-pages-artifact@v1
               with:
-                path: build
+                  path: build
 
     # Deploy job
     deploy:
