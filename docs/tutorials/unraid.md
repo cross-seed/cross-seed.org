@@ -42,12 +42,16 @@ using [`action: 'save',`](../basics/options.md#action)), and a config directory.
 | Path            | outputDir  | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
 | Path (Optional) | dataDir    | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 
-:::tip The "dataDir" path is used only for
+:::tip
+
+The "dataDir" path is used only for
 [**data-based searching**](./data-based-matching.md). If you wish to add this,
 you will need to edit the path for `dataDir`.
 
 The container path for `cross-seed` will need to be the same as how your torrent
-client's container path is configured. :::
+client's container path is configured.
+
+:::
 
 ### Port Mappings
 
@@ -69,9 +73,13 @@ configuration file in the next step.
 
 ![screenshot-cross-seed](https://github.com/cross-seed/cross-seed/assets/123845855/93a4749e-1506-40de-91f5-ac7d8ec93334)
 
-:::tip In the top right if you enable "Advanced View" it will reveal the
+:::tip
+
+In the top right if you enable "Advanced View" it will reveal the
 `Post Argument` field, this can be changed from `daemon` to `search` (for
-example) to run the search command. :::
+example) to run the search command.
+
+:::
 
 You can start the container to create the config file path.
 
@@ -83,9 +91,13 @@ configuration file.
 This file will be automatically generated when the container is ran for the
 first time.
 
-:::tip If for whatever reason this file is not generated, it may be due to
-permissions. Double-check that your appdata/config folder has the proper
-permissions for user:group `99:100` :::
+:::tip
+
+If for whatever reason this file is not generated, it may be due to permissions.
+Double-check that your appdata/config folder has the proper permissions for
+user:group `99:100`
+
+:::
 
 From here, you can
 [edit the configuration options](../basics/options.md#options-used-in-cross-seed-daemon)

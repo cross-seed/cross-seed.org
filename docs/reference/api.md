@@ -5,8 +5,11 @@
 `cross-seed daemon` command, the app starts an HTTP server, listening on port
 2468 (configurable with the [`port`](../basics/options#port) option).
 
-:::tip You can easily configure your torrent client to
+:::tip
+
+You can easily configure your torrent client to
 [send search commands when a torrent finishes.](../basics/daemon#set-up-automatic-searches-for-finished-downloads)
+
 :::
 
 ## Authorization
@@ -32,8 +35,12 @@ in your [`torrentDir`](../basics/options#torrentdir) or parse the filename
 directly. It will respond with `204 No Content` once it has received your
 request successfully.
 
-:::tip Searches that match a torrent file always take precedence, even in
-data-based searching. :::
+:::tip
+
+Searches that match a torrent file always take precedence, even in data-based
+searching.
+
+:::
 
 ### Supported formats
 
@@ -74,21 +81,29 @@ Use this endpoint to feed announces into cross-seed. For each `announce`,
 already have. If found, it will run our matching algorithm to verify that the
 torrents do indeed match, and inject the announced torrent.
 
-:::info This is a _real-time_ alternative to scanning RSS feeds via
+:::info
+
+This is a _real-time_ alternative to scanning RSS feeds via
 [`rssCadence`](../basics/options.md#rsscadence). Consider turning the RSS scan
 off ([`rssCadence: null,`](../basics/options.md#rsscadence)), or significantly
-raising the time if you set up this feature. :::
+raising the time if you set up this feature.
+
+:::
 
 This endpoint returns `200` if your request was received and a completed match
 was found in your client, if a match was found to be incomplete (still
 downloading) then `cross-seed` will return the status code `202`, and if no
 match was found `cross-seed` will respond with a `204 No Content`.
 
-:::tip The most common way to implement an "announce feed" is utilizing
+:::tip
+
+The most common way to implement an "announce feed" is utilizing
 [autobrr](../basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed).
 
 **You can use the "retry on status code" function (_code: 202_) in autobrr's
-filter settings to retry currently incomplete (downloading) torrents** :::
+filter settings to retry currently incomplete (downloading) torrents**
+
+:::
 
 ### Supported formats
 
