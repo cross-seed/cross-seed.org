@@ -1,6 +1,6 @@
 ---
 id: data-based-matching
-sidebar_position: 2
+sidebar_position: 4
 title: Data-Based Matching
 ---
 
@@ -22,8 +22,7 @@ This can be used to:
 
 ## Setting up data-based matching
 
-1.  Set up linking as described in the
-    [linking tutorial](../tutorials/linking.md).
+1.  Set up linking as described in the [linking tutorial](../basics/linking.md).
 
 2.  Set [`dataDirs`](../basics/options.md#datadirs) to the directories
     containing the data you want to cross-seed.

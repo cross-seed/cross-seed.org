@@ -25,6 +25,7 @@ curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY>&infoHash=<infoHash>
 :::info Docker
 
 Start by shelling into your docker container:
+
 ```shell
 docker exec -it cross-seed bash
 ```
@@ -64,8 +65,8 @@ We will refer to this as `<BASE_URL>` below.
 <details>
 <summary><strong>rTorrent</strong></summary>
 
-1. Create a script named `rtorrent-cross-seed.sh`, replacing `<BASE_URL>`
-   and `<API_KEY>` with the correct values from above:
+1. Create a script named `rtorrent-cross-seed.sh`, replacing `<BASE_URL>` and
+   `<API_KEY>` with the correct values from above:
     ```shell
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> --data-urlencode "infoHash=$2"
@@ -116,8 +117,8 @@ We will refer to this as `<BASE_URL>` below.
 <details>
 <summary><strong>Deluge</strong></summary>
 
-1. Create a file called `deluge-cross-seed.sh`, replacing `<BASE_URL>`
-   and `<API_KEY>` with the correct values from above:
+1. Create a file called `deluge-cross-seed.sh`, replacing `<BASE_URL>` and
+   `<API_KEY>` with the correct values from above:
 
     ```shell
     #!/bin/bash

@@ -1,4 +1,8 @@
-# Partial Matching
+---
+id: partial-matching
+sidebar_position: 3
+title: Partial Matching
+---
 
 Partial matching is a new feature in cross-seed v6, designed to capture torrents
 that are similar but may lack minor files, like `.nfo`, `.srt`, or `sample`
