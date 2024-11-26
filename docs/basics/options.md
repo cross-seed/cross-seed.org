@@ -55,7 +55,11 @@ To create an editable config file, run the following command:
 cross-seed gen-config
 ```
 
-:::tip Add `-d` to this command to generate a config for Docker :::
+:::tip
+
+Add `-d` to this command to generate a config for Docker
+
+:::
 
 From there, you can open the config file in your favorite editor and set up your
 configuration.
@@ -168,10 +172,13 @@ setting this lower will result in `cross-seed` running faster. We don't
 recommend setting this lower than 15, as it could garner unwanted attention from
 tracker staff.
 
-:::warning DISCLAIMER You need to read your tracker's rules and be aware of
-their limits.
+:::warning DISCLAIMER
 
-**You and you alone are responsible for following your tracker's rules.** :::
+You need to read your tracker's rules and be aware of their limits.
+
+**You and you alone are responsible for following your tracker's rules.**
+
+:::
 
 #### `delay` Examples (CLI)
 
@@ -216,8 +223,12 @@ For [Prowlarr](https://github.com/Prowlarr/Prowlarr) and
 [Jackett](https://github.com/Jackett/Jackett) you can simply copy the **RSS
 URL** from the WebUI.
 
-:::note This works because in Torznab, "RSS feeds" are just a search for the
-first page of unfiltered (no search query) results from the indexer. :::
+:::note
+
+This works because in Torznab, "RSS feeds" are just a search for the first page
+of unfiltered (no search query) results from the indexer.
+
+:::
 
 #### `torznab` Examples (CLI)
 
@@ -246,8 +257,11 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 | ---------------- | -------------- | ------------------- | ---------- | --------- |
 | `sonarr`         |                | `--sonarr <url(s)>` | `string[]` | undefined |
 
-:::info NOTICE Read about the functionality in the
+:::info NOTICE
+
+Read about the functionality in the
 [v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
+
 :::
 
 The URL to your [Sonarr](https://sonarr.tv) instance with your `?apikey=`
@@ -280,8 +294,11 @@ sonarr: ["http://sonarr:8989/?apikey=12345","http://sonarr4k:8990/?apikey=12345"
 | ---------------- | -------------- | ------------------- | ---------- | --------- |
 | `radarr`         |                | `--radarr <url(s)>` | `string[]` | undefined |
 
-:::warning NOTICE Read about the functionality in the
+:::warning NOTICE
+
+Read about the functionality in the
 [v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
+
 :::
 
 The URL to your [Radarr](https://radarr.video) instance with your `?apikey=`
@@ -317,17 +334,29 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 Point this at a directory containing torrent files. If you don't know where your
 torrent client stores its files, the table below might help.
 
-:::tip Data-Only Searching If you wish to search only your data, we previously
-recommended pointing this to an empty directory. You can now set this to `null`
-if you wish to search only your `dataDirs`. :::
+:::tip Data-Only Searching
 
-:::caution qBittorrent If you are using qBittorrent 4.6.x, 5.x (or later) and
-`SQLite database` in `Preferences -> Advanced` you will need to switch to
-`fastresume` and restart qBittorrent for compatibility with `cross-seed`. We
-have no ETA on SQLite integration currently. :::
+If you wish to search only your data, we previously recommended pointing this to
+an empty directory. You can now set this to `null` if you wish to search only
+your `dataDirs`.
 
-:::danger Docker Leave the `torrentDir` as `/torrents` and use Docker to map
-your directory to `/torrents`. :::
+:::
+
+:::caution qBittorrent
+
+If you are using qBittorrent 4.6.x, 5.x (or later) and `SQLite database` in
+`Preferences -> Advanced` you will need to switch to `fastresume` and restart
+qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite
+integration currently.
+
+:::
+
+:::danger Docker
+
+Leave the `torrentDir` as `/torrents` and use Docker to map your directory to
+`/torrents`.
+
+:::
 
 | Client           | Linux                                                      | Windows                                                   | Mac                                                   |
 | ---------------- | ---------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
@@ -351,9 +380,12 @@ torrentDir: "/home/<username>/.config/deluge/state",
 torrentDir: "C:\\torrents",
 ```
 
-:::info WINDOWS USERS It is necessary to insert double-slashes for your paths,
-as seen in the examples above. Back-slashes are "escape characters" and "\\"
-equates to "\" :::
+:::info WINDOWS USERS
+
+It is necessary to insert double-slashes for your paths, as seen in the examples
+above. Back-slashes are "escape characters" and "\\" equates to "\"
+
+:::
 
 ### `outputDir`\*
 
@@ -389,9 +421,12 @@ outputDir: "/tmp/output",
 outputDir: ".",
 ```
 
-:::info WINDOWS USERS It is necessary to insert double-slashes for your paths,
-as seen in the examples above. Back-slashes are "escape characters" and "\\"
-equates to "\" :::
+:::info WINDOWS USERS
+
+It is necessary to insert double-slashes for your paths, as seen in the examples
+above. Back-slashes are "escape characters" and "\\" equates to "\"
+
+:::
 
 ### `dataDirs`
 
@@ -407,7 +442,11 @@ where it cannot find a associated torrent file.
 :::tip
 
 We do not recommend you include your [`linkDir`](#linkdir) in the `dataDirs`
-option. ::: :::caution Docker
+option.
+
+:::
+
+:::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the data
 and linkDir.
@@ -430,9 +469,12 @@ dataDirs: ["/data/torrents/completed", "/media/library/movies"],
 dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 ```
 
-:::info WINDOWS USERS It is necessary to insert double-slashes for your paths,
-as seen in the examples above. Back-slashes are "escape characters" and "\\\\"
-equates to "\" :::
+:::info WINDOWS USERS
+
+It is necessary to insert double-slashes for your paths, as seen in the examples
+above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+
+:::
 
 ### `linkCategory`
 
@@ -447,7 +489,9 @@ torrents.
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the data
-and linkDir. :::
+and linkDir.
+
+:::
 
 #### `linkCategory` Examples (CLI)
 
@@ -471,11 +515,15 @@ linkCategory: "Category1",
 `cross-seed` will inject using the original category, appending '.cross-seed',
 with the same save paths as your normal categories.
 
-:::info This will prevent an Arr from seeing duplicate torrents in Activity, and
+:::info
+
+This will prevent an Arr from seeing duplicate torrents in Activity, and
 attempting to import cross-seeds.
 
 Example: if you have a category called "Movies", this will automatically inject
-cross-seeds to "Movies.cross-seed" :::
+cross-seeds to "Movies.cross-seed"
+
+:::
 
 #### `duplicateCategories` Examples (CLI)
 
@@ -509,7 +557,11 @@ original data is accessible (both torrent and data-based matches).
 
 It is best if your `linkDir` is not _INSIDE_ of your included
 [`dataDirs`](#datadirs) folders. This is to prevent recursive and erroneous
-searches of folders used in linking folder structure. ::: :::caution Docker
+searches of folders used in linking folder structure.
+
+:::
+
+:::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the dataDir
 and linkDir.
@@ -531,9 +583,12 @@ linkDir: "C:\\links",
 
 ```
 
-:::info WINDOWS USERS It is necessary to insert double-slashes for your paths,
-as seen in the examples above. Back-slashes are "escape characters" and "\\\\"
-equates to "\" :::
+:::info WINDOWS USERS
+
+It is necessary to insert double-slashes for your paths, as seen in the examples
+above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+
+:::
 
 ### `linkType`
 
@@ -553,7 +608,9 @@ Valid methods for linkType are `symlink` and `hardlink`.
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the
-`dataDirs` and `linkDir`. :::
+`dataDirs` and `linkDir`.
+
+:::
 
 #### `linkType` Examples (CLI)
 
@@ -612,17 +669,25 @@ matchMode: "safe",
 | ---------------- | -------------- | ---------------- | --------- | ------- |
 | `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
 
-:::danger Note Using skipRecheck in conjunction with `risky` could result in you
-downloading incorrect/missing pieces rather than cross-seeding properly.
+:::danger Note
 
-**Proceed with caution!** :::
+Using skipRecheck in conjunction with `risky` could result in you downloading
+incorrect/missing pieces rather than cross-seeding properly.
+
+**Proceed with caution!**
+
+:::
 
 Set this to `true` to skip rechecking torrents upon injection.
 
-:::tip In an upcoming version of v6, torrents will be resumed even with
+:::tip
+
+In an upcoming version of v6, torrents will be resumed even with
 `skipRecheck: false`, if applicable.
 
-[`Read more`](../v6-migration.md#updated-skiprecheck-option) :::
+[`Read more`](../v6-migration.md#updated-skiprecheck-option)
+
+:::
 
 #### `skipRecheck` Examples (CLI)
 
@@ -645,19 +710,31 @@ skipRecheck: false,
 | ----------------------- | -------------- | --------------------------- | --------- | ------- |
 | `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
 
-:::warning NOTICE Behavior of this option has changed in v6, please see the
+:::warning NOTICE
+
+Behavior of this option has changed in v6, please see the
 [migration guide](../v6-migration.md#updated-includesingleepisodes-behavior) for
-details on the implementation's changes'. :::
+details on the implementation's changes'.
+
+:::
 
 Set this to `true` to include **ALL SINGLE** episodes when searching (which are
 ignored by default).
 
-:::info This will **NOT** include episodes present inside season packs
-(data-based searches). :::
+:::info
 
-:::tip This option has explicit usage examples given in the
+This will **NOT** include episodes present inside season packs (data-based
+searches).
+
+:::
+
+:::tip
+
+This option has explicit usage examples given in the
 [config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L261-L275)
-which outlines the most common scenarios. :::
+which outlines the most common scenarios.
+
+:::
 
 #### `includeSingleEpisodes` Examples (CLI)
 
@@ -680,7 +757,11 @@ includeSingleEpisodes: false,
 | -------------------- | -------------- | ------------------------ | ------------------------------ | ------- |
 | `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `1`     |
 
-:::danger This is an upcoming feature for v6. :::
+:::danger
+
+This is an upcoming feature for v6.
+
+:::
 
 `cross-seed` will also aggregate individual episodes into season packs for
 searching (when applicable) or to match with season packs from rss/announce.
@@ -709,7 +790,11 @@ seasonFromEpisodes: undefined,
 | ----------------------- | -------------- | ---------------------------- | ------------------ | ------- |
 | `maxRemainingForResume` | `N/A`          | `--max-remaining-for-resume` | `number` (0 to 50) | `50`    |
 
-:::danger This is an upcoming feature for v6. :::
+:::danger
+
+This is an upcoming feature for v6.
+
+:::
 
 The amount remaining for an injected torrent in MiB for `cross-seed` to resume.
 Complete matches will always be resumed.
@@ -734,9 +819,13 @@ maxRemainingForResume: 0,
 | ------------------ | -------------- | ---------------------- | --------- | ------- |
 | `includeNonVideos` |                | `--include-non-videos` | `boolean` | `false` |
 
-:::warning NOTICE Behavior of this option has changed in v6, please see the
+:::warning NOTICE
+
+Behavior of this option has changed in v6, please see the
 [migration guide](../v6-migration.md#updated-includenonvideos-behavior) for
-details on the implementation's changes. :::
+details on the implementation's changes.
+
+:::
 
 Set this to `true` to include torrents that contain a majority of files other
 than video files (`.mp4`, `.avi`, `.mkv`) in the search.
@@ -796,8 +885,12 @@ When running a search, this option excludes anything first searched more than
 this long ago. This option is only relevant in `search` mode or in `daemon` mode
 with [`searchCadence`](#searchcadence) turned on.
 
-:::tip `excludeOlder` will never exclude torrents that are completely new to
-`cross-seed` or torrents seen via RSS or Announce API. :::
+:::tip
+
+`excludeOlder` will never exclude torrents that are completely new to
+`cross-seed` or torrents seen via RSS or Announce API.
+
+:::
 
 #### `excludeOlder` Examples (CLI)
 
@@ -827,14 +920,21 @@ When running a search, this option excludes anything that has been searched more
 recently than this long ago. This option is only relevant in `search` mode or in
 `daemon` mode with [`searchCadence`](#searchcadence) turned on.
 
-:::tip `excludeRecentSearch` will never exclude torrents seen via RSS or
-Announce API. ::: :::info Note
+:::tip
+
+`excludeRecentSearch` will never exclude torrents seen via RSS or Announce API.
+
+:::
+
+:::info Note
 
 **Search history is stored on a per-indexer basis.**
 
 Searches that failed on specific indexers (for example - due to timeout or
 rate-limiting) will not be marked as having been searched, and thus will not be
-excluded by this setting for those specific indexers on the next run. :::
+excluded by this setting for those specific indexers on the next run.
+
+:::
 
 #### `excludeRecentSearch` Examples (CLI)
 
@@ -885,16 +985,24 @@ action: "inject",
 The url of your **rTorrent** XMLRPC interface. Only relevant with
 [Injection](../tutorials/injection). Often ends in `/RPC2`.
 
-:::info If you use **Sonarr** or **Radarr**, `cross-seed` is configured the same
-way. **ruTorrent** installations come with this endpoint configured, but naked
+:::info
+
+If you use **Sonarr** or **Radarr**, `cross-seed` is configured the same way.
+**ruTorrent** installations come with this endpoint configured, but naked
 **rTorrent** does not provide this wrapper. If you don't use **ruTorrent**,
 you'll have to
 [set up the endpoint yourself](https://github.com/linuxserver/docker-rutorrent/issues/122#issuecomment-769009432)
-with a webserver. :::
+with a webserver.
 
-:::tip If you use HTTP Digest Auth on this endpoint (recommended), then you can
-provide credentials in the following format:
-`http://username:password@localhost/rutorrent/RPC2` :::
+:::
+
+:::tip
+
+If you use HTTP Digest Auth on this endpoint (recommended), then you can provide
+credentials in the following format:
+`http://username:password@localhost/rutorrent/RPC2`
+
+:::
 
 #### `rtorrentRpcUrl` Examples (CLI)
 
@@ -920,9 +1028,13 @@ rtorrentRpcUrl: "http://user:pass@localhost:8080/RPC2",
 The url of your **qBittorrent** Web UI. Only relevant with
 [Injection](../tutorials/injection).
 
-:::tip **qBittorrent** doesn't use HTTP Basic/Digest Auth, but you can provide
-your **qBittorrent** credentials at the beginning of the URL like so:
-`http://username:password@localhost:8080/` :::
+:::tip
+
+**qBittorrent** doesn't use HTTP Basic/Digest Auth, but you can provide your
+**qBittorrent** credentials at the beginning of the URL like so:
+`http://username:password@localhost:8080/`
+
+:::
 
 #### `qbittorrentUrl` Examples (CLI)
 
@@ -948,9 +1060,13 @@ qbittorrentUrl: "http://user:pass@localhost:8080",
 The url of your **Transmission** RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
 
-:::tip **Transmission** doesn't use HTTP Basic/Digest Auth, but you can provide
-your **Transmission** credentials at the beginning of the URL like so:
-`http://username:password@localhost:9091/transmission/rpc` :::
+:::tip
+
+**Transmission** doesn't use HTTP Basic/Digest Auth, but you can provide your
+**Transmission** credentials at the beginning of the URL like so:
+`http://username:password@localhost:9091/transmission/rpc`
+
+:::
 
 #### `transmissionRpcUrl` Examples (CLI)
 
@@ -976,9 +1092,13 @@ transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
 The url of your **Deluge** JSON-RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
 
-:::tip **Deluge** doesn't use HTTP Basic/Digest Auth, but you can provide your
+:::tip
+
+**Deluge** doesn't use HTTP Basic/Digest Auth, but you can provide your
 **Deluge** password at the beginning of the URL like so:
-`http://:password@localhost:8112/json` :::
+`http://:password@localhost:8112/json`
+
+:::
 
 #### `delugeRpcUrl` Examples (CLI)
 
@@ -1048,8 +1168,12 @@ In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
 the host to bind to and listen on.
 
-:::tip DOCKER If you are using Docker, you do not need to set this. Leave the
-option as `undefined`. :::
+:::tip DOCKER
+
+If you are using Docker, you do not need to set this. Leave the option as
+`undefined`.
+
+:::
 
 #### `host` Examples (CLI)
 
@@ -1169,9 +1293,12 @@ searchCadence: "4 weeks",
 | ---------------- | -------------- | ----------------- | -------- | ----------- |
 | `apiKey`         |                | `--api-key <key>` | `string` | `undefined` |
 
-:::info [`apiKey`](../basics/options.md#apikey) is disabled in the config file
-by default, if you want to specify a key set it to a valid key (24 character
-min). :::
+:::info
+
+[`apiKey`](../basics/options.md#apikey) is disabled in the config file by
+default, if you want to specify a key set it to a valid key (24 character min).
+
+:::
 
 To find your generated API key, run the `cross-seed api-key` command. The API
 key can be included with your requests in either of two ways:
@@ -1268,8 +1395,12 @@ searchTimeout: "20s",
 This option applies to any search Torznab. This option will stop searching after
 the number of searches meets the number specified.
 
-:::info This will apply to searching in daemon mode (periodic/cadence or when
-given a path which contains many files) or directly with the search command. :::
+:::info
+
+This will apply to searching in daemon mode (periodic/cadence or when given a
+path which contains many files) or directly with the search command.
+
+:::
 
 #### `searchLimit` Examples (CLI)
 
@@ -1293,12 +1424,15 @@ searchLimit: 150,
 | ---------------- | -------------- | ---------------- | --------- | ------- |
 | `flatLinking`    |                | `--flat-linking` | `boolean` | `false` |
 
-:::caution Be Advised qBittorrent users using an external program or script,
-such as qbit_manage, to force AutoTMM on torrents (e.g. to apply share limits
-automatically) will need to enable `flatLinking` or modify your workflow
-accordingly.
+:::caution Be Advised
 
-[**Read more about specific usage**](v6-migration.md#qbittorrent) :::
+qBittorrent users using an external program or script, such as qbit_manage, to
+force AutoTMM on torrents (e.g. to apply share limits automatically) will need
+to enable `flatLinking` or modify your workflow accordingly.
+
+[**Read more about specific usage**](v6-migration.md#qbittorrent)
+
+:::
 
 Set this to `true` to use the flat-folder style linking previously used in v5.
 This option will otherwise link any matches to a tracker-specific folder inside
@@ -1352,7 +1486,11 @@ flatLinking: false,
 | ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
 
-:::danger This feature is currently only partially implemented for v6. :::
+:::danger
+
+This feature is currently only partially implemented for v6.
+
+:::
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during
 the prefiltering done for each search/inject/rss/announce/webhook use.
@@ -1384,9 +1522,13 @@ The full list of upcoming supported prefixes are:
 -   `sizeBelow:`
 -   `sizeAbove:`
 
-:::danger The regex (ECMAScript flavor) options are for advanced users only. Do
-not use without rigorous testing as `cross-seed` is unable to perform any
-checks. Use at your own risk. :::
+:::danger
+
+The regex (ECMAScript flavor) options are for advanced users only. Do not use
+without rigorous testing as `cross-seed` is unable to perform any checks. Use at
+your own risk.
+
+:::
 
 All options, including the regex, are case-sensitive. `name:` can be a substring
 of the name of inside the .torrent file. `folder:` can be a substring of any
