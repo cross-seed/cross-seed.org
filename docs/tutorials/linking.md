@@ -1,6 +1,7 @@
 ---
 id: linking
 title: Linking
+sidebar_position: 2
 ---
 
 By default, `cross-seed` will only look for "perfect" matches—candidate file
@@ -22,17 +23,18 @@ and _hardlinks_. `cross-seed` uses **hardlinks** by default, but you can
 
 You don't need to set up linking with the default settings. However, you will
 need to set up linking in order to enable the more advanced/looser matching
-strategies such as [partial matching](../tutorials/partial-matching.md) or
-[data-based matching](../tutorials/data-based-matching.md). When linking is
-enabled, **all** injected torrents will be linked, even perfect matches.
+strategies such as [partial matching](partial-matching.md) or
+[data-based matching](data-based-matching.md). When linking is enabled, **all**
+injected torrents will be linked, even perfect matches.
 
 ## Setting up linking
 
 To set up linking, you need to define a directory where `cross-seed` will create
-links to your existing files and set the [`linkDir`](./options.md#linkdir)
-option to this directory in your config file. This directory should be
-accessible to your torrent client—`cross-seed` will use the `linkDir` as the
-save path for the torrents it injects.
+links to your existing files and set the
+[`linkDir`](../basics/options.md#linkdir) option to this directory in your
+config file. This directory should be accessible to your torrent
+client—`cross-seed` will use the `linkDir` as the save path for the torrents it
+injects.
 
 ```js
 module.exports = {
@@ -60,10 +62,10 @@ your `linkDir` pointing to the original files.
 :::info
 
 In order to prevent collisions, `cross-seed` organizes linked torrents into
-subfolders of your [`linkDir`](./options.md#linkdir) based on the tracker each
-torrent came from. If you wish to disable this behavior, you can set the
-[`flatLinking`](./options.md#flatlinking) option to `true`, but it is not
-recommended for new users.
+subfolders of your [`linkDir`](../basics/options.md#linkdir) based on the
+tracker each torrent came from. If you wish to disable this behavior, you can
+set the [`flatLinking`](../basics/options.md#flatlinking) option to `true`, but
+it is not recommended for new users.
 
 :::
 
@@ -71,7 +73,7 @@ recommended for new users.
 
 By default, `cross-seed` uses hardlinks to link files because they are resilient
 to file moves. You can switch to using symlinks by setting the
-[`linkType`](./options.md#linktype) option to `symlink`.
+[`linkType`](../basics/options.md#linktype) option to `symlink`.
 
 ### Hardlink
 

@@ -10,9 +10,9 @@ files. This method allows you to seed more torrents across multiple trackers
 without needing a full 1:1 match for each file.
 
 The key technology that unlocks partial matching is
-[**linking files**](../basics/linking.md), which lets you seed two torrents that
-share a big file like an `mkv`, while also keeping their own separate copies of
-small files that don't match each other.
+[**linking files**](linking.md), which lets you seed two torrents that share a
+big file like an `mkv`, while also keeping their own separate copies of small
+files that don't match each other.
 
 So, what's the outcome?
 
@@ -42,8 +42,8 @@ To enable partial matching, follow these three simple steps:
 
 1. **Enable linking**
 
-    Follow the instructions in the [linking](../basics/linking.md) guide to set
-    up linking.
+    Follow the instructions in the [linking](linking.md) guide to set up
+    linking.
 
 2. **Set `matchMode` to `partial`**
 

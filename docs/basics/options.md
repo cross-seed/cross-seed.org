@@ -1,6 +1,7 @@
 ---
 id: options
 title: Options
+sidebar_position: 3
 ---
 
 `cross-seed` has several program options, which can either be specified on the

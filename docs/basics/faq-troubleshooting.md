@@ -1,4 +1,8 @@
-# FAQ & Troubleshooting
+---
+id: faq-troubleshooting
+title: FAQ & Troubleshooting
+sidebar_position: 4
+---
 
 ### Updating to cross-seed v6
 
