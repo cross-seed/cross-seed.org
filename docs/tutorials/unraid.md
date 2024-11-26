@@ -125,5 +125,4 @@ If you would like to set up RSS scans, use the
 [`rssCadence`](../basics/options.md#rsscadence) option.
 
 If you would like to automatically check for cross-seeds when a download
-finishes, learn how to
-[set up with automatic searches](../basics/daemon#set-up-automatic-searches-for-finished-downloads).
+finishes, learn how to [set up with automatic searches](triggering-searches.md).

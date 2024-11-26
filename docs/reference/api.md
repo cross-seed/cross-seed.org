@@ -8,7 +8,7 @@
 :::tip
 
 You can easily configure your torrent client to
-[send search commands when a torrent finishes.](../basics/daemon#set-up-automatic-searches-for-finished-downloads)
+[send search commands when a torrent finishes.](../tutorials/triggering-searches)
 
 :::
 

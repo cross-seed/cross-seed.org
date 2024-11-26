@@ -250,9 +250,10 @@ that we've missed, please let us know
 ### Category-aware Searching
 
 `cross-seed` will now query each indexer for the media
-[Torznab categories](TODO) it supports, and skip searching for any media type
-the indexer doesn't carry. This heavily reduces "useless" searches and makes it
-more feasible to use cross-seed with non-video trackers.
+[Torznab categories](https://inhies.github.io/Newznab-API/categories/#predefined-categories)
+it supports, and skip searching for any media type the indexer doesn't carry.
+This heavily reduces "useless" searches and makes it more feasible to use
+cross-seed with non-video trackers.
 
 This requires no action to be taken on your part.
 
