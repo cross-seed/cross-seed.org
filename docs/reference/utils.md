@@ -26,8 +26,12 @@ cross-seed gen-config -d
 
 ### `cross-seed clear-cache`
 
-:::danger Do not use unless instructed to, this rarely necessary. Please seek
-support if you believe it's needed. :::
+:::danger
+
+Do not use unless instructed to, this rarely necessary. Please seek support if
+you believe it's needed.
+
+:::
 
 Clear the cache without causing torrents to be re-snatched and reset the
 timestamps for [`excludeOlder`](../basics/options.md#excludeolder) and
@@ -107,9 +111,13 @@ cross-seed reset-api-key
 
 Clears all indexer failures from the database
 
-:::caution This should be used sparingly, and never repeatedly (back-to-back) in
-a short period, to clear failures that are otherwise latent/expired or erroneous
-in Prowlarr/Jackett due to indexers being down. :::
+:::caution
+
+This should be used sparingly, and never repeatedly (back-to-back) in a short
+period, to clear failures that are otherwise latent/expired or erroneous in
+Prowlarr/Jackett due to indexers being down.
+
+:::
 
 #### Usage
 
