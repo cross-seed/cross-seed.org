@@ -222,7 +222,7 @@ storage mode.
    2023). If not, update the “bind ip” address in web ui settings to your ip
    from step 1 and restart the torrent client
 4. The torrent client address URL in `cross-seed` config should be
-   http://user:pass@ip:port (note: no `/qbittorrent` or `/deluge` etc at the
+   `http://user:pass@ip:port` (note: no `/qbittorrent` or `/deluge` etc at the
    end)
 
 :::caution

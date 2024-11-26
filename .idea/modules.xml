@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/cross-seed.org.iml" filepath="$PROJECT_DIR$/.idea/cross-seed.org.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cross-seed.org.iml" filepath="$PROJECT_DIR$/cross-seed.org.iml" />
     </modules>
   </component>
 </project>
