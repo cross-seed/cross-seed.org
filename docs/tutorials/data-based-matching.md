@@ -22,7 +22,7 @@ This can be used to:
 
 ## Setting up data-based matching
 
-1.  Set up linking as described in the [linking tutorial](../basics/linking.md).
+1.  Set up linking as described in the [linking tutorial](linking.md).
 
 2.  Set [`dataDirs`](../basics/options.md#datadirs) to the directories
     containing the data you want to cross-seed.
@@ -60,7 +60,7 @@ This can be used to:
     don't match standard torrent release naming schemes, set your
     [`matchMode`](../basics/options.md#matchmode) to `risky`, or if you want
     even looser matching, consider setting up
-    [partial matching](../tutorials/partial-matching.md).
+    [partial matching](partial-matching.md).
 
 ## Daemon mode
 
