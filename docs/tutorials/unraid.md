@@ -35,12 +35,12 @@ Cross-seed **needs** to access 3 directories: an input directory with torrent
 files, an output directory for `cross-seed` to save new torrent files (when
 using [`action: 'save',`](../basics/options.md#action)), and a config directory.
 
-| Config Type     | Name       | Container                            | Host                                | Access Mode |
-| --------------- | ---------- | ------------------------------------ | ----------------------------------- | ----------- |
-| Path            | configPath | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
-| Path            | torrentDir | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
-| Path            | outputDir  | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
-| Path (Optional) | dataDir    | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
+| Config Type     | Name            | Container                            | Host                                | Access Mode |
+| --------------- | --------------- | ------------------------------------ | ----------------------------------- | ----------- |
+| Path            | configPath      | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
+| Path            | torrentDir      | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
+| Path            | outputDir       | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
+| Path (Optional) | data (dataDirs) | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 
 :::tip
 
@@ -58,8 +58,12 @@ client's container path is configured.
 `cross-seed` can listen for an HTTP request from when a torrent finishes
 downloading or you receive an `announce`.
 
-:::info If you don't need to use these features **from outside of Docker**, then
-you can skip this step. :::
+:::info
+
+If you don't need to use these features **from outside of Docker**, then you can
+skip this step.
+
+:::
 
 | Config Type | Name | Container Port | Host Port | Connection Type |
 | ----------- | ---- | -------------- | --------- | --------------- |
