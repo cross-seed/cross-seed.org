@@ -28,7 +28,7 @@ for more details.
 
 The most efficient way to use `cross-seed` is to run it in **daemon mode**,
 which continuously monitors for new downloads and cross-seeds them
-automatically. Here’s how to get everything up and running.
+automatically. Here's how to get everything up and running.
 
 ### 1. Install `cross-seed`
 
@@ -36,7 +36,7 @@ You can install `cross-seed` using one of the following methods:
 
 #### With `npm` (recommended if you're not using Docker)
 
-You’ll need **Node.js 20** or greater.
+You'll need **Node.js 20** or greater.
 
 ```shell
 npm install -g cross-seed
@@ -50,23 +50,23 @@ For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
 #### With Docker
 
 ```shell
-docker run ghcr.io/cross-seed/cross-seed --version
+docker run ghcr.io/cross-seed/cross-seed:6 --version
 ```
 
-##### TLDR—just show me the Docker Compose copypasta.
+:::info TLDR—just show me the Docker Compose copypasta.
 
 Here you go:
 
 <DockerCompose />
 
 -   Run the container once which will generate the config file.
--   Then skip to [editing your config file](#3-edit-the-config-file).
+-   Then skip to [Step 3: Edit the Config File](#3-edit-the-config-file).
 
----
+:::
 
 ### 2. Create a Config File
 
-You’ll need to generate a configuration file before running the daemon. Both
+You'll need to generate a configuration file before running the daemon. Both
 Docker and non-Docker users will use the same method for this.
 
 #### For non-Docker users:
@@ -92,13 +92,13 @@ ghcr.io/cross-seed/cross-seed gen-config
 ```
 
 This will create a `config.js` file inside the `/config` directory you
-specified. You’ll need to open this file and edit it as described below.
+specified. You'll need to open this file and edit it as described below.
 
 ---
 
 ### 3. Edit the Config File
 
-Once you’ve created your config file, you’ll need to fill in the necessary
+Once you've created your config file, you'll need to fill in the necessary
 fields to connect to your torrent client and indexer. At a minimum, you should
 configure the following:
 
@@ -119,7 +119,7 @@ configure the following:
         `http://:pass@localhost:8112/json` (the colon before pass is
         intentional)
 
-Here’s an example of what your `config.js` might look like:
+Here's an example of what your `config.js` might look like:
 
 ```js
 module.exports = {
@@ -139,7 +139,7 @@ the
 
 ### 4. Run the Daemon
 
-Once you’ve set up your configuration, you’re ready to run the daemon. Start the
+Once you've set up your configuration, you're ready to run the daemon. Start the
 daemon with this command:
 
 ```shell
@@ -160,6 +160,19 @@ ghcr.io/cross-seed/cross-seed daemon
 After a few moments, you should see `cross-seed` automatically starting to
 search for things in your catalog. It will also automatically scan your
 trackers' RSS feeds for new releases you can cross-seed.
+
+:::info
+
+By default, RSS scans will happen every 30 minutes (determined by the
+[`rssCadence`](../basics/options#rsscadence) option).
+
+Bulk searches of 100 torrents in your catalog (determined by
+[`searchLimit`](../basics/options#searchlimit),
+[`excludeRecentSearch`](../basics/options#excluderecentsearch), and
+[`excludeOlder`](../basics/options#excludeolder)) will run daily (determined by
+[`searchCadence`](../basics/options#searchcadence)).
+
+:::
 
 For now, you can leave the terminal open to keep the daemon running.
 
@@ -188,8 +201,10 @@ might want to explore:
 
 -   [**Managing the daemon**](./managing-the-daemon) with Docker or systemd for
     long-term use.
--   [**Notifying cross-seed of completed downloads and announced releases**](../tutorials/triggering-searches)
+-   [**Notifying cross-seed of completed downloads**](../tutorials/triggering-searches)
     to search for new things more quickly.
+-   [**Listening for announces**](https://autobrr.com/3rd-party-tools/cross-seed#cross-seed-filter)
+    (external link) to join new swarms as an uploader.
 -   [**Setting up partial matches**](../tutorials/partial-matching) to increase
     your seed size even more (at the cost of downloading a few extra NFO files).
 -   [**Setting up ID-based searching**](../tutorials/id-searching) for better

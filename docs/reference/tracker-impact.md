@@ -135,9 +135,7 @@ trackers.
 The important thing is that you seed for a long time - not that you start
 seeding as early as possible.
 
-If you have more than 36525 torrents, `cross-seed` will never catch up. In that
-case, you should increase your
-[`searchLimit`](../basics/options.md#searchlimit).
+This is configurable with [`searchLimit`](../basics/options.md#searchlimit).
 
 ### Preventing Repetitive Searches
 

@@ -30,6 +30,11 @@ _"Missing"_ or _"Unmonitored"_ status is valid.
     search capabilities supported by many indexers, relying less on expensive
     text-based search.
 
+### Requirements
+
+-   Any Sonarr instances running at least v4, and/or
+-   Any Radarr instances running at least v3
+
 ### Configuration
 
 1. Retrieve API Keys

@@ -1257,14 +1257,6 @@ In [Daemon Mode](../basics/managing-the-daemon), with this option enabled,
 `includeEpisodes`, `includeNonVideos`, `excludeOlder`, and `excludeRecentSearch`
 settings).
 
-:::tip
-
-If you have RSS and on-finished-download searches set up, you can run these
-**very infrequently** - on the order of dozens of weeks. There is a minimum of
-**1 day** unless [`excludeRecentSearch`](#excluderecentsearch) has been set.
-
-:::
-
 #### `searchCadence` Examples (CLI)
 
 ```shell
