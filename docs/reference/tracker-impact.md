@@ -110,9 +110,9 @@ If you enable [Partial Matching](../tutorials/partial-matching.md), you should
 **set [`includeNonVideos`](../basics/options.md#includenonvideos) to `true`**
 because the partial matching algorithm can handle the extra files.
 
-### Backlog searching 100 items per day
+### Backlog searching 400 items per day
 
-By default, `cross-seed` only searches 100 items from your backlog per day. We
+By default, `cross-seed` only searches 400 items from your backlog per day. We
 do this for a few reasons:
 
 -   If you have a high `excludeRecentSearch` of one year for example, intending
