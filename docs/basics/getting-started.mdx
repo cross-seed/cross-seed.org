@@ -62,6 +62,8 @@ Here you go:
 -   Run the container once which will generate the config file.
 -   Then skip to [Step 3: Edit the Config File](#3-edit-the-config-file).
 
+Otherwise, continue with the following steps.
+
 :::
 
 ### 2. Create a Config File
@@ -125,7 +127,7 @@ Here's an example of what your `config.js` might look like:
 module.exports = {
 	torznab: ["http://localhost:9696/1/api?apikey=123456"],
 	torrentDir: "/path/to/torrent_dir",
-    outputDir: "/path/to/output_dir",
+	outputDir: "/path/to/output_dir",
 	qbittorrentUrl: "http://username:password@localhost:8080",
 	... several other settings you can read later ...
 };
