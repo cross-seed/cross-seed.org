@@ -439,6 +439,14 @@ above. Back-slashes are "escape characters" and "\\" equates to "\"
 to create a link to the original file in the linkDir during data-based searchs
 where it cannot find a associated torrent file.
 
+When using V6, this field should only be set in two specific use-cases: The first scenario is if 
+you are downloading through usenet or other non-torrent means. This will always be necessary if 
+you want cross-seed to match against this content. The second scenario is if you have content 
+in your media directories not inside your torrent client. Here you only need to perform a search 
+with `dataDirs` ONCE. At the moment, the best way to do this is to add the relevant directories 
+to your `dataDirs` setting and then delete them later, but in the future we will provide a 
+better way to support this kind of backfill scan.
+
 :::tip
 
 We do not recommend you include your [`linkDir`](#linkdir) in the `dataDirs`
