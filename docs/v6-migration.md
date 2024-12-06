@@ -182,7 +182,7 @@ all of their children for changes.
 
 The first scenario where you should also use `dataDirs` is if you are
 downloading through usenet or other non-torrent means. This will always
-necessary if you want `cross-seed` to match against this content.
+be necessary if you want `cross-seed` to match against this content.
 
 The second scenario is if you have content in your media directories not inside
 your torrent client. Here you only need to perform a search with `dataDirs`
