@@ -424,3 +424,8 @@ can match from multiple sources. `cross-seed` is simply offering you the ability
 to revive the stalled torrents inside your client.
 
 :::
+
+### Why do I have so many torrents that are not being searched, a.k.a not "suitable to search for matches"? 
+
+Most likely this is expected behavior due to `config.js` settings such as `includeSingleEpisodes`,
+`includeNonVideos`. Check verbose log in app config folder for `[prefilter]` entries.
