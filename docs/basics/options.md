@@ -439,6 +439,17 @@ above. Back-slashes are "escape characters" and "\\" equates to "\"
 to create a link to the original file in the linkDir during data-based searchs
 where it cannot find a associated torrent file.
 
+#### General Usage in v6
+
+Starting in v6.0.0, this option is generally only applicable in two cases:
+
+1. You are downloading through Usenet or other non-torrent methods in order to
+   match new content not present in your torrent client.
+
+2. You have content in your media or data directories that is not already
+   present in your torrent client. In this scenario, you only need to perform a
+   search with `dataDirs` **once**. After the initial search, you should remove
+   the directories from `dataDirs` entirely.
 :::tip
 
 We do not recommend you include your [`linkDir`](#linkdir) in the `dataDirs`
