@@ -416,7 +416,7 @@ structures.
 If you are willing, you can follow these as guidelines to implement for other
 clients and we'll add them here.
 
-| Client       |
+| Client       ||
 | ------------ | ------------------------------------------------------------------------------------------------ |
 | `qBittorent` | [Gist link to latest version](https://gist.github.com/ShanaryS/6fbc60327ad5f7043c81e5b1f33da404) |
 | `Deluge`     | [Gist link to latest version](https://gist.github.com/zakkarry/3f690bcd56bbfa00c4d72c97d24f2620) |
