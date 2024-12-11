@@ -425,7 +425,17 @@ to revive the stalled torrents inside your client.
 
 :::
 
-### Why do I have so many torrents that are not being searched, a.k.a not "suitable to search for matches"? 
+### Why are some torrents not suitable for searching?
 
-Most likely this is expected behavior due to `config.js` settings such as `includeSingleEpisodes`,
-`includeNonVideos`. Check verbose log in app config folder for `[prefilter]` entries.
+Seeing a difference in total torrent count and suitable torrents (as well as
+unique searches) is expected behavior. This is usually due to `config.js`
+settings such as `includeSingleEpisodes`or `includeNonVideos`, `exclude` options
+based on age or last date of search, or duplicate search queries which have been
+reduced down to a single query.
+
+:::tip
+
+You can check the verbose log in the log directory of the app config folder for
+`[prefilter]` entries immediately before a search starts for exact details.
+
+:::
