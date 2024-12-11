@@ -22,6 +22,22 @@ If you are updating from version 5.x to version 6.x, you can visit the
     settings to match the
     [defaults](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs).
 
+
+### Why are some torrents not suitable for searching?
+
+Seeing a difference in total torrent count and suitable torrents (as well as
+unique searches) is expected behavior. This is usually due to `config.js`
+settings such as `includeSingleEpisodes`or `includeNonVideos`, `exclude` options
+based on age or last date of search, or duplicate search queries which have been
+reduced down to a single query.
+
+:::tip
+
+You can check the verbose log in the log directory of the app config folder for
+`[prefilter]` entries immediately before a search starts for exact details.
+
+:::
+
 ### Does cross-seed support music torrents?
 
 While `cross-seed` may incidentally find _some_ music matches, it is not
