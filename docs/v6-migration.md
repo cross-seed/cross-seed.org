@@ -174,11 +174,11 @@ below).
 
 #### Data-based Matching Use Cases
 
-Because of the above updates to linking, we recommend that you **exclusively**
-use `torrentDir` and leave `dataDirs` empty, except for two specific use-cases 
-below. Torrent based matching is more robust, and prevents some performance issues 
-with `dataDirs` wherein `cross-seed` has to frequently scan your `dataDirs` and 
-all of their children for changes.
+Due to the linking updates mentioned, we recommend using **ONLY** `torrentDir` and
+leaving `dataDirs` empty, except in the two cases outlined below. Torrent based
+matching is more robust, and prevents some performance issues with `dataDirs`
+wherein `cross-seed` has to frequently scan your `dataDirs` and all of their
+children for changes.
 
 The first scenario where you should also use `dataDirs` is if you are
 downloading through usenet or other non-torrent means. This will always
