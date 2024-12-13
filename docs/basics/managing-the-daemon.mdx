@@ -148,5 +148,19 @@ Once attached, you can detach with `ctrl-A, D`.
 
 ### Windows
 
-If you have a working setup for Windows using NSSM or something, we'd love to
-hear from you! Click on the "Edit this page" button below to help us out.
+If you are using Windows 11, you can use the built-in Task Scheduler to run `cross-seed daemon` at start up. (This should work with any Windows version after Vista, but has only been tested on 11).
+1. Launch "Task Scheduler" from the Start Menu
+2. Right-click on "Task Scheduler Library" and select "Create Basic Task"
+3. Enter "Cross Seed" as the name and click "Next"
+4. Select "When I log on" as the trigger and click "Next"
+5. Select "Start a program" as the action and click "Next"
+6. Configure the launch command:
+
+    a) In the "Program/script" box, paste the path to your cross-seed install. For example, if your node installation is managed by Windows NVM, and you installed cross-seed with `npm install -g cross-seed`, this will be found at "C:\Program Files\nodejs\cross-seed.cmd'. If unsure, run `where cross-seed` in a command line terminal.
+    
+    b) In the "Add arguments" box, enter `daemon`
+    
+    c) Click "Next"
+7. Check the box to select "Open the Properties dialog for this task when I click Finish", then click "Finish"
+8. Select the option for "Run whether user is logged on or not", then click "OK"
+9. Finally, test that this works by restarting your PC and checking the cross-seed logs for activity
