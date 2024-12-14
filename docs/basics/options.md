@@ -383,7 +383,7 @@ torrentDir: "C:\\torrents",
 :::info WINDOWS USERS
 
 It is necessary to insert double-slashes for your paths, as seen in the examples
-above. Back-slashes are "escape characters" and "\\" equates to "\"
+above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 
 :::
 
@@ -424,7 +424,7 @@ outputDir: ".",
 :::info WINDOWS USERS
 
 It is necessary to insert double-slashes for your paths, as seen in the examples
-above. Back-slashes are "escape characters" and "\\" equates to "\"
+above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 
 :::
 
@@ -610,7 +610,7 @@ linkDir: "C:\\cross-seed-links",
 :::info WINDOWS USERS
 
 It is necessary to insert double-slashes for your paths, as seen in the examples
-above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 
 :::
 
