@@ -39,8 +39,8 @@ long-form option name as the `kebab-cased` variant. For example, the
 
 `cross-seed` will look for a configuration file at
 
--   **Mac**/**Linux**/**Unix**: `~/.cross-seed/config.js`
--   **Windows**: `AppData\Local\cross-seed\config.js`
+- **Mac**/**Linux**/**Unix**: `~/.cross-seed/config.js`
+- **Windows**: `AppData\Local\cross-seed\config.js`
 
 :::tip
 
@@ -68,10 +68,10 @@ configuration.
 
 The configuration file uses JavaScript syntax, which means:
 
--   Array/multi options must be enclosed in \['brac', 'kets'\].
--   Strings must be enclosed in "quotation" marks.
--   Array elements and options must be separated by commas.
--   **Windows users will need to use `\\` for paths. (e.g. `c:\\torrents`)**
+- Array/multi options must be enclosed in \['brac', 'kets'\].
+- Strings must be enclosed in "quotation" marks.
+- Array elements and options must be separated by commas.
+- **Windows users will need to use `\\` for paths. (e.g. `c:\\torrents`)**
 
 :::
 
@@ -450,10 +450,10 @@ Starting in v6.0.0, this option is generally only applicable in two cases:
    present in your torrent client. In this scenario, you only need to perform a
    search with `dataDirs` **once**. After the initial search, you should remove
    the directories from `dataDirs` entirely.
+
 :::tip
 
-We do not recommend you include your [`linkDir`](#linkdir) in the `dataDirs`
-option.
+You cannot include your [`linkDir`](#linkdir) in the `dataDirs` option.
 
 :::
 
@@ -564,11 +564,24 @@ original data is accessible (both torrent and data-based matches).
 
 [**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
 
+:::warning
+
+If you are utilizing [`hardlinks`](../tutorials/linking#hardlink) with Docker,
+it is necessary that you to use a single mount/volume for both the `linkDir` and
+the data in your client and/or `dataDirs` from which you're linking . Using
+`hardlinks` across two volumes/mounts in Docker will error and fail.
+
+All paths need to be accessible in the same structure as your torrent client for
+injection to succeed.
+
+:::
+
 :::tip
 
-It is best if your `linkDir` is not _INSIDE_ of your included
-[`dataDirs`](#datadirs) folders. This is to prevent recursive and erroneous
-searches of folders used in linking folder structure.
+[If you are using `dataDirs` (click for v6 use-cases)](../v6-migration.md#data-based-matching-use-cases),
+your `linkDir` can not reside _INSIDE_ of your included [`dataDirs`](#datadirs)
+folders. This is to prevent recursive and erroneous searches of folders used in
+linking folder structure.
 
 :::
 
@@ -588,9 +601,9 @@ cross-seed search --linkDir /data/torrents/xseeds
 #### `linkDir` Examples (Config file)
 
 ```js
-linkDir: "/links",
+linkDir: "/path/to/your/linkDir",
 
-linkDir: "C:\\links",
+linkDir: "C:\\cross-seed-links",
 
 ```
 
@@ -616,10 +629,15 @@ Valid methods for linkType are `symlink` and `hardlink`.
 
 [**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
 
-:::caution Docker
+:::danger PATH ADVISORY
 
-You will need to mount the volume for `cross-seed` to have access to the
-`dataDirs` and `linkDir`.
+If you are utilizing [`hardlinks`](../tutorials/linking#hardlink) with Docker,
+it is necessary that you to use a single mount/volume for both the `linkDir` and
+the data in your client and/or `dataDirs` from which you're linking . Using
+`hardlinks` across two volumes/mounts in Docker will error and fail.
+
+All paths need to be accessible in the same structure as your torrent client for
+injection to succeed.
 
 :::
 
@@ -1489,7 +1507,7 @@ flatLinking: false,
 | ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
 
-:::danger
+:::danger BE ADVISED
 
 This feature is currently only partially implemented for v6.
 
@@ -1514,16 +1532,16 @@ cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d0754354353
 
 The full list of upcoming supported prefixes are:
 
--   `name:`
--   `nameRegex:`
--   `folder:`
--   `folderRegex:`
--   `category:`
--   `tag:`
--   `tracker:`
--   `hash:`
--   `sizeBelow:`
--   `sizeAbove:`
+- `name:`
+- `nameRegex:`
+- `folder:`
+- `folderRegex:`
+- `category:`
+- `tag:`
+- `tracker:`
+- `hash:`
+- `sizeBelow:`
+- `sizeAbove:`
 
 :::danger
 
