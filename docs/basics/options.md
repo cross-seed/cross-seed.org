@@ -436,7 +436,7 @@ above. Back-slashes are "escape characters" and "\\" equates to "\"
 
 `cross-seed` will search the paths provided (separated by spaces). If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in the linkDir during data-based searchs
+to create a link to the original file in the linkDir during data-based searches
 where it cannot find a associated torrent file.
 
 #### General Usage in v6
