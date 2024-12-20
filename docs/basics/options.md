@@ -93,7 +93,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
 | [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`maxRemainingForResume`](#maxremainingforresume)   |              |
+| [`autoResumeMaxDownload`](#autoresumemaxdownload)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -131,7 +131,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includeNonvideos)             |              |
 | [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`maxRemainingForResume`](#maxremainingforresume)   |              |
+| [`autoResumeMaxDownload`](#autoresumemaxdownload)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -711,10 +711,7 @@ Set this to `true` to skip rechecking torrents upon injection.
 
 :::tip
 
-In an upcoming version of v6, torrents will be resumed even with
-`skipRecheck: false`, if applicable.
-
-[`Read more`](../v6-migration.md#updated-skiprecheck-option)
+Torrents will be resumed even with `skipRecheck: false`, if applicable.
 
 :::
 
@@ -813,33 +810,27 @@ seasonFromEpisodes: 0.8,
 seasonFromEpisodes: undefined,
 ```
 
-### `maxRemainingForResume`
+### `autoResumeMaxDownload`
 
-| Config file name        | CLI short form | CLI long form                | Format             | Default |
-| ----------------------- | -------------- | ---------------------------- | ------------------ | ------- |
-| `maxRemainingForResume` | `N/A`          | `--max-remaining-for-resume` | `number` (0 to 50) | `50`    |
-
-:::danger
-
-This is an upcoming feature for v6.
-
-:::
+| Config file name        | CLI short form | CLI long form                | Format                   | Default    |
+| ----------------------- | -------------- | ---------------------------- | ------------------------ | ---------- |
+| `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800` |
 
 The amount remaining for an injected torrent in MiB for `cross-seed` to resume.
 Complete matches will always be resumed.
 
-#### `maxRemainingForResume` Examples (CLI)
+#### `autoResumeMaxDownload` Examples (CLI)
 
 ```shell
-cross-seed search --max-remaining-for-resume 0 # only resume complete matches
+cross-seed search --auto-resume-max-download 0 # only resume complete matches
 ```
 
-#### `maxRemainingForResume` Examples (Config file)
+#### `autoResumeMaxDownload` Examples (Config file)
 
 ```js
-maxRemainingForResume: 50,
+autoResumeMaxDownload: 52428800,
 
-maxRemainingForResume: 0,
+autoResumeMaxDownload: 0,
 ```
 
 ### `includeNonVideos`
