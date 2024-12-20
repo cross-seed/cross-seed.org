@@ -662,8 +662,7 @@ linkType: "symlink",
 | ---------------- | --------------------- | --------------------- | ------------------------- | ------- |
 | `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky`/`partial*` | `safe`  |
 
-`cross-seed` uses three types of matching algorithms `safe`, `risky`, and
-[`partial` (**only available in version 6**)](../v6-migration.md#partial-matching).
+`cross-seed` uses three types of matching algorithms `safe`, `risky`, and `partial`.
 These algorithms can only be ran if `cross-seed` has snatched the torrent files.
 The vast majority of candidates get rejected before a snatch has happened by
 parsing information from the title.
@@ -672,7 +671,7 @@ parsing information from the title.
 | --------- | ----------------------------------------------------------------------- |
 | `safe`    | the default which matches based on file naming and sizes.               |
 | `risky`   | matches based on file sizes only.                                       |
-| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching) |
+| `partial` | can be read about in detail [here](../tutorials/partial-matching.md) |
 
 For media library searches `risky` or `partial` is necessary due to the renaming
 of files.
@@ -788,6 +787,11 @@ searching (when applicable) or to match with season packs from rss/announce.
 This will only match season packs where you have at least the specified ratio of
 episodes. `undefined` or `null` disables this feature. If enabled, values below
 1 requires matchMode [partial](#matchmode).
+
+:::tip
+This feature works best with matchMode [partial](#matchmode) and [Sonarr](#sonarr).
+You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+:::
 
 #### `seasonFromEpisodes` Examples (CLI)
 

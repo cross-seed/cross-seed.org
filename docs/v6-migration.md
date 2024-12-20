@@ -202,12 +202,7 @@ For more information, see the
 ### Ensemble or "Torrent Aggregation"
 
 `cross-seed` will additionally aggregate/join your already downloaded episodes into season packs for matching to get you seeding data you already have faster.
-
 This functionality is linked to the new option [seasonFromEpisodes](./basics/options.md#seasonFromEpisodes) - which is a ratio of episodes you need to have for a match.
-
-:::tip
-This feature works best with [partial matching](#partial-matching) and [Sonarr](./basics/options.md#sonarr). You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
-:::
 
 ### Searching by Media IDs
 
