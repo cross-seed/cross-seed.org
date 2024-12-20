@@ -93,7 +93,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includenonvideos)             |              |
 | [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`maxRemainingForResume`](#maxremainingforresume)   |              |
+| [`autoResumeMaxDownload`](#autoresumemaxdownload)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -131,7 +131,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`includeSingleEpisodes`](#includesingleepisodes)   |              |
 | [`includeNonVideos`](#includeNonvideos)             |              |
 | [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`maxRemainingForResume`](#maxremainingforresume)   |              |
+| [`autoResumeMaxDownload`](#autoresumemaxdownload)   |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
 | [`excludeOlder`](#excludeolder)                     |              |
 | [`excludeRecentSearch`](#excluderecentsearch)       |              |
@@ -662,8 +662,7 @@ linkType: "symlink",
 | ---------------- | --------------------- | --------------------- | ------------------------- | ------- |
 | `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky`/`partial*` | `safe`  |
 
-`cross-seed` uses three types of matching algorithms `safe`, `risky`, and
-[`partial` (**only available in version 6**)](../v6-migration.md#partial-matching).
+`cross-seed` uses three types of matching algorithms `safe`, `risky`, and `partial`.
 These algorithms can only be ran if `cross-seed` has snatched the torrent files.
 The vast majority of candidates get rejected before a snatch has happened by
 parsing information from the title.
@@ -672,7 +671,7 @@ parsing information from the title.
 | --------- | ----------------------------------------------------------------------- |
 | `safe`    | the default which matches based on file naming and sizes.               |
 | `risky`   | matches based on file sizes only.                                       |
-| `partial` | can be read about in detail [here](../v6-migration.md#partial-matching) |
+| `partial` | can be read about in detail [here](../tutorials/partial-matching.md) |
 
 For media library searches `risky` or `partial` is necessary due to the renaming
 of files.
@@ -711,10 +710,7 @@ Set this to `true` to skip rechecking torrents upon injection.
 
 :::tip
 
-In an upcoming version of v6, torrents will be resumed even with
-`skipRecheck: false`, if applicable.
-
-[`Read more`](../v6-migration.md#updated-skiprecheck-option)
+Torrents will be resumed even with `skipRecheck: false`, if applicable.
 
 :::
 
@@ -786,17 +782,16 @@ includeSingleEpisodes: false,
 | -------------------- | -------------- | ------------------------ | ------------------------------ | ------- |
 | `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `1`     |
 
-:::danger
-
-This is an upcoming feature for v6.
-
-:::
-
 `cross-seed` will also aggregate individual episodes into season packs for
 searching (when applicable) or to match with season packs from rss/announce.
 This will only match season packs where you have at least the specified ratio of
 episodes. `undefined` or `null` disables this feature. If enabled, values below
 1 requires matchMode [partial](#matchmode).
+
+:::tip
+This feature works best with matchMode [partial](#matchmode) and [Sonarr](#sonarr).
+You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+:::
 
 #### `seasonFromEpisodes` Examples (CLI)
 
@@ -813,33 +808,29 @@ seasonFromEpisodes: 0.8,
 seasonFromEpisodes: undefined,
 ```
 
-### `maxRemainingForResume`
+### `autoResumeMaxDownload`
 
-| Config file name        | CLI short form | CLI long form                | Format             | Default |
-| ----------------------- | -------------- | ---------------------------- | ------------------ | ------- |
-| `maxRemainingForResume` | `N/A`          | `--max-remaining-for-resume` | `number` (0 to 50) | `50`    |
-
-:::danger
-
-This is an upcoming feature for v6.
-
-:::
+| Config file name        | CLI short form | CLI long form                | Format                   | Default    |
+| ----------------------- | -------------- | ---------------------------- | ------------------------ | ---------- |
+| `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800` |
 
 The amount remaining for an injected torrent in MiB for `cross-seed` to resume.
-Complete matches will always be resumed.
+For torrents with a larger amount remaining, you will need to manually resume
+as you can avoid downloading the same missing data on multiple trackers
+by following [these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
 
-#### `maxRemainingForResume` Examples (CLI)
+#### `autoResumeMaxDownload` Examples (CLI)
 
 ```shell
-cross-seed search --max-remaining-for-resume 0 # only resume complete matches
+cross-seed search --auto-resume-max-download 0 # only resume complete matches
 ```
 
-#### `maxRemainingForResume` Examples (Config file)
+#### `autoResumeMaxDownload` Examples (Config file)
 
 ```js
-maxRemainingForResume: 50,
+autoResumeMaxDownload: 52428800,
 
-maxRemainingForResume: 0,
+autoResumeMaxDownload: 0,
 ```
 
 ### `includeNonVideos`
@@ -1507,30 +1498,9 @@ flatLinking: false,
 | ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
 
-:::danger BE ADVISED
-
-This feature is currently only partially implemented for v6.
-
-:::
-
 `cross-seed` will exclude any of the files/releases from cross-seeding during
 the prefiltering done for each search/inject/rss/announce/webhook use.
-Currently, this only takes strings that are directly applied to only the torrent
-names, folders, and hash. e.g
-
-#### `blockList` Examples (Config file)
-
-```js
-blockList: ["badRelease", "-blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
-```
-
-#### `blockList` Examples (CLI)
-
-```shell
-cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d075435435313c319c3a5f3bec3965a"
-```
-
-The full list of upcoming supported prefixes are:
+The full list of supported prefixes are:
 
 - `name:`
 - `nameRegex:`
@@ -1544,11 +1514,9 @@ The full list of upcoming supported prefixes are:
 - `sizeAbove:`
 
 :::danger
-
 The regex (ECMAScript flavor) options are for advanced users only. Do not use
 without rigorous testing as `cross-seed` is unable to perform any checks. Use at
 your own risk.
-
 :::
 
 All options, including the regex, are case-sensitive. `name:` can be a substring

@@ -199,6 +199,11 @@ such as nfo, srt, or sample files.
 For more information, see the
 [**Partial Matching page**](./tutorials/partial-matching.md).
 
+### Ensemble or "Torrent Aggregation"
+
+`cross-seed` will additionally aggregate/join your already downloaded episodes into season packs for matching to get you seeding data you already have faster.
+This functionality is linked to the new option [seasonFromEpisodes](./basics/options.md#seasonFromEpisodes) - which is a ratio of episodes you need to have for a match.
+
 ### Searching by Media IDs
 
 `cross-seed` now has the ability to, when configured, query instances of
