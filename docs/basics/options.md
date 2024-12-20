@@ -790,7 +790,7 @@ episodes. `undefined` or `null` disables this feature. If enabled, values below
 
 :::tip
 This feature works best with matchMode [partial](#matchmode) and [Sonarr](#sonarr).
-You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 :::
 
 #### `seasonFromEpisodes` Examples (CLI)

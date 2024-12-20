@@ -72,5 +72,5 @@ depending on whether you are willing to incur more or less DL on partial matches
 
 :::tip
 You can avoid downloading the same missing data on multiple trackers by following
-[these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
+[these steps](../basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
 :::
