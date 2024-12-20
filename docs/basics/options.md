@@ -1498,30 +1498,9 @@ flatLinking: false,
 | ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
 
-:::danger BE ADVISED
-
-This feature is currently only partially implemented for v6.
-
-:::
-
 `cross-seed` will exclude any of the files/releases from cross-seeding during
 the prefiltering done for each search/inject/rss/announce/webhook use.
-Currently, this only takes strings that are directly applied to only the torrent
-names, folders, and hash. e.g
-
-#### `blockList` Examples (Config file)
-
-```js
-blockList: ["badRelease", "-blockedGroup", "595ceca24d075435435313c319c3a5f3bec3965a"],
-```
-
-#### `blockList` Examples (CLI)
-
-```shell
-cross-seed search --block-list "badRelease" "blockedGroup" "595ceca24d075435435313c319c3a5f3bec3965a"
-```
-
-The full list of upcoming supported prefixes are:
+The full list of supported prefixes are:
 
 - `name:`
 - `nameRegex:`
@@ -1535,11 +1514,9 @@ The full list of upcoming supported prefixes are:
 - `sizeAbove:`
 
 :::danger
-
 The regex (ECMAScript flavor) options are for advanced users only. Do not use
 without rigorous testing as `cross-seed` is unable to perform any checks. Use at
 your own risk.
-
 :::
 
 All options, including the regex, are case-sensitive. `name:` can be a substring
