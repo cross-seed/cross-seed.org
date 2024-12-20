@@ -23,14 +23,15 @@ So, what's the outcome?
     partial matching, meaning the snatch doesn't go to waste.
 
 :::tip
-Partial matching works well with [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes)
+Combine partial matching with [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes)
+to cross seed season packs even if you're missing individual episodes!
 :::
 
 ### How Partial Matching Works
 
 Partial matching relies on a new [`matchMode`](../basics/options.md#matchmode)
-setting called `partial`. This mode only requires some files to match, not all.
- `cross-seed` uses the [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) to set a minimum
+setting called `partial`. This mode only requires some files to match instead of all.
+`cross-seed` uses the [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) to set a minimum
 size for partial matches (default 0.02, allowing up to 2% size variance).
 
 If a partial match is found, cross-seed will:
