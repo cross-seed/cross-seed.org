@@ -814,10 +814,10 @@ seasonFromEpisodes: undefined,
 | ----------------------- | -------------- | ---------------------------- | ------------------------ | ---------- |
 | `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800` |
 
-The amount remaining for an injected torrent in MiB for `cross-seed` to resume.
+The amount remaining for an injected torrent in bytes for `cross-seed` to resume.
 For torrents with a larger amount remaining, you will need to manually resume
 as you can avoid downloading the same missing data on multiple trackers
-by following [these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
+by following [these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 
 #### `autoResumeMaxDownload` Examples (CLI)
 
