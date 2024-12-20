@@ -1509,7 +1509,7 @@ The full list of supported prefixes are:
 - `category:`
 - `tag:`
 - `tracker:`
-- `hash:`
+- `infoHash:`
 - `sizeBelow:`
 - `sizeAbove:`
 
@@ -1541,7 +1541,7 @@ blockList: [
 	"category:icycool",
 	"tag:everybody",
 	"tracker:tracker.example.com:8080",
-	"hash:3317e6485454354751555555366a8308c1e92093",
+	"infoHash:3317e6485454354751555555366a8308c1e92093",
 	"sizeBelow:12345",
 	"sizeAbove:98765",
 ],
