@@ -486,8 +486,8 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\"
 
 ### `linkCategory`
 
-| Config file name | CLI short form | CLI long form                | Format   | Default         |
-| ---------------- | -------------- | ---------------------------- | -------- | --------------- |
+| Config file name | CLI short form | CLI long form                | Format   | Default           |
+| ---------------- | -------------- | ---------------------------- | -------- | ----------------- |
 | `linkCategory`   | N/A            | `--link-category <category>` | `string` | `cross-seed-link` |
 
 `cross-seed` will, when performing **data-based** searches with
@@ -521,8 +521,9 @@ linkCategory: "Category1",
 | `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false` |
 
 `cross-seed` will inject using the original category, appending '.cross-seed',
-with the same save paths as your normal categories. For qBittorrent with linking enabled,
-this will be applied as tag instead while keeping [`linkCategory`](#linkcategory).
+with the same save paths as your normal categories. For qBittorrent with linking
+enabled, this will be applied as tag instead while keeping
+[`linkCategory`](#linkcategory).
 
 :::info
 
@@ -1178,9 +1179,9 @@ notificationWebhookUrl: "http://apprise:8000/notify",
 
 ### `host`
 
-| Config file name | CLI short form  | CLI long form   | Format    | Default   |
-| ---------------- | --------------- | --------------- | --------- | --------- |
-| `host`           | N/A             | `--host <host>` | `host/ip` | `0.0.0.0` |
+| Config file name | CLI short form | CLI long form   | Format    | Default   |
+| ---------------- | -------------- | --------------- | --------- | --------- |
+| `host`           | N/A            | `--host <host>` | `host/ip` | `0.0.0.0` |
 
 In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
@@ -1523,7 +1524,7 @@ All options, including the regex, are case-sensitive. `name:` can be a substring
 of the name of inside the .torrent file. `folder:` can be a substring of any
 folder in the path for data based searches. All other prefixes must match
 exactly. `category:` `tag:` `tracker:` are read from source torrents (labels are
-considered `tag:`). When blocklisting by `tracker:`, if the announce url is
+considered `category:`). When blocklisting by `tracker:`, if the announce url is
 `https://user:pass@tracker.example.com:8080/announce/key`, you must use host
 `"tracker:tracker.example.com:8080"`. The blockList sizes are an integer of the
 number of bytes.
