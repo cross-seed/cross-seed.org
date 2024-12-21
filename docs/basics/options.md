@@ -168,9 +168,7 @@ daemon mode, the `delay` option lets you set how long you want `cross-seed` to
 sleep in between searching for each torrent.
 
 If you set it higher, it will smooth out the load on your indexer, however
-setting this lower will result in `cross-seed` running faster. We don't
-recommend setting this lower than 15, as it could garner unwanted attention from
-tracker staff.
+setting this lower will result in `cross-seed` running faster.
 
 :::warning DISCLAIMER
 
@@ -185,7 +183,6 @@ You need to read your tracker's rules and be aware of their limits.
 ```shell
 cross-seed search -d 60
 cross-seed search --delay 30
-cross-seed daemon -d 20
 ```
 
 #### `delay` Examples (Config file)
@@ -489,9 +486,9 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\"
 
 ### `linkCategory`
 
-| Config file name | CLI short form               | CLI long form | Format   | Default |
-| ---------------- | ---------------------------- | ------------- | -------- | ------- |
-| `linkCategory`   | `--link-category <category>` | N/A           | `string` |         |
+| Config file name | CLI short form | CLI long form                | Format   | Default         |
+| ---------------- | -------------- | ---------------------------- | -------- | --------------- |
+| `linkCategory`   | N/A            | `--link-category <category>` | `string` | `cross-seed-link` |
 
 `cross-seed` will, when performing **data-based** searches with
 [injection](../tutorials/injection), use this category for all injected
@@ -524,7 +521,8 @@ linkCategory: "Category1",
 | `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false` |
 
 `cross-seed` will inject using the original category, appending '.cross-seed',
-with the same save paths as your normal categories.
+with the same save paths as your normal categories. For qBittorrent with linking enabled,
+this will be applied as tag instead while keeping [`linkCategory`](#linkcategory).
 
 :::info
 
@@ -695,18 +693,10 @@ matchMode: "safe",
 
 | Config file name | CLI short form | CLI long form    | Format    | Default |
 | ---------------- | -------------- | ---------------- | --------- | ------- |
-| `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `false` |
+| `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `true`  |
 
-:::danger Note
-
-Using skipRecheck in conjunction with `risky` could result in you downloading
-incorrect/missing pieces rather than cross-seeding properly.
-
-**Proceed with caution!**
-
-:::
-
-Set this to `true` to skip rechecking torrents upon injection.
+Set this to `false` to recheck all torrents upon injection. Set this to `true`
+to only recheck necessary injections (such as partial or data based).
 
 :::tip
 
@@ -717,8 +707,8 @@ Torrents will be resumed even with `skipRecheck: false`, if applicable.
 #### `skipRecheck` Examples (CLI)
 
 ```shell
-cross-seed search --skip-recheck # will skip rechecking
-cross-seed search # will not skip rechecking
+cross-seed search # will skip rechecking
+cross-seed search --no-skip-recheck # will not skip rechecking
 ```
 
 #### `skipRecheck` Examples (Config file)
@@ -817,9 +807,9 @@ seasonFromEpisodes: null, // will disable season pack from episodes
 
 ### `autoResumeMaxDownload`
 
-| Config file name        | CLI short form | CLI long form                | Format                   | Default    |
-| ----------------------- | -------------- | ---------------------------- | ------------------------ | ---------- |
-| `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800` |
+| Config file name        | CLI short form | CLI long form                | Format                   | Default             |
+| ----------------------- | -------------- | ---------------------------- | ------------------------ | ------------------- |
+| `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800` (50 MiB) |
 
 The amount remaining for an injected torrent in bytes for `cross-seed` to
 resume. For torrents with a larger amount remaining, you will need to manually
@@ -845,7 +835,7 @@ autoResumeMaxDownload: 0,
 
 | Config file name   | CLI short form | CLI long form          | Format    | Default |
 | ------------------ | -------------- | ---------------------- | --------- | ------- |
-| `includeNonVideos` |                | `--include-non-videos` | `boolean` | `false` |
+| `includeNonVideos` | N/A            | `--include-non-videos` | `boolean` | `false` |
 
 :::warning NOTICE
 
@@ -876,9 +866,9 @@ includeNonVideos: false,
 
 ### `fuzzySizeThreshold`
 
-| Config file name     | CLI short form | CLI long form                    | Format                         | Default |
-| -------------------- | -------------- | -------------------------------- | ------------------------------ | ------- |
-| `fuzzySizeThreshold` |                | `--fuzzy-size-threshold <value>` | `number` (decimal from 0 to 1) | `0.02`  |
+| Config file name     | CLI short form | CLI long form                    | Format                           | Default |
+| -------------------- | -------------- | -------------------------------- | -------------------------------- | ------- |
+| `fuzzySizeThreshold` | N/A            | `--fuzzy-size-threshold <value>` | `number` (decimal from 0 to 0.1) | `0.02`  |
 
 Increase this number to reject fewer torrents based on size. There is no
 guarantee that it will increase your match rate.
@@ -979,7 +969,7 @@ excludeRecentSearch: "1 day",
 excludeRecentSearch: "2 weeks",
 ```
 
-### `action`\*
+### `action`
 
 | Config file name | CLI short form     | CLI long form            | Format          | Default |
 | ---------------- | ------------------ | ------------------------ | --------------- | ------- |
@@ -1008,7 +998,7 @@ action: "inject",
 
 | Config file name | CLI short form | CLI long form              | Format | Default |
 | ---------------- | -------------- | -------------------------- | ------ | ------- |
-| `rtorrentRpcUrl` |                | `--rtorrent-rpc-url <url>` | URL    |         |
+| `rtorrentRpcUrl` | N/A            | `--rtorrent-rpc-url <url>` | URL    |         |
 
 The url of your **rTorrent** XMLRPC interface. Only relevant with
 [Injection](../tutorials/injection). Often ends in `/RPC2`.
@@ -1051,7 +1041,7 @@ rtorrentRpcUrl: "http://user:pass@localhost:8080/RPC2",
 
 | Config file name | CLI short form | CLI long form             | Format | Default |
 | ---------------- | -------------- | ------------------------- | ------ | ------- |
-| `qbittorrentUrl` |                | `--qbittorrent-url <url>` | URL    |         |
+| `qbittorrentUrl` | N/A            | `--qbittorrent-url <url>` | URL    |         |
 
 The url of your **qBittorrent** Web UI. Only relevant with
 [Injection](../tutorials/injection).
@@ -1083,7 +1073,7 @@ qbittorrentUrl: "http://user:pass@localhost:8080",
 
 | Config file name     | CLI short form | CLI long form                  | Format | Default |
 | -------------------- | -------------- | ------------------------------ | ------ | ------- |
-| `transmissionRpcUrl` |                | `--transmission-rpc-url <url>` | URL    |         |
+| `transmissionRpcUrl` | N/A            | `--transmission-rpc-url <url>` | URL    |         |
 
 The url of your **Transmission** RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
@@ -1115,7 +1105,7 @@ transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
 
 | Config file name | CLI short form | CLI long form            | Format | Default |
 | ---------------- | -------------- | ------------------------ | ------ | ------- |
-| `delugeRpcUrl`   |                | `--deluge-rpc-url <url>` | URL    |         |
+| `delugeRpcUrl`   | N/A            | `--deluge-rpc-url <url>` | URL    |         |
 
 The url of your **Deluge** JSON-RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
@@ -1147,7 +1137,7 @@ delugeRpcUrl: "http://:pass@localhost:8112/json",
 
 | Config file name         | CLI short form | CLI long form                      | Format | Default |
 | ------------------------ | -------------- | ---------------------------------- | ------ | ------- |
-| `notificationWebhookUrl` |                | `--notification-webhook-url <url>` | URL    |         |
+| `notificationWebhookUrl` | N/A            | `--notification-webhook-url <url>` | URL    |         |
 
 `cross-seed` will send a POST request to this URL with the following payload:
 
@@ -1188,9 +1178,9 @@ notificationWebhookUrl: "http://apprise:8000/notify",
 
 ### `host`
 
-| Config file name | CLI short form  | CLI long form | Format    | Default   |
-| ---------------- | --------------- | ------------- | --------- | --------- |
-| `host`           | `--host <host>` |               | `host/ip` | `0.0.0.0` |
+| Config file name | CLI short form  | CLI long form   | Format    | Default   |
+| ---------------- | --------------- | --------------- | --------- | --------- |
+| `host`           | N/A             | `--host <host>` | `host/ip` | `0.0.0.0` |
 
 In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
@@ -1242,7 +1232,7 @@ port: 3000,
 
 | Config file name | CLI short form | CLI long form             | Format                          | Default |
 | ---------------- | -------------- | ------------------------- | ------------------------------- | ------- |
-| `rssCadence`     |                | `--rss-cadence <cadence>` | `string` in the [ms][ms] format |         |
+| `rssCadence`     | N/A            | `--rss-cadence <cadence>` | `string` in the [ms][ms] format |         |
 
 In [Daemon Mode](../basics/managing-the-daemon), with this option enabled,
 `cross-seed` will run periodic RSS searches on your configured indexers to check
@@ -1408,9 +1398,9 @@ searchTimeout: "20s",
 
 ### `searchLimit`
 
-| Config file name | CLI short form | CLI long form             | Format   | Default   |
-| ---------------- | -------------- | ------------------------- | -------- | --------- |
-| `searchLimit`    |                | `--search-limit <number>` | `number` | undefined |
+| Config file name | CLI short form | CLI long form             | Format   | Default     |
+| ---------------- | -------------- | ------------------------- | -------- | ----------- |
+| `searchLimit`    |                | `--search-limit <number>` | `number` | `undefined` |
 
 This option applies to any search Torznab. This option will stop searching after
 the number of searches meets the number specified.
@@ -1442,7 +1432,7 @@ searchLimit: 150,
 
 | Config file name | CLI short form | CLI long form    | Format    | Default |
 | ---------------- | -------------- | ---------------- | --------- | ------- |
-| `flatLinking`    |                | `--flat-linking` | `boolean` | `false` |
+| `flatLinking`    | N/A            | `--flat-linking` | `boolean` | `false` |
 
 :::caution Be Advised
 
