@@ -11,17 +11,65 @@ If you are updating from version 5.x to version 6.x, you can visit the
 
 ### General Suggestions
 
--   The log files in `cross-seed`'s `logs` folder—specifically
-    `verbose.*.log`—are your friend. If you experience undesired results from
-    `cross-seed`, look to these files first for indicators of why `cross-seed`
-    performed the way it did.
--   In the past, `cross-seed` has been less opinionated about what settings work
-    well. After a few years of experimentation, we have settled on a
-    high-performing set of default settings that should work well for users and
-    trackers alike. If your configuration predates v6, consider adjusting your
-    settings to match the
-    [defaults](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs).
+- The log files in `cross-seed`'s `logs` folder—specifically `verbose.*.log`—are
+  your friend. If you experience undesired results from `cross-seed`, look to
+  these files first for indicators of why `cross-seed` performed the way it did.
+- In the past, `cross-seed` has been less opinionated about what settings work
+  well. After a few years of experimentation, we have settled on a
+  high-performing set of default settings that should work well for users and
+  trackers alike. If your configuration predates v6, consider adjusting your
+  settings to match the
+  [defaults](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs).
 
+### What causes `outputDir should only contain .torrent files` warning?
+
+Typically this error happens when you set [`outputDir`](./options.md#outputdir)
+to a directory which is already in use for something. `outputDir` is a sort of
+"working directory" for cross-seed, and needs to be set to a dedicated empty
+directory. `outputDir` is used as a temporary store for tracking things like
+failed injections (for retrying later) and .torrent files which are being
+monitored for resuming after a recheck. Do not put anything in this directory if
+you do not intend to have it be matched to your data and injected, and do not
+delete anything in this directory unless you do not want to cross-seed that
+torrent.
+
+:::tip Repeated Injections
+
+It is possible that you find you want to remove a torrent file that was
+cross-seeded from your client that was injected, and find it reappearing shortly
+after removal. This could be because of the inject job and the corresponding
+.torrent file in `outputDir`.
+
+To stop the reinjection, simply remove this .torrent file from `outputDir` and
+then delete the torrent from your client.
+
+:::
+
+### What is "Could not ensure all torrents from the torrent client are in `torrentDir`"?
+
+This is usually due to not using the recommended paths for
+[`torrentDir`](./options.md#torrentdir). You should use your torrent client's
+directory (that stores .torrents and fastresume states). This is not a "Copy of
+.torrent" folder, but a folder you would find inside of the config or appdata
+folders for the torrent client specifically.
+
+Using another directory (such as "Copy of" directories) with injection can lead
+to outdated or latent .torrent files being left behind, and when this happens
+cross-seed is unaware that they are not actually in the client seeding.
+
+If you are using the appropiate directory and still see this, it means you need
+to go clean up (verify the torrent files listed) are in your client, and remove
+those that aren't.
+
+You can find a list of example paths for reference in the options page under
+[`torrentDir`](./options.md#torrendir)
+
+:::warning qBittorrent
+
+qBittorrent users utilizing injection are required to use BT_backup for their
+torrentDir when using injection.
+
+:::
 
 ### Why are some torrents not suitable for searching?
 

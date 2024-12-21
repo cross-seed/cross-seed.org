@@ -662,15 +662,15 @@ linkType: "symlink",
 | ---------------- | --------------------- | --------------------- | ------------------------- | ------- |
 | `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky`/`partial*` | `safe`  |
 
-`cross-seed` uses three types of matching algorithms `safe`, `risky`, and `partial`.
-These algorithms can only be ran if `cross-seed` has snatched the torrent files.
-The vast majority of candidates get rejected before a snatch has happened by
-parsing information from the title.
+`cross-seed` uses three types of matching algorithms `safe`, `risky`, and
+`partial`. These algorithms can only be ran if `cross-seed` has snatched the
+torrent files. The vast majority of candidates get rejected before a snatch has
+happened by parsing information from the title.
 
-| option    | description                                                             |
-| --------- | ----------------------------------------------------------------------- |
-| `safe`    | the default which matches based on file naming and sizes.               |
-| `risky`   | matches based on file sizes only.                                       |
+| option    | description                                                          |
+| --------- | -------------------------------------------------------------------- |
+| `safe`    | the default which matches based on file naming and sizes.            |
+| `risky`   | matches based on file sizes only.                                    |
 | `partial` | can be read about in detail [here](../tutorials/partial-matching.md) |
 
 For media library searches `risky` or `partial` is necessary due to the renaming
@@ -789,23 +789,30 @@ episodes. `undefined` or `null` disables this feature. If enabled, values below
 1 requires matchMode [partial](#matchmode).
 
 :::tip
-This feature works best with matchMode [partial](#matchmode) and [Sonarr](#sonarr).
-You can avoid downloading the same missing episodes on multiple trackers by following [these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+
+This feature works best with matchMode [partial](#matchmode) and
+[Sonarr](#sonarr). You can avoid downloading the same missing episodes on
+multiple trackers by following
+[these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+
 :::
 
 #### `seasonFromEpisodes` Examples (CLI)
 
 ```shell
-cross-seed search --season-from-episodes 0.8 # will also combine episodes into season packs if you have at least 80% of the episodes
-cross-seed search # will not join episodes to season packs
+cross-seed search --season-from-episodes 0.8 # will also combine episodes into season packs if you have at least 80%
+cross-seed search # will only combine episodes to a season when you have 100% of the pack
+cross-seed search --no-season-from-episodes # will not attempt to join episodes to season packs
 ```
 
 #### `seasonFromEpisodes` Examples (Config file)
 
 ```js
-seasonFromEpisodes: 0.8,
+seasonFromEpisodes: 0.8, // requires 80% of the episodes to cross-seed a season pack
 
-seasonFromEpisodes: undefined,
+seasonFromEpisodes: undefined, // will join with 100% of the episodes
+
+seasonFromEpisodes: null, // will disable season pack from episodes
 ```
 
 ### `autoResumeMaxDownload`
@@ -814,10 +821,11 @@ seasonFromEpisodes: undefined,
 | ----------------------- | -------------- | ---------------------------- | ------------------------ | ---------- |
 | `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800` |
 
-The amount remaining for an injected torrent in bytes for `cross-seed` to resume.
-For torrents with a larger amount remaining, you will need to manually resume
-as you can avoid downloading the same missing data on multiple trackers
-by following [these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+The amount remaining for an injected torrent in bytes for `cross-seed` to
+resume. For torrents with a larger amount remaining, you will need to manually
+resume as you can avoid downloading the same missing data on multiple trackers
+by following
+[these steps](./faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
 
 #### `autoResumeMaxDownload` Examples (CLI)
 
@@ -1499,8 +1507,8 @@ flatLinking: false,
 | `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during
-the prefiltering done for each search/inject/rss/announce/webhook use.
-The full list of supported prefixes are:
+the prefiltering done for each search/inject/rss/announce/webhook use. The full
+list of supported prefixes are:
 
 - `name:`
 - `nameRegex:`
@@ -1514,9 +1522,11 @@ The full list of supported prefixes are:
 - `sizeAbove:`
 
 :::danger
+
 The regex (ECMAScript flavor) options are for advanced users only. Do not use
 without rigorous testing as `cross-seed` is unable to perform any checks. Use at
 your own risk.
+
 :::
 
 All options, including the regex, are case-sensitive. `name:` can be a substring
