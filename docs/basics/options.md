@@ -969,7 +969,7 @@ excludeRecentSearch: "1 day",
 excludeRecentSearch: "2 weeks",
 ```
 
-### `action`
+### `action`\*
 
 | Config file name | CLI short form     | CLI long form            | Format          | Default |
 | ---------------- | ------------------ | ------------------------ | --------------- | ------- |
