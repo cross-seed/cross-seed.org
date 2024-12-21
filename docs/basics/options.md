@@ -785,8 +785,8 @@ includeSingleEpisodes: false,
 `cross-seed` will also aggregate individual episodes into season packs for
 searching (when applicable) or to match with season packs from rss/announce.
 This will only match season packs where you have at least the specified ratio of
-episodes. `undefined` or `null` disables this feature. If enabled, values below
-1 requires matchMode [partial](#matchmode).
+episodes. `null` disables this feature. If enabled, values below 1 requires
+matchMode [partial](#matchmode).
 
 :::tip
 
