@@ -391,8 +391,8 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 | `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` |         |
 
 `cross-seed` will store the torrent files it finds in this directory. If you use
-[Injection](../tutorials/injection) you'll need to make sure that the client has
-access to this path also.
+[Injection](../tutorials/injection) with rtorrent you'll need to make sure that
+the client has access to this path also.
 
 :::caution Docker
 
@@ -486,8 +486,8 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\"
 
 ### `linkCategory`
 
-| Config file name | CLI short form | CLI long form                | Format   | Default         |
-| ---------------- | -------------- | ---------------------------- | -------- | --------------- |
+| Config file name | CLI short form | CLI long form                | Format   | Default           |
+| ---------------- | -------------- | ---------------------------- | -------- | ----------------- |
 | `linkCategory`   | N/A            | `--link-category <category>` | `string` | `cross-seed-link` |
 
 `cross-seed` will, when performing **data-based** searches with
@@ -521,8 +521,9 @@ linkCategory: "Category1",
 | `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false` |
 
 `cross-seed` will inject using the original category, appending '.cross-seed',
-with the same save paths as your normal categories. For qBittorrent with linking enabled,
-this will be applied as tag instead while keeping [`linkCategory`](#linkcategory).
+with the same save paths as your normal categories. For qBittorrent with linking
+enabled, this will be applied as tag instead while keeping
+[`linkCategory`](#linkcategory).
 
 :::info
 
@@ -1178,9 +1179,9 @@ notificationWebhookUrl: "http://apprise:8000/notify",
 
 ### `host`
 
-| Config file name | CLI short form  | CLI long form   | Format    | Default   |
-| ---------------- | --------------- | --------------- | --------- | --------- |
-| `host`           | N/A             | `--host <host>` | `host/ip` | `0.0.0.0` |
+| Config file name | CLI short form | CLI long form   | Format    | Default   |
+| ---------------- | -------------- | --------------- | --------- | --------- |
+| `host`           | N/A            | `--host <host>` | `host/ip` | `0.0.0.0` |
 
 In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
