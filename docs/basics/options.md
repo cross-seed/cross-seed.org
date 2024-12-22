@@ -1503,7 +1503,7 @@ list of supported prefixes are:
 
 - `name:` A substring of the name inside the .torrent file or parsed name from path if data based.
 - `nameRegex:` Similar to name but uses your own custom regex.
-- `folder:` A sub string of any parent folder in the path. Only applies to dataDir searchees, not torrentDir.
+- `folder:` A sub string of any parent folder in the path. Only applies to [`dataDirs`](#datadirs) searchees, not [`torrentDir`](#torrentdir).
 - `folderRegex:` Similar to folder but uses your own custom regex on the entire parent path.
 - `category:` Deluge labels are considered categories. `"category:"` blocklists torrents without a category.
 - `tag:` Transmission and rTorrent labels are considered tags. `"tag:"` blocklists torrents without a tag.
