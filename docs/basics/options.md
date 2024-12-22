@@ -771,7 +771,7 @@ includeSingleEpisodes: false,
 
 | Config file name     | CLI short form | CLI long form            | Format                         | Default |
 | -------------------- | -------------- | ------------------------ | ------------------------------ | ------- |
-| `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `1`     |
+| `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `null`  |
 
 `cross-seed` will also aggregate individual episodes into season packs for
 searching (when applicable) or to match with season packs from rss/announce.
@@ -792,7 +792,6 @@ multiple trackers by following
 
 ```shell
 cross-seed search --season-from-episodes 0.8 # will also combine episodes into season packs if you have at least 80%
-cross-seed search # will only combine episodes to a season when you have 100% of the pack
 cross-seed search --no-season-from-episodes # will not attempt to join episodes to season packs
 ```
 
@@ -800,8 +799,6 @@ cross-seed search --no-season-from-episodes # will not attempt to join episodes 
 
 ```js
 seasonFromEpisodes: 0.8, // requires 80% of the episodes to cross-seed a season pack
-
-seasonFromEpisodes: undefined, // will join with 100% of the episodes
 
 seasonFromEpisodes: null, // will disable season pack from episodes
 ```
@@ -1493,9 +1490,9 @@ flatLinking: false,
 
 ### `blockList`
 
-| Config file name | CLI short form           | CLI long form            | Format      | Default |
-| ---------------- | ------------------------ | ------------------------ | ----------- | ------- |
-| `blockList`      | `--block-list <strings>` | `--block-list <strings>` | `string(s)` |         |
+| Config file name | CLI short form | CLI long form            | Format      | Default |
+| ---------------- | -------------- | ------------------------ | ----------- | ------- |
+| `blockList`      | N/A            | `--block-list <strings>` | `string(s)` |         |
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during
 the prefiltering done for each search/inject/rss/announce/webhook use. The full
