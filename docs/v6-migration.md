@@ -38,6 +38,39 @@ We have bumped our minimum Node version to Node 20 in order to take advantage of
 new features. If you have a native installation (not Docker), you will need to
 upgrade Node to at least version 20.
 
+### Configuration Migration
+
+Due to requests for configuration changes being outlined, here is configuration
+migration for the changes as of v6.5.1.
+
+:::tip New Options Keys
+
+You can grab the new
+[`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs)
+and simply go through and migrate your missing options over to your current
+`config.js`. Alternatively, you can add them yourself by referencing our
+documentation.
+
+- [`dataCategory -> linkCategory`](./basics/options.md#linkcategory)
+
+- [`apiAuth -> apiKey`](./basics/options.md#apikey)
+
+- [`flatLinking`](./basics/options.md#flatlinking)
+
+- [`blockList`](./basics/options.md#blocklist)
+
+- [`sonarr`](./basics/options.md#sonarr)
+
+- [`radarr`](./basics/options.md#radarr)
+
+- [`seasonFromEpisodes`](./basics/options.md#seasonfromepisodes)
+
+- [`autoResumeMaxDownload`](./basics/options.md#autoresumemaxdownload)
+
+- [`includeEpisodes`](#removed-includeepisodes) (_removed_)
+
+:::
+
 ### Stricter `config.js` Validation
 
 One of the biggest changes made in v6 is better config validation and error
@@ -174,15 +207,15 @@ below).
 
 #### Data-based Matching Use Cases
 
-Due to the linking updates mentioned, we recommend using **ONLY** `torrentDir` and
-leaving `dataDirs` empty, except in the two cases outlined below. Torrent based
-matching is more robust, and prevents some performance issues with `dataDirs`
-wherein `cross-seed` has to frequently scan your `dataDirs` and all of their
-children for changes.
+Due to the linking updates mentioned, we recommend using **ONLY** `torrentDir`
+and leaving `dataDirs` empty, except in the two cases outlined below. Torrent
+based matching is more robust, and prevents some performance issues with
+`dataDirs` wherein `cross-seed` has to frequently scan your `dataDirs` and all
+of their children for changes.
 
 The first scenario where you should also use `dataDirs` is if you are
-downloading through usenet or other non-torrent means. This will always
-be necessary if you want `cross-seed` to match against this content.
+downloading through usenet or other non-torrent means. This will always be
+necessary if you want `cross-seed` to match against this content.
 
 The second scenario is if you have content in your media directories not inside
 your torrent client. Here you only need to perform a search with `dataDirs`
@@ -201,8 +234,11 @@ For more information, see the
 
 ### Ensemble or "Torrent Aggregation"
 
-`cross-seed` will additionally aggregate/join your already downloaded episodes into season packs for matching to get you seeding data you already have faster.
-This functionality is linked to the new option [seasonFromEpisodes](./basics/options.md#seasonfromepisodes) - which is a ratio of episodes you need to have for a match.
+`cross-seed` will additionally aggregate/join your already downloaded episodes
+into season packs for matching to get you seeding data you already have faster.
+This functionality is linked to the new option
+[seasonFromEpisodes](./basics/options.md#seasonfromepisodes) - which is a ratio
+of episodes you need to have for a match.
 
 ### Searching by Media IDs
 
@@ -390,24 +426,24 @@ types in your "Settings -> Connect -> Custom Script" to "On Import Complete."
 Here is a short list of other changes made in v6. These are some of the
 behind-the-scenes updates made to improve `cross-seed`.
 
--   Updated to Node v20, ES2022, and TypeScript v5
--   Any indexer failures not related to rate limiting (status code: `429`) will
-    be cleared from the database when `cross-seed` is restarted.
--   Regex improvements. Some trackers rename search results or have non-standard
-    naming conventions. The updated regex takes more of those into account and
-    should find more matches.
--   Improved logging messages, specifically around matching decisions.
--   There are now lists of files/folders integrated into `cross-seed` that are
-    blocked during prefiltering at startup. These include folders present inside
-    full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files,
-    RAR archives, season (e.g. "Season 01") and main series/movie folders in
-    Sonarr and Radarr libraries. Excluding these from the `cross-seed` index
-    (for data-based searches) will result in fewer "bad" searches that would
-    otherwise yield no viable results.
--   New recommended defaults in
-    [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs).
-    These settings are what we consider to be the best starting options when
-    setting up `cross-seed`.
+- Updated to Node v20, ES2022, and TypeScript v5
+- Any indexer failures not related to rate limiting (status code: `429`) will be
+  cleared from the database when `cross-seed` is restarted.
+- Regex improvements. Some trackers rename search results or have non-standard
+  naming conventions. The updated regex takes more of those into account and
+  should find more matches.
+- Improved logging messages, specifically around matching decisions.
+- There are now lists of files/folders integrated into `cross-seed` that are
+  blocked during prefiltering at startup. These include folders present inside
+  full-disc Bluray/DVD releases (BDMV/CERTIFICATE), individual music files, RAR
+  archives, season (e.g. "Season 01") and main series/movie folders in Sonarr
+  and Radarr libraries. Excluding these from the `cross-seed` index (for
+  data-based searches) will result in fewer "bad" searches that would otherwise
+  yield no viable results.
+- New recommended defaults in
+  [`config.template.js`](https://raw.githubusercontent.com/cross-seed/cross-seed/master/src/config.template.cjs).
+  These settings are what we consider to be the best starting options when
+  setting up `cross-seed`.
 
 ## [`flatLinking`](./basics/options.md#flatlinking) Migration
 
@@ -421,7 +457,7 @@ structures.
 If you are willing, you can follow these as guidelines to implement for other
 clients and we'll add them here.
 
-| Client       ||
+| Client       |                                                                                                  |
 | ------------ | ------------------------------------------------------------------------------------------------ |
 | `qBittorent` | [Gist link to latest version](https://gist.github.com/ShanaryS/6fbc60327ad5f7043c81e5b1f33da404) |
 | `Deluge`     | [Gist link to latest version](https://gist.github.com/zakkarry/3f690bcd56bbfa00c4d72c97d24f2620) |
