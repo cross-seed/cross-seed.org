@@ -1501,16 +1501,16 @@ flatLinking: false,
 the prefiltering done for each search/inject/rss/announce/webhook use. The full
 list of supported prefixes are:
 
-- `name:`
-- `nameRegex:`
-- `folder:`
-- `folderRegex:`
-- `category:`
-- `tag:`
-- `tracker:`
-- `infoHash:`
-- `sizeBelow:`
-- `sizeAbove:`
+- `name:` A substring of the name inside the .torrent file or parsed name from path if data based.
+- `nameRegex:` Similar to name but uses your own custom regex.
+- `folder:` A sub string of any parent folder in the path. Only applies to dataDir searchees, not torrentDir.
+- `folderRegex:` Similar to folder but uses your own custom regex on the entire parent path.
+- `category:` Deluge labels are considered categories. `"category:"` blocklists torrents without a category.
+- `tag:` Transmission and rTorrent labels are considered tags. `"tag:"` blocklists torrents without a tag.
+- `tracker:` If the announce url (from client/.torrent) is `https://user:pass@tracker.example.com:8080/announce/key` you must use host `tracker.example.com:8080`.
+- `infoHash:` Blocklist the torrent that matches this infohash (case-insensitive).
+- `sizeBelow:` Blocklist searchees with a size in bytes below this number.
+- `sizeAbove:` Blocklist searchees with a size in bytes above this number.
 
 :::danger
 
@@ -1519,15 +1519,6 @@ without rigorous testing as `cross-seed` is unable to perform any checks. Use at
 your own risk.
 
 :::
-
-All options, including the regex, are case-sensitive. `name:` can be a substring
-of the name of inside the .torrent file. `folder:` can be a substring of any
-folder in the path for data based searches. All other prefixes must match
-exactly. `category:` `tag:` `tracker:` are read from source torrents (labels are
-considered `tag:`). When blocklisting by `tracker:`, if the announce url is
-`https://user:pass@tracker.example.com:8080/announce/key`, you must use host
-`"tracker:tracker.example.com:8080"`. The blockList sizes are an integer of the
-number of bytes.
 
 #### `blockList` Examples (Config file)
 
@@ -1540,7 +1531,9 @@ blockList: [
 	"folder:folderName",
 	"folderRegex:folder\d+",
 	"category:icycool",
+	"category:",
 	"tag:everybody",
+	"tag:",
 	"tracker:tracker.example.com:8080",
 	"infoHash:3317e6485454354751555555366a8308c1e92093",
 	"sizeBelow:12345",
