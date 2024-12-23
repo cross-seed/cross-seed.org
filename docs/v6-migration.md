@@ -349,7 +349,7 @@ This requires no action on your part.
 inject its [partial matches](./tutorials/partial-matching.md). Other programs,
 like [**autotorrent**](https://github.com/JohnDoee/autotorrent), will not work.
 You do not need to do anything with torrents saved to `outputDir`—`cross-seed`
-will handle them.
+will handle them unless the torrent is stalled.
 [Read more about retrying injections](./tutorials/injection.md#manual-or-scheduled-injection).
 
 :::

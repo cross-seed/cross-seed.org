@@ -72,7 +72,7 @@ If the .torrent files follow the naming format above, they will be elligible for
 -   The torrent matches your blocklist
 
 Stalled torrents (either the cross seeded torrent or it's source) will require your intervention before `cross-seed` will remove the .torrent file.
-You will need to remove these torrents from your client or remove the .torrent file from outputDir manually if you wish to keep them.
+You will need to remove these torrents from your client and the .torrent file from outputDir. If you wish to keep them in client, only remove their .torrent file from outputDir.
 
 :::tip
 You can find more information about this feature in the [`v6 migration guide`](../v6-migration.md#failed-injection-saved-retry).
