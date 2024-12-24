@@ -1,5 +1,6 @@
 ---
 id: unraid
+sidebar_position: 8
 title: Unraid
 ---
 

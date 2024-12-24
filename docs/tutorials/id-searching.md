@@ -1,5 +1,6 @@
 ---
 title: Searching by Media IDs
+sidebar_position: 4
 id: id-searching
 ---
 

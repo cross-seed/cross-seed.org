@@ -1,10 +1,10 @@
 ---
 id: triggering-searches
-sidebar_position: 2
+sidebar_position: 6
 title: Triggering Searches
 ---
 
-Cross-seed gives you the ability to search for cross-seeds as soon as a torrent
+`cross-seed` gives you the ability to search for cross-seeds as soon as a torrent
 finishes downloading, by adding an on-completion script to your torrent client
 (or [bakerboy448](https://github.com/bakerboy448)'s Sonarr/Radarr
 [import script](https://github.com/bakerboy448/StarrScripts/blob/main/xseed.sh))
