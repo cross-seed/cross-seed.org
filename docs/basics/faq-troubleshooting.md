@@ -159,24 +159,6 @@ will need to go to [URLEncoder.org](https://www.urlencoder.org/) and encode
 
 Replace the original user or password with the encoded one in your config file.
 
-### My cross-seeds are paused at 100% after injection
-
-This is by design and due to the way data-based searches function. This is done
-to prevent automatically downloading missing files or files that failed to
-recheck. Until there is a way to guarantee you won't end up downloading extra
-(not cross-seeding) this is the best solution.
-
-Alternatively, if you wish for torrents to not inject in a paused state, you can
-enable `skipRecheck` in the config file, and this will instead Error on
-missing/incomplete files.
-
-:::tip
-
-Consider using `infoHash` rather than `path` in calls to `/api/webhook` to
-prevent mismatches if you are racing.
-
-:::
-
 ### Why do I get `Unsupported: magnet link detected at…`?
 
 `cross-seed` does not support magnet links. If your indexer supports torrent
@@ -256,15 +238,8 @@ preventable.
 ### My torrents are injected (qBittorrent) but show `missing files` error!
 
 If you see injected torrents show up with a `missing files` error, it is likely
-because you do not have a save path set for the original torrent's category that
-`cross-seed` was cross-seeding from. You should also see a warning in the logs
-when the torrents are injected telling you there is no save path set.
-
-:::tip
-
-Set a save path for the files in that category to fix this.
-
-:::
+due to permissions or incorrect paths/mounts/volumes. The logs from qBittorrent
+will usually state the specific reason.
 
 ### I am getting `0 torrents found` with qBittorrent and I set my `torrentDir`
 

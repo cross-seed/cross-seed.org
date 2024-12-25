@@ -662,9 +662,17 @@ linkType: "symlink",
 | `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky`/`partial*` | `safe`  |
 
 `cross-seed` uses three types of matching algorithms `safe`, `risky`, and
-`partial`. These algorithms can only be ran if `cross-seed` has snatched the
+`partial`. All types are extremely safe and will have no false positives.
+`partial` will roughly double the number of found cross seeds,
+effectively finding all possible cross seeds.
+
+:::note
+
+These algorithms can only be ran if `cross-seed` has snatched the
 torrent files. The vast majority of candidates get rejected before a snatch has
 happened by parsing information from the title.
+
+:::
 
 | option    | description                                                          |
 | --------- | -------------------------------------------------------------------- |
@@ -697,7 +705,7 @@ matchMode: "safe",
 | `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `true`  |
 
 Set this to `false` to recheck all torrents upon injection. Set this to `true`
-to only recheck necessary injections (such as partial or data based).
+to only recheck necessary injections such those from [`partial`](#matchmode).
 
 :::tip
 
@@ -1493,6 +1501,13 @@ flatLinking: false,
 | Config file name | CLI short form | CLI long form            | Format      | Default |
 | ---------------- | -------------- | ------------------------ | ----------- | ------- |
 | `blockList`      | N/A            | `--block-list <strings>` | `string(s)` |         |
+
+:::tip
+
+Use the blocklist on categories, tags, or trackers on torrents you do not want to cross seed
+from your torrent client. This will be necessary if they are on a separate drive.
+
+:::
 
 `cross-seed` will exclude any of the files/releases from cross-seeding during
 the prefiltering done for each search/inject/rss/announce/webhook use. The full

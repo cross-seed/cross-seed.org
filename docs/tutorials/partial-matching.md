@@ -17,7 +17,8 @@ files that don't match each other.
 So, what's the outcome?
 
 -   **More Matches**: Partial matching finds torrents even when small files are
-    missing/mismatched.
+    missing/mismatched often doubling the amount of cross seeds found. Using this
+    mode will find all possible cross seeds from your data.
 -   **Fewer Wasted Snatches**: Many torrents that can't match under
     `matchMode: "safe"` (due to a "technicality") can and will match with
     partial matching, meaning the snatch doesn't go to waste.
