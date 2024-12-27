@@ -1446,7 +1446,7 @@ qBittorrent users using an external program or script, such as qbit_manage, to
 force AutoTMM on torrents (e.g. to apply share limits automatically) will need
 to enable `flatLinking` or modify your workflow accordingly.
 
-[**Read more about specific usage**](v6-migration.md#qbittorrent)
+[**Read more about specific usage**](../v6-migration.md#new-folder-structure-for-links)
 
 :::
 
