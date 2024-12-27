@@ -199,6 +199,18 @@ with the following command.
 NODE_OPTIONS=--disable-wasm-trap-handler cross-seed daemon
 ```
 
+### Why won't cross-seed start with `val is not a non-empty string`?
+
+This is due to a corrupted database, and is often ran into during a
+initialization of a new or migrated instance.
+
+For a brand new instance of cross-seed wipe the `cross-seed.db` file from your
+configuration directory, and if an old instance the contents of
+`./torrent_cache` as well.
+
+Simply restart cross-seed, and you should be good to go. If not, please contact
+us on Discord with logs.
+
 ### Failed to inject, saving instead.
 
 The best way to start troubleshooting this is to check the `logs/verbose.*.log`
