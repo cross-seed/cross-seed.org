@@ -41,9 +41,10 @@ This can be used to:
     │  |  |  ├─ torrent_item.mkv  # 3
     ```
 
-    In this example, with a `dataDir` of `/TV`, we would likely want to set
-    `maxDataDepth` to 3 if using [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes).
-    If you have it disabled, then a value of 2 is more appropriate.
+    In this example, with a `dataDir` of `/TV`, we would need to set
+    `maxDataDepth` to 3 if using [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes)
+    or [`includeSingleEpisodes`](../basics/options.md#includesingleepisodes).
+    If you are using neither, then a value of 2 is more appropriate.
 
     ```
     TV/                     # 0
