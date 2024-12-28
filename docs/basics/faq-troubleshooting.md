@@ -267,7 +267,7 @@ storage mode.
 
 ### I'm getting errors in cross-seed on hostingby.design seedbox
 
-1. Get your shared instance IP address (`cat .install/subnet.lock`)
+1. Get your shared instance IP address (`cat ~/.install/subnet.lock`)
 2. Torznab URLs should be: `http://ip:port/prowlarr/[id]/api?apikey=[apikey]`
 3. Your torrent client should be on the same subnet (if installed after dec.
    2023). If not, update the “bind ip” address in web ui settings to your ip
