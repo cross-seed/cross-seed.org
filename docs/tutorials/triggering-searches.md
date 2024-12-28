@@ -27,7 +27,7 @@ curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY>&infoHash=<infoHash>
 Start by shelling into your docker container:
 
 ```shell
-docker exec -it cross-seed bash
+docker exec -it cross-seed sh
 ```
 
 :::
