@@ -331,6 +331,11 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 Point this at a directory containing torrent files. If you don't know where your
 torrent client stores its files, the table below might help.
 
+More details on using paths other than the .torrent store in the client
+config/appdata directory (ex: 'state' or 'BT_backup') can be found in the FAQ
+under
+[this entry.](./faq-troubleshooting.md#what-is-could-not-ensure-all-torrents-from-the-torrent-client-are-in-torrentdir)
+
 :::tip Data-Only Searching
 
 If you wish to search only your data, we previously recommended pointing this to
@@ -663,14 +668,14 @@ linkType: "symlink",
 
 `cross-seed` uses three types of matching algorithms `safe`, `risky`, and
 `partial`. All types are extremely safe and will have no false positives.
-`partial` will roughly double the number of found cross seeds,
-effectively finding all possible cross seeds.
+`partial` will roughly double the number of found cross seeds, effectively
+finding all possible cross seeds.
 
 :::note
 
-These algorithms can only be ran if `cross-seed` has snatched the
-torrent files. The vast majority of candidates get rejected before a snatch has
-happened by parsing information from the title.
+These algorithms can only be ran if `cross-seed` has snatched the torrent files.
+The vast majority of candidates get rejected before a snatch has happened by
+parsing information from the title.
 
 :::
 
@@ -1504,8 +1509,9 @@ flatLinking: false,
 
 :::tip
 
-Use the blocklist on categories, tags, or trackers on torrents you do not want to cross seed
-from your torrent client. This will be necessary if they are on a separate drive.
+Use the blocklist on categories, tags, or trackers on torrents you do not want
+to cross seed from your torrent client. This will be necessary if they are on a
+separate drive.
 
 :::
 
@@ -1513,14 +1519,22 @@ from your torrent client. This will be necessary if they are on a separate drive
 the prefiltering done for each search/inject/rss/announce/webhook use. The full
 list of supported prefixes are:
 
-- `name:` A substring of the name inside the .torrent file or parsed name from path if data based.
+- `name:` A substring of the name inside the .torrent file or parsed name from
+  path if data based.
 - `nameRegex:` Similar to name but uses your own custom regex.
-- `folder:` A substring of any parent folder in the path. Only applies to [`dataDirs`](#datadirs) searchees, not [`torrentDir`](#torrentdir).
-- `folderRegex:` Similar to folder but uses your own custom regex on the entire parent path.
-- `category:` Deluge labels are considered categories. `"category:"` blocklists torrents without a category.
-- `tag:` Transmission and rTorrent labels are considered tags. `"tag:"` blocklists torrents without a tag.
-- `tracker:` If the announce url (from client/.torrent) is `https://user:pass@tracker.example.com:8080/announce/key` you must use host `tracker.example.com:8080`.
-- `infoHash:` Blocklist the torrent that matches this infohash (case-insensitive).
+- `folder:` A substring of any parent folder in the path. Only applies to
+  [`dataDirs`](#datadirs) searchees, not [`torrentDir`](#torrentdir).
+- `folderRegex:` Similar to folder but uses your own custom regex on the entire
+  parent path.
+- `category:` Deluge labels are considered categories. `"category:"` blocklists
+  torrents without a category.
+- `tag:` Transmission and rTorrent labels are considered tags. `"tag:"`
+  blocklists torrents without a tag.
+- `tracker:` If the announce url (from client/.torrent) is
+  `https://user:pass@tracker.example.com:8080/announce/key` you must use host
+  `tracker.example.com:8080`.
+- `infoHash:` Blocklist the torrent that matches this infohash
+  (case-insensitive).
 - `sizeBelow:` Blocklist searchees with a size in bytes below this number.
 - `sizeAbove:` Blocklist searchees with a size in bytes above this number.
 
