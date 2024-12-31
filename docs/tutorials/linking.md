@@ -29,24 +29,40 @@ injected torrents will be linked, even perfect matches.
 
 ## Setting up linking
 
-To set up linking, you need to define a directory where `cross-seed` will create
+To set up linking, you need to define at least one directory where `cross-seed` will create
 links to your existing files and set the
-[`linkDir`](../basics/options.md#linkdir) option to this directory in your
-config file. This directory should be accessible to your torrent
-client—`cross-seed` will use the `linkDir` as the save path for the torrents it
-injects.
+[`linkDirs`](../basics/options.md#linkdirs) option to these directories in your
+config file. These directories should be accessible to your torrent
+client—`cross-seed` will use the `linkDir` on the same device as the save path
+for the torrents it injects.
+
+If you are utilizing [`hardlinks`](../tutorials/linking#hardlink) with Docker,
+it is necessary that you to use a single mount/volume for each of the `linkDirs` and
+the data in your client and/or `dataDirs` from which you're linking . Using
+`hardlinks` across two volumes/mounts in Docker will error and fail.
+
+All paths need to be accessible in the same structure as your torrent client for
+injection to succeed.
+
+:::tip
+
+Ideally, you should only have a single linkDir and use drive pooling.
+Using multiple linkDirs should be reserved for setups with cache/temp drives
+or where drive pooling is impossible.
+
+:::
 
 ```js
 module.exports = {
 	// ... other settings ...
-	linkDir: "/path/to/linkDir",
+	linkDirs: ["/path/to/linkDir"],
 };
 ```
 
 **For Docker Users**: there are a few more specific requirements for linking to
 work properly.
 
--   Your torrent client will need access to the `linkDir` you've set, seeing the
+-   Your torrent client will need access to the `linkDirs` you've set, seeing the
     same path `cross-seed` sees.
 -   `cross-seed`'s container needs to be able to see the **original data
     files**, again at the same path that your torrent client sees.
@@ -54,15 +70,15 @@ work properly.
     docker volume_.
 
 In practice, this means that you should mount a **common ancestor path** of the
-both the original data files _and_ your `linkDir`.
+both the original data files _and_ your `linkDirs`.
 
 Once you have restarted `cross-seed`, new matches will have links created in
-your `linkDir` pointing to the original files.
+your `linkDirs` pointing to the original files.
 
 :::info
 
 In order to prevent collisions, `cross-seed` organizes linked torrents into
-subfolders of your [`linkDir`](../basics/options.md#linkdir) based on the
+subfolders of your [`linkDirs`](../basics/options.md#linkdirs) based on the
 tracker each torrent came from. If you wish to disable this behavior, you can
 set the [`flatLinking`](../basics/options.md#flatlinking) option to `true`, but
 it is not recommended for new users.

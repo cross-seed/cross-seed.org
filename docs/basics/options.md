@@ -86,7 +86,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`dataDirs`](#datadirs)                             |              |
 | [`linkCategory`](#linkcategory)                     |              |
 | [`duplicateCategories`](#duplicatecategories)       |              |
-| [`linkDir`](#linkdir)                               |              |
+| [`linkDirs`](#linkdirs)                             |              |
 | [`linkType`](#linktype)                             |              |
 | [`matchMode`](#matchmode)                           |              |
 | [`skipRecheck`](#skiprecheck)                       |              |
@@ -123,7 +123,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`dataDirs`](#datadirs)                             |              |
 | [`linkCategory`](#linkcategory)                     |              |
 | [`duplicateCategories`](#duplicatecategories)       |              |
-| [`linkDir`](#linkdir)                               |              |
+| [`linkDirs`](#linkdirs)                             |              |
 | [`linkType`](#linktype)                             |              |
 | [`matchMode`](#matchmode)                           |              |
 | [`skipRecheck`](#skiprecheck)                       |              |
@@ -438,8 +438,7 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 
 `cross-seed` will search the paths provided (separated by spaces). If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in the linkDir during data-based searches
-where it cannot find a associated torrent file.
+to create a link to the original file in the linkDirs.
 
 #### General Usage in v6
 
@@ -455,14 +454,14 @@ Starting in v6.0.0, this option is generally only applicable in two cases:
 
 :::tip
 
-You cannot include your [`linkDir`](#linkdir) in the `dataDirs` option.
+You cannot include your [`linkDirs`](#linkdirs) in the `dataDirs` option.
 
 :::
 
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the data
-and linkDir.
+and linkDirs.
 
 :::
 
@@ -502,7 +501,7 @@ torrents.
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the data
-and linkDir.
+and linkDirs.
 
 :::
 
@@ -555,35 +554,34 @@ duplicateCategories: false,
 
 ```
 
-### `linkDir`
+### `linkDirs`
 
-| Config file name | CLI short form     | CLI long form      | Format   | Default |
-| ---------------- | ------------------ | ------------------ | -------- | ------- |
-| `linkDir`        | `--link-dir <dir>` | `--link-dir <dir>` | `string` |         |
+| Config file name | CLI short form | CLI long form           | Format      | Default |
+| ---------------- | -------------- | ----------------------- | ----------- | ------- |
+| `linkDirs`       | N/A            | `--link-dirs <dirs...>` | `string(s)` |         |
+
+:::tip
+
+Ideally, you should only have a single linkDir and use drive pooling.
+Using multiple linkDirs should be reserved for setups with cache/temp drives
+or where drive pooling is impossible.
+
+[**Read more**](../tutorials/linking.md)
+
+:::
 
 `cross-seed` will link (symlink/hardlink) in the path provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in the `linkDir` during searches where the
+to create a link to the original file in one of the `linkDirs` during searches where the
 original data is accessible (both torrent and data-based matches).
-
-[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
-
-:::warning
-
-If you are utilizing [`hardlinks`](../tutorials/linking#hardlink) with Docker,
-it is necessary that you to use a single mount/volume for both the `linkDir` and
-the data in your client and/or `dataDirs` from which you're linking . Using
-`hardlinks` across two volumes/mounts in Docker will error and fail.
-
-All paths need to be accessible in the same structure as your torrent client for
-injection to succeed.
-
-:::
+The correct linkDir is chosen by matching the `stat.st_dev` for the source and link paths.
+If no linkDir shares a `stat.st_dev` with the source, the injection will fail for hardlinks
+and fallback to the first linkDir for symlinks.
 
 :::tip
 
 [If you are using `dataDirs` (click for v6 use-cases)](../v6-migration.md#data-based-matching-use-cases),
-your `linkDir` can not reside _INSIDE_ of your included [`dataDirs`](#datadirs)
+your `linkDirs` can not reside _INSIDE_ of your included [`dataDirs`](#datadirs)
 folders. This is to prevent recursive and erroneous searches of folders used in
 linking folder structure.
 
@@ -592,22 +590,22 @@ linking folder structure.
 :::caution Docker
 
 You will need to mount the volume for `cross-seed` to have access to the dataDir
-and linkDir.
+and linkDirs.
 
 :::
 
-#### `linkDir` Examples (CLI)
+#### `linkDirs` Examples (CLI)
 
 ```shell
-cross-seed search --linkDir /data/torrents/xseeds
+cross-seed search --linkDirs /data/torrents/xseeds /data1/torrents/cross-seed-links
 ```
 
-#### `linkDir` Examples (Config file)
+#### `linkDirs` Examples (Config file)
 
 ```js
-linkDir: "/path/to/your/linkDir",
+linkDirs: ["/path/to/your/linkDir"],
 
-linkDir: "C:\\cross-seed-links",
+linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
 
 ```
 
@@ -626,24 +624,11 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 
 `cross-seed` will link (symlink/hardlink) in the method provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in the linkDir during data-based searchs
-where it cannot find a associated torrent file.
+to create a link to the original file in one of the linkDirs.
 
 Valid methods for linkType are `symlink` and `hardlink`.
 
-[**What `linkType` should I use?**](./faq-troubleshooting.md#what-linktype-should-i-use)
-
-:::danger PATH ADVISORY
-
-If you are utilizing [`hardlinks`](../tutorials/linking#hardlink) with Docker,
-it is necessary that you to use a single mount/volume for both the `linkDir` and
-the data in your client and/or `dataDirs` from which you're linking . Using
-`hardlinks` across two volumes/mounts in Docker will error and fail.
-
-All paths need to be accessible in the same structure as your torrent client for
-injection to succeed.
-
-:::
+[**Hardlinks vs Symlinks**](../tutorials/linking.md#hardlinks-vs-symlinks)
 
 #### `linkType` Examples (CLI)
 
@@ -1457,7 +1442,7 @@ to enable `flatLinking` or modify your workflow accordingly.
 
 Set this to `true` to use the flat-folder style linking previously used in v5.
 This option will otherwise link any matches to a tracker-specific folder inside
-of `linkDir` (if set). This prevents cross seeds from conflicting with each
+of `linkDirs` (if set). This prevents cross seeds from conflicting with each
 other.
 
 With `flatLinking: false` (default):

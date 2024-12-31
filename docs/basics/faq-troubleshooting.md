@@ -453,7 +453,7 @@ scenarios. The only time `cross-seed` will, is from the `cross-seed inject`
 command or from the inject job. If the age of the saved .torrent file
 (determined my last modified time) is older than a day, `cross-seed` will inject
 and link files even from an incomplete source if
-[`linkDir`](./options.md#linkdir) and [`partial`](./options.md#matchmode) is
+[`linkDirs`](./options.md#linkdirs) and [`partial`](./options.md#matchmode) is
 enabled. These injections will always be treated as `partial` matches which are
 paused and rechecked.
 

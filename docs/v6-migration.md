@@ -165,7 +165,7 @@ name from `Settings -> Indexers` instead of the "indexer identifier".
 
 Simply ensure that you've updated your data and the indexer's name in autobrr
 matches the one in Prowlarr/Jackett, and everything will align correctly in your
-[`linkDir`](./basics/options.md#linkdir).
+[`linkDirs`](./basics/options.md#linkdirs).
 
 ### Removed [`includeEpisodes`](./basics/options.md#includeepisodes)
 
