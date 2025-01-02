@@ -1186,10 +1186,14 @@ In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
 the host to bind to and listen on.
 
+Unless you have an address on your interface you wish **NOT** to listen on, or
+have a special set of networking requirements, you likely **DO NOT** need to set
+host. By default (`undefined`), cross-seed daemon will listen on the available
+addresses (`0.0.0.0`).
+
 :::tip DOCKER
 
-If you are using Docker, you do not need to set this. Leave the option as
-`undefined`.
+If you are using Docker, do not set this. Leave the option as `undefined`.
 
 :::
 
