@@ -328,13 +328,24 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 | ---------------- | -------------- | --------------------- | -------- | ------- |
 | `torrentDir`     | `-i <dir>`     | `--torrent-dir <dir>` | `string` |         |
 
-Point this at a directory containing torrent files. If you don't know where your
-torrent client stores its files, the table below might help.
+Point this at a directory containing torrent files, **or if you're using a
+torrent client integration and injection** - your torrent client's `.torrent`
+file store/cache.
 
-More details on using paths other than the .torrent store in the client
-config/appdata directory (ex: 'state' or 'BT_backup') can be found in the FAQ
-under
-[this entry.](./faq-troubleshooting.md#what-is-could-not-ensure-all-torrents-from-the-torrent-client-are-in-torrentdir)
+:::caution What directory is supported
+
+More details on why using paths other than the .torrent store from the client's
+config/appdata directory (ex: 'state' or 'BT_backup') is not supported and
+discouraged
+[can be found here.](./faq-troubleshooting.md#what-is-could-not-ensure-all-torrents-from-the-torrent-client-are-in-torrentdir)
+
+:::
+
+If you don't know where your torrent client stores its files, **please use the
+table below to find the client's store of .torrent files**. This folder can then
+either be mounted as something like `/torrents` (with read only (`:ro`)
+permissions) as a "shorthanded" path if you're using Docker or used outright as
+your `torrentDir`.
 
 :::tip Data-Only Searching
 
@@ -344,19 +355,12 @@ your `dataDirs`.
 
 :::
 
-:::caution qBittorrent
+:::danger qBittorrent
 
-If you are using qBittorrent 4.6.x, 5.x (or later) and `SQLite database` in
+If you are using qBittorrent 4.6.x (or later) and `SQLite database` in
 `Preferences -> Advanced` you will need to switch to `fastresume` and restart
 qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite
 integration currently.
-
-:::
-
-:::danger Docker
-
-Leave the `torrentDir` as `/torrents` and use Docker to map your directory to
-`/torrents`.
 
 :::
 
@@ -562,9 +566,9 @@ duplicateCategories: false,
 
 :::tip
 
-Ideally, you should only have a single linkDir and use drive pooling.
-Using multiple linkDirs should be reserved for setups with cache/temp drives
-or where drive pooling is impossible.
+Ideally, you should only have a single linkDir and use drive pooling. Using
+multiple linkDirs should be reserved for setups with cache/temp drives or where
+drive pooling is impossible.
 
 [**Read more**](../tutorials/linking.md)
 
@@ -572,11 +576,11 @@ or where drive pooling is impossible.
 
 `cross-seed` will link (symlink/hardlink) in the path provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in one of the `linkDirs` during searches where the
-original data is accessible (both torrent and data-based matches).
-The correct linkDir is chosen by matching the `stat.st_dev` for the source and link paths.
-If no linkDir shares a `stat.st_dev` with the source, the injection will fail for hardlinks
-and fallback to the first linkDir for symlinks.
+to create a link to the original file in one of the `linkDirs` during searches
+where the original data is accessible (both torrent and data-based matches). The
+correct linkDir is chosen by matching the `stat.st_dev` for the source and link
+paths. If no linkDir shares a `stat.st_dev` with the source, the injection will
+fail for hardlinks and fallback to the first linkDir for symlinks.
 
 :::tip
 
