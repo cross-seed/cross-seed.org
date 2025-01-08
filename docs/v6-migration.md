@@ -131,8 +131,7 @@ preserve the v5 behavior with no tracker directories.
 
 [**qbit_manage**](https://github.com/StuffAnThings/qbit_manage) can be
 configured to ignore modifying AutoTMM on torrents with the `cross-seed` tag, in
-which case you can use the new folder structure and don't need to set
-`flatLinking: false`.
+which case you can use the new folder structure with `flatLinking: false`.
 
 :::
 
