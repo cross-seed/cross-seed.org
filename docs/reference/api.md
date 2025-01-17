@@ -63,7 +63,7 @@ POST /api/webhook
 ```shell script
 curl -XPOST http://localhost:2468/api/webhook \
   --data-urlencode 'infoHash=<torrent infoHash here>' \
-  --data-urlencode 'outputDir=/path/to/output/dir'
+  --data-urlencode 'path=/path/to/torrent/file.mkv'
 ```
 
 Alternatively, you can use JSON:
