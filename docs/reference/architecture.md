@@ -18,7 +18,7 @@ subgraph findOnOtherSites["findOnOtherSites (single search)"]
     searchTorznab
 end
 subgraph findSearchableTorrents
-    searcheeGeneration["make searchees from \n- torrentDir\n- dataDirs"] -->
+    searcheeGeneration["make searchees from \n- useClientTorrents\n- torrentDir\n- dataDirs"] -->
     filterDupes -->
     filterByContent -->
     filterTimestamps
@@ -72,8 +72,8 @@ run through the configured [**action**](#actions).
 
 ## Prefiltering
 
-Prefiltering occurs during each startup of `cross-seed`. `cross-seed` will index all of the .torrent files from
-[`torrentDir`](../basics/options.md#torrentdir) and any data from all configured [`dataDirs`](../basics/options.md#datadirs).
+Prefiltering occurs during each startup of `cross-seed`. `cross-seed` will index all of the torrents
+from your client and any data from all configured [`dataDirs`](../basics/options.md#datadirs).
 
 -   If you're using [injection](../tutorials/injection.md), the existence of any .torrent files implies their
     presence in the client. If the torrent is not present in your client, it will fail injection and save instead.
@@ -82,7 +82,7 @@ Prefiltering occurs during each startup of `cross-seed`. `cross-seed` will index
 
 -   Prefiltering de-duplicates files (data) and torrents with the same name and will therefore not be searched multiple times.
     :::info
-    .torrent files from your [`torrentDir`](../basics/options.md#torrentdir) will take precedence over files in your [`dataDirs`](../basics/options.md#datadirs) with the same name.
+    .torrent files from your client will take precedence over files in your [`dataDirs`](../basics/options.md#datadirs) with the same name and file sizes.
     :::
 
 ## Matching algorithm

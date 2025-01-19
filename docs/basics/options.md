@@ -81,8 +81,9 @@ The configuration file uses JavaScript syntax, which means:
 | --------------------------------------------------- | ------------ |
 | [`delay`](#delay)                                   |              |
 | [`torznab`](#torznab)                               | **Required** |
-| [`torrentDir`](#torrentdir)                         | **Required** |
 | [`outputDir`](#outputdir)                           | **Required** |
+| [`useClientTorrents`](#useclienttorrents)           |              |
+| [`torrentDir`](#torrentdir)                         |              |
 | [`dataDirs`](#datadirs)                             |              |
 | [`linkCategory`](#linkcategory)                     |              |
 | [`duplicateCategories`](#duplicatecategories)       |              |
@@ -118,8 +119,9 @@ The configuration file uses JavaScript syntax, which means:
 | --------------------------------------------------- | ------------ |
 | [`delay`](#delay)                                   |              |
 | [`torznab`](#torznab)                               | **Required** |
-| [`torrentdir`](#torrentdir)                         | **Required** |
 | [`outputdir`](#outputdir)                           | **Required** |
+| [`useClientTorrents`](#useclienttorrents)           |              |
+| [`torrentdir`](#torrentdir)                         |              |
 | [`dataDirs`](#datadirs)                             |              |
 | [`linkCategory`](#linkcategory)                     |              |
 | [`duplicateCategories`](#duplicatecategories)       |              |
@@ -322,11 +324,40 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 
 ```
 
-### `torrentDir`\*
+### `useClientTorrents`
+
+| Config file name    | CLI short form | CLI Long form           | Format    | Default |
+| ------------------- | -------------- | ----------------------- | --------- | ------- |
+| `useClientTorrents` | N/A            | `--use-client-torrents` | `boolean` | `true`  |
+
+Query the torrent client APIs to find matches against its contents. This is a replacement
+for torrentDir and is generally recommended. This method supports qBittorrent's `SQLite` mode.
+
+#### `useClientTorrents` Examples (CLI)
+
+```shell
+cross-seed search --use-client-torrents
+cross-seed search --no-use-client-torrents
+```
+
+#### `useClientTorrents` Examples (Config file)
+
+```js
+useClientTorrents: true,
+```
+
+### `torrentDir`
 
 | Config file name | CLI short form | CLI long form         | Format   | Default |
 | ---------------- | -------------- | --------------------- | -------- | ------- |
 | `torrentDir`     | `-i <dir>`     | `--torrent-dir <dir>` | `string` |         |
+
+:::danger qBittorrent
+
+If you are using qBittorrent 4.6.x (or later) and `SQLite database` in
+`Preferences -> Advanced`, please use [`useClientTorrents`](#useclienttorrents).
+
+:::
 
 Point this at a directory containing torrent files, **or if you're using a
 torrent client integration and injection** - your torrent client's `.torrent`
@@ -352,15 +383,6 @@ your `torrentDir`.
 If you wish to search only your data, we previously recommended pointing this to
 an empty directory. You can now set this to `null` if you wish to search only
 your `dataDirs`.
-
-:::
-
-:::danger qBittorrent
-
-If you are using qBittorrent 4.6.x (or later) and `SQLite database` in
-`Preferences -> Advanced` you will need to switch to `fastresume` and restart
-qBittorrent for compatibility with `cross-seed`. We have no ETA on SQLite
-integration currently.
 
 :::
 
@@ -1515,7 +1537,7 @@ list of supported prefixes are:
   path if data based.
 - `nameRegex:` Similar to name but uses your own custom regex.
 - `folder:` A substring of any parent folder in the path. Only applies to
-  [`dataDirs`](#datadirs) searchees, not [`torrentDir`](#torrentdir).
+  [`dataDirs`](#datadirs) searchees, not ones from your torrent client.
 - `folderRegex:` Similar to folder but uses your own custom regex on the entire
   parent path.
 - `category:` Deluge labels are considered categories. `"category:"` blocklists
