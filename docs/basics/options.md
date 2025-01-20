@@ -750,11 +750,12 @@ skipRecheck: false,
 | ----------------------- | -------------- | --------------------------- | --------- | ------- |
 | `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
 
-:::warning NOTICE
+:::tip
 
-Behavior of this option has changed in v6, please see the
-[migration guide](../v6-migration.md#updated-includesingleepisodes-behavior) for
-details on the implementation's changes'.
+It's recommended to use `includeSingleEpisodes: false` in your config and override it for webhook
+commands triggered on [download completion](../tutorials/triggering-searches.md#setting-up-your-torrent-client).
+Combined with matching single episodes from announce, this should match all episodes without
+the downside of searching for [trumped/dead torrents](../v6-migration.md#updated-includesingleepisodes-behavior).
 
 :::
 
@@ -766,13 +767,9 @@ ignored by default).
 This will **NOT** include episodes present inside season packs (data-based
 searches).
 
-:::
-
-:::tip
-
-This option has explicit usage examples given in the
-[config templates](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs#L261-L275)
-which outlines the most common scenarios.
+Behavior of this option has changed in v6, please see the
+[migration guide](../v6-migration.md#updated-includesingleepisodes-behavior) for
+details on the implementation's changes'.
 
 :::
 
@@ -1177,16 +1174,16 @@ Content-Type: application/json
     "trackers": ["string"],
     "source": "announce | inject | rss | search | webhook",
     "result": "SAVED | INJECTED | FAILURE",
-	"paused": false,
-	"decisions": ["string"],
-	"searchee": {
-		"category": "string",
-		"tags": ["string"],
-		"trackers": ["string"],
-		"length": 123,
-		"infoHash": "string",
-		"path": "string",
-		"source": "torrentClient | torrentFile | dataDir | virtual",
+    "paused": false,
+    "decisions": ["string"],
+    "searchee": {
+        "category": "string",
+        "tags": ["string"],
+        "trackers": ["string"],
+        "length": 123,
+        "infoHash": "string",
+        "path": "string",
+        "source": "torrentClient | torrentFile | dataDir | virtual"
 	}
   }
 }

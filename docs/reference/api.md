@@ -56,13 +56,21 @@ POST /api/webhook
 	// infoHash or path is required but not both (infoHash is recommended)
 	infoHash: "<infoHash of torrent>",
 	path: "/path/to/torrent/file.mkv",
+	// All of the following are optional with their defaults shown
+	ignoreCrossSeeds: true,
+	ignoreExcludeRecentSearch: false,
+	ignoreExcludeOlder: false,
+	ignoreBlockList: false,
+	includeSingleEpisodes: false,
+	includeNonVideos: false,
 }
 ```
 
 ```shell script
 curl -XPOST http://localhost:2468/api/webhook \
   --data-urlencode 'infoHash=<torrent infoHash here>' \
-  --data-urlencode 'path=/path/to/torrent/file.mkv'
+  --data-urlencode 'path=/path/to/torrent/file.mkv' \
+  --data-urlencode 'includeSingleEpisodes=true'
 ```
 
 Alternatively, you can use JSON:

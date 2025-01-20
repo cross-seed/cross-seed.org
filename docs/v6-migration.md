@@ -194,6 +194,15 @@ usually have trumped in favor of season packs. If you're currently using
 `includeSingleEpisodes: true`, please consider switching to `false` if it now
 meets your needs as it will reduce unecessary load on trackers.
 
+:::tip
+
+You can override this option for webhook searches which gives the best of
+both worlds.
+
+[**Read more**](./tutorials/triggering-searches.md#setting-up-your-torrent-client)
+
+:::
+
 ## New Features and Improvements
 
 ### Linking for torrent-based Matches

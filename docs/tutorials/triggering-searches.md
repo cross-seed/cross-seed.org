@@ -62,6 +62,29 @@ We will refer to this as `<BASE_URL>` below.
 
 ### Setting Up Your Torrent Client
 
+There are likely two versions of webhook command you want to use, depending
+if you want to include episodes or not. There are other options available to
+customize found [`here`](../reference/api.md#request-payload), but these offer
+no benefit to download completion.
+
+:::warning
+
+You may be tempted to set `ignoreCrossSeeds: false` for download completion triggers
+but this offers no benefits. Partial matches will trigger a completion event in your
+client once it completes. This creates a _useless_ webhook search since this media
+was just processed by cross-seed.
+
+:::
+
+:::tip
+
+Use the webhook command with `-d "includeSingleEpisodes=true"` with `includeSingleEpisodes: false`
+in your config to minimize useless searches.
+
+[**Read more**](../v6-migration.md#updated-includesingleepisodes-behavior)
+
+:::
+
 <details>
 <summary><strong>rTorrent</strong></summary>
 
@@ -69,7 +92,12 @@ We will refer to this as `<BASE_URL>` below.
    `<API_KEY>` with the correct values from above:
     ```shell
     #!/bin/sh
-    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> --data-urlencode "infoHash=$2"
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2" -d "includeSingleEpisodes=true"
+    ```
+    OR
+    ```shell
+    #!/bin/sh
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2"
     ```
 2. Make it executable:
     ```shell
@@ -91,7 +119,11 @@ We will refer to this as `<BASE_URL>` below.
 2. Enable **Run external program on torrent completion**, replacing `<BASE_URL>`
    and `<API_KEY>` with the correct values from above:
     ```shell
-    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> --data-urlencode "infoHash=%I"
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=%I" -d "includeSingleEpisodes=true"
+    ```
+    OR
+    ```shell
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=%I"
     ```
 
 </details>
@@ -103,7 +135,12 @@ We will refer to this as `<BASE_URL>` below.
    with the correct values from above:
     ```shell
     #!/bin/sh
-    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> --data-urlencode "infoHash=$TR_TORRENT_HASH"
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$TR_TORRENT_HASH" -d "includeSingleEpisodes=true"
+    ```
+    OR
+    ```shell
+    #!/bin/sh
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$TR_TORRENT_HASH"
     ```
 2. Make it executable:
     ```shell
@@ -119,13 +156,20 @@ We will refer to this as `<BASE_URL>` below.
 
 1. Create a file called `deluge-cross-seed.sh`, replacing `<BASE_URL>` and
    `<API_KEY>` with the correct values from above:
-
     ```shell
     #!/bin/bash
     infoHash=$1
     name=$2
     path=$3
-    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> --data-urlencode "infoHash=$infoHash"
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$infoHash" -d "includeSingleEpisodes=true"
+    ```
+    OR
+    ```shell
+    #!/bin/bash
+    infoHash=$1
+    name=$2
+    path=$3
+    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$infoHash"
     ```
 
 2. Make the script executable:
