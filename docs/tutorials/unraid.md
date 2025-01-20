@@ -32,14 +32,12 @@ container template to automatically restart the container. Add
 
 ### Volume Mappings
 
-Cross-seed **needs** to access 3 directories: an input directory with torrent
-files, an output directory for `cross-seed` to save new torrent files (when
-using [`action: 'save',`](../basics/options.md#action)), and a config directory.
+Cross-seed **needs** to access 2 directories: an output directory for `cross-seed` and a config directory.
 
 | Config Type     | Name            | Container                            | Host                                | Access Mode |
 | --------------- | --------------- | ------------------------------------ | ----------------------------------- | ----------- |
 | Path            | configPath      | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
-| Path            | torrentDir      | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
+| Path (Optional) | torrentDir      | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
 | Path            | outputDir       | /output                              | /path/to/torrent/client/watch/dir   | Read/Write  |
 | Path (Optional) | data (dataDirs) | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 

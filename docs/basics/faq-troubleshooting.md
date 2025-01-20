@@ -221,14 +221,13 @@ investigating why this occurred.
 
 ### My data-based search is searching torrent files!
 
-Torrent files in [`torrentDir`](./options.md#torrentdir) take precedence over
-data files with the same name and are de-duplicated.
-
+Torrents from your client take precedence over data files.
 If possible, `cross-seed` will always attempt to create links for data and
 torrents being injected into a client, so the end result will generally be the
 same.
 
 If you wish to search only for data files, you can set
+[`useClientTorrents`](./options.md#useclienttorrents) to false and
 [**`torrentDir`**](options.md#torrentdir) to `null`, but we generally don't
 recommend it as torrent-based matching is more efficient than data-based
 matching. RSS/announce is also only supported with torrent-based matching.
@@ -252,18 +251,6 @@ preventable.
 If you see injected torrents show up with a `missing files` error, it is likely
 due to permissions or incorrect paths/mounts/volumes. The logs from qBittorrent
 will usually state the specific reason.
-
-### I am getting `0 torrents found` with qBittorrent and I set my `torrentDir`
-
-If you are using qBittorrent 4.6.x, 5.x, or later, and have the option to use
-`SQLite database` in the Advanced menu in preferences, you will not be able to
-do torrent based searches. To be compatible with `cross-seed` you will need to
-switch this to `fastresume` mode and restart qBittorrent. This will store actual
-torrent files in your BT_Backup folder. `cross-seed` depends on, and indexes,
-the torrent files for searching.
-
-We have no current ETA on integration with qBittorrent's `SQLite database`
-storage mode.
 
 ### I'm getting errors in cross-seed on hostingby.design seedbox
 

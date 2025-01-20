@@ -31,9 +31,8 @@ curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlen
 
 This endpoint invokes a search, on all configured trackers, for a specific
 torrent infoHash or torrent data. `cross-seed` will either look up the torrent
-in your [`torrentDir`](../basics/options#torrentdir) or parse the filename
-directly. It will respond with `204 No Content` once it has received your
-request successfully.
+in your client or parse the filename directly. It will respond with
+`204 No Content` once it has received your request successfully.
 
 :::tip
 

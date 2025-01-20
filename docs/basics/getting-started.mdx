@@ -105,8 +105,6 @@ fields to connect to your torrent client and indexer. At a minimum, you should
 configure the following:
 
 -   **`torznab`**: URLs of your Torznab indexers (from Prowlarr or Jackett).
--   **`torrentDir`**: The directory where your .torrent files are located (from
-    your torrent client).
 -   **`outputDir`**: Create a new directory somewhere to house the torrent files
     `cross-seed` outputs.
 -   **Connection to your torrent client**: Depending on your client, you'll need
@@ -126,7 +124,6 @@ Here's an example of what your `config.js` might look like:
 ```js
 module.exports = {
 	torznab: ["http://localhost:9696/1/api?apikey=123456"],
-	torrentDir: "/path/to/torrent_dir",
 	outputDir: "/path/to/output_dir",
 	qbittorrentUrl: "http://username:password@localhost:8080",
 	... several other settings you can read later ...
