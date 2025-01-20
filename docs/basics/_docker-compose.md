@@ -10,7 +10,7 @@ services:
       - "2468:2468"
     volumes:
       - /path/to/config/folder:/config
-      - /path/to/torrent_dir:/path/to/torrent_dir:ro # your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit:`BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
+      - /path/to/torrent_dir:/torrents:ro # (unnecessary with useClientTorrents) your torrent clients .torrent cache, can and should be mounted read-only (e.g. qbit:`BT_Backup` | deluge: `state` | transmission: `transmission/torrents` | rtorrent: session dir from `.rtorrent.rc`)
       - /path/to/output/folder:/cross-seeds
     command: daemon
     restart: unless-stopped
