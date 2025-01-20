@@ -332,7 +332,7 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 
 :::warning
 
-Deluge does not currently support useClientTorrents, use torrentDir instead.
+Deluge does not currently support useClientTorrents, use [`torrentDir`](#torrentdir) instead.
 
 :::
 
