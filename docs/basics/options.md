@@ -330,6 +330,12 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 | ------------------- | -------------- | ----------------------- | --------- | ------- |
 | `useClientTorrents` | N/A            | `--use-client-torrents` | `boolean` | `true`  |
 
+:::warning
+
+Deluge does not currently support useClientTorrents, use torrentDir instead.
+
+:::
+
 Query the torrent client APIs to find matches against its contents. This is a replacement
 for torrentDir and is generally recommended. This method supports qBittorrent's `SQLite` mode.
 
