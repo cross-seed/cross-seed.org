@@ -77,85 +77,85 @@ The configuration file uses JavaScript syntax, which means:
 
 ## Options used in `cross-seed search`
 
-| Option                                              | Required     |
-| --------------------------------------------------- | ------------ |
-| [`delay`](#delay)                                   |              |
-| [`torznab`](#torznab)                               | **Required** |
-| [`outputDir`](#outputdir)                           | **Required** |
-| [`useClientTorrents`](#useclienttorrents)           |              |
-| [`torrentDir`](#torrentdir)                         |              |
-| [`dataDirs`](#datadirs)                             |              |
-| [`linkCategory`](#linkcategory)                     |              |
-| [`duplicateCategories`](#duplicatecategories)       |              |
-| [`linkDirs`](#linkdirs)                             |              |
-| [`linkType`](#linktype)                             |              |
-| [`matchMode`](#matchmode)                           |              |
-| [`skipRecheck`](#skiprecheck)                       |              |
-| [`includeSingleEpisodes`](#includesingleepisodes)   |              |
-| [`includeNonVideos`](#includenonvideos)             |              |
-| [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`autoResumeMaxDownload`](#autoresumemaxdownload)   |              |
-| [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
-| [`excludeOlder`](#excludeolder)                     |              |
-| [`excludeRecentSearch`](#excluderecentsearch)       |              |
-| [`action`](#action)                                 |              |
-| [`duplicateCategories`](#duplicatecategories)       |              |
-| [`rtorrentRpcUrl`](#rtorrentrpcurl)                 |              |
-| [`delugeRpcUrl`](#delugerpcurl)                     |              |
-| [`transmissionRpcUrl`](#rtorrentrpcurl)             |              |
-| [`qbittorrentUrl`](#qbittorrenturl)                 |              |
-| [`snatchTimeout`](#snatchtimeout)                   |              |
-| [`searchTimeout`](#searchtimeout)                   |              |
-| [`searchLimit`](#searchlimit)                       |              |
-| [`notificationWebhookUrl`](#notificationwebhookurl) |              |
-| [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blocklist)                           |              |
-| [`sonarr`](#sonarr)                                 |              |
-| [`radarr`](#radarr)                                 |              |
+| Option                                                | Required     |
+| ----------------------------------------------------- | ------------ |
+| [`delay`](#delay)                                     |              |
+| [`torznab`](#torznab)                                 | **Required** |
+| [`outputDir`](#outputdir)                             | **Required** |
+| [`useClientTorrents`](#useclienttorrents)             |              |
+| [`torrentDir`](#torrentdir)                           |              |
+| [`dataDirs`](#datadirs)                               |              |
+| [`linkCategory`](#linkcategory)                       |              |
+| [`duplicateCategories`](#duplicatecategories)         |              |
+| [`linkDirs`](#linkdirs)                               |              |
+| [`linkType`](#linktype)                               |              |
+| [`matchMode`](#matchmode)                             |              |
+| [`skipRecheck`](#skiprecheck)                         |              |
+| [`includeSingleEpisodes`](#includesingleepisodes)     |              |
+| [`includeNonVideos`](#includenonvideos)               |              |
+| [`seasonFromEpisodes`](#seasonfromepisodes)           |              |
+| [`autoResumeMaxDownload`](#autoresumemaxdownload)     |              |
+| [`fuzzySizeThreshold`](#fuzzysizethreshold)           |              |
+| [`excludeOlder`](#excludeolder)                       |              |
+| [`excludeRecentSearch`](#excluderecentsearch)         |              |
+| [`action`](#action)                                   |              |
+| [`duplicateCategories`](#duplicatecategories)         |              |
+| [`rtorrentRpcUrl`](#rtorrentrpcurl)                   |              |
+| [`delugeRpcUrl`](#delugerpcurl)                       |              |
+| [`transmissionRpcUrl`](#rtorrentrpcurl)               |              |
+| [`qbittorrentUrl`](#qbittorrenturl)                   |              |
+| [`snatchTimeout`](#snatchtimeout)                     |              |
+| [`searchTimeout`](#searchtimeout)                     |              |
+| [`searchLimit`](#searchlimit)                         |              |
+| [`notificationWebhookUrls`](#notificationwebhookurls) |              |
+| [`flatLinking`](#flatlinking)                         |              |
+| [`blockList`](#blocklist)                             |              |
+| [`sonarr`](#sonarr)                                   |              |
+| [`radarr`](#radarr)                                   |              |
 
 ## Options used in `cross-seed daemon`
 
-| Option                                              | Required     |
-| --------------------------------------------------- | ------------ |
-| [`delay`](#delay)                                   |              |
-| [`torznab`](#torznab)                               | **Required** |
-| [`outputdir`](#outputdir)                           | **Required** |
-| [`useClientTorrents`](#useclienttorrents)           |              |
-| [`torrentdir`](#torrentdir)                         |              |
-| [`dataDirs`](#datadirs)                             |              |
-| [`linkCategory`](#linkcategory)                     |              |
-| [`duplicateCategories`](#duplicatecategories)       |              |
-| [`linkDirs`](#linkdirs)                             |              |
-| [`linkType`](#linktype)                             |              |
-| [`matchMode`](#matchmode)                           |              |
-| [`skipRecheck`](#skiprecheck)                       |              |
-| [`includeEpisodes`](#includeepisodes)               |              |
-| [`includeSingleEpisodes`](#includesingleepisodes)   |              |
-| [`includeNonVideos`](#includeNonvideos)             |              |
-| [`seasonFromEpisodes`](#seasonfromepisodes)         |              |
-| [`autoResumeMaxDownload`](#autoresumemaxdownload)   |              |
-| [`fuzzySizeThreshold`](#fuzzysizethreshold)         |              |
-| [`excludeOlder`](#excludeolder)                     |              |
-| [`excludeRecentSearch`](#excluderecentsearch)       |              |
-| [`action`](#action)                                 |              |
-| [`duplicateCategories`](#duplicatecategories)       |              |
-| [`rtorrentRpcUrl`](#rtorrentrpcurl)                 |              |
-| [`delugeRpcUrl`](#delugerpcurl)                     |              |
-| [`transmissionRpcUrl`](#rtorrentrpcurl)             |              |
-| [`qbittorrentUrl`](#qbittorrenturl)                 |              |
-| [`notificationWebhookUrl`](#notificationwebhookurl) |              |
-| [`host`](#host)                                     |              |
-| [`port`](#port)                                     |              |
-| [`rssCadence`](#rsscadence)                         |              |
-| [`searchCadence`](#searchcadence)                   |              |
-| [`snatchTimeout`](#snatchtimeout)                   |              |
-| [`searchTimeout`](#searchtimeout)                   |              |
-| [`searchLimit`](#searchlimit)                       |              |
-| [`apiKey`](#apikey)                                 |              |
-| [`flatLinking`](#flatlinking)                       |              |
-| [`blockList`](#blocklist)                           |              |
-| [`sonarr`](#sonarr)                                 |              |
-| [`radarr`](#radarr)                                 |              |
+| Option                                                | Required     |
+| ----------------------------------------------------- | ------------ |
+| [`delay`](#delay)                                     |              |
+| [`torznab`](#torznab)                                 | **Required** |
+| [`outputdir`](#outputdir)                             | **Required** |
+| [`useClientTorrents`](#useclienttorrents)             |              |
+| [`torrentDir`](#torrentdir)                           |              |
+| [`dataDirs`](#datadirs)                               |              |
+| [`linkCategory`](#linkcategory)                       |              |
+| [`duplicateCategories`](#duplicatecategories)         |              |
+| [`linkDirs`](#linkdirs)                               |              |
+| [`linkType`](#linktype)                               |              |
+| [`matchMode`](#matchmode)                             |              |
+| [`skipRecheck`](#skiprecheck)                         |              |
+| [`includeEpisodes`](#includeepisodes)                 |              |
+| [`includeSingleEpisodes`](#includesingleepisodes)     |              |
+| [`includeNonVideos`](#includeNonvideos)               |              |
+| [`seasonFromEpisodes`](#seasonfromepisodes)           |              |
+| [`autoResumeMaxDownload`](#autoresumemaxdownload)     |              |
+| [`fuzzySizeThreshold`](#fuzzysizethreshold)           |              |
+| [`excludeOlder`](#excludeolder)                       |              |
+| [`excludeRecentSearch`](#excluderecentsearch)         |              |
+| [`action`](#action)                                   |              |
+| [`duplicateCategories`](#duplicatecategories)         |              |
+| [`rtorrentRpcUrl`](#rtorrentrpcurl)                   |              |
+| [`delugeRpcUrl`](#delugerpcurl)                       |              |
+| [`transmissionRpcUrl`](#rtorrentrpcurl)               |              |
+| [`qbittorrentUrl`](#qbittorrenturl)                   |              |
+| [`notificationWebhookUrls`](#notificationwebhookurls) |              |
+| [`host`](#host)                                       |              |
+| [`port`](#port)                                       |              |
+| [`rssCadence`](#rsscadence)                           |              |
+| [`searchCadence`](#searchcadence)                     |              |
+| [`snatchTimeout`](#snatchtimeout)                     |              |
+| [`searchTimeout`](#searchtimeout)                     |              |
+| [`searchLimit`](#searchlimit)                         |              |
+| [`apiKey`](#apikey)                                   |              |
+| [`flatLinking`](#flatlinking)                         |              |
+| [`blockList`](#blocklist)                             |              |
+| [`sonarr`](#sonarr)                                   |              |
+| [`radarr`](#radarr)                                   |              |
 
 ## All options
 
@@ -1155,13 +1155,13 @@ delugeRpcUrl: "http://deluge:8112/json",
 delugeRpcUrl: "http://:pass@localhost:8112/json",
 ```
 
-### `notificationWebhookUrl`
+### `notificationWebhookUrls`
 
-| Config file name         | CLI short form | CLI long form                      | Format | Default |
-| ------------------------ | -------------- | ---------------------------------- | ------ | ------- |
-| `notificationWebhookUrl` | N/A            | `--notification-webhook-url <url>` | URL    |         |
+| Config file name          | CLI short form | CLI long form                           | Format | Default |
+| ------------------------- | -------------- | --------------------------------------- | ------ | ------- |
+| `notificationWebhookUrls` | N/A            | `--notification-webhook-urls <urls...>` | URL[]  |         |
 
-`cross-seed` will send a POST request to this URL with the following payload:
+`cross-seed` will send a POST request to these URLs with the following payload:
 
 ```json
 POST notificationWebhookUrl
@@ -1171,12 +1171,23 @@ Content-Type: application/json
   "title": "string",
   "body": "string",
   "extra": {
-    "event": "RESULTS",
+    "event": "RESULTS | TEST",
     "name": "string",
-    "infoHashes": "string[]",
-    "trackers": "string[]",
+    "infoHashes": ["string"],
+    "trackers": ["string"],
     "source": "announce | inject | rss | search | webhook",
-    "result": "SAVED | INJECTED | FAILURE"
+    "result": "SAVED | INJECTED | FAILURE",
+	"paused": false,
+	"decisions": ["string"],
+	"searchee": {
+		"category": "string",
+		"tags": ["string"],
+		"trackers": ["string"],
+		"length": 123,
+		"infoHash": "string",
+		"path": "string",
+		"source": "torrentClient | torrentFile | dataDir | virtual",
+	}
   }
 }
 ```
@@ -1186,16 +1197,16 @@ future it may send more. This payload supports both
 [**apprise**](https://github.com/caronc/apprise-api) and
 [**Notifiarr**](https://github.com/Notifiarr/Notifiarr).
 
-#### `notificationWebhookUrl` Examples (CLI)
+#### `notificationWebhookUrls` Examples (CLI)
 
 ```shell
-cross-seed daemon --notification-webhook-url http://apprise:8000/notify
+cross-seed daemon --notification-webhook-urls http://apprise:8000/notify http://apprise:8001/notify
 ```
 
-#### `notificationWebhookUrl` Examples (Config file)
+#### `notificationWebhookUrls` Examples (Config file)
 
 ```js
-notificationWebhookUrl: "http://apprise:8000/notify",
+notificationWebhookUrls: ["http://apprise:8000/notify", "http://apprise:8001/notify"],
 ```
 
 ### `host`

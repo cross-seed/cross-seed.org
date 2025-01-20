@@ -59,12 +59,14 @@ cross-seed restore
 
 ### `cross-seed test-notification`
 
-Send a notification to the specified URL.
+Send a notification to the configured urls
+
+[**Read more**](../basics/options.md#notificationwebhookurls)
 
 #### Usage
 
 ```shell
-cross-seed test-notification <url>
+cross-seed test-notification
 ```
 
 ### `cross-seed diff`
