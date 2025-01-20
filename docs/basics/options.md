@@ -753,9 +753,9 @@ skipRecheck: false,
 :::tip
 
 It's recommended to use `includeSingleEpisodes: false` in your config and override it for webhook
-commands triggered on [download completion](../tutorials/triggering-searches.md#setting-up-your-torrent-client).
+commands triggered on [`download completion`](../tutorials/triggering-searches.md#setting-up-your-torrent-client).
 Combined with matching single episodes from announce, this should match all episodes without
-the downside of searching for [trumped/dead torrents](../v6-migration.md#updated-includesingleepisodes-behavior).
+the downside of searching for [`trumped/dead torrents`](../v6-migration.md#updated-includesingleepisodes-behavior).
 
 :::
 

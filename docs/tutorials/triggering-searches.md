@@ -78,8 +78,8 @@ was just processed by cross-seed.
 
 :::tip
 
-Use the webhook command with `-d "includeSingleEpisodes=true"` with `includeSingleEpisodes: false`
-in your config to minimize useless searches.
+Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
+`includeSingleEpisodes: false` in your config to minimize useless searches.
 
 [**Read more**](../v6-migration.md#updated-includesingleepisodes-behavior)
 
@@ -94,7 +94,9 @@ in your config to minimize useless searches.
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2" -d "includeSingleEpisodes=true"
     ```
+
     OR
+
     ```shell
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2"
@@ -121,7 +123,9 @@ in your config to minimize useless searches.
     ```shell
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=%I" -d "includeSingleEpisodes=true"
     ```
+
     OR
+
     ```shell
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=%I"
     ```
@@ -137,7 +141,9 @@ in your config to minimize useless searches.
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$TR_TORRENT_HASH" -d "includeSingleEpisodes=true"
     ```
+
     OR
+
     ```shell
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$TR_TORRENT_HASH"
@@ -163,7 +169,9 @@ in your config to minimize useless searches.
     path=$3
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$infoHash" -d "includeSingleEpisodes=true"
     ```
+
     OR
+
     ```shell
     #!/bin/bash
     infoHash=$1
