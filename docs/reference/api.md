@@ -57,12 +57,13 @@ POST /api/webhook
 	infoHash: "<infoHash of torrent>",
 	path: "/path/to/torrent/file.mkv",
 	// All of the following are optional with their defaults shown
+	// undefined defaults to your config
 	ignoreCrossSeeds: true,
 	ignoreExcludeRecentSearch: false,
 	ignoreExcludeOlder: false,
 	ignoreBlockList: false,
-	includeSingleEpisodes: false,
-	includeNonVideos: false,
+	includeSingleEpisodes: undefined,
+	includeNonVideos: undefined,
 }
 ```
 
