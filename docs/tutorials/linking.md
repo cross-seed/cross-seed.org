@@ -15,9 +15,8 @@ When a torrent has the same data as another torrent but a different name, you
 could theoretically seed both torrents by copying the file and renaming it, but
 this isn't practical—you have to store the data twice even though it's
 identical. Linking is an alternative to copying that lets two file names point
-to the same underlying data on disk. There are two types of links: _symlinks_
-and _hardlinks_. `cross-seed` uses **hardlinks** by default, but you can
-[switch to using symlinks](#hardlinks-vs-symlinks) depending on your setup.
+to the same underlying data on disk. There are three types of links: _symlinks_,
+_hardlinks_, and _reflinks_. `cross-seed` uses **hardlinks** by default.
 
 ### Should I set up linking?
 
@@ -36,7 +35,7 @@ config file. These directories should be accessible to your torrent
 client—`cross-seed` will use the `linkDir` on the same device as the save path
 for the torrents it injects.
 
-If you are utilizing [`hardlinks`](../tutorials/linking#hardlink) with Docker,
+If you are utilizing [`hardlinks`](#hardlink) or [`reflinks`](#reflink) with Docker,
 it is necessary that you to use a single mount/volume for each of the `linkDirs` and
 the data in your client and/or `dataDirs` from which you're linking . Using
 `hardlinks` across two volumes/mounts in Docker will error and fail.
@@ -66,8 +65,8 @@ work properly.
     same path `cross-seed` sees.
 -   `cross-seed`'s container needs to be able to see the **original data
     files**, again at the same path that your torrent client sees.
--   If you are using **hardlinks**, these paths all need to be _within the same
-    docker volume_.
+-   If you are using **hardlinks** or **reflinks**, these paths all need to be
+    _within the same docker volume_.
 
 In practice, this means that you should mount a **common ancestor path** of the
 both the original data files _and_ your `linkDirs`.
@@ -85,11 +84,11 @@ it is not recommended for new users.
 
 :::
 
-## Hardlinks vs Symlinks
+## Hardlinks vs Symlinks vs Reflinks
 
 By default, `cross-seed` uses hardlinks to link files because they are resilient
-to file moves. You can switch to using symlinks by setting the
-[`linkType`](../basics/options.md#linktype) option to `symlink`.
+to file moves. You can switch the link type by setting the
+[`linkType`](../basics/options.md#linktype) option.
 
 ### Hardlink
 
@@ -131,3 +130,17 @@ will throw an `ENOENT: no such file or directory` error.
     -   This will present as cross-seeded torrents with missing files errors in
         your torrent client which you can then bulk delete
 -   You prefer errors over accidentally silently copying data
+
+### Reflink
+
+A reflink works similarly to hardlinks until data is written to it. Instead of
+modifying both files, only the new data is overwritten on the targeted file.
+This means a reflink with a file starts out identical but can diverge over time
+if either is modified. This has the same restrictions as [`hardlink`](#hardlink).
+
+#### When to use reflinks
+
+-   Your filesystem supports it
+-   You want to cross seed the rare files that differ between trackers. Any
+    differences between these two files will not affect the other while still sharing
+    the indentical parts.

@@ -648,13 +648,13 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 | ---------------- | -------------------- | -------------------- | -------- | ------- |
 | `linkType`       | `--link-type <type>` | `--link-type <type>` | `string` |         |
 
-`cross-seed` will link (symlink/hardlink) in the method provided. If you use
+`cross-seed` will link (symlink/hardlink/reflink) in the method provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
 to create a link to the original file in one of the linkDirs.
 
-Valid methods for linkType are `symlink` and `hardlink`.
+Valid methods for linkType are `symlink`, `hardlink`, and `reflink`.
 
-[**Hardlinks vs Symlinks**](../tutorials/linking.md#hardlinks-vs-symlinks)
+[**Read more**](../tutorials/linking.md)
 
 #### `linkType` Examples (CLI)
 
