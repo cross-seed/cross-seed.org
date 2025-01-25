@@ -43,6 +43,19 @@ timestamps for [`excludeOlder`](../basics/options.md#excludeolder) and
 cross-seed clear-cache
 ```
 
+### `cross-seed update-torrent-cache-trackers`
+
+Update the announce urls for torrents in the torrent cache.
+This is useful if your passkey has changed or the tracker urls have changed.
+
+#### Usage
+
+```shell
+cross-seed update-torrent-cache-trackers "https://tracker1.example.com/announce/123" "https://tracker2.example.com/announce/abc"
+cross-seed update-torrent-cache-trackers "example.com:1234" "example.org"
+cross-seed update-torrent-cache-trackers "oldpasskey" "newpasskey"
+```
+
 ### `cross-seed restore`
 
 Use snatched torrents from the torrent_cache to attempt to restore cross seeds.
