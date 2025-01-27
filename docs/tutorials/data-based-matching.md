@@ -63,10 +63,3 @@ This can be used to:
     [`matchMode`](../basics/options.md#matchmode) to `risky`, or if you want
     even looser matching, consider setting up
     [partial matching](partial-matching.md).
-
-## Daemon mode
-
-Data-based matching does not support RSS but does allow you to
-[hit the cross-seed webhook endpoint with a path](../reference/api.md#post-apiwebhook)
-to use for data-based searching the same way you use the existing `infoHash`
-parameter (but with `path`).

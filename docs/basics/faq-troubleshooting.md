@@ -230,7 +230,7 @@ If you wish to search only for data files, you can set
 [`useClientTorrents`](./options.md#useclienttorrents) to false and
 [**`torrentDir`**](options.md#torrentdir) to `null`, but we generally don't
 recommend it as torrent-based matching is more efficient than data-based
-matching. RSS/announce is also only supported with torrent-based matching.
+matching.
 
 ### Error: ENOENT: no such file or directory
 

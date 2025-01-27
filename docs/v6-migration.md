@@ -378,10 +378,10 @@ information about behavior.
 ### RSS/Announce Improvements
 
 We have improved the performance and accuracy of matching new candidates against
-content you already have (via RSS and announces). RSS scans now support
-pagination in case `cross-seed` experiences downtime. The `/api/announce`
-endpoint has slightly modified its HTTP status codes to better integrate with
-[**Autobrr**](https://github.com/autobrr/autobrr).
+content you already have (now with [`dataDirs`](./basics/options.md#datadirs) support).
+RSS scans now support pagination in case `cross-seed` experiences downtime.
+The `/api/announce` endpoint has slightly modified its HTTP status codes to better
+integrate with [**Autobrr**](https://github.com/autobrr/autobrr).
 
 ### Sonarr TV Library Searching
 
