@@ -217,19 +217,7 @@ below).
 
 Due to the linking updates mentioned, we recommend using **ONLY**
 `useClientTorrents` or `torrentDir` and leaving `dataDirs` empty, except in
-the two cases outlined below. Torrent based matching is more robust,
-and prevents some performance issues with `dataDirs` wherein `cross-seed` has
-to frequently scan your `dataDirs` and all of their children for changes.
-
-The first scenario where you should also use `dataDirs` is if you are
-downloading through usenet or other non-torrent means. This will always be
-necessary if you want `cross-seed` to match against this content.
-
-The second scenario is if you have content in your media directories not inside
-your torrent client. Here you only need to perform a search with `dataDirs`
-**ONCE**. At the moment, the best way to do this is to add the relevant
-directories to your `dataDirs` setting and then delete them later, but in the
-future we will provide a better way to support this kind of backfill scan.
+[**these cases**](./tutorials/data-based-matching.md#general-usage-for-datadirs).
 
 ### Partial Matching
 

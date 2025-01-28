@@ -468,23 +468,17 @@ above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
 | ---------------- | ----------------------- | ----------------------- | ----------- | ------- |
 | `dataDirs`       | `--data-dirs <dirs...>` | `--data-dirs <dirs...>` | `string(s)` |         |
 
+:::tip
+
+[**`dataDirs` Usages and Configuration**](../tutorials/data-based-matching.md)
+
+:::
+
 `cross-seed` will search the paths provided (separated by spaces). If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
 to create a link to the original file in the linkDirs.
 
-#### General Usage in v6
-
-Starting in v6.0.0, this option is generally only applicable in two cases:
-
-1. You are downloading through Usenet or other non-torrent methods in order to
-   match new content not present in your torrent client.
-
-2. You have content in your media or data directories that is not already
-   present in your torrent client. In this scenario, you only need to perform a
-   search with `dataDirs` **once**. After the initial search, you should remove
-   the directories from `dataDirs` entirely.
-
-:::tip
+:::warning
 
 You cannot include your [`linkDirs`](#linkdirs) in the `dataDirs` option.
 
@@ -612,10 +606,9 @@ fail for hardlinks and fallback to the first linkDir for symlinks.
 
 :::tip
 
-[If you are using `dataDirs` (click for v6 use-cases)](../v6-migration.md#data-based-matching-use-cases),
-your `linkDirs` can not reside _INSIDE_ of your included [`dataDirs`](#datadirs)
-folders. This is to prevent recursive and erroneous searches of folders used in
-linking folder structure.
+[**If you are using `dataDirs`**](../tutorials/data-based-matching.md#general-usage-for-datadirs),
+your `linkDirs` can not reside _INSIDE_ of your included [`dataDirs`](#datadirs) folders.
+This is to prevent recursive and erroneous searches of folders used in linking folder structure.
 
 :::
 

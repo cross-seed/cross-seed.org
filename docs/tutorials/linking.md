@@ -58,19 +58,6 @@ module.exports = {
 };
 ```
 
-**For Docker Users**: there are a few more specific requirements for linking to
-work properly.
-
--   Your torrent client will need access to the `linkDirs` you've set, seeing the
-    same path `cross-seed` sees.
--   `cross-seed`'s container needs to be able to see the **original data
-    files**, again at the same path that your torrent client sees.
--   If you are using **hardlinks** or **reflinks**, these paths all need to be
-    _within the same docker volume_.
-
-In practice, this means that you should mount a **common ancestor path** of the
-both the original data files _and_ your `linkDirs`.
-
 Once you have restarted `cross-seed`, new matches will have links created in
 your `linkDirs` pointing to the original files.
 
@@ -83,6 +70,38 @@ set the [`flatLinking`](../basics/options.md#flatlinking) option to `true`, but
 it is not recommended for new users.
 
 :::
+
+### Docker Users
+
+**For Docker Users**: there are a few more specific requirements for linking to
+work properly.
+
+-   Your torrent client will need access to the `linkDirs` you've set, seeing the
+    same path `cross-seed` sees.
+-   `cross-seed`'s container needs to be able to see the **original data
+    files**, again at the same path that your torrent client sees.
+-   If you are using **hardlinks** or **reflinks**, these paths all need to be
+    _within the same docker volume_.
+
+In practice, this means that you should mount a **common ancestor path** of the
+both the original data files _and_ your `linkDirs`. For exmaple, the following
+will require a single mount of `/mnt/user/data:/data`:
+
+```
+mnt/
+├─ user/
+│  ├─ data/
+│  |  ├─ usenet/
+│  |  |  ├─ movies/
+│  |  ├─ torrents/
+│  |  |  ├─ tv/
+│  |  ├─ radarr/
+│  |  |  ├─ Movie/
+│  |  ├─ sonarr/
+│  |  |  ├─ Show/
+```
+
+You can then use `linkDirs: ["/data/torrents/SomeLinkDirName"]`.
 
 ## Hardlinks vs Symlinks vs Reflinks
 

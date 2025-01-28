@@ -15,10 +15,24 @@ a match.
 **Data-based matching** allows cross seed to not require the `.torrent` file,
 and instead to look at actual data files on disk to search for matches. This is
 great if you have the actual files to cross-seed, but not the `.torrent` files.
-This can be used to:
 
--   recover torrent files from a data catalog after data loss
--   seed Usenet downloads or other content you have acquired elsewhere
+Torrent based matching will take priority over data-based searches when they are equivalent.
+They are more robust, and prevents some performance issues with `dataDirs` wherein `cross-seed`
+has to frequently scan your `dataDirs` and watch all of their children for changes.
+
+## General Usage for [`dataDirs`](../basics/options.md#datadirs)
+
+1. You are downloading through Usenet or other non-torrent methods in order to
+   match new content not present in your torrent client.
+
+2. You have content in your media or data directories that is not already
+   present in your torrent client. In this scenario, you only need to perform a
+   search with `dataDirs` **once**. After the initial search, you should remove
+   the directories from `dataDirs` entirely.
+
+3. You want to cross seed from `TorrentClientA` to `TorrentClientB`. In this case,
+   you can set `dataDirs` to the path of the downloaded data (e.g `/data/torrents/tv`) in `TorrentClientA`, and
+   configure `cross-seed` with `TorrentClientB` only.
 
 ## Setting up data-based matching
 
@@ -28,34 +42,53 @@ This can be used to:
     containing the data you want to cross-seed.
 
 3.  Set [`maxDataDepth`](../basics/options.md#maxdatadepth) to the maximum depth
-    to traverse the file tree for generating searchees. If you specify a
-    `dataDir` of `/data/torrents`, the depth is as follows. In this example, we
-    would likely want to set `maxDataDepth` to 1.
-
+    to traverse the file tree for generating searchees. Here are examples of
+    dataDir structures and their corresponding depths. If multiple apply,
+    set `maxDataDepth` to the highest value.
+    
     ```
     data/
-    ├─ torrents/                  # 0
-    │  ├─ torrent_name/           # 1
-    │  |  ├─ torrent_file.mkv     # 2
-    │  |  ├─ torrent_subfolder    # 2
-    │  |  |  ├─ torrent_item.mkv  # 3
+    ├─ usenet/
+    │  ├─ movies/       # 0
+    │  |  ├─ Movie.mkv  # 1
+
+    dataDirs: ["/data/usenet/movies", ...],
+    maxDataDepth: 1,
+    ```
+    ```
+    data/
+    ├─ torrents/
+    │  ├─ tv/                        # 0
+    │  |  ├─ Show S01/               # 1
+    │  |  |  ├─ Episode 1.mkv        # 2
+    │  |  |  ├─ Subtitles            # 2
+    │  |  |  |  ├─ Episode 1.srt     # 3
+
+    dataDirs: ["/data/torrents/tv", ...],
+    maxDataDepth: 1, # cross-seed will ignore season pack episodes even if set to 2 or more
+    ```
+    ```
+    data/
+    ├─ radarr/          # 0
+    │  ├─ Movie/        # 1
+    │  |  ├─ Movie.mkv  # 2
+
+    dataDirs: ["/data/radarr", ...],
+    maxDataDepth: 2, # cross-seed will not search 'Movie/' itself, using 1 won't search anything here
+    ```
+    ```
+    data/
+    ├─ sonarr/                 # 0
+    │  ├─ Show/                # 1
+    │  |  ├─ Season 1/         # 2
+    │  |  |  ├─ Episode 1.mkv  # 3
+
+    dataDirs: ["/data/sonarr", ...],
+    maxDataDepth: 2, # use 3 if using seasonFromEpisodes or includeSingleEpisodes (note: cross-seed will not search 'Show/' itself)
     ```
 
-    In this example, with a `dataDir` of `/TV`, we would need to set
-    `maxDataDepth` to 3 if using [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes)
-    or [`includeSingleEpisodes`](../basics/options.md#includesingleepisodes).
-    If you are using neither, then a value of 2 is more appropriate.
-
-    ```
-    TV/                     # 0
-    ├─ Show/                # 1
-    │  ├─ Season 1/         # 2
-    │  |  ├─ Episode 1.mkv  # 3
-    │  |  ├─ Episode 2.mkv  # 3
-    ```
-
-    Be careful setting this to a higher value than 2 (if the dataDir is your
-    torrents folder), else it might generate a larger than intended number of
+    Be careful setting this to a higher value than 2 (if your only dataDir is your
+    usenet/torrents folder), else it might generate a larger than intended number of
     searchees that will not realistically get many matches.
 
 4.  If you are trying to cross-seed data that has been renamed or whose names
