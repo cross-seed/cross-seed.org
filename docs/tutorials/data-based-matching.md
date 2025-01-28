@@ -38,7 +38,7 @@ has to frequently scan your `dataDirs` and watch all of their children for chang
 
 :::info WINDOWS USERS
 
-[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
+[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](../basics/faq-troubleshooting.md#windows-paths)
 
 :::
 
