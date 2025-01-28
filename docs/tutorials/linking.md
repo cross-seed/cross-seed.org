@@ -28,6 +28,12 @@ injected torrents will be linked, even perfect matches.
 
 ## Setting up linking
 
+:::info WINDOWS USERS
+
+[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
+
+:::
+
 To set up linking, you need to define at least one directory where `cross-seed` will create
 links to your existing files and set the
 [`linkDirs`](../basics/options.md#linkdirs) option to these directories in your

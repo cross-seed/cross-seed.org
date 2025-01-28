@@ -21,6 +21,17 @@ If you are updating from version 5.x to version 6.x, you can visit the
   settings to match the
   [defaults](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs).
 
+
+### Windows Paths
+
+Windows users, for all paths in your configuration file, use "\\\\" instead of "\\".
+```js
+torrentDir: "C:\\Path\\To\\Torrents",
+outputDir: "C:\\My Data\\.cross-seed",
+linkDirs: ["C:\\My Data\\Downloads\\MyLinkDir"],
+dataDirs: ["C:\\My Data\\Downloads\\Movies"],
+```
+
 ### What causes `outputDir should only contain .torrent files` warning?
 
 Typically this error happens when you set [`outputDir`](./options.md#outputdir)

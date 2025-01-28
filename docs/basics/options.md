@@ -71,7 +71,7 @@ The configuration file uses JavaScript syntax, which means:
 - Array/multi options must be enclosed in \['brac', 'kets'\].
 - Strings must be enclosed in "quotation" marks.
 - Array elements and options must be separated by commas.
-- **Windows users will need to use `\\` for paths. (e.g. `c:\\torrents`)**
+- [**Windows users will need to use `\\` for paths.**](./faq-troubleshooting.md#windows-paths)
 
 :::
 
@@ -416,8 +416,7 @@ torrentDir: "C:\\torrents",
 
 :::info WINDOWS USERS
 
-It is necessary to insert double-slashes for your paths, as seen in the examples
-above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
+[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
 
 :::
 
@@ -442,23 +441,22 @@ Leave the `outputDir` as `/cross-seeds` and use Docker to map your directory to
 
 ```shell
 cross-seed search -s .
-cross-seed search --output-dir /tmp/output
+cross-seed search --output-dir /cross-seeds
 ```
 
 #### `outputDir` Examples (Config file)
 
 ```js
-outputDir: "/output",
+outputDir: "/cross-seeds",
 
-outputDir: "/tmp/output",
+outputDir: "C:\\.cross-seed",
 
 outputDir: ".",
 ```
 
 :::info WINDOWS USERS
 
-It is necessary to insert double-slashes for your paths, as seen in the examples
-above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
+[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
 
 :::
 
@@ -494,23 +492,22 @@ and linkDirs.
 #### `dataDirs` Examples (CLI)
 
 ```shell
-cross-seed search --data-dirs /data/torrents/completed
+cross-seed search --data-dirs /data/usenet/movies
 ```
 
 #### `dataDirs` Examples (Config file)
 
 ```js
-dataDirs: ["/data/torrents/completed"],
+dataDirs: ["/data/usenet/movies"],
 
-dataDirs: ["/data/torrents/completed", "/media/library/movies"],
+dataDirs: ["/data/usenet/movies", "/data/torrents/tv"],
 
 dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 ```
 
 :::info WINDOWS USERS
 
-It is necessary to insert double-slashes for your paths, as seen in the examples
-above. Back-slashes are "escape characters" and "\\\\" equates to "\"
+[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
 
 :::
 
@@ -628,7 +625,7 @@ cross-seed search --linkDirs /data/torrents/xseeds /data1/torrents/cross-seed-li
 #### `linkDirs` Examples (Config file)
 
 ```js
-linkDirs: ["/path/to/your/linkDir"],
+linkDirs: ["/data/torrents/SomeLinkDirName"],
 
 linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
 
@@ -636,8 +633,7 @@ linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
 
 :::info WINDOWS USERS
 
-It is necessary to insert double-slashes for your paths, as seen in the examples
-above. Back-slashes are "escape characters" and "\\\\" equates to "\\"
+[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
 
 :::
 

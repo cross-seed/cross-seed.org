@@ -36,62 +36,64 @@ has to frequently scan your `dataDirs` and watch all of their children for chang
 
 ## Setting up data-based matching
 
+:::info WINDOWS USERS
+
+[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
+
+:::
+
 1.  Set up linking as described in the [linking tutorial](linking.md).
 
-2.  Set [`dataDirs`](../basics/options.md#datadirs) to the directories
-    containing the data you want to cross-seed.
+2.  Set [`dataDirs`](../basics/options.md#datadirs) and [`maxDataDepth`](../basics/options.md#maxdatadepth)
+    to inform `cross-seed` on where to generating searchees. Here are examples of some common structures
+    and their optimal configuration. If multiple apply, set `maxDataDepth` to the highest value.
 
-3.  Set [`maxDataDepth`](../basics/options.md#maxdatadepth) to the maximum depth
-    to traverse the file tree for generating searchees. Here are examples of
-    dataDir structures and their corresponding depths. If multiple apply,
-    set `maxDataDepth` to the highest value.
-    
-    ```
-    data/
-    ├─ usenet/
-    │  ├─ movies/       # 0
-    │  |  ├─ Movie.mkv  # 1
+```
+data/
+├─ usenet/
+│  ├─ movies/       # 0
+│  |  ├─ Movie.mkv  # 1
 
-    dataDirs: ["/data/usenet/movies", ...],
-    maxDataDepth: 1,
-    ```
-    ```
-    data/
-    ├─ torrents/
-    │  ├─ tv/                        # 0
-    │  |  ├─ Show S01/               # 1
-    │  |  |  ├─ Episode 1.mkv        # 2
-    │  |  |  ├─ Subtitles            # 2
-    │  |  |  |  ├─ Episode 1.srt     # 3
+dataDirs: ["/data/usenet/movies", ...],
+maxDataDepth: 1,
+```
+```
+data/
+├─ torrents/
+│  ├─ tv/                        # 0
+│  |  ├─ Show S01/               # 1
+│  |  |  ├─ Episode 1.mkv        # 2
+│  |  |  ├─ Subtitles            # 2
+│  |  |  |  ├─ Episode 1.srt     # 3
 
-    dataDirs: ["/data/torrents/tv", ...],
-    maxDataDepth: 1, # cross-seed will ignore season pack episodes even if set to 2 or more
-    ```
-    ```
-    data/
-    ├─ radarr/          # 0
-    │  ├─ Movie/        # 1
-    │  |  ├─ Movie.mkv  # 2
+dataDirs: ["/data/torrents/tv", ...],
+maxDataDepth: 1, # cross-seed will ignore season pack episodes even if set to 2 or more
+```
+```
+data/
+├─ radarr/          # 0
+│  ├─ Movie/        # 1
+│  |  ├─ Movie.mkv  # 2
 
-    dataDirs: ["/data/radarr", ...],
-    maxDataDepth: 2, # cross-seed will not search 'Movie/' itself, using 1 won't search anything here
-    ```
-    ```
-    data/
-    ├─ sonarr/                 # 0
-    │  ├─ Show/                # 1
-    │  |  ├─ Season 1/         # 2
-    │  |  |  ├─ Episode 1.mkv  # 3
+dataDirs: ["/data/radarr", ...],
+maxDataDepth: 2, # cross-seed will not search 'Movie/' itself, using 1 won't search anything here
+```
+```
+data/
+├─ sonarr/                 # 0
+│  ├─ Show/                # 1
+│  |  ├─ Season 1/         # 2
+│  |  |  ├─ Episode 1.mkv  # 3
 
-    dataDirs: ["/data/sonarr", ...],
-    maxDataDepth: 2, # use 3 if using seasonFromEpisodes or includeSingleEpisodes (note: cross-seed will not search 'Show/' itself)
-    ```
+dataDirs: ["/data/sonarr", ...],
+maxDataDepth: 2, # use 3 if using seasonFromEpisodes or includeSingleEpisodes (note: cross-seed will not search 'Show/' itself)
+```
 
     Be careful setting this to a higher value than 2 (if your only dataDir is your
     usenet/torrents folder), else it might generate a larger than intended number of
     searchees that will not realistically get many matches.
 
-4.  If you are trying to cross-seed data that has been renamed or whose names
+3.  If you are trying to cross-seed data that has been renamed or whose names
     don't match standard torrent release naming schemes, set your
     [`matchMode`](../basics/options.md#matchmode) to `risky`, or if you want
     even looser matching, consider setting up
