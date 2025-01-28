@@ -515,9 +515,9 @@ dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 
 ### `maxDataDepth`
 
-| Config file name | CLI short form | CLI long form                 | Format   | Default |
-| ---------------- | -------------- | ----------------------------- | -------- | ------- |
-| `maxDataDepth`   | N/A            | `--max-data-depth <category>` | `number` | `2`     |
+| Config file name | CLI short form | CLI long form              | Format   | Default |
+| ---------------- | -------------- | -------------------------- | -------- | ------- |
+| `maxDataDepth`   | N/A            | `--max-data-depth <value>` | `number` | `2`     |
 
 :::tip
 

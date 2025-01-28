@@ -32,8 +32,10 @@ children for changes.
    the directories from `dataDirs` entirely.
 
 3. You want to cross seed from `TorrentClientA` to `TorrentClientB`. In this case,
-   you can set `dataDirs` to the path of the downloaded data (e.g `/data/torrents/tv`) in `TorrentClientA`, and
-   configure `cross-seed` with `TorrentClientB` only.
+   you can set `dataDirs` to the path of the downloaded data (e.g `/data/torrents/tv`)
+   in `TorrentClientA`, and configure `cross-seed` with `TorrentClientB` only.
+   This will likely create duplicate torrents seeding in both clients, ensure you will
+   be following your tracker's rules.
 
 ## Setting up data-based matching
 
@@ -46,7 +48,7 @@ children for changes.
 1.  Set up linking as described in the [linking tutorial](linking.md).
 
 2.  Set [`dataDirs`](../basics/options.md#datadirs) and [`maxDataDepth`](../basics/options.md#maxdatadepth)
-    to inform `cross-seed` on where to generating searchees. Here are examples of some common structures
+    to inform `cross-seed` on where to generate searchees. Here are some examples of common structures
     and their optimal configuration. If multiple apply, set `maxDataDepth` to the highest value.
 
 ```
@@ -77,7 +79,7 @@ data/
 │  |  ├─ Movie.mkv  # 2
 
 dataDirs: ["/data/radarr", ...],
-maxDataDepth: 2, # cross-seed will not search 'Movie/' itself, using 1 won't search anything here
+maxDataDepth: 2, # cross-seed will not search 'Movie/' itself, using a value of 1 will do nothing
 ```
 ```
 data/
