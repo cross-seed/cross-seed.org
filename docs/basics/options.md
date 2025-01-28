@@ -85,6 +85,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`useClientTorrents`](#useclienttorrents)             |              |
 | [`torrentDir`](#torrentdir)                           |              |
 | [`dataDirs`](#datadirs)                               |              |
+| [`maxDataDepth`](#maxdatadepth)                       |              |
 | [`linkCategory`](#linkcategory)                       |              |
 | [`duplicateCategories`](#duplicatecategories)         |              |
 | [`linkDirs`](#linkdirs)                               |              |
@@ -123,6 +124,7 @@ The configuration file uses JavaScript syntax, which means:
 | [`useClientTorrents`](#useclienttorrents)             |              |
 | [`torrentDir`](#torrentdir)                           |              |
 | [`dataDirs`](#datadirs)                               |              |
+| [`maxDataDepth`](#maxdatadepth)                       |              |
 | [`linkCategory`](#linkcategory)                       |              |
 | [`duplicateCategories`](#duplicatecategories)         |              |
 | [`linkDirs`](#linkdirs)                               |              |
@@ -468,7 +470,7 @@ outputDir: ".",
 
 :::tip
 
-[**`dataDirs` Usages and Configuration**](../tutorials/data-based-matching.md)
+[**Usages and Configuration**](../tutorials/data-based-matching.md)
 
 :::
 
@@ -510,6 +512,35 @@ dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 [**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](./faq-troubleshooting.md#windows-paths)
 
 :::
+
+### `maxDataDepth`
+
+| Config file name | CLI short form | CLI long form                 | Format   | Default |
+| ---------------- | -------------- | ----------------------------- | -------- | ------- |
+| `maxDataDepth`   | N/A            | `--max-data-depth <category>` | `number` | `2`     |
+
+:::tip
+
+[**What value should I set my `maxDataDepth` to?**](../tutorials/data-based-matching.md#setting-up-data-based-matching)
+
+:::
+
+Determines how deep into the specified [`dataDirs`](#datadirs) `cross-seed` will
+go to generate searchees. Setting this to higher values will result in more
+searchees and more API hits to your indexers.
+
+#### `maxDataDepth` Examples (CLI)
+
+```shell
+cross-seed search --max-data-depth 2
+```
+
+#### `maxDataDepth` Examples (Config file)
+
+```js
+maxDataDepth: 2,
+
+```
 
 ### `linkCategory`
 

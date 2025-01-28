@@ -16,9 +16,10 @@ a match.
 and instead to look at actual data files on disk to search for matches. This is
 great if you have the actual files to cross-seed, but not the `.torrent` files.
 
-Torrent based matching will take priority over data-based searches when they are equivalent.
-They are more robust, and prevents some performance issues with `dataDirs` wherein `cross-seed`
-has to frequently scan your `dataDirs` and watch all of their children for changes.
+Torrent-based matching will take priority over data-based when they are equivalent.
+Torrent-based is more robust, and prevents some performance issues with `dataDirs`
+wherein `cross-seed` has to frequently scan your `dataDirs` and watch all of their
+children for changes.
 
 ## General Usage for [`dataDirs`](../basics/options.md#datadirs)
 
@@ -88,10 +89,6 @@ data/
 dataDirs: ["/data/sonarr", ...],
 maxDataDepth: 2, # use 3 if using seasonFromEpisodes or includeSingleEpisodes (note: cross-seed will not search 'Show/' itself)
 ```
-
-    Be careful setting this to a higher value than 2 (if your only dataDir is your
-    usenet/torrents folder), else it might generate a larger than intended number of
-    searchees that will not realistically get many matches.
 
 3.  If you are trying to cross-seed data that has been renamed or whose names
     don't match standard torrent release naming schemes, set your

@@ -90,7 +90,7 @@ work properly.
     _within the same docker volume_.
 
 In practice, this means that you should mount a **common ancestor path** of the
-both the original data files _and_ your `linkDirs`. For exmaple, the following
+both the original data files _and_ your `linkDirs`. For example, the following
 will require a single mount of `/mnt/user/data:/data`:
 
 ```
