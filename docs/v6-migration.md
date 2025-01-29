@@ -404,7 +404,7 @@ My Show/
 
 This also opens up the possibility of effectively cross-seeding season packs
 downloaded from usenet post import/completion.
-[**bakerboy448**'s Arr Import script](https://github.com/bakerboy448/StarrScripts?tab=readme-ov-file#cross-seed-trigger-for-starr-apps)
+[Arr Import script](https://gist.github.com/zakkarry/ddc337a37b038cb84e6248fe8adebb46)
 has now been updated to replicate the immediate "search, match, and cross-seed"
 behavior you can achieve with torrent downloads.
 
