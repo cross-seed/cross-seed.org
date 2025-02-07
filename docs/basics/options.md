@@ -131,9 +131,8 @@ The configuration file uses JavaScript syntax, which means:
 | [`linkType`](#linktype)                               |              |
 | [`matchMode`](#matchmode)                             |              |
 | [`skipRecheck`](#skiprecheck)                         |              |
-| [`includeEpisodes`](#includeepisodes)                 |              |
 | [`includeSingleEpisodes`](#includesingleepisodes)     |              |
-| [`includeNonVideos`](#includeNonvideos)               |              |
+| [`includeNonVideos`](#includenonvideos)               |              |
 | [`seasonFromEpisodes`](#seasonfromepisodes)           |              |
 | [`autoResumeMaxDownload`](#autoresumemaxdownload)     |              |
 | [`fuzzySizeThreshold`](#fuzzysizethreshold)           |              |
@@ -261,7 +260,7 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 :::info NOTICE
 
 Read about the functionality in the
-[v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
+[v6 Migration Guide](../v6-migration.md#searching-by-media-ids)
 
 :::
 

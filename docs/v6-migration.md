@@ -262,7 +262,7 @@ Previously, our recommendation if you wanted to strictly search only
 [`torrentDir`](./basics/options.md#torrentdir) at an empty folder. This is no
 longer necessary. You can now set [`torrentDir`](./basics/options.md#torrentdir)
 to `null` to achieve a data-only search, with the caveat that data-only
-configurations are likely [no longer necessary](#linking-updates).
+configurations are likely [no longer necessary](#linking-for-torrent-based-matches).
 
 ### Anime Support
 

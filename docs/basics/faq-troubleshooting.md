@@ -73,7 +73,7 @@ to go clean up (verify the torrent files listed) are in your client, and remove
 those that aren't.
 
 You can find a list of example paths for reference in the options page under
-[`torrentDir`](./options.md#torrendir)
+[`torrentDir`](./options.md#torrentdir)
 
 :::warning qBittorrent
 
@@ -98,6 +98,7 @@ This will, for the duration of the search being ran, disable the options complet
  searching for absolutely everything available.
 
 :::
+
 ### Why are some torrents not suitable for searching?
 
 Seeing a difference in total torrent count and suitable torrents (as well as
@@ -268,8 +269,8 @@ the `/logs/verbose.*.log` files for the file causing this.
 :::caution
 
 If you do not link files within your `dataDirs` or have them outside of the
-[`maxDataDepth`](../tutorials/data-based-matching.md#setup) visibility, this is
-preventable.
+[`maxDataDepth`](../tutorials/data-based-matching.md#setting-up-data-based-matching) 
+visibility, this is preventable.
 
 :::
 
@@ -409,7 +410,7 @@ you about your usage of cross-seed, consider reverting to the default settings
 of [`excludeOlder`](options.md#excludeolder),
 [`excludeRecentSearch`](options.md#excluderecentsearch),
 [`searchCadence`](options.md#searchcadence), and
-[`searchLimit`](options.md#searchLimit).
+[`searchLimit`](./options.md#searchlimit).
 
 :::caution
 
@@ -436,7 +437,7 @@ with [seasonFromEpisodes](./options.md#seasonfromepisodes), you can use the
 [inject](../reference/utils.md#cross-seed-inject) feature.
 
 If you have not recently deleted files in your
-[outputDir](./options.md#outputDir), then these torrents will still have their
+[outputDir](./options.md#outputdir), then these torrents will still have their
 .torrent file present. If so, simply pick one torrent to complete the download
 on and that's it! `cross-seed` uses all possibles matches to source files with
 the inject job or when using `cross-seed inject`. It will automatically detect
