@@ -82,6 +82,22 @@ torrentDir when using injection.
 
 :::
 
+### How can I disable the time-based exclude options in a `cross-seed search`?
+
+In order to disable and override the [`excludeOlder`](./options.md#excludeolder)
+and [`excludeRecentSearch`](./options.md#excluderecentsearch) options
+defined in your `config.js`, you can use the
+[`cross-seed search`](../reference/utils.md#cross-seed-search) command with
+[`--no-exclude-older`](./options.md#excludeolder-examples-cli) and
+[`--no-exclude-recent-search`](./options.md#excluderecentsearch-examples-cli)
+flags at command line.
+
+:::info Overall Effect
+
+This will, for the duration of the search being ran, disable the options completely -
+ searching for absolutely everything available.
+
+:::
 ### Why are some torrents not suitable for searching?
 
 Seeing a difference in total torrent count and suitable torrents (as well as

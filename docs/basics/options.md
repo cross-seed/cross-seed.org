@@ -955,12 +955,21 @@ with [`searchCadence`](#searchcadence) turned on.
 
 :::
 
+:::danger Disabling
+
+If you wish to run a `cross-seed search` with these options overridden from their
+config.js and disabled, simply use `--no-exclude-older` flag
+
+:::
+
 #### `excludeOlder` Examples (CLI)
 
 ```shell
 cross-seed search -x 10h # only search for torrents whose first search was less than 10 hours ago or never
 cross-seed search --exclude-older "3 days" # only search for torrents whose first search was less than 3 days ago or never
 cross-seed search -x 0s # only search for each torrent once ever
+cross-seed search --no-exclude-older # disables/overrides the excludeOlder value in config.js
+
 ```
 
 #### `excludeOlder` Examples (Config file)
@@ -999,11 +1008,19 @@ excluded by this setting for those specific indexers on the next run.
 
 :::
 
+:::danger Disabling
+
+If you wish to run a `cross-seed search` with these options overridden from their
+config.js and disabled, simply use `--no-exclude-recent-search` flag
+
+:::
+
 #### `excludeRecentSearch` Examples (CLI)
 
 ```shell
 cross-seed search -r 1day # only search for torrents that haven't been searched in the past day
 cross-seed search --exclude-recent-search "2 weeks" # only search for torrents that haven't been searched in the past 2 weeks
+cross-seed search --no-exclude-recent-search # disables/overrides the excludeRecentSearch value in config.js
 ```
 
 #### `excludeRecentSearch` Examples (Config file)
