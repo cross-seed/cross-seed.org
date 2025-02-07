@@ -166,7 +166,7 @@ Simply ensure that you've updated your data and the indexer's name in autobrr
 matches the one in Prowlarr/Jackett, and everything will align correctly in your
 [`linkDirs`](./basics/options.md#linkdirs).
 
-### Removed [`includeEpisodes`](./basics/options.md#includeepisodes)
+### Removed `includeEpisodes`
 
 In `cross-seed` version 5, `includeSingleEpisodes` was added as it allowed
 searching for episodes while excluding ones from season packs. In v6,

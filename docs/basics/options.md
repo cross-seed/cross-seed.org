@@ -297,7 +297,7 @@ sonarr: ["http://sonarr:8989/?apikey=12345","http://sonarr4k:8990/?apikey=12345"
 :::warning NOTICE
 
 Read about the functionality in the
-[v6 Migration Guide](../v6-migration.md#sonarr-and-radarr-id-lookup-searching)
+[v6 Migration Guide](../v6-migration.md#searching-by-media-ids)
 
 :::
 
