@@ -151,15 +151,17 @@ POST /api/announce
 
 ## POST `/api/job`
 
-This endpoint allows you to trigger an early run of a specific job. If successful,
-the next scheduled run for the job will be twice it's normal cadence. You will be
-able to perform another early run once the next scheduled run is less than its
-reguar cadence away. If the job is not enabled due to your config, e.g
-[`searchCadence`](../basics/options#searchcadence) is set to `null`, `cross-seed`
-will respond with `404 Not Found`. If the job is already running or if the job's
-scheduled run is more than its regular cadence away, `cross-seed` will respond
-with `409 Conflict`. If the job was successfully triggered, `cross-seed` will
-respond with `200 OK`.
+This endpoint allows you to trigger an early run of a specified job. If
+successful, the next scheduled run for the job will be double it's normal
+cadence. You will be able to perform another early run once the next scheduled
+run is closer than its regular cadence away.
+
+If the job is not enabled due to your config (e.g
+[`searchCadence`](../basics/options#searchcadence) is set to `null`)
+`cross-seed` will respond with `404 Not Found`. If the job is currently running,
+or its scheduled run is further away than its config.js configured cadence,
+`cross-seed` will respond with `409 Conflict`. If the job was successfully
+triggered, `cross-seed` will respond with `200 OK`.
 
 ### Supported formats
 
