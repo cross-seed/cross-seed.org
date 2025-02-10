@@ -21,10 +21,11 @@ If you are updating from version 5.x to version 6.x, you can visit the
   settings to match the
   [defaults](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs).
 
-
 ### Windows Paths
 
-Windows users, for all paths in your configuration file, use "\\\\" instead of "\\".
+Windows users, for all paths in your configuration file, use "\\\\" instead of
+"\\".
+
 ```js
 torrentDir: "C:\\Path\\To\\Torrents",
 outputDir: "C:\\My Data\\.cross-seed",
@@ -82,11 +83,26 @@ torrentDir when using injection.
 
 :::
 
+### Is there a way to trigger a specific cross-seed job ahead of schedule?
+
+You can use the `/api/job` API endpoint to trigger a job ahead of schedule. This
+API can be trigger using a simple curl command, similar to how you would
+manually send a webhook from your client.
+
+You can find the details and usage for this API in the
+[reference section](../reference/api.md#post-apijob).
+
+Be aware that while this will trigger the schedule to be executed ahead of its
+normal time, there are certain limitations and precautions you will want to
+take. Do not abuse trackers or their respective APIs. Your accounts are
+ultimately your responsibility, and you should make sure you review and respect
+the rules of your trackers before you utilize any of their APIs directly.
+
 ### How can I disable the time-based exclude options in a `cross-seed search`?
 
 In order to disable and override the [`excludeOlder`](./options.md#excludeolder)
-and [`excludeRecentSearch`](./options.md#excluderecentsearch) options
-defined in your `config.js`, you can use the
+and [`excludeRecentSearch`](./options.md#excluderecentsearch) options defined in
+your `config.js`, you can use the
 [`cross-seed search`](../reference/utils.md#cross-seed-search) command with
 [`--no-exclude-older`](./options.md#excludeolder-examples-cli) and
 [`--no-exclude-recent-search`](./options.md#excluderecentsearch-examples-cli)
@@ -94,8 +110,8 @@ flags at command line.
 
 :::info Overall Effect
 
-This will, for the duration of the search being ran, disable the options completely -
- searching for absolutely everything available.
+This will, for the duration of the search being ran, disable the options
+completely - searching for absolutely everything available.
 
 :::
 
@@ -249,10 +265,9 @@ investigating why this occurred.
 
 ### My data-based search is searching torrent files!
 
-Torrents from your client take precedence over data files.
-If possible, `cross-seed` will always attempt to create links for data and
-torrents being injected into a client, so the end result will generally be the
-same.
+Torrents from your client take precedence over data files. If possible,
+`cross-seed` will always attempt to create links for data and torrents being
+injected into a client, so the end result will generally be the same.
 
 If you wish to search only for data files, you can set
 [`useClientTorrents`](./options.md#useclienttorrents) to false and
@@ -269,7 +284,7 @@ the `/logs/verbose.*.log` files for the file causing this.
 :::caution
 
 If you do not link files within your `dataDirs` or have them outside of the
-[`maxDataDepth`](../tutorials/data-based-matching.md#setting-up-data-based-matching) 
+[`maxDataDepth`](../tutorials/data-based-matching.md#setting-up-data-based-matching)
 visibility, this is preventable.
 
 :::
