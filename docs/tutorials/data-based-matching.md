@@ -47,7 +47,12 @@ children for changes.
 
 1.  Set up linking as described in the [linking tutorial](linking.md).
 
-2.  Set [`dataDirs`](../basics/options.md#datadirs) and [`maxDataDepth`](../basics/options.md#maxdatadepth)
+2.  If you are trying to cross-seed data that has been renamed or whose names
+    don't match standard torrent release naming schemes, set your
+    [`matchMode`](../basics/options.md#matchmode) to `flexible`, or if you want
+    all matches, consider setting up [partial matching](partial-matching.md).
+
+3.  Set [`dataDirs`](../basics/options.md#datadirs) and [`maxDataDepth`](../basics/options.md#maxdatadepth)
     to inform `cross-seed` on where to generate searchees. Here are some examples of common structures
     and their optimal configuration. If multiple apply, set `maxDataDepth` to the highest value.
 
@@ -91,9 +96,3 @@ data/
 dataDirs: ["/data/sonarr", ...],
 maxDataDepth: 2, # use 3 if using seasonFromEpisodes or includeSingleEpisodes (note: cross-seed will not search 'Show/' itself)
 ```
-
-3.  If you are trying to cross-seed data that has been renamed or whose names
-    don't match standard torrent release naming schemes, set your
-    [`matchMode`](../basics/options.md#matchmode) to `risky`, or if you want
-    even looser matching, consider setting up
-    [partial matching](partial-matching.md).

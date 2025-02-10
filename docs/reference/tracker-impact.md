@@ -86,9 +86,9 @@ episode searches, **set
 There are TV shows that are not combined into season packs, such as game shows,
 talk shows, and similar. These shows are known as dailies and often have naming
 which specifies dates, rather than SeasonEpisode (S02E03) style. Searching with
-`includeSingleEpisodes` and using `risky` on these torrents, or files, can
-result in _many torrent files being downloaded_ for comparisons for matching
-only _one individual episode_.
+`includeSingleEpisodes` and using `flexible` or `parital` matchMode on these
+torrents, or files, can result in _many torrent files being downloaded_ for
+comparisons for matching only _one individual episode_.
 
 Remember, this would occur on just one (torrent) search, within the entire (all
 data) search.
@@ -103,7 +103,7 @@ default, `cross-seed` restricts searches to just these torrents.
 This excludes anything that is not movie or TV content, but will also exclude
 anything that contains `.nfo`, `.srt`, `.txt` or other non-video files, even if
 the primary file is a video file. This is restrictive, but it works well with
-[`matchMode: "safe"`](../basics/options.md#matchmode) because it only allows the
+[`matchMode: "strict"`](../basics/options.md#matchmode) because it only allows the
 torrents most likely to find perfect matches.
 
 If you enable [Partial Matching](../tutorials/partial-matching.md), you should

@@ -4,10 +4,10 @@ title: Linking
 sidebar_position: 2
 ---
 
-By default, `cross-seed` will only look for "perfect" matches—candidate file
-trees that have the exact same file tree, or a strict subset of the file tree,
-of the data you already have. Then it injects the torrents into your client by
-mirroring the save path of the torrent you already had.
+With [`matchMode: "strict"`](../basics/options.md#matchmode), `cross-seed` will
+only look for "perfect" matches—candidate file trees that have the exact same file tree,
+or a strict subset of the file tree, of the data you already have. Then it injects
+the torrents into your client by mirroring the save path of the torrent you already had.
 
 ### What is linking?
 
@@ -20,9 +20,9 @@ _hardlinks_, and _reflinks_. `cross-seed` uses **hardlinks** by default.
 
 ### Should I set up linking?
 
-You don't need to set up linking with the default settings. However, you will
-need to set up linking in order to enable the more advanced/looser matching
-strategies such as [partial matching](partial-matching.md) or
+You don't need to set up linking with the [`matchMode: "strict"`](../basics/options.md#matchmode).
+However, you will need to set up linking in order to enable the more complete matching
+strategies such as [partial matching](partial-matching.md) or if you want to use
 [data-based matching](data-based-matching.md). When linking is enabled, **all**
 injected torrents will be linked, even perfect matches.
 

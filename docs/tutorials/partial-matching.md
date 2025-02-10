@@ -20,7 +20,7 @@ So, what's the outcome?
     missing/mismatched often doubling the amount of cross seeds found. Using this
     mode will find all possible cross seeds from your data.
 -   **Fewer Wasted Snatches**: Many torrents that can't match under
-    `matchMode: "safe"` (due to a "technicality") can and will match with
+    `matchMode: "strict"` (due to a "technicality") can and will match with
     partial matching, meaning the snatch doesn't go to waste.
 
 :::tip
@@ -64,6 +64,18 @@ To enable partial matching, follow these three simple steps:
     module.exports = {
     	// ... other settings ...
     	matchMode: "partial",
+    };
+    ```
+
+3. **Set `seasonFromEpisodes` below `1`** _(optional)_
+
+    If you want to cross seed season packs even if you're missing individual episodes,
+    set [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes) to a value below `1`.
+
+    ```js
+    module.exports = {
+    	// ... other settings ...
+    	seasonFromEpisodes: 0.8,
     };
     ```
 
