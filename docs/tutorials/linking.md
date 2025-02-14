@@ -57,15 +57,36 @@ or where drive pooling is impossible.
 
 :::
 
+In nearly all cases, your linkDir should reside in your torrent client download
+directory. In the example below, your torrent client download directory would be
+`/mnt/user/data/torrents/`.
+
+```
+mnt/
+├─ user/
+│  ├─ data/
+│  |  ├─ usenet/
+│  |  |  ├─ movies/
+│  |  ├─ torrents/
+│  |  |  ├─ tv/
+│  |  ├─ radarr/
+│  |  |  ├─ Movie/
+│  |  ├─ sonarr/
+│  |  |  ├─ Show/
+```
+
+Your `linkDir` would then be:
+
 ```js
 module.exports = {
 	// ... other settings ...
-	linkDirs: ["/path/to/linkDir"],
+	linkDirs: ["/mnt/user/data/torrents/SomeLinkDirName"],
 };
 ```
 
-Once you have restarted `cross-seed`, new matches will have links created in
-your `linkDirs` pointing to the original files.
+If you have multiple drives without drive pooling, add more linkDirs as needed
+for each drive. Once you have restarted `cross-seed`, new matches will have
+links created in your `linkDirs` pointing to the original files.
 
 :::info
 
@@ -90,24 +111,16 @@ work properly.
     _within the same docker volume_.
 
 In practice, this means that you should mount a **common ancestor path** of the
-both the original data files _and_ your `linkDirs`. For example, the following
-will require a single mount of `/mnt/user/data:/data`:
+both the original data files _and_ your `linkDirs`. The example above would
+require a single mount of `/mnt/user/data:/data` for **BOTH** cross-seed and your
+torrent client. Your `linkDir` would then be:
 
+```js
+module.exports = {
+	// ... other settings ...
+	linkDirs: ["/data/torrents/SomeLinkDirName"],
+};
 ```
-mnt/
-├─ user/
-│  ├─ data/
-│  |  ├─ usenet/
-│  |  |  ├─ movies/
-│  |  ├─ torrents/
-│  |  |  ├─ tv/
-│  |  ├─ radarr/
-│  |  |  ├─ Movie/
-│  |  ├─ sonarr/
-│  |  |  ├─ Show/
-```
-
-You can then use `linkDirs: ["/data/torrents/SomeLinkDirName"]`.
 
 ## Hardlinks vs Symlinks vs Reflinks
 
