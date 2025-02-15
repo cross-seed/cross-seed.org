@@ -427,6 +427,12 @@ torrentDir: "C:\\torrents",
 | ---------------- | -------------- | -------------------- | -------- | ------- |
 | `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` |         |
 
+:::danger
+
+**DO NOT USE THIS DIRECTORY AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
+
+:::
+
 `cross-seed` will store the torrent files it finds in this directory. If you use
 [Injection](../tutorials/injection) with rtorrent you'll need to make sure that
 the client has access to this path also.
@@ -538,7 +544,6 @@ cross-seed search --max-data-depth 2
 
 ```js
 maxDataDepth: 2,
-
 ```
 
 ### `linkCategory`
