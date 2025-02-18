@@ -341,20 +341,8 @@ port to untrusted networks (such as the Internet).**
 
 You can search both your media libraries (Arr/Plex) and actual torrent data
 (downloaded files). If you are using the media libraries with renamed files, you
-will need to use [`matchMode: "risky"`](../basics/options.md#matchmode) in your
-configuration file to allow `cross-seed` some leeway in its matching process.
-[`"risky" matchMode`](./options.md#matchmode) is not recommended to be used
-without [`skipRecheck`](./options.md#skiprecheck) being set to false, as it
-could result in more false positives than `"safe"`.
-
-:::caution
-
-Due to the way data-based searching works, risky matching only matches renamed
-files if they are a single-file searches. As TV libraries usually include
-renamed files, data-based matching will not be able to pick up matches on
-multi-file torrents (such as full-season packs matched to your season folders).
-
-:::
+will need to use [`matchMode: "flexible"` or `matchMode: "partial"`](../basics/options.md#matchmode)
+in your configuration file to allow `cross-seed` some leeway in its matching process.
 
 ### Why do I see `it has a different file tree` in my logs?
 

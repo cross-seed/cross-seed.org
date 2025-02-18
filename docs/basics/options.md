@@ -636,6 +636,8 @@ correct linkDir is chosen by matching the `stat.st_dev` for the source and link
 paths. If no linkDir shares a `stat.st_dev` with the source, the injection will
 fail for hardlinks and fallback to the first linkDir for symlinks.
 
+[How to configure linking](../tutorials/linking.md)
+
 :::tip
 
 [**If you are using `dataDirs`**](../tutorials/data-based-matching.md#general-usage-for-datadirs),
@@ -703,45 +705,46 @@ linkType: "symlink",
 
 ### `matchMode`
 
-| Config file name | CLI short form        | CLI long form         | Format                    | Default |
-| ---------------- | --------------------- | --------------------- | ------------------------- | ------- |
-| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `safe`/`risky`/`partial*` | `safe`  |
+| Config file name | CLI short form        | CLI long form         | Format                         | Default   |
+| ---------------- | --------------------- | --------------------- | ------------------------------ | --------- |
+| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `strict`/`flexible`/`partial*` | `strict`  |
 
-`cross-seed` uses three types of matching algorithms `safe`, `risky`, and
-`partial`. All types are extremely safe and will have no false positives.
-`partial` will roughly double the number of found cross seeds, effectively
-finding all possible cross seeds.
+`cross-seed` uses three types of matching algorithms `strict`, `flexible`, and
+`partial`. All types are equally safe. `strict` is required if you cannot use
+linking. Using `partial` will find all possible cross seeds of your data and
+allows setting [`seasonFromEpisodes`](#seasonfromepisodes) to a value below 1.
 
 :::note
 
 These algorithms can only be ran if `cross-seed` has snatched the torrent files.
 The vast majority of candidates get rejected before a snatch has happened by
-parsing information from the title.
+parsing information from the title. Using `partial` minimizes the amount of
+wasted snatches since it's the most complete.
 
 :::
 
-| option    | description                                                          |
-| --------- | -------------------------------------------------------------------- |
-| `safe`    | the default which matches based on file naming and sizes.            |
-| `risky`   | matches based on file sizes only.                                    |
-| `partial` | can be read about in detail [here](../tutorials/partial-matching.md) |
+| option     | description                                                              |
+| ---------- | ------------------------------------------------------------------------ |
+| `strict`   | requires all file names to match exactly along with file sizes           |
+| `flexible` | allows for file renames and slight inconsistencies, only uses file sizes |
+| `partial`  | can be read about in detail [here](../tutorials/partial-matching.md)     |
 
-For media library searches `risky` or `partial` is necessary due to the renaming
+For media library searches `flexible` or `partial` is necessary due to the renaming
 of files.
 
 #### `matchMode` Examples (CLI)
 
 ```shell
-cross-seed search --match-mode risky
-cross-seed search --match-mode safe
+cross-seed search --match-mode flexible
+cross-seed search --match-mode strict
 ```
 
 #### `matchMode` Examples (Config file)
 
 ```js
-matchMode: "risky",
+matchMode: "partial",
 
-matchMode: "safe",
+matchMode: "strict",
 ```
 
 ### `skipRecheck`

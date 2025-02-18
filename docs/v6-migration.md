@@ -208,7 +208,7 @@ both worlds.
 ### Linking for torrent-based Matches
 
 Previously in v5, there were many scenarios where using `dataDirs` would offer
-benefits over `torrentDir`—namely, looser matching with the `risky` match mode
+benefits over `torrentDir`—namely, looser matching with the `flexible` match mode
 required data-based matching. In version 6 we have added support for linking
 torrent-based matches, so data-based matching is no longer necessary (read more
 below).
@@ -400,7 +400,7 @@ My Show/
 ```
 
 `cross-seed` can now understand handle this folder structure with
-`matchMode: "risky"` or `"partial"`.
+`matchMode: "flexible"` or `"partial"`.
 
 This also opens up the possibility of effectively cross-seeding season packs
 downloaded from usenet post import/completion.
