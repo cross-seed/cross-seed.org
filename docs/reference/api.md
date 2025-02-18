@@ -27,6 +27,17 @@ curl -XPOST localhost:2468/api/webhook?apikey=YOUR_API_KEY --data-urlencode ...
 curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlencode ...
 ```
 
+## GET `/api/ping`
+
+This endpoint is used to check if the daemon is running. It will respond with
+`200 OK` if the daemon is running. There is no authorization on this endpoint.
+
+### Request Payload
+
+```shell script
+curl http://localhost:2468/api/ping
+```
+
 ## POST `/api/webhook`
 
 This endpoint invokes a search, on all configured trackers, for a specific
@@ -73,6 +84,12 @@ curl -XPOST http://localhost:2468/api/webhook \
   --data-urlencode 'path=/path/to/torrent/file.mkv' \
   --data-urlencode 'includeSingleEpisodes=true'
 ```
+
+:::note
+
+`-d` can be used instead of --data-urlencode for all options except `path`.
+
+:::
 
 Alternatively, you can use JSON:
 
@@ -130,4 +147,53 @@ POST /api/announce
 	"link": "string", // download link
 	"tracker": "string" // used for linking path and logging
 }
+```
+
+## POST `/api/job`
+
+This endpoint allows you to trigger an early run of a specified job. If
+successful, the next scheduled run for the job will be double it's normal
+cadence. You will be able to perform another early run once the next scheduled
+run is closer than its regular cadence away.
+
+If the job is not enabled due to your config (e.g
+[`searchCadence`](../basics/options#searchcadence) is set to `null`)
+`cross-seed` will respond with `404 Not Found`. If the job is currently running,
+or its scheduled run is further away than its config.js configured cadence,
+`cross-seed` will respond with `409 Conflict`. If the job was successfully
+triggered, `cross-seed` will respond with `200 OK`.
+
+### Supported formats
+
+| `Content-Type`                      | Supported |
+| ----------------------------------- | --------- |
+| `application/json`                  | ✅        |
+| `application/x-www-form-urlencoded` | ✅        |
+
+### Request Payload
+
+```js
+POST /api/job
+{
+	// Job name is required
+	name: "cleanup | inject | rss | search | updateIndexerCaps",
+	// All of the following are optional with their defaults shown
+	ignoreExcludeRecentSearch: false,
+	ignoreExcludeOlder: false,
+}
+```
+
+```shell script
+curl -XPOST http://localhost:2468/api/job \
+  -d 'name=search' \
+  -d 'ignoreExcludeRecentSearch=true' \
+  -d 'ignoreExcludeOlder=true'
+```
+
+Alternatively, you can use JSON:
+
+```shell script
+curl -XPOST http://localhost:2468/api/job \
+  -H 'Content-Type: application/json' \
+  --data '{"name": "updateIndexerCaps"}'
 ```
