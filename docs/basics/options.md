@@ -431,6 +431,8 @@ torrentDir: "C:\\torrents",
 
 **DO NOT USE THIS DIRECTORY AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
 
+If you are using qbit_manage, ensure this directory will not be orphaned.
+
 :::
 
 `cross-seed` will store the torrent files it finds in this directory. If you use
