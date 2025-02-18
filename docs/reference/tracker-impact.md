@@ -106,10 +106,6 @@ the primary file is a video file. This is restrictive, but it works well with
 [`matchMode: "strict"`](../basics/options.md#matchmode) because it only allows the
 torrents most likely to find perfect matches.
 
-If you enable [Partial Matching](../tutorials/partial-matching.md), you should
-**set [`includeNonVideos`](../basics/options.md#includenonvideos) to `true`**
-because the partial matching algorithm can handle the extra files.
-
 ### Backlog searching 400 items per day
 
 By default, `cross-seed` only searches 400 items from your backlog per day. We

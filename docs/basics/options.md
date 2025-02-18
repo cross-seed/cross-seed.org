@@ -726,7 +726,7 @@ wasted snatches since it's the most complete.
 | option     | description                                                              |
 | ---------- | ------------------------------------------------------------------------ |
 | `strict`   | requires all file names to match exactly along with file sizes           |
-| `flexible` | allows for file renames and slight inconsistencies, only uses file sizes |
+| `flexible` | allows for file renames and slight inconsistencies                       |
 | `partial`  | can be read about in detail [here](../tutorials/partial-matching.md)     |
 
 For media library searches `flexible` or `partial` is necessary due to the renaming
