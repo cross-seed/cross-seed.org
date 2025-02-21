@@ -85,7 +85,7 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
 :::danger
 
 `cross-seed` is the **only** program that understands how to properly link and
-inject its [partial](./tutorials/partial-matching.md) and
+inject its [partial](./partial-matching.md) and
 [seasonFromEpisodes](../basics/options.md#seasonfromepisodes) matches. Other
 programs, like [**autotorrent**](https://github.com/JohnDoee/autotorrent), will
 not work. You do not need to do anything with torrents saved to

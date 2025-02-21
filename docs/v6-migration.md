@@ -342,11 +342,12 @@ This requires no action on your part.
 :::danger
 
 `cross-seed` is the **only** program that understands how to properly link and
-inject its [partial matches](./tutorials/partial-matching.md). Other programs,
-like [**autotorrent**](https://github.com/JohnDoee/autotorrent), will not work.
-You do not need to do anything with torrents saved to `outputDir`—`cross-seed`
-will handle them unless the torrent is stalled.
-[Read more about retrying injections](./tutorials/injection.md#manual-or-scheduled-injection).
+inject its [partial](./tutorials/partial-matching.md) and
+[seasonFromEpisodes](./basics/options.md#seasonfromepisodes) matches. Other
+programs, like [**autotorrent**](https://github.com/JohnDoee/autotorrent), will
+not work. You do not need to do anything with torrents saved to
+`outputDir`—`cross-seed` will handle them unless the torrent is stalled.
+[**Read more**](./tutorials/injection.md#manual-or-scheduled-injection).
 
 **DO NOT USE [`outputDir`](./basics/options.md#outputdir) AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
 
