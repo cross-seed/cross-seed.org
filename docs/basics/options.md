@@ -55,12 +55,6 @@ To create an editable config file, run the following command:
 cross-seed gen-config
 ```
 
-:::tip
-
-Add `-d` to this command to generate a config for Docker
-
-:::
-
 From there, you can open the config file in your favorite editor and set up your
 configuration.
 
@@ -285,7 +279,6 @@ cross-seed search --sonarr https://localhost/?apikey=12345 https://localhost4k/?
 sonarr: ["https://sonarr/?apikey=12345"],
 
 sonarr: ["http://sonarr:8989/?apikey=12345","http://sonarr4k:8990/?apikey=12345"],
-
 ```
 
 ### `radarr`
@@ -322,7 +315,6 @@ cross-seed search --radarr https://localhost/?apikey=12345 https://localhost4k/?
 radarr: ["https://radarr/?apikey=12345"],
 
 radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345"],
-
 ```
 
 ### `useClientTorrents`
@@ -554,9 +546,8 @@ maxDataDepth: 2,
 | ---------------- | -------------- | ---------------------------- | -------- | ----------------- |
 | `linkCategory`   | N/A            | `--link-category <category>` | `string` | `cross-seed-link` |
 
-`cross-seed` will, when performing **data-based** searches with
-[injection](../tutorials/injection), use this category for all injected
-torrents.
+`cross-seed` will use this category for all injected torrents when
+[linking](../tutorials/linking.md) is enabled.
 
 :::caution Docker
 
@@ -575,7 +566,6 @@ cross-seed search --link-category category
 
 ```js
 linkCategory: "Category1",
-
 ```
 
 ### `duplicateCategories`
@@ -611,7 +601,6 @@ cross-seed search --duplicate-categories
 duplicateCategories: true,
 
 duplicateCategories: false,
-
 ```
 
 ### `linkDirs`
@@ -638,7 +627,7 @@ correct linkDir is chosen by matching the `stat.st_dev` for the source and link
 paths. If no linkDir shares a `stat.st_dev` with the source, the injection will
 fail for hardlinks and fallback to the first linkDir for symlinks.
 
-[How to configure linking](../tutorials/linking.md)
+[**How to configure linking?**](../tutorials/linking.md)
 
 :::tip
 
@@ -667,7 +656,6 @@ cross-seed search --linkDirs /data/torrents/xseeds /data1/torrents/cross-seed-li
 linkDirs: ["/data/torrents/SomeLinkDirName"],
 
 linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
-
 ```
 
 :::info WINDOWS USERS
@@ -702,7 +690,6 @@ cross-seed search --linkType hardlink
 linkType: "hardlink",
 
 linkType: "symlink",
-
 ```
 
 ### `matchMode`
@@ -953,23 +940,15 @@ fuzzySizeThreshold: 0.02,
 | ---------------- | -------------- | ------------------------- | ------------------------------- | ------- |
 | `excludeOlder`   | `-x <value>`   | `--exclude-older <value>` | `string` in the [ms][ms] format |         |
 
+:::tip
+
+[**How to ignore `excludeOlder` for a single search?**](./faq-troubleshooting.md#how-can-i-disable-the-time-based-exclude-options-in-a-cross-seed-search)
+
+:::
+
 When running a search, this option excludes anything first searched more than
 this long ago. This option is only relevant in `search` mode or in `daemon` mode
 with [`searchCadence`](#searchcadence) turned on.
-
-:::tip
-
-`excludeOlder` will never exclude torrents that are completely new to
-`cross-seed` or torrents seen via RSS or Announce API.
-
-:::
-
-:::danger Disabling
-
-If you wish to run a `cross-seed search` with these options overridden from their
-config.js and disabled, simply use `--no-exclude-older` flag
-
-:::
 
 #### `excludeOlder` Examples (CLI)
 
@@ -978,7 +957,6 @@ cross-seed search -x 10h # only search for torrents whose first search was less 
 cross-seed search --exclude-older "3 days" # only search for torrents whose first search was less than 3 days ago or never
 cross-seed search -x 0s # only search for each torrent once ever
 cross-seed search --no-exclude-older # disables/overrides the excludeOlder value in config.js
-
 ```
 
 #### `excludeOlder` Examples (Config file)
@@ -997,15 +975,15 @@ excludeOlder: "0s",
 | --------------------- | -------------- | --------------------------------- | ------------------------------- | ------- |
 | `excludeRecentSearch` | `-r <value>`   | `--exclude-recent-search <value>` | `string` in the [ms][ms] format |         |
 
+:::tip
+
+[**How to ignore `excludeRecentSearch` for a single search?**](./faq-troubleshooting.md#how-can-i-disable-the-time-based-exclude-options-in-a-cross-seed-search)
+
+:::
+
 When running a search, this option excludes anything that has been searched more
 recently than this long ago. This option is only relevant in `search` mode or in
 `daemon` mode with [`searchCadence`](#searchcadence) turned on.
-
-:::tip
-
-`excludeRecentSearch` will never exclude torrents seen via RSS or Announce API.
-
-:::
 
 :::info Note
 
@@ -1014,13 +992,6 @@ recently than this long ago. This option is only relevant in `search` mode or in
 Searches that failed on specific indexers (for example - due to timeout or
 rate-limiting) will not be marked as having been searched, and thus will not be
 excluded by this setting for those specific indexers on the next run.
-
-:::
-
-:::danger Disabling
-
-If you wish to run a `cross-seed search` with these options overridden from their
-config.js and disabled, simply use `--no-exclude-recent-search` flag
 
 :::
 
@@ -1313,6 +1284,12 @@ port: 3000,
 | ---------------- | -------------- | ------------------------- | ------------------------------- | ------- |
 | `rssCadence`     | N/A            | `--rss-cadence <cadence>` | `string` in the [ms][ms] format |         |
 
+:::tip
+
+[**How to cross seed new releases as soon as they are uploaded?**](../tutorials/announce.md)
+
+:::
+
 In [Daemon Mode](../basics/managing-the-daemon), with this option enabled,
 `cross-seed` will run periodic RSS searches on your configured indexers to check
 if any new uploads match torrents you already own. Setting this option to
@@ -1349,6 +1326,12 @@ rssCadence: "20min",
 | ---------------- | -------------- | ---------------------------- | ------------------------------- | ------- |
 | `searchCadence`  |                | `--search-cadence <cadence>` | `string` in the [ms][ms] format |         |
 
+:::tip
+
+[**How to trigger a search on download completion?**](../tutorials/triggering-searches.md)
+
+:::
+
 In [Daemon Mode](../basics/managing-the-daemon), with this option enabled,
 `cross-seed` will run periodic searches of your torrents (respecting your
 `includeEpisodes`, `includeNonVideos`, `excludeOlder`, and `excludeRecentSearch`
@@ -1359,7 +1342,6 @@ settings).
 ```shell
 cross-seed daemon --search-cadence "2 weeks"
 cross-seed daemon --search-cadence "2w"
-
 ```
 
 #### `searchCadence` Examples (Config file)
@@ -1427,7 +1409,6 @@ the snatch as failed.
 ```shell
 cross-seed daemon --snatch-timeout "15s"
 cross-seed search --snatch-timeout "30s"
-
 ```
 
 #### `snatchTimeout` Examples (Config file)
@@ -1458,7 +1439,6 @@ given in the amount of time specified then it will consider the search failed.
 ```shell
 cross-seed daemon --search-timeout "20s"
 cross-seed search --search-timeout "45s"
-
 ```
 
 #### `searchTimeout` Examples (Config file)
@@ -1496,7 +1476,6 @@ path which contains many files) or directly with the search command.
 ```shell
 cross-seed daemon --search-limit 50
 cross-seed search --search-limit 150
-
 ```
 
 #### `searchLimit` Examples (Config file)
@@ -1577,8 +1556,7 @@ flatLinking: false,
 :::tip
 
 Use the blocklist on categories, tags, or trackers on torrents you do not want
-to cross seed from your torrent client. This will be necessary if they are on a
-separate drive.
+to cross seed from your torrent client.
 
 :::
 

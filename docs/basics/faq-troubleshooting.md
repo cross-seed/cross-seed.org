@@ -100,18 +100,41 @@ the rules of your trackers before you utilize any of their APIs directly.
 
 ### How can I disable the time-based exclude options in a `cross-seed search`?
 
+:::tip
+
+If you are simply adding a new tracker, follow this
+[FAQ entry](#whats-the-best-way-to-add-new-trackers) instead.
+
+:::
+
 In order to disable and override the [`excludeOlder`](./options.md#excludeolder)
 and [`excludeRecentSearch`](./options.md#excluderecentsearch) options defined in
 your `config.js`, you can use the
-[`cross-seed search`](../reference/utils.md#cross-seed-search) command with
-[`--no-exclude-older`](./options.md#excludeolder-examples-cli) and
-[`--no-exclude-recent-search`](./options.md#excluderecentsearch-examples-cli)
-flags at command line.
-
-:::info Overall Effect
-
+[`job api endpoint`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule).
 This will, for the duration of the search being ran, disable the options
 completely - searching for absolutely everything available.
+
+For NPM, use the following command with the appropriate API key:
+```shell
+curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY \
+  -d 'name=search' \
+  -d 'ignoreExcludeRecentSearch=true' \
+  -d 'ignoreExcludeOlder=true'
+```
+
+For Docker, use the following command with the appropriate API key:
+```shell
+docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY \
+  -d 'name=search' \
+  -d 'ignoreExcludeRecentSearch=true' \
+  -d 'ignoreExcludeOlder=true'
+```
+
+:::danger
+
+Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search)
+while the [`daemon`](./managing-the-daemon.mdx) is running as it will cause
+errors in the sqlite database. Use the job API endpoint described here instead.
 
 :::
 

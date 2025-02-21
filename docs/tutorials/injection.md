@@ -13,13 +13,74 @@ If you are having issues with injection errors, and it reverting to save, please
 [check our FAQ](../basics/faq-troubleshooting.md#failed-to-inject-saving-instead)
 :::
 
+## Setting up your client
+
 :::caution Arr Users
 
 You need to configure [`linking`](./linking.md) or use [`duplicateCategories: true`](../basics/options.md#duplicatecategories) if you are using qBittorrent or Deluge. This will prevent injected cross seeds from being added to your Arr's import queue.
 
 :::
 
-### Manual or Scheduled Injection
+### `rTorrent` setup
+
+`cross-seed` will inject torrents into **rTorrent** with a `cross-seed` label.
+
+1. Edit your config file:
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`rtorrentRpcUrl`](../basics/options#rtorrentrpcurl) option.
+       It should look like an `http` url that looks like
+       `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
+       installed). See the [reference](../basics/options#rtorrentrpcurl) for
+       more details.
+    3. Set your [`outputDir`](../basics/options#outputdir) option to a directory
+       that rTorrent will have access to. `cross-seed` will send the .torrent
+       file path to rTorrent. If you are using docker, the mount for this path
+       must be the same for both containers.
+2. Start or restart `cross-seed`. The logs at startup will tell you if
+   `cross-seed` was able to connect to rTorrent.
+
+:::tip Docker
+
+In order for `cross-seed` to prove to **rTorrent** that a torrent is completed,
+it must check the modification timestamps of all the torrent's files.
+
+Make sure that your `cross-seed` container has **read** access to the **data
+directories** of your torrents, mapped to the same path as **rTorrent**.
+
+:::
+
+### `qBittorrent` setup
+
+1. Edit your config file:
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`qbittorrentUrl`](../basics/options#qbittorrenturl) option.
+       It should look like an `http` url that looks like
+       `http://user:pass@localhost:8080/` See the
+       [reference](../basics/options#qbittorrenturl) for more details.
+2. Start or restart `cross-seed`. The logs at startup will tell you if
+   `cross-seed` was able to connect to qBittorrent.
+
+### `Transmission` setup
+
+1. Edit your config file:
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`transmissionRpcUrl`](../basics/options#rtorrentrpcurl) option.
+       It should look like an `http` url that looks like
+       `http://user:pass@localhost:9091/transmission/rpc`
+2. Start or restart `cross-seed`. The logs at startup will tell you if
+   `cross-seed` was able to connect to Transmission.
+
+### `Deluge` setup
+
+1. Edit your config file:
+    1. Set your [`action`](../basics/options#action) option to `inject`.
+    2. Set your [`delugeRpcUrl`](../basics/options#delugerpcurl) option.
+       It should look like an `http` url that looks like
+       `http://:pass@localhost:8112/json` (the colon before `pass` is intentional)
+2. Start or restart `cross-seed`. The logs at startup will tell you if
+   `cross-seed` was able to connect to Deluge.
+
+## Manual or Scheduled Injection
 
 In v6, `cross-seed` has the ability to add .torrent files for injection directly. You can either opt to wait for the hourly cadence, or
 alternatively run the [`cross-seed inject`](../reference/utils.md#cross-seed-inject) command to attempt injection for .torrent files in
@@ -57,68 +118,3 @@ You will need to remove these torrents from your client and the .torrent file fr
 :::tip
 You can find more information about this feature in the [`v6 migration guide`](../v6-migration.md#failed-injection-saved-retry).
 :::
-
-### `rTorrent` setup
-
-`cross-seed` will inject torrents into **rTorrent** with a `cross-seed` label.
-
-1. Edit your config file:
-    1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`rtorrentRpcUrl`](../basics/options#rtorrentrpcurl) option.
-       It should look like an `http` url that looks like
-       `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
-       installed). See the [reference](../basics/options#rtorrentrpcurl) for
-       more details.
-    3. Set your [`outputDir`](../basics/options#outputdir) option to a directory
-       that rTorrent will have access to. `cross-seed` will send the .torrent
-       file path to rTorrent. If you are using docker, the mount for this path
-       must be the same for both containers.
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to rTorrent.
-
-:::tip Docker
-
-In order for `cross-seed` to prove to **rTorrent** that a torrent is completed,
-it must check the modification timestamps of all the torrent's files.
-
-Make sure that your `cross-seed` container has **read** access to the **data
-directories** of your torrents, mapped to the same path as **rTorrent**.
-
-:::
-
-### `qBittorrent` setup
-
-:::info
-
-Injection will work best if you use the `Original` content layout in qBittorrent options.
-
-:::
-
-1. Edit your config file:
-    1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`qbittorrentUrl`](../basics/options#qbittorrenturl) option.
-       It should look like an `http` url that looks like
-       `http://user:pass@localhost:8080/` See the
-       [reference](../basics/options#qbittorrenturl) for more details.
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to qBittorrent.
-
-### `Transmission` setup
-
-1. Edit your config file:
-    1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`transmissionRpcUrl`](../basics/options#rtorrentrpcurl) option.
-       It should look like an `http` url that looks like
-       `http://user:pass@localhost:9091/transmission/rpc`
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to Transmission.
-
-### `Deluge` setup
-
-1. Edit your config file:
-    1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`delugeRpcUrl`](../basics/options#delugerpcurl) option.
-       It should look like an `http` url that looks like
-       `http://:pass@localhost:8112/json` (the colon before `pass` is intentional)
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to Deluge.

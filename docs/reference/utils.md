@@ -11,17 +11,10 @@ you debug your system, or help you find more information to file a bug report.
 
 Generate an empty config file in its proper location.
 
-#### Options
-
-| short form | long form  | note                                                                                                         |
-| ---------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
-| `-d`       | `--docker` | Specifying this flag will configure `outputDir` and `torrentDir` to `/output` and `/torrents`, respectively. |
-
 #### Usage
 
 ```shell
 cross-seed gen-config
-cross-seed gen-config -d
 ```
 
 ### `cross-seed clear-cache`
@@ -159,6 +152,15 @@ cross-seed inject --inject-dir /path/to/dir
 
 ### `cross-seed rss`
 
+:::danger
+
+Do not run this command while the [daemon](../basics/managing-the-daemon.mdx)
+is running. This will create errors with the sqlite database. If you want to
+trigger a rss scan, use the [`job api`](../reference/api.md#post-apijob)
+instead.
+
+:::
+
 Runs a manual RSS scan (like [`rssCadence`](../basics/options.md#rsscadence))
 and performs your specified [`action`](../basics/options.md#action) on the
 trackers in your [`torznab`](../basics/options.md#torznab) option.
@@ -172,6 +174,16 @@ cross-seed rss
 ```
 
 ### `cross-seed search`
+
+:::danger
+
+Do not run this command while the [daemon](../basics/managing-the-daemon.mdx)
+is running. This will create errors with the sqlite database. If you want to
+trigger a search, use the
+[`job api`](../reference/api.md#post-apijob) instead. This supports overriding
+the time based exclusions as well.
+
+:::
 
 Runs a manual search (like
 [`searchCadence`](../basics/options.md#searchcadence)) and performs your

@@ -29,8 +29,8 @@ curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlen
 
 ## GET `/api/ping`
 
-This endpoint is used to check if the daemon is running. It will respond with
-`200 OK` if the daemon is running. There is no authorization on this endpoint.
+This endpoint will respond with `200 OK` if the daemon is running.
+There is no authorization on this endpoint.
 
 ### Request Payload
 

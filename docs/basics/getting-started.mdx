@@ -101,12 +101,12 @@ specified. You'll need to open this file and edit it as described below.
 ### 3. Edit the Config File
 
 Once you've created your config file, you'll need to fill in the necessary
-fields to connect to your torrent client and indexer. At a minimum, you should
-configure the following:
+fields to connect to your torrent client and indexer. You will likely need
+to configure the following:
 
--   **`torznab`**: URLs of your Torznab indexers (from Prowlarr or Jackett).
--   **`outputDir`**: Create a new directory somewhere to house the torrent files
-    `cross-seed` outputs.
+-   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett).
+-   [**`outputDir`**](./options.md#outputdir): Create a new directory
+    somewhere to house the torrent files `cross-seed` outputs.
 -   **Connection to your torrent client**: Depending on your client, you'll need
     to specify one of the following:
     -   `rtorrentRpcUrl`: For rTorrent users. Often looks like
@@ -118,6 +118,7 @@ configure the following:
     -   `delugeRpcUrl`: For Deluge users. Often looks like
         `http://:pass@localhost:8112/json` (the colon before pass is
         intentional)
+-   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to.
 
 Here's an example of what your `config.js` might look like:
 
@@ -126,6 +127,7 @@ module.exports = {
 	torznab: ["http://localhost:9696/1/api?apikey=123456"],
 	outputDir: "/path/to/output_dir",
 	qbittorrentUrl: "http://username:password@localhost:8080",
+    linkDirs: ["/data/torrents/SomeLinkDirName"],
 	... several other settings you can read later ...
 };
 ```
@@ -137,6 +139,15 @@ the
 ---
 
 ### 4. Run the Daemon
+
+:::warning
+
+The settings from the config template assumes you will be setting up linking.
+You will need to follow the [linking tutorial](../tutorials/linking.md) for
+the config validation to pass. If you cannot use linking, the errors will
+guide you on what to change in the config.
+
+:::
 
 Once you've set up your configuration, you're ready to run the daemon. Start the
 daemon with this command:
@@ -151,7 +162,6 @@ access:
 ```shell
 docker run \
 -v /path/to/config:/config \
--v /path/to/torrent_dir:/path/to/torrent_dir \
 -v /path/to/output:/path/to/output \
 ghcr.io/cross-seed/cross-seed daemon
 ```
@@ -195,18 +205,20 @@ Some common errors are also listed in the
 
 ## Next Steps
 
-Once you have the daemon up and running, here are a few additional features you
-might want to explore:
+Once you have the daemon up and running, here are a few additional features to
+get the most out of `cross-seed`:
 
 -   [**Managing the daemon**](./managing-the-daemon) with Docker or systemd for
     long-term use.
--   [**Notifying cross-seed of completed downloads**](../tutorials/triggering-searches)
-    to search for new things more quickly.
--   [**Listening for announces**](https://autobrr.com/3rd-party-tools/cross-seed#cross-seed-filter)
-    (external link) to join new swarms as an uploader.
 -   [**Setting up partial matches**](../tutorials/partial-matching) to increase
     your seed size even more (at the cost of downloading a few extra NFO files).
 -   [**Setting up ID-based searching**](../tutorials/id-searching) for better
     match rates by configuring Sonarr and Radarr
+-   [**Notifying cross-seed of completed downloads**](../tutorials/triggering-searches)
+    to search for new things more quickly.
+-   [**Listening for announces**](../tutorials/announce.md) to join new swarms
+    as an uploader.
+-   [**Data based matching**](../tutorials/data-based-matching.md) to match
+    torrents based on their data.
 -   [**Explore cross-seed's configuration options**](options) to customize
     `cross-seed`'s behavior to your liking.

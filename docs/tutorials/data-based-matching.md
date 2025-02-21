@@ -23,6 +23,8 @@ children for changes.
 
 ## General Usage for [`dataDirs`](../basics/options.md#datadirs)
 
+Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
+
 1. You are downloading through Usenet or other non-torrent methods in order to
    match new content not present in your torrent client.
 
