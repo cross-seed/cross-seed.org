@@ -11,7 +11,7 @@ finishes downloading, by adding an on-completion script to your torrent client
 that calls `cross-seed`'s HTTP API.
 
 If you don't set this up, `cross-seed` _will_ eventually search everything
-during its daily backlog scan.
+with [`searchCadence`](../basics/options.md#searchcadence).
 
 All the techniques mentioned below boil down to using the `curl` command to send
 an HTTP POST request to the `cross-seed` daemon, which will look like this.
