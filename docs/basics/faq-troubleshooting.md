@@ -109,9 +109,9 @@ If you are simply adding a new tracker, follow this
 
 In order to disable and override the [`excludeOlder`](./options.md#excludeolder)
 and [`excludeRecentSearch`](./options.md#excluderecentsearch) options defined in
-your `config.js`, you can use the
-[`job api endpoint`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule).
-This will, for the duration of the search being ran, disable the options
+your `config.js`, you can use the job api endpoint described in the
+[`FAQ entry`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
+above. This will, for the duration of the search being ran, disable the options
 completely - searching for absolutely everything available.
 
 For NPM, use the following command with the appropriate API key:
@@ -137,6 +137,25 @@ while the [`daemon`](./managing-the-daemon.mdx) is running as it will cause
 errors in the sqlite database. Use the job API endpoint described here instead.
 
 :::
+
+### How to safely delete torrents from my client?
+
+To safely delete a torrent from your client, either an injected cross seed or
+the original torrent, you need to meet these requirements:
+- You have [`linking`](../tutorials/linking.md) configured
+- You are using [`hardlinks or reflinks`](./options.md#linktype)
+- You are using [`flatLinking: false`](./options.md#flatlinking)
+
+If you meet these requirements, you can safely delete any torrent from client
+along with the data. If you do not meet these requirements, you will need to
+manually confirm that _absolutely_ no torrents are sharing the same data.
+
+If you are using [`linkType: "symlink"`], you cannot delete the orignal torrent
+without breaking the links for the injected cross seeds. Deleting the injected
+cross seeds is fine though.
+
+You can always safely remove the torrent while keeping its data, but you will
+need a method to clean up the orphaned data if it exists.
 
 ### Why are some torrents not suitable for searching?
 

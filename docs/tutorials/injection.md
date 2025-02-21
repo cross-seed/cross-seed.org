@@ -82,6 +82,19 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
 
 ## Manual or Scheduled Injection
 
+:::danger
+
+`cross-seed` is the **only** program that understands how to properly link and
+inject its [partial](./tutorials/partial-matching.md) and
+[seasonFromEpisodes](../basics/options.md#seasonfromepisodes) matches. Other
+programs, like [**autotorrent**](https://github.com/JohnDoee/autotorrent), will
+not work. You do not need to do anything with torrents saved to
+`outputDir`—`cross-seed` will handle them unless the torrent is stalled.
+
+**DO NOT USE [`outputDir`](../basics/options.md#outputdir) AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
+
+:::
+
 In v6, `cross-seed` has the ability to add .torrent files for injection directly. You can either opt to wait for the hourly cadence, or
 alternatively run the [`cross-seed inject`](../reference/utils.md#cross-seed-inject) command to attempt injection for .torrent files in
 your [`outputDir`](../basics/options.md#outputdir). You can alternatively use `cross-seed inject --inject-dir /path/to/folder` to specify

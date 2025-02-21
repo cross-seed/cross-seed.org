@@ -156,7 +156,7 @@ cross-seed inject --inject-dir /path/to/dir
 
 Do not run this command while the [daemon](../basics/managing-the-daemon.mdx)
 is running. This will create errors with the sqlite database. If you want to
-trigger a rss scan, use the [`job api`](../reference/api.md#post-apijob)
+trigger a rss scan, use the [`job api`](../basics/faq-troubleshooting.md#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
 instead.
 
 :::
@@ -180,8 +180,8 @@ cross-seed rss
 Do not run this command while the [daemon](../basics/managing-the-daemon.mdx)
 is running. This will create errors with the sqlite database. If you want to
 trigger a search, use the
-[`job api`](../reference/api.md#post-apijob) instead. This supports overriding
-the time based exclusions as well.
+[`job api`](../basics/faq-troubleshooting.md#how-can-i-disable-the-time-based-exclude-options-in-a-cross-seed-search)
+instead. This supports overriding the time based exclusions as well.
 
 :::
 

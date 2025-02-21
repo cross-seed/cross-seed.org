@@ -944,11 +944,23 @@ fuzzySizeThreshold: 0.02,
 
 [**How to ignore `excludeOlder` for a single search?**](./faq-troubleshooting.md#how-can-i-disable-the-time-based-exclude-options-in-a-cross-seed-search)
 
+[**What's the best way to add new trackers?**](./faq-troubleshooting.md#whats-the-best-way-to-add-new-trackers)
+
 :::
 
 When running a search, this option excludes anything first searched more than
 this long ago. This option is only relevant in `search` mode or in `daemon` mode
 with [`searchCadence`](#searchcadence) turned on.
+
+:::info Note
+
+**Search history is stored on a per-indexer basis.**
+
+Searches that failed on specific indexers (for example - due to timeout or
+rate-limiting) will not be marked as having been searched, and thus will not be
+excluded by this setting for those specific indexers on the next run.
+
+:::
 
 #### `excludeOlder` Examples (CLI)
 
@@ -978,6 +990,8 @@ excludeOlder: "0s",
 :::tip
 
 [**How to ignore `excludeRecentSearch` for a single search?**](./faq-troubleshooting.md#how-can-i-disable-the-time-based-exclude-options-in-a-cross-seed-search)
+
+[**What's the best way to add new trackers?**](./faq-troubleshooting.md#whats-the-best-way-to-add-new-trackers)
 
 :::
 
@@ -1288,6 +1302,8 @@ port: 3000,
 
 [**How to cross seed new releases as soon as they are uploaded?**](../tutorials/announce.md)
 
+[**How to trigger ahead of schedule?**](./faq-troubleshooting.md#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
+
 :::
 
 In [Daemon Mode](../basics/managing-the-daemon), with this option enabled,
@@ -1329,6 +1345,8 @@ rssCadence: "20min",
 :::tip
 
 [**How to trigger a search on download completion?**](../tutorials/triggering-searches.md)
+
+[**How to trigger ahead of schedule?**](./faq-troubleshooting.md#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
 
 :::
 
