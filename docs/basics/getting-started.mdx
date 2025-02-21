@@ -105,27 +105,22 @@ fields to connect to your torrent client and indexer. You will likely need
 to configure the following:
 
 -   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett).
--   **Connection to your torrent client**: Depending on your client, you'll need
-    to specify one of the following:
-    -   `rtorrentRpcUrl`: For rTorrent users. Often looks like
-        `http://user:pass@localhost:8080/RPC2`
-    -   `qbittorrentUrl`: For qBittorrent users. Often looks like
-        `http://user:pass@localhost:8080`
-    -   `transmissionRpcUrl`: For Transmission users. Often looks like
-        `http://user:pass@localhost:9091/transmission/rpc`
-    -   `delugeRpcUrl`: For Deluge users. Often looks like
-        `http://:pass@localhost:8112/json` (the colon before pass is
-        intentional)
+-   [**`torrentClients`**](./options.md#torrentclients): URLs of your torrent clients.
 -   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to.
 
 Here's an example of what your `config.js` might look like:
 
 ```js
 module.exports = {
-	torznab: ["http://localhost:9696/1/api?apikey=123456"],
-	qbittorrentUrl: "http://username:password@localhost:8080",
-	linkDirs: ["/data/torrents/SomeLinkDirName"],
-	... several other settings you can read later ...
+    torznab: ["http://localhost:9696/1/api?apikey=123456"],
+    torrentClients: [
+        "qbittorrent:http://user:pass@localhost:8080",
+        "deluge:http://:pass@localhost:8112/json",
+        "transmission:http://user:pass@localhost:9091/transmission/rpc",
+        "rtorrent:http://user:pass@localhost:8080/RPC2",
+    ],
+    linkDirs: ["/data/torrents/SomeLinkDirName"],
+    ... several other settings you can read later ...
 };
 ```
 
