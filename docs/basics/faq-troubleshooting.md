@@ -150,7 +150,7 @@ If you meet these requirements, you can safely delete any torrent from client
 along with the data. If you do not meet these requirements, you will need to
 manually confirm that _absolutely_ no torrents are sharing the same data.
 
-If you are using [`linkType: "symlink"`], you cannot delete the orignal torrent
+If you are using `linkType: "symlink"`, you cannot delete the orignal torrent
 without breaking the links for the injected cross seeds. Deleting the injected
 cross seeds is fine though.
 
