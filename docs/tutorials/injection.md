@@ -15,27 +15,7 @@ If you are having issues with injection errors, and it reverting to save, please
 
 :::caution Arr Users
 
-There is a potential problem with duplication of imports using either an Arr On Download/Upgrade, Deluge/qBittorrent on complete execution,
-or search/rss/announce trigger, which causes race conditions and bad categorizing/labeling when you use inject with `cross-seed`.
-
-Injecting to **qBittorrent/Deluge** and using an **Arr** can result in new cross-seeds being added with the Arr import
-category, causing them to get stuck in your Arr's import queue. The workaround is to enable the `duplicateCategories`
-option, which will append your category with `.cross-seed` and **if using qBittorrent** either...
-
--   use the same **pre/post import categories** in your Arr **OR**
--   your Arr's **pre/post import categories** have the same **save path** in qBittorrent.
-
-:::
-
-:::info
-`cross-seed` requires access to the directory where your client's .torrent files are stored.
-
-| Client                              | Torrent/Session Folder          |
-| ----------------------------------- | ------------------------------- |
-| [qBittorrent](#qbittorrent-setup)   | `BT_Backup`                     |
-| [Deluge](#deluge-setup)             | `state`                         |
-| [Transmission](#transmission-setup) | `torrents`                      |
-| [rTorrent](#rtorrent-setup)         | session dir from `.rtorrent.rc` |
+You need to configure [`linking`](./linking.md) or use [`duplicateCategories: true`](../basics/options.md#duplicatecategories) if you are using qBittorrent or Deluge. This will prevent injected cross seeds from being added to your Arr's import queue.
 
 :::
 
