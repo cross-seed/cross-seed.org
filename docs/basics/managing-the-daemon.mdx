@@ -70,23 +70,34 @@ Open the file in your favorite editor, and paste the following code in. You'll
 want to customize the following variables and ensure proper permissions are set
 to allow this user/group to read/write/execute appropriately:
 
--   `{user}`: your user, or another user if you want to create a separate user
+-   `User`: your user, or another user if you want to create a separate user
     for `cross-seed`
--   `{group}`: your group, or another group if you want to create a separate
+-   `Group`: your group, or another group if you want to create a separate
     group for `cross-seed`
+
+:::tip
+
+Get your user and group by running the following command:
+```shell
+echo -e "User=$(id -un)\nGroup=$(id -gn)"
+```
+
+:::
 
 ```unit file (systemd)
 [Unit]
 Description=cross-seed daemon
 [Service]
-User={user}
-Group={group}
+User=MyUserHere
+Group=MyGroupHere
 Restart=always
 Type=simple
 ExecStart=cross-seed daemon
 [Install]
 WantedBy=multi-user.target
 ```
+
+You can also try `ExecStart=npx cross-seed daemon` if the one above doesn't work.
 
 :::info
 
