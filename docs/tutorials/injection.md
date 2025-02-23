@@ -32,10 +32,6 @@ You need to configure [`linking`](./linking.md) or use [`duplicateCategories: tr
        `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
        installed). See the [reference](../basics/options#rtorrentrpcurl) for
        more details.
-    3. Set your [`outputDir`](../basics/options#outputdir) option to a directory
-       that rTorrent will have access to. `cross-seed` will send the .torrent
-       file path to rTorrent. If you are using docker, the mount for this path
-       must be the same for both containers.
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to rTorrent.
 
