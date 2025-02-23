@@ -582,7 +582,8 @@ enabled, this will be applied as tag instead while keeping
 :::info
 
 This will prevent an Arr from seeing duplicate torrents in Activity, and
-attempting to import cross-seeds.
+attempting to import cross-seeds. You do not need to set this to `true`
+if you are using linking.
 
 Example: if you have a category called "Movies", this will automatically inject
 cross-seeds to "Movies.cross-seed"

@@ -47,9 +47,10 @@ it is not recommended for new users.
 :::danger
 
 **`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
+**(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
 
 If you cannot use linking, you may want to use
-[`duplicateCategories`](../basics/options#duplicatecategories) if you are using
+[`duplicateCategories: true`](../basics/options.md#duplicatecategories) if you are using
 sonarr or radarr.
 
 :::

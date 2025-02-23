@@ -35,6 +35,7 @@ automatically. Here's how to get everything up and running.
 :::caution
 
 **`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
+**(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
 
 You can still use `cross-seed` without linking, but the features will be limited.
 This will be covered in depth later in this guide.
@@ -151,7 +152,7 @@ the config validation to pass.
 
 If you cannot use linking, the errors will guide you on what to change in the
 config. You also may want to use
-[`duplicateCategories`](../basics/options#duplicatecategories) if you are using
+[`duplicateCategories: true`](./options.md#duplicatecategories) if you are using
 sonarr or radarr.
 
 :::
