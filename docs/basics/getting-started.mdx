@@ -32,6 +32,15 @@ automatically. Here's how to get everything up and running.
 
 ### 1. Install `cross-seed`
 
+:::caution
+
+**`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
+
+You can still use `cross-seed` without linking, but the features will be limited.
+This will be covered in depth later in this guide.
+
+:::
+
 You can install `cross-seed` using one of the following methods:
 
 #### With `npm` (recommended if you're not using Docker)
@@ -107,17 +116,7 @@ to configure the following:
 -   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett).
 -   [**`outputDir`**](./options.md#outputdir): Create a new directory
     somewhere to house the torrent files `cross-seed` outputs.
--   **Connection to your torrent client**: Depending on your client, you'll need
-    to specify one of the following:
-    -   `rtorrentRpcUrl`: For rTorrent users. Often looks like
-        `http://user:pass@localhost:8080/RPC2`
-    -   `qbittorrentUrl`: For qBittorrent users. Often looks like
-        `http://user:pass@localhost:8080`
-    -   `transmissionRpcUrl`: For Transmission users. Often looks like
-        `http://user:pass@localhost:9091/transmission/rpc`
-    -   `delugeRpcUrl`: For Deluge users. Often looks like
-        `http://:pass@localhost:8112/json` (the colon before pass is
-        intentional)
+-   [**`Connection to your torrent client`**](../tutorials/injection.md#setting-up-your-client): URL with login info of your torrent client
 -   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to.
 
 Here's an example of what your `config.js` might look like:
@@ -132,9 +131,13 @@ module.exports = {
 };
 ```
 
-For more details on configuring the connection to your torrent client, refer to
-the
-[reference guide on torrent client configuration](../tutorials/injection.md).
+:::tip
+
+These settings are just the recommended starting point for `cross-seed`.
+The [`Next Steps`](#next-steps) section below will guide you on how to
+configure `cross-seed` to find _all_ possible matches.
+
+:::
 
 ---
 
@@ -144,8 +147,12 @@ the
 
 The settings from the config template assumes you will be setting up linking.
 You will need to follow the [linking tutorial](../tutorials/linking.md) for
-the config validation to pass. If you cannot use linking, the errors will
-guide you on what to change in the config.
+the config validation to pass.
+
+If you cannot use linking, the errors will guide you on what to change in the
+config. You also may want to use
+[`duplicateCategories`](../basics/options#duplicatecategories) if you are using
+sonarr or radarr.
 
 :::
 

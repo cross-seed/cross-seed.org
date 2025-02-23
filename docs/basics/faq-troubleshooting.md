@@ -397,8 +397,9 @@ port to untrusted networks (such as the Internet).**
 ### Searching media libraries vs. torrent data (data-based searching)
 
 You can search both your media libraries (Arr/Plex) and actual torrent data
-(downloaded files). If you are using the media libraries with renamed files, you
-will need to use [`matchMode: "flexible"` or `matchMode: "partial"`](../basics/options.md#matchmode)
+(downloaded files) using [`dataDirs`](./options.md#datadirs). If you are
+using the media libraries with renamed files, you will need to use
+[`matchMode: "flexible"` or `matchMode: "partial"`](./options.md#matchmode)
 in your configuration file to allow `cross-seed` some leeway in its matching process.
 
 ### Why do I see `it has a different file tree` in my logs?

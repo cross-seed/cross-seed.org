@@ -26,11 +26,31 @@ strategies such as [partial matching](partial-matching.md) or if you want to use
 [data-based matching](data-based-matching.md). When linking is enabled, **all**
 injected torrents will be linked, even perfect matches.
 
+:::info
+
+In order to prevent collisions, `cross-seed` organizes linked torrents into
+subfolders of your [`linkDirs`](../basics/options.md#linkdirs) based on the
+tracker each torrent came from. If you wish to disable this behavior, you can
+set the [`flatLinking`](../basics/options.md#flatlinking) option to `true`, but
+it is not recommended for new users.
+
+:::
+
 ## Setting up linking
 
 :::info WINDOWS USERS
 
 [**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](../basics/faq-troubleshooting.md#windows-paths)
+
+:::
+
+:::danger
+
+**`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
+
+If you cannot use linking, you may want to use
+[`duplicateCategories`](../basics/options#duplicatecategories) if you are using
+sonarr or radarr.
 
 :::
 
@@ -87,16 +107,6 @@ module.exports = {
 If you have multiple drives without drive pooling, add more linkDirs as needed
 for each drive. Once you have restarted `cross-seed`, new matches will have
 links created in your `linkDirs` pointing to the original files.
-
-:::info
-
-In order to prevent collisions, `cross-seed` organizes linked torrents into
-subfolders of your [`linkDirs`](../basics/options.md#linkdirs) based on the
-tracker each torrent came from. If you wish to disable this behavior, you can
-set the [`flatLinking`](../basics/options.md#flatlinking) option to `true`, but
-it is not recommended for new users.
-
-:::
 
 ### Docker Users
 
