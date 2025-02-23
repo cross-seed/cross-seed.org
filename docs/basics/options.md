@@ -95,10 +95,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`excludeRecentSearch`](#excluderecentsearch)         |              |
 | [`action`](#action)                                   |              |
 | [`duplicateCategories`](#duplicatecategories)         |              |
-| [`rtorrentRpcUrl`](#rtorrentrpcurl)                   |              |
-| [`delugeRpcUrl`](#delugerpcurl)                       |              |
-| [`transmissionRpcUrl`](#rtorrentrpcurl)               |              |
-| [`qbittorrentUrl`](#qbittorrenturl)                   |              |
 | [`snatchTimeout`](#snatchtimeout)                     |              |
 | [`searchTimeout`](#searchtimeout)                     |              |
 | [`searchLimit`](#searchlimit)                         |              |
@@ -134,10 +130,6 @@ The configuration file uses JavaScript syntax, which means:
 | [`excludeRecentSearch`](#excluderecentsearch)         |              |
 | [`action`](#action)                                   |              |
 | [`duplicateCategories`](#duplicatecategories)         |              |
-| [`rtorrentRpcUrl`](#rtorrentrpcurl)                   |              |
-| [`delugeRpcUrl`](#delugerpcurl)                       |              |
-| [`transmissionRpcUrl`](#rtorrentrpcurl)               |              |
-| [`qbittorrentUrl`](#qbittorrenturl)                   |              |
 | [`notificationWebhookUrls`](#notificationwebhookurls) |              |
 | [`host`](#host)                                       |              |
 | [`port`](#port)                                       |              |
@@ -1043,14 +1035,32 @@ action: "save",
 action: "inject",
 ```
 
-### `rtorrentRpcUrl`
+### `torrentClients`
 
-| Config file name | CLI short form | CLI long form              | Format | Default |
-| ---------------- | -------------- | -------------------------- | ------ | ------- |
-| `rtorrentRpcUrl` | N/A            | `--rtorrent-rpc-url <url>` | URL    |         |
+| Config file name | CLI short form | CLI long form                 | Format | Default |
+| ---------------- | -------------- | ----------------------------- | ------ | ------- |
+| `torrentClients` | N/A            | `--torrent-clients <urls...>` | URL(s) |         |
 
-The url of your **rTorrent** XMLRPC interface. Only relevant with
-[Injection](../tutorials/injection). Often ends in `/RPC2`.
+The URL(s) of your torrent client that `cross-seed` will source torrents from.
+Found cross seeds will be injected only into the client that the torrent was
+sourced from. If there similar torrents in multiple clients, the order of the
+clients defined will be used as the priority.
+
+#### `qbittorrent`
+
+The url of your **qBittorrent** Web UI.
+
+#### `deluge`
+
+The url of your **Deluge** JSON-RPC Interface.
+
+#### `transmission`
+
+The url of your **Transmission** RPC Interface.
+
+#### `rtorrent`
+
+The url of your **rTorrent** XMLRPC interface. Often ends in `/RPC2`.
 
 :::info
 
@@ -1071,115 +1081,24 @@ credentials in the following format:
 
 :::
 
-#### `rtorrentRpcUrl` Examples (CLI)
+#### `torrentClients` Examples (CLI)
 
 ```shell
-cross-seed search --rtorrent-rpc-url http://rutorrent/rutorrent/RPC2
-cross-seed search --rtorrent-rpc-url http://user:pass@localhost:8080/RPC2
+cross-seed search --torrent-clients rtorrent:http://rutorrent/rutorrent/RPC2
+cross-seed search --torrent-clients rtorrent:http://user:pass@localhost:8080/RPC2 qbittorrent:http://user:pass@localhost:8080
 ```
 
-#### `rtorrentRpcUrl` Examples (Config file)
+#### `torrentClients` Examples (Config file)
 
 ```js
-rtorrentRpcUrl: "http://rutorrent/rutorrent/RPC2",
+torrentClients: ["deluge:http://:pass@localhost:8112/json"],
 
-rtorrentRpcUrl: "http://user:pass@localhost:8080/RPC2",
-```
-
-### `qbittorrentUrl`
-
-| Config file name | CLI short form | CLI long form             | Format | Default |
-| ---------------- | -------------- | ------------------------- | ------ | ------- |
-| `qbittorrentUrl` | N/A            | `--qbittorrent-url <url>` | URL    |         |
-
-The url of your **qBittorrent** Web UI. Only relevant with
-[Injection](../tutorials/injection).
-
-:::tip
-
-**qBittorrent** doesn't use HTTP Basic/Digest Auth, but you can provide your
-**qBittorrent** credentials at the beginning of the URL like so:
-`http://username:password@localhost:8080/`
-
-:::
-
-#### `qbittorrentUrl` Examples (CLI)
-
-```shell
-cross-seed search --qbittorrent-url http://qbittorrent:8080/qbittorrent
-cross-seed search --qbittorrent-url http://user:pass@localhost:8080
-```
-
-#### `qbittorrentUrl` Examples (Config file)
-
-```js
-qbittorrentUrl: "http://qbittorrent:8080/qbittorrent",
-
-qbittorrentUrl: "http://user:pass@localhost:8080",
-```
-
-### `transmissionRpcUrl`
-
-| Config file name     | CLI short form | CLI long form                  | Format | Default |
-| -------------------- | -------------- | ------------------------------ | ------ | ------- |
-| `transmissionRpcUrl` | N/A            | `--transmission-rpc-url <url>` | URL    |         |
-
-The url of your **Transmission** RPC Interface. Only relevant with
-[Injection](../tutorials/injection).
-
-:::tip
-
-**Transmission** doesn't use HTTP Basic/Digest Auth, but you can provide your
-**Transmission** credentials at the beginning of the URL like so:
-`http://username:password@localhost:9091/transmission/rpc`
-
-:::
-
-#### `transmissionRpcUrl` Examples (CLI)
-
-```shell
-cross-seed search --transmission-rpc-url http://transmission:8080/transmission/rpc
-cross-seed search --transmission-rpc-url http://user:pass@localhost:8080
-```
-
-#### `transmissionRpcUrl` Examples (Config file)
-
-```js
-transmissionRpcUrl: "http://transmission:8080/transmission/rpc",
-
-transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
-```
-
-### `delugeRpcUrl`
-
-| Config file name | CLI short form | CLI long form            | Format | Default |
-| ---------------- | -------------- | ------------------------ | ------ | ------- |
-| `delugeRpcUrl`   | N/A            | `--deluge-rpc-url <url>` | URL    |         |
-
-The url of your **Deluge** JSON-RPC Interface. Only relevant with
-[Injection](../tutorials/injection).
-
-:::tip
-
-**Deluge** doesn't use HTTP Basic/Digest Auth, but you can provide your
-**Deluge** password at the beginning of the URL like so:
-`http://:password@localhost:8112/json`
-
-:::
-
-#### `delugeRpcUrl` Examples (CLI)
-
-```shell
-cross-seed search --deluge-rpc-url http://deluge:8112/json
-cross-seed search --deluge-rpc-url http://:pass@localhost:8112/json
-```
-
-#### `delugeRpcUrl` Examples (Config file)
-
-```js
-delugeRpcUrl: "http://deluge:8112/json",
-
-delugeRpcUrl: "http://:pass@localhost:8112/json",
+torrentClients: [
+	"qbittorrent:http://user:pass@localhost:8080",
+	"deluge:http://:pass@localhost:8112/json",
+	"transmission:http://user:pass@localhost:9091/transmission/rpc",
+	"rtorrent:http://user:pass@localhost:8080/RPC2",
+],
 ```
 
 ### `notificationWebhookUrls`
@@ -1207,14 +1126,15 @@ Content-Type: application/json
     "paused": false,
     "decisions": ["string"],
     "searchee": {
-        "category": "string",
-        "tags": ["string"],
-        "trackers": ["string"],
-        "length": 123,
-        "infoHash": "string",
-        "path": "string",
-        "source": "torrentClient | torrentFile | dataDir | virtual"
-	}
+      "category": "string",
+      "tags": ["string"],
+      "trackers": ["string"],
+      "length": 123,
+      "clientHost": "string",
+      "infoHash": "string",
+      "path": "string",
+      "source": "torrentClient | torrentFile | dataDir | virtual"
+    }
   }
 }
 ```
