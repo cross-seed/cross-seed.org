@@ -15,16 +15,16 @@ cross-seed daemon
 
 However, that's not very sustainable.
 
--   If you run `cross-seed` on a server that you use `ssh` to log into, then
-    `cross-seed` will stop whenever your `ssh` session closes.
--   If the server restarts, then you'll have to start `cross-seed` manually.
+- If you run `cross-seed` on a server that you use `ssh` to log into, then
+  `cross-seed` will stop whenever your `ssh` session closes.
+- If the server restarts, then you'll have to start `cross-seed` manually.
 
 Below are a few ways you can set up `cross-seed daemon` to run on its own:
 
--   [Docker](#docker)
--   [Unraid](#unraid)
--   [`systemd`](#systemd-linux)
--   [`screen`](#screen)
+- [Docker](#docker)
+- [Unraid](#unraid)
+- [`systemd`](#systemd-linux)
+- [`screen`](#screen)
 
 ### Docker
 
@@ -70,14 +70,15 @@ Open the file in your favorite editor, and paste the following code in. You'll
 want to customize the following variables and ensure proper permissions are set
 to allow this user/group to read/write/execute appropriately:
 
--   `User`: your user, or another user if you want to create a separate user
-    for `cross-seed`
--   `Group`: your group, or another group if you want to create a separate
-    group for `cross-seed`
+- `User`: your user, or another user if you want to create a separate user for
+  `cross-seed`
+- `Group`: your group, or another group if you want to create a separate group
+  for `cross-seed`
 
 :::tip
 
 Get your user and group by running the following command:
+
 ```shell
 echo -e "User=$(id -un)\nGroup=$(id -gn)"
 ```
@@ -97,7 +98,8 @@ ExecStart=cross-seed daemon
 WantedBy=multi-user.target
 ```
 
-You can also try `ExecStart=npx cross-seed daemon` if the one above doesn't work.
+You can also try `ExecStart=npx cross-seed daemon` if the one above doesn't
+work.
 
 :::info
 
@@ -148,7 +150,21 @@ Once attached, you can detach with `ctrl-A, D`.
 
 ### Windows
 
-If you are using Windows 11, you can use the built-in Task Scheduler to run `cross-seed daemon` at start up. (This should work with any Windows version after Vista, but has only been tested on 11).
+:::caution
+
+**`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
+**(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
+
+You can still use `cross-seed` without linking, but the features will be
+limited.
+
+:::
+
+If you are using Windows 11, you can use the built-in Task Scheduler to run
+`cross-seed daemon` after logging in to your user account.
+
+(These instructions should apply to all versions of Windows after Vista).
+
 1. Launch "Task Scheduler" from the Start Menu
 2. Right-click on "Task Scheduler Library" and select "Create Basic Task"
 3. Enter "Cross Seed" as the name and click "Next"
@@ -156,11 +172,18 @@ If you are using Windows 11, you can use the built-in Task Scheduler to run `cro
 5. Select "Start a program" as the action and click "Next"
 6. Configure the launch command:
 
-    a) In the "Program/script" box, paste the path to your cross-seed install. For example, if your node installation is managed by Windows NVM, and you installed cross-seed with `npm install -g cross-seed`, this will be found at "C:\Program Files\nodejs\cross-seed.cmd'. If unsure, run `where cross-seed` in a command line terminal.
-    
-    b) In the "Add arguments" box, enter `daemon`
-    
-    c) Click "Next"
-7. Check the box to select "Open the Properties dialog for this task when I click Finish", then click "Finish"
+    a. After you've installed cross-seed, you can locate the executable that is
+    used to launch it by using the command `where cross-seed` from a command
+    prompt/terminal. Simply paste the path in the "Program/script" box.
+
+    b. In the "Add arguments" box, enter `daemon`
+
+    c. Click "Next"
+
+7. Check the box to select "Open the Properties dialog for this task when I
+   click Finish", then click "Finish"
 8. Select the option for "Run whether user is logged on or not", then click "OK"
-9. Finally, test that this works by restarting your PC and checking the cross-seed logs for activity
+9. You may want to explore the rest of the advanced options to fine-tune the
+   behavior.
+10. Finally, test that this works by restarting your PC and checking the
+    cross-seed logs for activity
