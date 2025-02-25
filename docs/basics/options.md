@@ -398,9 +398,10 @@ If you are using qbit_manage, ensure this directory will not be orphaned.
 
 :::
 
-`cross-seed` will store the torrent files it finds in this directory. If you use
-[Injection](../tutorials/injection) with rtorrent you'll need to make sure that
-the client has access to this path also.
+With [`action: "inject"`](#action), `cross-seed` will use this directory to
+retry injections only, it will be empty nearly all the time. With
+[`action: "save"`](#action), `cross-seed` will store the .torrent files it
+finds.
 
 :::caution Docker
 
