@@ -32,6 +32,7 @@ You need to configure [`linking`](./linking.md) or use [`duplicateCategories: tr
        `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
        installed). See the [reference](../basics/options#rtorrentrpcurl) for
        more details.
+        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
     3. Set your [`outputDir`](../basics/options#outputdir) option to a directory
        that rTorrent will have access to. `cross-seed` will send the .torrent
        file path to rTorrent. If you are using docker, the mount for this path
@@ -57,6 +58,7 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
        It should look like an `http` url that looks like
        `http://user:pass@localhost:8080/` See the
        [reference](../basics/options#qbittorrenturl) for more details.
+        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to qBittorrent.
 
@@ -67,6 +69,7 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
     2. Set your [`transmissionRpcUrl`](../basics/options#rtorrentrpcurl) option.
        It should look like an `http` url that looks like
        `http://user:pass@localhost:9091/transmission/rpc`
+        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to Transmission.
 
@@ -77,6 +80,7 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
     2. Set your [`delugeRpcUrl`](../basics/options#delugerpcurl) option.
        It should look like an `http` url that looks like
        `http://:pass@localhost:8112/json` (the colon before `pass` is intentional)
+        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to Deluge.
 
