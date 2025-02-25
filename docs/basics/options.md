@@ -37,37 +37,8 @@ long-form option name as the `kebab-cased` variant. For example, the
 
 ## Options in the config file
 
-`cross-seed` will look for a configuration file at
-
-- **Mac**/**Linux**/**Unix**: `~/.cross-seed/config.js`
-- **Windows**: `AppData\Local\cross-seed\config.js`
-
-:::tip
-
-If you would like to use a custom config directory, you can set the `CONFIG_DIR`
-environment variable.
-
-:::
-
-To create an editable config file, run the following command:
-
-```shell script
-cross-seed gen-config
-```
-
-From there, you can open the config file in your favorite editor and set up your
-configuration.
-
-:::tip
-
-The configuration file uses JavaScript syntax, which means:
-
-- Array/multi options must be enclosed in \['brac', 'kets'\].
-- Strings must be enclosed in "quotation" marks.
-- Array elements and options must be separated by commas.
-- [**Windows users will need to use `\\` for paths.**](./faq-troubleshooting.md#windows-paths)
-
-:::
+For instructions on creating and editing the config file, use the
+[getting started guide](./getting-started.mdx#2-create-a-config-file).
 
 ## Options used in `cross-seed search`
 

@@ -448,7 +448,8 @@ behind-the-scenes updates made to improve `cross-seed`.
 
 If you would like to switch to the new grouped-by-tracker linking structure in
 `cross-seed` v6, you can now migrate previously injected torrents and folder
-structures.
+structures. This includes any previously injected cross seeds, whether they were
+linked or not. Torrents that already have the correct save path will be skipped.
 
 **This is completely optional**. These scripts are currently only written for
 `qBittorrent` and `Deluge`.

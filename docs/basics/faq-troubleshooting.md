@@ -21,6 +21,50 @@ If you are updating from version 5.x to version 6.x, you can visit the
   settings to match the
   [defaults](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs).
 
+### Where is the config directory for `cross-seed`?
+
+The config directory for `cross-seed` is located in the following locations:
+
+| Platform  | Path                                               | 
+| --------- | -------------------------------------------------- |
+| `Windows` | `C:\Users\<YourUsername>\AppData\Local\cross-seed` |
+| `MacOS`   | `/Users/<YourUsername>/.cross-seed`                |
+| `Linux`   | `/home/<YourUsername>/.cross-seed`                 |
+| `Docker`  | `/config`                                          |
+
+:::tip
+
+If you would like to use a custom config directory, you can set the
+`CONFIG_DIR` environment variable.
+
+:::
+
+### How do I find the config file for `cross-seed`?
+
+The config file for `cross-seed` called `config.js` is located in the config
+directory described above. For instructions on creating and editing the config
+file, use the [getting started guide](./getting-started.mdx#2-create-a-config-file).
+
+### How do I find the logs for `cross-seed`?
+
+The logs for `cross-seed` are located in the `logs` directory of the config
+directory described above. When troubleshooting, the `verbose.current.log` will
+usually be the most helpful.
+
+### What is `config.db` and `torrent_cache` in the config directory?
+
+`config.db` is the SQLite database used by `cross-seed` to store information
+about everything it does. `torrent_cache` is a directory that stores .torrent
+files that `cross-seed` has snatched to prevent re-snatching them.
+
+:::danger
+
+Do not modify `config.db` or `torrent_cache` unless you know what you are doing.
+Any modifications to these files should be handled through the `cross-seed`
+commands on the [`commands page`](../reference/utils.md).
+
+:::
+
 ### Windows Paths
 
 Windows users, for all paths in your configuration file, use "\\\\" instead of

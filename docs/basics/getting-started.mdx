@@ -81,6 +81,12 @@ Otherwise, continue with the following steps.
 You'll need to generate a configuration file before running the daemon. Both
 Docker and non-Docker users will use the same method for this.
 
+:::info
+
+[How do I find the config file for `cross-seed`?](./faq-troubleshooting.md#how-do-i-find-the-config-file-for-cross-seed)
+
+:::
+
 #### For non-Docker users:
 
 Run the following command to generate a config file:
@@ -88,10 +94,6 @@ Run the following command to generate a config file:
 ```shell
 cross-seed gen-config
 ```
-
-This will create a basic `config.js` file at `~/.cross-seed/config.js` or
-`AppData\Local\cross-seed\config.js`. You can then edit this file to add the
-necessary configurations.
 
 #### For Docker users:
 
@@ -103,12 +105,20 @@ docker run \
 ghcr.io/cross-seed/cross-seed gen-config
 ```
 
-This will create a `config.js` file inside the `/config` directory you
-specified. You'll need to open this file and edit it as described below.
-
 ---
 
 ### 3. Edit the Config File
+
+:::info
+
+The configuration file uses JavaScript syntax, which means:
+
+- Array/multi options must be enclosed in \['brac', 'kets'\].
+- Strings must be enclosed in "quotation" marks.
+- Array elements and options must be separated by commas.
+- [**Windows users will need to use `\\` for paths.**](./faq-troubleshooting.md#windows-paths)
+
+:::
 
 Once you've created your config file, you'll need to fill in the necessary
 fields to connect to your torrent client and indexer. You will likely need
