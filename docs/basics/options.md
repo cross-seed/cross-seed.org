@@ -324,8 +324,10 @@ useClientTorrents: true,
 
 :::danger qBittorrent
 
-If you are using qBittorrent 4.6.x (or later) and `SQLite database` in
-`Preferences -> Advanced`, please use [`useClientTorrents`](#useclienttorrents).
+You **MUST** use [`useClientTorrents`](#useclienttorrents) instead if any apply:
+- You are using `SQLite` in `Preferences -> Advanced`
+- You have renamed torrents or its files in client
+- You have torrents added _WITHOUT_ `Content Layout` set to `Original`
 
 :::
 
