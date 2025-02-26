@@ -10,7 +10,6 @@ services:
       - "2468:2468"
     volumes:
       - /path/to/config/folder:/config
-      - /path/to/output/folder:/cross-seeds
       - # You will need at least one extra volume for your media drive if using https://www.cross-seed.org/docs/tutorials/linking
     command: daemon
     restart: unless-stopped

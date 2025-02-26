@@ -51,11 +51,12 @@ The logs for `cross-seed` are located in the `logs` directory of the config
 directory described above. When troubleshooting, the `verbose.current.log` will
 usually be the most helpful.
 
-### What is `config.db` and `torrent_cache` in the config directory?
+### What is `config.db`, `torrent_cache`, and `cross-seeds` in the config directory?
 
 `config.db` is the SQLite database used by `cross-seed` to store information
 about everything it does. `torrent_cache` is a directory that stores .torrent
-files that `cross-seed` has snatched to prevent re-snatching them.
+files that `cross-seed` has snatched to prevent re-snatching them. `cross-seeds`
+is the default [`ouputDir`](./options.md#outputdir) for `cross-seed`.
 
 :::danger
 
