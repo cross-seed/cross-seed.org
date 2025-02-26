@@ -125,8 +125,6 @@ fields to connect to your torrent client and indexer. You will likely need
 to configure the following:
 
 -   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett).
--   [**`outputDir`**](./options.md#outputdir): Create a new directory
-    somewhere to house the torrent files `cross-seed` outputs.
 -   [**`Connection to your torrent client`**](../tutorials/injection.md#setting-up-your-client): URL with login info of your torrent client
 -   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to.
 
@@ -135,7 +133,6 @@ Here's an example of what your `config.js` might look like:
 ```js
 module.exports = {
 	torznab: ["http://localhost:9696/1/api?apikey=123456"],
-	outputDir: "/path/to/output_dir",
 	qbittorrentUrl: "http://username:password@localhost:8080",
 	linkDirs: ["/data/torrents/SomeLinkDirName"],
 	... several other settings you can read later ...
@@ -178,10 +175,7 @@ Or, if you are using Docker, make sure to expose the paths cross-seed needs to
 access:
 
 ```shell
-docker run \
--v /path/to/config:/config \
--v /path/to/output:/path/to/output \
-ghcr.io/cross-seed/cross-seed daemon
+docker run -v /path/to/config:/config ghcr.io/cross-seed/cross-seed daemon
 ```
 
 After a few moments, you should see `cross-seed` automatically starting to

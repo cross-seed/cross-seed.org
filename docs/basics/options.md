@@ -46,7 +46,7 @@ For instructions on creating and editing the config file, use the
 | ----------------------------------------------------- | ------------ |
 | [`delay`](#delay)                                     |              |
 | [`torznab`](#torznab)                                 | **Required** |
-| [`outputDir`](#outputdir)                             | **Required** |
+| [`outputDir`](#outputdir)                             |              |
 | [`useClientTorrents`](#useclienttorrents)             |              |
 | [`torrentDir`](#torrentdir)                           |              |
 | [`dataDirs`](#datadirs)                               |              |
@@ -85,7 +85,7 @@ For instructions on creating and editing the config file, use the
 | ----------------------------------------------------- | ------------ |
 | [`delay`](#delay)                                     |              |
 | [`torznab`](#torznab)                                 | **Required** |
-| [`outputdir`](#outputdir)                             | **Required** |
+| [`outputdir`](#outputdir)                             |              |
 | [`useClientTorrents`](#useclienttorrents)             |              |
 | [`torrentDir`](#torrentdir)                           |              |
 | [`dataDirs`](#datadirs)                               |              |
@@ -386,47 +386,40 @@ torrentDir: "C:\\torrents",
 
 :::
 
-### `outputDir`\*
+### `outputDir`
 
 | Config file name | CLI short form | CLI long form        | Format   | Default |
 | ---------------- | -------------- | -------------------- | -------- | ------- |
-| `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` |         |
+| `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` | `null`  |
 
 :::danger
 
 **DO NOT USE THIS DIRECTORY AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
 
-If you are using qbit_manage, ensure this directory will not be orphaned.
+Keep this set to `outputDir: null` for the best experience with `cross-seed`.
+This will map outputDir into your `cross-seed` [config directory](./faq-troubleshooting.md#what-is-configdb-torrent_cache-and-cross-seeds-in-the-config-directory)
 
 :::
 
 With [`action: "inject"`](#action), `cross-seed` will use this directory to
 retry injections only, it will be empty nearly all the time. With
 [`action: "save"`](#action), `cross-seed` will store the .torrent files it
-finds.
-
-:::caution Docker
-
-Leave the `outputDir` as `/cross-seeds` and use Docker to map your directory to
-`/cross-seeds`.
-
-:::
+finds in this directory. Only change this from `null` if you are using
+`action: "save"` and the path would be more convenient.
 
 #### `outputDir` Examples (CLI)
 
 ```shell
-cross-seed search -s .
-cross-seed search --output-dir /cross-seeds
+cross-seed search
+cross-seed search --output-dir /path/to/folder
 ```
 
 #### `outputDir` Examples (Config file)
 
 ```js
-outputDir: "/cross-seeds",
+outputDir: null,
 
-outputDir: "C:\\.cross-seed",
-
-outputDir: ".",
+outputDir: "/path/to/folder",
 ```
 
 :::info WINDOWS USERS
