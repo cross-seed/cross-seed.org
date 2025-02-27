@@ -66,6 +66,21 @@ commands on the [`commands page`](../reference/utils.md).
 
 :::
 
+### What should I do after updating my config?
+
+Just restart `cross-seed`.
+
+If you've changed your eligibility filters or your
+[`matchMode`](options.md#matchmode) (e.g. enabling partial matches),
+`cross-seed` will **automatically** re-evaluate previous cached rejections.
+
+:::caution
+
+It will **never** be necessary to delete your database or `torrent_cache` folder
+to perform a "fresh search". Doing so only puts undue stress on indexers.
+
+:::
+
 ### Windows Paths
 
 Windows users, for all paths in your configuration file, use "\\\\" instead of
@@ -142,6 +157,30 @@ normal time, there are certain limitations and precautions you will want to
 take. Do not abuse trackers or their respective APIs. Your accounts are
 ultimately your responsibility, and you should make sure you review and respect
 the rules of your trackers before you utilize any of their APIs directly.
+
+### What's the best way to add new trackers?
+
+:::tip
+
+[**What should I do after updating my config?**](#what-should-i-do-after-updating-my-config)
+
+:::
+
+Just add the [`torznab` url](./options.md#torznab) to your config. `cross-seed`
+will automatically queue searches for your catalog on just the one indexer. If
+you want to trigger a search early, you can use the job API endpoint described
+in the [`FAQ entry`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
+above.
+
+For NPM, use the following command with the appropriate API key:
+```shell
+curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY -d 'name=search'
+```
+
+For Docker, use the following command with the appropriate API key:
+```shell
+docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY -d 'name=search'
+```
 
 ### How can I disable the time-based exclude options in a `cross-seed search`?
 
@@ -257,26 +296,6 @@ peers.
 
 However, it's fine to **download something from a public tracker and then
 cross-seed it to private trackers**, which `cross-seed` supports automatically.
-
-### What's the best way to add new trackers?
-
-Just add the [`torznab` url](./options.md#torznab) to your config. `cross-seed`
-will automatically queue searches for your catalog on just the one indexer.
-
-### What should I do after updating my config?
-
-Just restart `cross-seed`.
-
-If you've changed your eligibility filters or your
-[`matchMode`](options.md#matchmode) (e.g. enabling partial matches),
-`cross-seed` will **automatically** re-evaluate previous cached rejections.
-
-:::caution
-
-It will **never** be necessary to delete your database or `torrent_cache` folder
-to perform a "fresh search". Doing so only puts undue stress on indexers.
-
-:::
 
 ### Can I use special characters in my URLs?
 

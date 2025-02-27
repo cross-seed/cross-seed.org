@@ -124,6 +124,14 @@ Once you've created your config file, you'll need to fill in the necessary
 fields to connect to your torrent client and indexer. You will likely need
 to configure the following:
 
+:::tip
+
+These settings are just the recommended starting point for `cross-seed`.
+The [`Next Steps`](#next-steps) section below will guide you on how to
+configure `cross-seed` to find _all_ possible matches.
+
+:::
+
 -   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett).
 -   [**`Connection to your torrent client`**](../tutorials/injection.md#setting-up-your-client): URL with login info of your torrent client
 -   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to.
@@ -138,14 +146,6 @@ module.exports = {
 	... several other settings you can read later ...
 };
 ```
-
-:::tip
-
-These settings are just the recommended starting point for `cross-seed`.
-The [`Next Steps`](#next-steps) section below will guide you on how to
-configure `cross-seed` to find _all_ possible matches.
-
-:::
 
 ---
 

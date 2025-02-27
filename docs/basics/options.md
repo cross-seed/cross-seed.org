@@ -40,6 +40,12 @@ long-form option name as the `kebab-cased` variant. For example, the
 For instructions on creating and editing the config file, use the
 [getting started guide](./getting-started.mdx#2-create-a-config-file).
 
+:::tip
+
+[**What should I do after updating my config?**](#what-should-i-do-after-updating-my-config)
+
+:::
+
 ## Options used in `cross-seed search`
 
 | Option                                                | Required     |
