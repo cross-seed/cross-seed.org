@@ -109,6 +109,12 @@ If you have multiple drives without drive pooling, add more linkDirs as needed
 for each drive. Once you have restarted `cross-seed`, new matches will have
 links created in your `linkDirs` pointing to the original files.
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 ### Docker Users
 
 **For Docker Users**: there are a few more specific requirements for linking to

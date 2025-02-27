@@ -42,7 +42,7 @@ For instructions on creating and editing the config file, use the
 
 :::tip
 
-[**What should I do after updating my config?**](#what-should-i-do-after-updating-my-config)
+[**What should I do after updating my config?**](./faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
 
 :::
 

@@ -80,6 +80,12 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to Deluge.
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 ## Manual or Scheduled Injection
 
 :::danger

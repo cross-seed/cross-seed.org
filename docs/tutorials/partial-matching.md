@@ -48,6 +48,12 @@ This is expected and is due to how torrent piece hashing works.
 
 ### Configuration Steps for Partial Matching
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 To enable partial matching, follow these three simple steps:
 
 1. **Enable linking**

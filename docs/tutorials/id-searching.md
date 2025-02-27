@@ -59,6 +59,12 @@ http://radarr:7878/?apikey=YOUR_API_KEY
 
 3. Update `config.js`
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 Add these URLs to `config.js` under the `sonarr` and `radarr` keys:
 
 ```js

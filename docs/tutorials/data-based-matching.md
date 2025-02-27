@@ -58,6 +58,12 @@ Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
     to inform `cross-seed` on where to generate searchees. Here are some examples of common structures
     and their optimal configuration. If multiple apply, set `maxDataDepth` to the highest value.
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 ```
 data/
 ├─ usenet/
