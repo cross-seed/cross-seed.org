@@ -122,8 +122,7 @@ match was found `cross-seed` will respond with a `204 No Content`.
 
 :::tip
 
-The most common way to implement an "announce feed" is utilizing
-[autobrr](../basics/faq-troubleshooting.md#how-can-i-use-autobrr-with-cross-seed).
+[**How to configure matches from announce?**](../tutorials/announce.md)
 
 **You can use the "retry on status code" function (_code: 202_) in autobrr's
 filter settings to retry currently incomplete (downloading) torrents**

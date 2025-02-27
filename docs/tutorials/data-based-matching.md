@@ -47,6 +47,12 @@ Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
 
 :::
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 1.  Set up linking as described in the [linking tutorial](linking.md).
 
 2.  If you are trying to cross-seed data that has been renamed or whose names
@@ -57,12 +63,6 @@ Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
 3.  Set [`dataDirs`](../basics/options.md#datadirs) and [`maxDataDepth`](../basics/options.md#maxdatadepth)
     to inform `cross-seed` on where to generate searchees. Here are some examples of common structures
     and their optimal configuration. If multiple apply, set `maxDataDepth` to the highest value.
-
-:::tip
-
-[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
-
-:::
 
 ```
 data/

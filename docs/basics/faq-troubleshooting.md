@@ -21,6 +21,18 @@ If you are updating from version 5.x to version 6.x, you can visit the
   settings to match the
   [defaults](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs).
 
+### Windows Paths
+
+Windows users, for all paths in your configuration file, use "\\\\" instead of
+"\\".
+
+```js
+torrentDir: "C:\\Path\\To\\Torrents",
+outputDir: "C:\\My Data\\.cross-seed",
+linkDirs: ["C:\\My Data\\Downloads\\MyLinkDir"],
+dataDirs: ["C:\\My Data\\Downloads\\Movies"],
+```
+
 ### Where is the config directory for `cross-seed`?
 
 The config directory for `cross-seed` is located in the following locations:
@@ -81,67 +93,38 @@ to perform a "fresh search". Doing so only puts undue stress on indexers.
 
 :::
 
-### Windows Paths
+### Does cross-seed support music torrents?
 
-Windows users, for all paths in your configuration file, use "\\\\" instead of
-"\\".
+While `cross-seed` may incidentally find _some_ music matches, it is not
+optimized for music _at all_. You will find better results with tools designed
+for music cross-seeding like
+[fertilizer](https://github.com/moleculekayak/fertilizer).
 
-```js
-torrentDir: "C:\\Path\\To\\Torrents",
-outputDir: "C:\\My Data\\.cross-seed",
-linkDirs: ["C:\\My Data\\Downloads\\MyLinkDir"],
-dataDirs: ["C:\\My Data\\Downloads\\Movies"],
-```
+:::tip
 
-### What causes `outputDir should only contain .torrent files` warning?
-
-Typically this error happens when you set [`outputDir`](./options.md#outputdir)
-to a directory which is already in use for something. `outputDir` is a sort of
-"working directory" for cross-seed, and needs to be set to a dedicated empty
-directory. `outputDir` is used as a temporary store for tracking things like
-failed injections (for retrying later) and .torrent files which are being
-monitored for resuming after a recheck. Do not put anything in this directory if
-you do not intend to have it be matched to your data and injected, and do not
-delete anything in this directory unless you do not want to cross-seed that
-torrent.
-
-:::tip Repeated Injections
-
-It is possible that you find you want to remove a torrent file that was
-cross-seeded from your client that was injected, and find it reappearing shortly
-after removal. This could be because of the inject job and the corresponding
-.torrent file in `outputDir`.
-
-To stop the reinjection, simply remove this .torrent file from `outputDir` and
-then delete the torrent from your client.
+Look in your music trackers' wikis and forums for more resources on
+cross-seeding music.
 
 :::
 
-### What is "Could not ensure all torrents from the torrent client are in `torrentDir`"?
+### How to safely delete torrents from my client?
 
-This is usually due to not using the recommended paths for
-[`torrentDir`](./options.md#torrentdir). You should use your torrent client's
-directory (that stores .torrents and fastresume states). This is not a "Copy of
-.torrent" folder, but a folder you would find inside of the config or appdata
-folders for the torrent client specifically.
+To safely delete a torrent from your client, either an injected cross seed or
+the original torrent, you need to meet these requirements:
+- You have [`linking`](../tutorials/linking.md) configured
+- You are using [`hardlinks or reflinks`](./options.md#linktype)
+- You are using [`flatLinking: false`](./options.md#flatlinking)
 
-Using another directory (such as "Copy of" directories) with injection can lead
-to outdated or latent .torrent files being left behind, and when this happens
-cross-seed is unaware that they are not actually in the client seeding.
+If you meet these requirements, you can safely delete any torrent from client
+along with the data. If you do not meet these requirements, you will need to
+manually confirm that _absolutely_ no torrents are sharing the same data.
 
-If you are using the appropiate directory and still see this, it means you need
-to go clean up (verify the torrent files listed) are in your client, and remove
-those that aren't.
+If you are using `linkType: "symlink"`, you cannot delete the orignal torrent
+without breaking the links for the injected cross seeds. Deleting the injected
+cross seeds is fine though.
 
-You can find a list of example paths for reference in the options page under
-[`torrentDir`](./options.md#torrentdir)
-
-:::warning qBittorrent
-
-qBittorrent users utilizing injection are required to use BT_backup for their
-torrentDir when using injection.
-
-:::
+You can always safely remove the torrent while keeping its data, but you will
+need a method to clean up the orphaned data if it exists.
 
 ### Is there a way to trigger a specific cross-seed job ahead of schedule?
 
@@ -222,24 +205,55 @@ errors in the sqlite database. Use the job API endpoint described here instead.
 
 :::
 
-### How to safely delete torrents from my client?
+### What causes `outputDir should only contain .torrent files` warning?
 
-To safely delete a torrent from your client, either an injected cross seed or
-the original torrent, you need to meet these requirements:
-- You have [`linking`](../tutorials/linking.md) configured
-- You are using [`hardlinks or reflinks`](./options.md#linktype)
-- You are using [`flatLinking: false`](./options.md#flatlinking)
+Typically this error happens when you set [`outputDir`](./options.md#outputdir)
+to a directory which is already in use for something. `outputDir` is a sort of
+"working directory" for cross-seed, and needs to be set to a dedicated empty
+directory. `outputDir` is used as a temporary store for tracking things like
+failed injections (for retrying later) and .torrent files which are being
+monitored for resuming after a recheck. Do not put anything in this directory if
+you do not intend to have it be matched to your data and injected, and do not
+delete anything in this directory unless you do not want to cross-seed that
+torrent.
 
-If you meet these requirements, you can safely delete any torrent from client
-along with the data. If you do not meet these requirements, you will need to
-manually confirm that _absolutely_ no torrents are sharing the same data.
+:::tip Repeated Injections
 
-If you are using `linkType: "symlink"`, you cannot delete the orignal torrent
-without breaking the links for the injected cross seeds. Deleting the injected
-cross seeds is fine though.
+It is possible that you find you want to remove a torrent file that was
+cross-seeded from your client that was injected, and find it reappearing shortly
+after removal. This could be because of the inject job and the corresponding
+.torrent file in `outputDir`.
 
-You can always safely remove the torrent while keeping its data, but you will
-need a method to clean up the orphaned data if it exists.
+To stop the reinjection, simply remove this .torrent file from `outputDir` and
+then delete the torrent from your client.
+
+:::
+
+### What is "Could not ensure all torrents from the torrent client are in `torrentDir`"?
+
+This is usually due to not using the recommended paths for
+[`torrentDir`](./options.md#torrentdir). You should use your torrent client's
+directory (that stores .torrents and fastresume states). This is not a "Copy of
+.torrent" folder, but a folder you would find inside of the config or appdata
+folders for the torrent client specifically.
+
+Using another directory (such as "Copy of" directories) with injection can lead
+to outdated or latent .torrent files being left behind, and when this happens
+cross-seed is unaware that they are not actually in the client seeding.
+
+If you are using the appropiate directory and still see this, it means you need
+to go clean up (verify the torrent files listed) are in your client, and remove
+those that aren't.
+
+You can find a list of example paths for reference in the options page under
+[`torrentDir`](./options.md#torrentdir)
+
+:::warning qBittorrent
+
+qBittorrent users utilizing injection are required to use BT_backup for their
+torrentDir when using injection.
+
+:::
 
 ### Why are some torrents not suitable for searching?
 
@@ -253,20 +267,6 @@ reduced down to a single query.
 
 You can check the verbose log in the log directory of the app config folder for
 `[prefilter]` entries immediately before a search starts for exact details.
-
-:::
-
-### Does cross-seed support music torrents?
-
-While `cross-seed` may incidentally find _some_ music matches, it is not
-optimized for music _at all_. You will find better results with tools designed
-for music cross-seeding like
-[fertilizer](https://github.com/moleculekayak/fertilizer).
-
-:::tip
-
-Look in your music trackers' wikis and forums for more resources on
-cross-seeding music.
 
 :::
 

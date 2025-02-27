@@ -21,6 +21,12 @@ You need to configure [`linking`](./linking.md) or use [`duplicateCategories: tr
 
 :::
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 ### `rTorrent` setup
 
 `cross-seed` will inject torrents into **rTorrent** with a `cross-seed` label.
@@ -79,12 +85,6 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
         - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
 2. Start or restart `cross-seed`. The logs at startup will tell you if
    `cross-seed` was able to connect to Deluge.
-
-:::tip
-
-[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
-
-:::
 
 ## Manual or Scheduled Injection
 
