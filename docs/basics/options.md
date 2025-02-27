@@ -307,7 +307,8 @@ Deluge does not currently support useClientTorrents, use [`torrentDir`](#torrent
 :::
 
 Query the torrent client APIs to find matches against its contents. This is a replacement
-for torrentDir and is generally recommended. This method supports qBittorrent's `SQLite` mode.
+for torrentDir and is generally recommended. This method supports qBittorrent's `SQLite`
+mode and all forms of content layouts/renames/modifications to the torrent in client.
 
 #### `useClientTorrents` Examples (CLI)
 
