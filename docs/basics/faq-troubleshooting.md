@@ -107,10 +107,10 @@ cross-seeding music.
 
 :::
 
-### How to safely delete torrents from my client?
+### How do I safely delete torrents from my client?
 
 To safely delete a torrent from your client, either an injected cross seed or
-the original torrent, you need to meet these requirements:
+the original torrent, you will need to meet these requirements:
 - You have [`linking`](../tutorials/linking.md) configured
 - You are using [`hardlinks or reflinks`](./options.md#linktype)
 - You are using [`flatLinking: false`](./options.md#flatlinking)
@@ -120,8 +120,8 @@ along with the data. If you do not meet these requirements, you will need to
 manually confirm that _absolutely_ no torrents are sharing the same data.
 
 If you are using `linkType: "symlink"`, you cannot delete the original torrent
-without breaking the links for the injected cross seeds. Deleting the injected
-cross seed is fine though.
+without breaking the links for the injected cross seeds. Deleting any injected
+cross seeds is fine though.
 
 You can always safely remove the torrent while keeping its data, but you will
 need a method to clean up the orphaned data if it exists.
@@ -171,7 +171,7 @@ In order to disable and override the [`excludeOlder`](./options.md#excludeolder)
 and [`excludeRecentSearch`](./options.md#excluderecentsearch) options defined in
 your `config.js`, you can use the job API endpoint described in the
 [`FAQ entry`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
-above. This will, for the duration of the search being ran, disable the options
+above. This will, for the duration of the search being run, disable the options
 completely - searching for absolutely everything available.
 
 :::tip
@@ -208,7 +208,7 @@ errors in the sqlite database. Use the job API endpoint described here instead.
 ### What causes `outputDir should only contain .torrent files` warning?
 
 Typically this error occurs when [`outputDir`](./options.md#outputdir)
-is set to a directory which is already in use and contains other files. `outputDir` is a sort of
+is set to a directory which is already in use or is not empty. `outputDir` is a sort of
 "working directory" for cross-seed, and needs to be set to a dedicated empty
 directory. `outputDir` is used as a temporary store for tracking things like
 failed injections (for retrying later) and .torrent files which are being
@@ -426,7 +426,7 @@ them for details and further instructions if you have any issues
 
 :::
 
-### I'm using a VPN and can't reach my Prowlarr/Jackett/cross-seed/torrent client
+### I can't reach my Prowlarr/Jackett/cross-seed/torrent client (Using Docker/VPN)
 
 If you are using [Docker](./getting-started#with-docker), you cannot use
 `localhost` as an address to communicate across containers. Consider using your
@@ -445,7 +445,7 @@ VPN since localhost/LAN is not accessible from the VPN network by default.
 :::info
 
 There is no need to put `cross-seed` behind a VPN. All `cross-seed` requests are made
-to your torrent client or through Jackett/Prowlarr. The only exception is when
+to your torrent client or Jackett/Prowlarr. The only exception is when
 announcements are made via the `/announce` API endpoint and are snatched during
 matching or for injection.
 
@@ -454,7 +454,7 @@ matching or for injection.
 :::danger
 
 Even with API authentication, we still recommend that you **do not expose
-cross-seed's port to untrusted networks (such as the Internet).**
+`cross-seed`'s port to untrusted networks (such as the Internet).**
 
 :::
 
