@@ -64,17 +64,17 @@ searching.
 ```js
 POST /api/webhook
 {
-	// infoHash or path is required but not both (infoHash is recommended)
-	infoHash: "<infoHash of torrent>",
-	path: "/path/to/torrent/file.mkv",
-	// All of the following are optional with their defaults shown
-	// undefined defaults to your config
-	ignoreCrossSeeds: true,
-	ignoreExcludeRecentSearch: false,
-	ignoreExcludeOlder: false,
-	ignoreBlockList: false,
-	includeSingleEpisodes: undefined,
-	includeNonVideos: undefined,
+    // infoHash or path is required but not both (infoHash is recommended)
+    infoHash: "<infoHash of torrent>",
+    path: "/path/to/torrent/file.mkv",
+    // All of the following are optional with their defaults shown
+    // undefined defaults to your config
+    ignoreCrossSeeds: true,
+    ignoreExcludeRecentSearch: false,
+    ignoreExcludeOlder: false,
+    ignoreBlockList: false,
+    includeSingleEpisodes: undefined,
+    includeNonVideos: undefined,
 }
 ```
 
@@ -141,10 +141,10 @@ filter settings to retry currently incomplete (downloading) torrents**
 ```js
 POST /api/announce
 {
-	"name": "string", // torrent name
-	"guid": "string", // usually the download link, used for caching purposes
-	"link": "string", // download link
-	"tracker": "string" // used for linking path and logging
+    "name": "string", // torrent name
+    "guid": "string", // usually the download link, used for caching purposes
+    "link": "string", // download link
+    "tracker": "string" // used for linking path and logging
 }
 ```
 
@@ -174,11 +174,11 @@ triggered, `cross-seed` will respond with `200 OK`.
 ```js
 POST /api/job
 {
-	// Job name is required
-	name: "cleanup | inject | rss | search | updateIndexerCaps",
-	// All of the following are optional with their defaults shown
-	ignoreExcludeRecentSearch: false,
-	ignoreExcludeOlder: false,
+    // Job name is required
+    name: "cleanup | inject | rss | search | updateIndexerCaps",
+    // All of the following are optional with their defaults shown
+    ignoreExcludeRecentSearch: false,
+    ignoreExcludeOlder: false,
 }
 ```
 

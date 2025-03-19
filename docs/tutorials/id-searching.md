@@ -69,9 +69,9 @@ Add these URLs to `config.js` under the `sonarr` and `radarr` keys:
 
 ```js
 module.exports = {
-	// ... other settings ...
-	sonarr: ["http://localhost:8989/?apikey=12345"],
-	radarr: ["http://localhost:7878/?apikey=67890"],
+    // ... other settings ...
+    sonarr: ["http://localhost:8989/?apikey=12345"],
+    radarr: ["http://localhost:7878/?apikey=67890"],
 };
 ```
 
@@ -79,15 +79,15 @@ For multiple instances (e.g., separate 4K libraries), list each URL in an array:
 
 ```js
 module.exports = {
-	// ... other settings ...
-	sonarr: [
-		"http://localhost:8989/?apikey=12345",
-		"http://localhost4k:8990/?apikey=54321",
-	],
-	radarr: [
-		"http://localhost:7878/?apikey=67890",
-		"http://localhost4k:7879/?apikey=09876",
-	],
+    // ... other settings ...
+    sonarr: [
+        "http://localhost:8989/?apikey=12345",
+        "http://localhost4k:8990/?apikey=54321",
+    ],
+    radarr: [
+        "http://localhost:7878/?apikey=67890",
+        "http://localhost4k:7879/?apikey=09876",
+    ],
 };
 ```
 

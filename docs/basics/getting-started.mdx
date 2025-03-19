@@ -140,10 +140,13 @@ Here's an example of what your `config.js` might look like:
 
 ```js
 module.exports = {
-	torznab: ["http://localhost:9696/1/api?apikey=123456"],
-	qbittorrentUrl: "http://username:password@localhost:8080",
-	linkDirs: ["/data/torrents/SomeLinkDirName"],
-	... several other settings you can read later ...
+    torznab: [
+        "http://prowlarr:9696/1/api?apikey=12345",
+        "http://prowlarr:9696/2/api?apikey=12345",
+    ],
+    qbittorrentUrl: "http://username:password@localhost:8080",
+    linkDirs: ["/data/torrents/SomeLinkDirName"],
+    ... several other settings you can read later ...
 };
 ```
 

@@ -215,8 +215,8 @@ cross-seed search -T http://jackett:9117/api/v2.0/indexers/oink/results/torznab/
 torznab: ["https://localhost/prowlarr/1/api?apikey=12345"],
 
 torznab: [
-	"http://prowlarr:9696/1/api?apikey=12345",
-    "http://prowlarr:9696/2/api?apikey=12345"
+    "http://prowlarr:9696/1/api?apikey=12345",
+    "http://prowlarr:9696/2/api?apikey=12345",
 ],
 
 torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey=12345"],
@@ -1189,14 +1189,14 @@ Content-Type: application/json
     "paused": false,
     "decisions": ["string"],
     "searchee": {
-        "category": "string",
-        "tags": ["string"],
-        "trackers": ["string"],
-        "length": 123,
-        "infoHash": "string",
-        "path": "string",
-        "source": "torrentClient | torrentFile | dataDir | virtual"
-	}
+      "category": "string",
+      "tags": ["string"],
+      "trackers": ["string"],
+      "length": 123,
+      "infoHash": "string",
+      "path": "string",
+      "source": "torrentClient | torrentFile | dataDir | virtual"
+    }
   }
 }
 ```
@@ -1503,27 +1503,21 @@ With `flatLinking: false` (default):
 
 ```
 linkDir/
-	TrackerA/
-		Video.mkv
-		Video2/
-			Video2.mkv
-	TrackerB/
-		Pack/
-			Pack.1.mkv
-			Pack.2.mkv
-		Video.mkv
+├─ TrackerA/
+│  ├─ Movie.mkv
+├─ TrackerB/
+│  ├─ Movie.mkv
+│  ├─ Show S01/
+│  |  ├─ Show S01E01.mkv
 ```
 
 With `flatLinking: true`:
 
 ```
 linkDir/
-	Video.mkv   <--- Both TrackerA and TrackerB cross seeds share the same file
-	Video2/
-		Video2.mkv
-	Pack/
-		Pack.1.mkv
-		Pack.2.mkv
+├─ Movie.mkv   <--- Both TrackerA and TrackerB cross seeds share the same file
+├─ Show S01/
+│  ├─ Show S01E01.mkv
 ```
 
 #### `flatLinking` Examples (CLI)
@@ -1588,19 +1582,19 @@ your own risk.
 
 ```js
 blockList: [
-	"name:Release.Name",
-	"name:-excludedGroup",
-	"name:x265",
-	"nameRegex:[Rr]elease[.\s][Nn]ame",
-	"folder:folderName",
-	"folderRegex:folder\d+",
-	"category:icycool",
-	"category:",
-	"tag:everybody",
-	"tag:",
-	"tracker:tracker.example.com:8080",
-	"infoHash:3317e6485454354751555555366a8308c1e92093",
-	"sizeBelow:12345",
-	"sizeAbove:98765",
+    "name:Release.Name",
+    "name:-excludedGroup",
+    "name:x265",
+    "nameRegex:[Rr]elease[.\s][Nn]ame",
+    "folder:folderName",
+    "folderRegex:folder\d+",
+    "category:icycool",
+    "category:",
+    "tag:everybody",
+    "tag:",
+    "tracker:tracker.example.com:8080",
+    "infoHash:3317e6485454354751555555366a8308c1e92093",
+    "sizeBelow:12345",
+    "sizeAbove:98765",
 ],
 ```

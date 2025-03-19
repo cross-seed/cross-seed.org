@@ -100,8 +100,8 @@ Your `linkDir` would then be:
 
 ```js
 module.exports = {
-	// ... other settings ...
-	linkDirs: ["/mnt/user/data/torrents/SomeLinkDirName"],
+    // ... other settings ...
+    linkDirs: ["/mnt/user/data/torrents/SomeLinkDirName"],
 };
 ```
 
@@ -134,8 +134,8 @@ torrent client. Your `linkDir` would then be:
 
 ```js
 module.exports = {
-	// ... other settings ...
-	linkDirs: ["/data/torrents/SomeLinkDirName"],
+    // ... other settings ...
+    linkDirs: ["/data/torrents/SomeLinkDirName"],
 };
 ```
 

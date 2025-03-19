@@ -68,8 +68,8 @@ To enable partial matching, follow these three simple steps:
 
     ```js
     module.exports = {
-    	// ... other settings ...
-    	matchMode: "partial",
+        // ... other settings ...
+        matchMode: "partial",
     };
     ```
 
@@ -80,8 +80,8 @@ To enable partial matching, follow these three simple steps:
 
     ```js
     module.exports = {
-    	// ... other settings ...
-    	seasonFromEpisodes: 0.8,
+        // ... other settings ...
+        seasonFromEpisodes: 0.8,
     };
     ```
 
