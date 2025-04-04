@@ -846,6 +846,30 @@ autoResumeMaxDownload: 52428800,
 autoResumeMaxDownload: 0,
 ```
 
+### `ignoreNonRelevantFilesToResume`
+
+| Config file name                 | CLI short form | CLI long form                           | Format    | Default |
+| -------------------------------- | -------------- | --------------------------------------- | --------- | ------- |
+| `ignoreNonRelevantFilesToResume` | `N/A`          | `--ignore-non-relevant-files-to-resume` | `boolean` | `false` |
+
+If set to `true` and the amount remaining is above
+[autoResumeMaxDownload](#autoresumemaxdownload), resume if the only files
+missing are known-irrelevant files such as nfo, sample, txt, subs, proofs, and
+bonus/commentary files.
+
+#### `ignoreNonRelevantFilesToResume` Examples (CLI)
+
+```shell
+cross-seed search --ignore-non-relevant-files-to-resume # will resume if the only files missing are known-irrelevant files
+cross-seed search --no-ignore-non-relevant-files-to-resume # will not resume if the only files missing are known-irrelevant files
+```
+#### `ignoreNonRelevantFilesToResume` Examples (Config file)
+
+```js
+ignoreNonRelevantFilesToResume: true,
+ignoreNonRelevantFilesToResume: false,
+```
+
 ### `includeNonVideos`
 
 | Config File Name   | CLI Short Form | CLI Long Form          | Format    | Config Default | Fallback |

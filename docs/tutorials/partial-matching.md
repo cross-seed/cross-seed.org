@@ -78,8 +78,9 @@ To enable partial matching, follow these steps:
 3. **Configure `partial` range and auto resume**
 
     You can adjust the
-    [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) and
-    [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload)
+    [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold),
+    [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload) and
+    [`ignoreNonRelevantFilesToResume`](../basics/options.md#ignorenonrelevantfilestoresume)
     options depending on whether you are willing to incur more or less
     DL on partial matches.
 
@@ -88,6 +89,7 @@ To enable partial matching, follow these steps:
         // ... other settings ...
         fuzzySizeThreshold: 0.1,
         autoResumeMaxDownload: 52428800,
+        ignoreNonRelevantFilesToResume: true,
     };
     ```
 
