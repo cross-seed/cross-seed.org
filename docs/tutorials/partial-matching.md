@@ -51,10 +51,11 @@ This is expected and is due to how torrent piece hashing works.
 :::tip
 
 [**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+[**How to avoid downloading the same missing data on multiple trackers?**](../basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
 
 :::
 
-To enable partial matching, follow these three simple steps:
+To enable partial matching, follow these steps:
 
 1. **Enable linking**
 
@@ -73,24 +74,34 @@ To enable partial matching, follow these three simple steps:
     };
     ```
 
-3. **Set `seasonFromEpisodes` below `1`** _(optional)_
+3. **Configure `partial` range and auto resume**
 
-    If you want to cross seed season packs even if you're missing individual episodes,
-    set [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes) to a value below `1`.
+    You can adjust the
+    [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) and
+    [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload)
+    options depending on whether you are willing to incur more or less
+    DL on partial matches.
 
     ```js
     module.exports = {
         // ... other settings ...
-        seasonFromEpisodes: 0.8,
+        fuzzySizeThreshold: 0.1,
+        autoResumeMaxDownload: 52428800,
     };
     ```
 
-That's it! If you want to further customize partial matching, you can adjust the
-[`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) and 
-[`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload) options
-depending on whether you are willing to incur more or less DL on partial matches.
+4. **Set `seasonFromEpisodes` below `1`** _(optional)_
 
-:::tip
-You can avoid downloading the same missing data on multiple trackers by following
-[these steps](../basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
-:::
+    If you want to cross seed season packs even if you're missing individual
+    episodes, set
+    [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes) to a value
+    below `1`. To avoid downloading the same missing episodes on multiple
+    trackers, please read this
+    [FAQ](../basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once).
+
+    ```js
+    module.exports = {
+        // ... other settings ...
+        seasonFromEpisodes: 0.5,
+    };
+    ```

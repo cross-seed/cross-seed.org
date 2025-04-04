@@ -1494,11 +1494,12 @@ need extra considerations for `flatLinking: false`.
 
 :::
 
-With `false`, it will link any matches to a tracker-specific folder inside of
-`linkDirs` (if set). This prevents cross seeds from conflicting with each
-other. The tracker names will correspond to the ones set in Prowlarr/Jackett and
-autobrr, ensure they match to prevent multiple folders for a single tracker.
-Set this to `true` to use the flat-folder style linking previously used in v5.
+With `false`, `cross-seed` will link any matches to a tracker-specific folder
+inside of `linkDirs` (if set). This prevents cross seeds from conflicting with
+each other. The tracker names will correspond to the ones set in
+Prowlarr/Jackett and autobrr, ensure they match to prevent multiple folders for
+a single tracker. Set this to `true` to use the flat-folder style linking
+previously used in v5.
 
 With `flatLinking: false` (default):
 
