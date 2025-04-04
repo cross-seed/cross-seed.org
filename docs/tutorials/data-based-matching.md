@@ -53,7 +53,9 @@ Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
 
 :::
 
-1.  Set up linking as described in the [linking tutorial](linking.md).
+1.  Set up linking as described in the [linking tutorial](linking.md). While
+    not required, it's highly recommended to keep the matches separate from
+    your data. This is also necessary for step 2.
 
 2.  If you are trying to cross-seed data that has been renamed or whose names
     don't match standard torrent release naming schemes, set your
