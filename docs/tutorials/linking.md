@@ -26,6 +26,9 @@ strategies such as [partial matching](partial-matching.md) or if you want to use
 [data-based matching](data-based-matching.md). When linking is enabled, **all**
 injected torrents will be linked, even perfect matches.
 
+If you have multiple clients configured, `cross-seed` will link matches into
+the first valid linkDir. Custom routing is not supported at this time.
+
 :::info
 
 In order to prevent collisions, `cross-seed` organizes linked torrents into
