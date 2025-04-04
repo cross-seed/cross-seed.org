@@ -51,6 +51,7 @@ This is expected and is due to how torrent piece hashing works.
 :::tip
 
 [**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
 [**How to avoid downloading the same missing data on multiple trackers?**](../basics/faq-troubleshooting.md#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
 
 :::
