@@ -155,7 +155,7 @@ above.
 
 :::
 
-For NPM, use the following command with the appropriate API key:
+For NPM or local installations, use the following command with the appropriate API key:
 ```shell
 curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY -d 'name=search'
 ```
@@ -164,6 +164,14 @@ For Docker, use the following command with the appropriate API key:
 ```shell
 docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY -d 'name=search'
 ```
+
+:::danger
+
+Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search)
+while the [`daemon`](./managing-the-daemon.mdx) is running as it will cause
+errors in the sqlite database. Use the job API endpoint described here instead.
+
+:::
 
 ### How can I disable the time-based exclude options in a `cross-seed search`?
 
@@ -181,7 +189,7 @@ If you are simply adding a new tracker, follow this
 
 :::
 
-For NPM, use the following command with the appropriate API key:
+For NPM or local installations, use the following command with the appropriate API key:
 ```shell
 curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY \
   -d 'name=search' \

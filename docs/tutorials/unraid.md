@@ -57,7 +57,7 @@ are found under the `Show more settings` dropdown at the bottom of the template.
 | Config Type        | Name       | Container                            | Host                                | Access Mode |
 | ------------------ | ---------- | ------------------------------------ | ----------------------------------- | ----------- |
 | Path (Optional)    | torrentDir | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
-| Path (Optional)    | outputDir  | /cross-seeds                         | /path/to/torrent/client/watch/dir   | Read/Write  |
+| Path (Optional)    | outputDir  | /cross-seeds                         | /path/to/output/dir                 | Read/Write  |
 
 :::
 
