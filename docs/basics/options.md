@@ -853,9 +853,10 @@ autoResumeMaxDownload: 0,
 | `ignoreNonRelevantFilesToResume` | `N/A`          | `--ignore-non-relevant-files-to-resume` | `boolean` | `false` |
 
 If set to `true` and the amount remaining is above
-[autoResumeMaxDownload](#autoresumemaxdownload), resume if the only files
-missing are known-irrelevant files such as nfo, sample, txt, subs, proofs, and
-bonus/commentary files.
+[autoResumeMaxDownload](#autoresumemaxdownload), resume if accumulated size of
+the missing files is less than the accumulated size of the known-irrelevant
+files such as nfo, sample, txt, subs, proofs, and bonus/commentary files
+present in the torrent.
 
 #### `ignoreNonRelevantFilesToResume` Examples (CLI)
 
