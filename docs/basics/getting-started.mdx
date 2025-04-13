@@ -118,6 +118,8 @@ The configuration file uses JavaScript syntax, which means:
 - Array elements and options must be separated by commas.
 - [**Windows users will need to use `\\` for paths.**](./faq-troubleshooting.md#windows-paths)
 
+DO NOT remove options from the config file, this will cause errors.
+
 :::
 
 Once you've created your config file, you'll need to fill in the necessary
@@ -146,7 +148,7 @@ module.exports = {
     ],
     qbittorrentUrl: "http://username:password@localhost:8080",
     linkDirs: ["/data/torrents/SomeLinkDirName"],
-    ... several other settings you can read later ...
+    ... several other settings covered by the Next Steps section ...
 };
 ```
 

@@ -215,6 +215,13 @@ errors in the sqlite database. Use the job API endpoint described here instead.
 
 ### What causes `outputDir should only contain .torrent files` warning?
 
+:::tip
+
+Use [`outputDir: null`](./options.md#outputdir) to prevent any issues from
+occurring.
+
+:::
+
 Typically this error occurs when [`outputDir`](./options.md#outputdir)
 is set to a directory which is already in use or is not empty. `outputDir` is a sort of
 "working directory" for cross-seed, and needs to be set to a dedicated empty
@@ -238,6 +245,13 @@ then delete the torrent from your client.
 :::
 
 ### What is "Could not ensure all torrents from the torrent client are in `torrentDir`"?
+
+:::tip
+
+Use [`useClientTorrents: true`](./options.md#useclienttorrents) instead of 
+[`torrentDir`](./options.md#torrentdir).
+
+:::
 
 This is usually due to not using the recommended paths for
 [`torrentDir`](./options.md#torrentdir). You should use your torrent client's
@@ -523,12 +537,14 @@ that may not ultimately match your owned torrents. It preserves every torrent
 file that it snatches.
 
 We have spoken to admins at several trackers and have settled on a set of
-default settings that these trackers prefer. If your tracker has reached out to
-you about your usage of cross-seed, consider reverting to the default settings
-of [`excludeOlder`](options.md#excludeolder),
-[`excludeRecentSearch`](options.md#excluderecentsearch),
-[`searchCadence`](options.md#searchcadence), and
-[`searchLimit`](./options.md#searchlimit).
+default settings that these trackers prefer. As of v6, this should no longer
+be a concern unless you are using commands such as
+[`cross-seed clear-cache`](../reference/utils.md#cross-seed-clear-cache) or
+[`cross-seed clear-indexer-failures`](../reference/utils.md#cross-seed-clear-indexer-failures).
+If your tracker has reached out to you about your usage of cross-seed, consider
+reducing your [`searchLimit`](./options.md#searchlimit) and using higher values
+for [`excludeRecentSearch`](./options.md#excluderecentsearch) and
+[`excludeOlder`](./options.md#excludeolder).
 
 :::caution
 

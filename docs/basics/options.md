@@ -8,11 +8,17 @@ sidebar_position: 3
 command line or in a configuration file. The priority is shown below.
 
 ```
-CLI > config file > defaults
+CLI > Config File > Fallback
 ```
 
 If you specify an option both on the command line and in the config file, the
 command line value will override the config file's value.
+
+:::danger
+
+DO NOT remove options from the config file, this will cause errors.
+
+:::
 
 ## Options on the command line
 
@@ -39,6 +45,7 @@ long-form option name as the `kebab-cased` variant. For example, the
 
 For instructions on creating and editing the config file, use the
 [getting started guide](./getting-started.mdx#2-create-a-config-file).
+DO NOT remove options from the config file, this will cause errors.
 
 :::tip
 
@@ -133,9 +140,9 @@ For instructions on creating and editing the config file, use the
 
 ### `delay`\*
 
-| Config file name | CLI short form | CLI Long form     | Format             | Default |
-| ---------------- | -------------- | ----------------- | ------------------ | ------- |
-| `delay`          | `-d <value>`   | `--delay <value>` | `number` (seconds) | `30`    |
+| Config File Name | CLI Short Form | CLI Long Form     | Format             | Config Default | Fallback |
+| ---------------- | -------------- | ----------------- | ------------------ | -------------- | -------- |
+| `delay`          | `-d <value>`   | `--delay <value>` | `number` (seconds) | `30`           | `30`     |
 
 When running a search with `cross-seed search` or using `searchCadence` in
 daemon mode, the `delay` option lets you set how long you want `cross-seed` to
@@ -167,9 +174,9 @@ delay: 30,
 
 ### `torznab`\*
 
-| Config file name | CLI short form | CLI Long form         | Format     | Default           |
-| ---------------- | -------------- | --------------------- | ---------- | ----------------- |
-| `torznab`        | `-T <urls...>` | `--torznab <urls...>` | `string[]` | `[]` (empty list) |
+| Config File Name | CLI Short Form | CLI Long Form         | Format     | Config Default | Fallback |
+| ---------------- | -------------- | --------------------- | ---------- | -------------- | -------- |
+| `torznab`        | `-T <urls...>` | `--torznab <urls...>` | `string[]` | `[]`           | `[]`     |
 
 List of Torznab URLs. You can use Jackett, Prowlarr, or indexer built-in Torznab
 implementations.
@@ -224,9 +231,9 @@ torznab: ["http://jackett:9117/api/v2.0/indexers/oink/results/torznab/api?apikey
 
 ### `sonarr`
 
-| Config file name | CLI short form | CLI Long form       | Format     | Default   |
-| ---------------- | -------------- | ------------------- | ---------- | --------- |
-| `sonarr`         |                | `--sonarr <url(s)>` | `string[]` | undefined |
+| Config File Name | CLI Short Form | CLI Long Form       | Format     | Config Default | Fallback |
+| ---------------- | -------------- | ------------------- | ---------- | -------------- | -------- |
+| `sonarr`         |                | `--sonarr <url(s)>` | `string[]` | `[]`           | `[]`     |
 
 :::info NOTICE
 
@@ -260,9 +267,9 @@ sonarr: ["http://sonarr:8989/?apikey=12345","http://sonarr4k:8990/?apikey=12345"
 
 ### `radarr`
 
-| Config file name | CLI short form | CLI Long form       | Format     | Default   |
-| ---------------- | -------------- | ------------------- | ---------- | --------- |
-| `radarr`         |                | `--radarr <url(s)>` | `string[]` | undefined |
+| Config File Name | CLI Short Form | CLI Long Form       | Format     | Config Default | Fallback |
+| ---------------- | -------------- | ------------------- | ---------- | -------------- | -------- |
+| `radarr`         |                | `--radarr <url(s)>` | `string[]` | `[]`           | `[]`     |
 
 :::warning NOTICE
 
@@ -296,9 +303,9 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 
 ### `useClientTorrents`
 
-| Config file name    | CLI short form | CLI Long form           | Format    | Default |
-| ------------------- | -------------- | ----------------------- | --------- | ------- |
-| `useClientTorrents` | N/A            | `--use-client-torrents` | `boolean` | `true`  |
+| Config File Name    | CLI Short Form | CLI Long Form           | Format    | Config Default | Fallback |
+| ------------------- | -------------- | ----------------------- | --------- | -------------- | -------- |
+| `useClientTorrents` | N/A            | `--use-client-torrents` | `boolean` | `true`         | `false`  |
 
 :::warning
 
@@ -325,9 +332,9 @@ useClientTorrents: true,
 
 ### `torrentDir`
 
-| Config file name | CLI short form | CLI long form         | Format   | Default |
-| ---------------- | -------------- | --------------------- | -------- | ------- |
-| `torrentDir`     | `-i <dir>`     | `--torrent-dir <dir>` | `string` |         |
+| Config File Name | CLI Short Form | CLI Long Form         | Format   | Config Default | Fallback |
+| ---------------- | -------------- | --------------------- | -------- | -------------- | -------- |
+| `torrentDir`     | `-i <dir>`     | `--torrent-dir <dir>` | `string` | `null`         | `null`   |
 
 :::danger qBittorrent
 
@@ -395,9 +402,9 @@ torrentDir: "C:\\torrents",
 
 ### `outputDir`
 
-| Config file name | CLI short form | CLI long form        | Format   | Default |
-| ---------------- | -------------- | -------------------- | -------- | ------- |
-| `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` | `null`  |
+| Config File Name | CLI Short Form | CLI Long Form        | Format   | Config Default | Fallback |
+| ---------------- | -------------- | -------------------- | -------- | -------------- | -------- |
+| `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` | `null`         | `null`   |
 
 :::danger
 
@@ -437,9 +444,9 @@ outputDir: "/path/to/folder",
 
 ### `dataDirs`
 
-| Config file name | CLI short form          | CLI long form           | Format      | Default |
-| ---------------- | ----------------------- | ----------------------- | ----------- | ------- |
-| `dataDirs`       | `--data-dirs <dirs...>` | `--data-dirs <dirs...>` | `string(s)` |         |
+| Config File Name | CLI Short Form          | CLI Long Form           | Format      | Config Default | Fallback |
+| ---------------- | ----------------------- | ----------------------- | ----------- | -------------- | -------- |
+| `dataDirs`       | `--data-dirs <dirs...>` | `--data-dirs <dirs...>` | `string(s)` | `[]`           | `[]`     |
 
 :::tip
 
@@ -488,9 +495,9 @@ dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 
 ### `maxDataDepth`
 
-| Config file name | CLI short form | CLI long form              | Format   | Default |
-| ---------------- | -------------- | -------------------------- | -------- | ------- |
-| `maxDataDepth`   | N/A            | `--max-data-depth <value>` | `number` | `2`     |
+| Config File Name | CLI Short Form | CLI Long Form              | Format   | Config Default | Fallback |
+| ---------------- | -------------- | -------------------------- | -------- | -------------- | -------- |
+| `maxDataDepth`   | N/A            | `--max-data-depth <value>` | `number` | `2`            | `2`      |
 
 :::tip
 
@@ -516,9 +523,9 @@ maxDataDepth: 2,
 
 ### `linkCategory`
 
-| Config file name | CLI short form | CLI long form                | Format   | Default           |
-| ---------------- | -------------- | ---------------------------- | -------- | ----------------- |
-| `linkCategory`   | N/A            | `--link-category <category>` | `string` | `cross-seed-link` |
+| Config File Name | CLI Short Form | CLI Long Form                | Format   | Config Default    | Fallback          |
+| ---------------- | -------------- | ---------------------------- | -------- | ----------------- | ----------------- |
+| `linkCategory`   | N/A            | `--link-category <category>` | `string` | `cross-seed-link` | `cross-seed-link` |
 
 `cross-seed` will use this category for all injected torrents when
 [linking](../tutorials/linking.md) is enabled.
@@ -544,9 +551,9 @@ linkCategory: "Category1",
 
 ### `duplicateCategories`
 
-| Config file name      | CLI short form | CLI long form            | Format    | Default |
-| --------------------- | -------------- | ------------------------ | --------- | ------- |
-| `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false` |
+| Config File Name      | CLI Short Form | CLI Long Form            | Format    | Config Default | Fallback |
+| --------------------- | -------------- | ------------------------ | --------- | -------------- | -------- |
+| `duplicateCategories` | N/A            | `--duplicate-categories` | `boolean` | `false`        | `false`  |
 
 `cross-seed` will inject using the original category, appending '.cross-seed',
 with the same save paths as your normal categories. For qBittorrent with linking
@@ -580,9 +587,9 @@ duplicateCategories: false,
 
 ### `linkDirs`
 
-| Config file name | CLI short form | CLI long form           | Format      | Default |
-| ---------------- | -------------- | ----------------------- | ----------- | ------- |
-| `linkDirs`       | N/A            | `--link-dirs <dirs...>` | `string(s)` |         |
+| Config File Name | CLI Short Form | CLI Long Form           | Format      | Config Default | Fallback |
+| ---------------- | -------------- | ----------------------- | ----------- | -------------- | -------- |
+| `linkDirs`       | N/A            | `--link-dirs <dirs...>` | `string(s)` | `[]`           | `[]`     |
 
 :::tip
 
@@ -641,9 +648,9 @@ linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
 
 ### `linkType`
 
-| Config file name | CLI short form       | CLI long form        | Format   | Default |
-| ---------------- | -------------------- | -------------------- | -------- | ------- |
-| `linkType`       | `--link-type <type>` | `--link-type <type>` | `string` |         |
+| Config File Name | CLI Short Form       | CLI Long Form        | Format   | Config Default | Fallback   |
+| ---------------- | -------------------- | -------------------- | -------- | -------------- | ---------- |
+| `linkType`       | `--link-type <type>` | `--link-type <type>` | `string` | `hardlink`     | `symlink`  |
 
 `cross-seed` will link (symlink/hardlink/reflink) in the method provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
@@ -669,9 +676,9 @@ linkType: "symlink",
 
 ### `matchMode`
 
-| Config file name | CLI short form        | CLI long form         | Format                         | Default   |
-| ---------------- | --------------------- | --------------------- | ------------------------------ | --------- |
-| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `strict`/`flexible`/`partial*` | `strict`  |
+| Config File Name | CLI Short Form        | CLI Long Form         | Format                         | Config Default | Fallback   |
+| ---------------- | --------------------- | --------------------- | ------------------------------ | -------------- | ---------- |
+| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `strict`/`flexible`/`partial*` | `flexible`     | `strict`   |
 
 `cross-seed` uses three types of matching algorithms `strict`, `flexible`, and
 `partial`. All types are equally safe. `strict` is required if you cannot use
@@ -713,9 +720,9 @@ matchMode: "strict",
 
 ### `skipRecheck`
 
-| Config file name | CLI short form | CLI long form    | Format    | Default |
-| ---------------- | -------------- | ---------------- | --------- | ------- |
-| `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `true`  |
+| Config File Name | CLI Short Form | CLI Long Form    | Format    | Config Default | Fallback |
+| ---------------- | -------------- | ---------------- | --------- | -------------- | -------- |
+| `skipRecheck`    | `N/A`          | `--skip-recheck` | `boolean` | `true`         | `true`   |
 
 Set this to `false` to recheck all torrents upon injection. Set this to `true`
 to only recheck necessary injections such those from [`partial`](#matchmode).
@@ -743,9 +750,9 @@ skipRecheck: false,
 
 ### `includeSingleEpisodes`
 
-| Config file name        | CLI short form | CLI long form               | Format    | Default |
-| ----------------------- | -------------- | --------------------------- | --------- | ------- |
-| `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false` |
+| Config File Name        | CLI Short Form | CLI Long Form               | Format    | Config Default | Fallback |
+| ----------------------- | -------------- | --------------------------- | --------- | -------------- | -------- |
+| `includeSingleEpisodes` | `N/A`          | `--include-single-episodes` | `boolean` | `false`        | `false`  |
 
 :::tip
 
@@ -787,9 +794,9 @@ includeSingleEpisodes: false,
 
 ### `seasonFromEpisodes`
 
-| Config file name     | CLI short form | CLI long form            | Format                         | Default |
-| -------------------- | -------------- | ------------------------ | ------------------------------ | ------- |
-| `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `null`  |
+| Config File Name     | CLI Short Form | CLI Long Form            | Format                         | Config Default | Fallback |
+| -------------------- | -------------- | ------------------------ | ------------------------------ | -------------- | -------- |
+| `seasonFromEpisodes` | `N/A`          | `--season-from-episodes` | `number` (decimal from 0 to 1) | `1`            | `null`   |
 
 `cross-seed` will also aggregate individual episodes into season packs for
 searching (when applicable) or to match with season packs from rss/announce.
@@ -823,9 +830,9 @@ seasonFromEpisodes: null, // will disable season pack from episodes
 
 ### `autoResumeMaxDownload`
 
-| Config file name        | CLI short form | CLI long form                | Format                   | Default             |
-| ----------------------- | -------------- | ---------------------------- | ------------------------ | ------------------- |
-| `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800` (50 MiB) |
+| Config File Name        | CLI Short Form | CLI Long Form                | Format                   | Config Default | Fallback   |
+| ----------------------- | -------------- | ---------------------------- | ------------------------ | -------------- | ---------- |
+| `autoResumeMaxDownload` | `N/A`          | `--auto-resume-max-download` | `number` (0 to 52428800) | `52428800`     | `52428800` |
 
 The amount remaining for an injected torrent in bytes for `cross-seed` to
 resume. For torrents with a larger amount remaining, you will need to manually
@@ -849,9 +856,9 @@ autoResumeMaxDownload: 0,
 
 ### `includeNonVideos`
 
-| Config file name   | CLI short form | CLI long form          | Format    | Default |
-| ------------------ | -------------- | ---------------------- | --------- | ------- |
-| `includeNonVideos` | N/A            | `--include-non-videos` | `boolean` | `false` |
+| Config File Name   | CLI Short Form | CLI Long Form          | Format    | Config Default | Fallback |
+| ------------------ | -------------- | ---------------------- | --------- | -------------- | -------- |
+| `includeNonVideos` | N/A            | `--include-non-videos` | `boolean` | `false`        | `false`  |
 
 :::warning NOTICE
 
@@ -882,9 +889,9 @@ includeNonVideos: false,
 
 ### `fuzzySizeThreshold`
 
-| Config file name     | CLI short form | CLI long form                    | Format                           | Default |
-| -------------------- | -------------- | -------------------------------- | -------------------------------- | ------- |
-| `fuzzySizeThreshold` | N/A            | `--fuzzy-size-threshold <value>` | `number` (decimal from 0 to 0.1) | `0.02`  |
+| Config File Name     | CLI Short Form | CLI Long Form                    | Format                           | Config Default | Fallback |
+| -------------------- | -------------- | -------------------------------- | -------------------------------- | -------------- | -------- |
+| `fuzzySizeThreshold` | N/A            | `--fuzzy-size-threshold <value>` | `number` (decimal from 0 to 0.1) | `0.02`         | `0.02`   |
 
 Increase this number to reject fewer torrents based on size. There is no
 guarantee that it will increase your match rate.
@@ -911,15 +918,18 @@ fuzzySizeThreshold: 0.02,
 
 ### `excludeOlder`
 
-| Config file name | CLI short form | CLI long form             | Format                          | Default |
-| ---------------- | -------------- | ------------------------- | ------------------------------- | ------- |
-| `excludeOlder`   | `-x <value>`   | `--exclude-older <value>` | `string` in the [ms][ms] format |         |
+| Config File Name | CLI Short Form | CLI Long Form             | Format                          | Config Default | Fallback    |
+| ---------------- | -------------- | ------------------------- | ------------------------------- | -------------- | ----------- |
+| `excludeOlder`   | `-x <value>`   | `--exclude-older <value>` | `string` in the [ms][ms] format | `2 weeks`      | `undefined` |
 
 :::tip
 
 [**How to ignore `excludeOlder` for a single search?**](./faq-troubleshooting.md#how-can-i-disable-the-time-based-exclude-options-in-a-cross-seed-search)
 
 [**What's the best way to add new trackers?**](./faq-troubleshooting.md#whats-the-best-way-to-add-new-trackers)
+
+If you prefer to spread out repeat searches for a longer safety net, use
+`excludeRecentSearch: "90 days"` and `excludeOlder: "450 days"`.
 
 :::
 
@@ -958,15 +968,18 @@ excludeOlder: "0s",
 
 ### `excludeRecentSearch`
 
-| Config file name      | CLI short form | CLI long form                     | Format                          | Default |
-| --------------------- | -------------- | --------------------------------- | ------------------------------- | ------- |
-| `excludeRecentSearch` | `-r <value>`   | `--exclude-recent-search <value>` | `string` in the [ms][ms] format |         |
+| Config File Name      | CLI Short Form | CLI Long Form                     | Format                          | Config Default | Fallback    |
+| --------------------- | -------------- | --------------------------------- | ------------------------------- | -------------- | ----------- |
+| `excludeRecentSearch` | `-r <value>`   | `--exclude-recent-search <value>` | `string` in the [ms][ms] format | `3 days`       | `undefined` |
 
 :::tip
 
 [**How to ignore `excludeRecentSearch` for a single search?**](./faq-troubleshooting.md#how-can-i-disable-the-time-based-exclude-options-in-a-cross-seed-search)
 
 [**What's the best way to add new trackers?**](./faq-troubleshooting.md#whats-the-best-way-to-add-new-trackers)
+
+If you prefer to spread out repeat searches for a longer safety net, use
+`excludeRecentSearch: "90 days"` and `excludeOlder: "450 days"`.
 
 :::
 
@@ -1002,9 +1015,9 @@ excludeRecentSearch: "2 weeks",
 
 ### `action`\*
 
-| Config file name | CLI short form     | CLI long form            | Format          | Default |
-| ---------------- | ------------------ | ------------------------ | --------------- | ------- |
-| `action`         | `-A <save/inject>` | `--action <save/inject>` | `save`/`inject` | `save`  |
+| Config File Name | CLI Short Form     | CLI Long Form            | Format          | Config Default | Fallback |
+| ---------------- | ------------------ | ------------------------ | --------------- | -------------- | -------- |
+| `action`         | `-A <save/inject>` | `--action <save/inject>` | `save`/`inject` | `inject`       | `save`   |
 
 `cross-seed` can either save the found cross-seeds, or inject them into your
 client. If you use `inject`, you will need to set up your client. Read more in
@@ -1027,9 +1040,9 @@ action: "inject",
 
 ### `rtorrentRpcUrl`
 
-| Config file name | CLI short form | CLI long form              | Format | Default |
-| ---------------- | -------------- | -------------------------- | ------ | ------- |
-| `rtorrentRpcUrl` | N/A            | `--rtorrent-rpc-url <url>` | URL    |         |
+| Config File Name | CLI Short Form | CLI Long Form              | Format | Config Default | Fallback    |
+| ---------------- | -------------- | -------------------------- | ------ | -------------- | ----------- |
+| `rtorrentRpcUrl` | N/A            | `--rtorrent-rpc-url <url>` | URL    | `undefined`    | `undefined` |
 
 The url of your **rTorrent** XMLRPC interface. Only relevant with
 [Injection](../tutorials/injection). Often ends in `/RPC2`.
@@ -1070,9 +1083,9 @@ rtorrentRpcUrl: "http://user:pass@localhost:8080/RPC2",
 
 ### `qbittorrentUrl`
 
-| Config file name | CLI short form | CLI long form             | Format | Default |
-| ---------------- | -------------- | ------------------------- | ------ | ------- |
-| `qbittorrentUrl` | N/A            | `--qbittorrent-url <url>` | URL    |         |
+| Config File Name | CLI Short Form | CLI Long Form             | Format | Config Default | Fallback    |
+| ---------------- | -------------- | ------------------------- | ------ | -------------- | ----------- |
+| `qbittorrentUrl` | N/A            | `--qbittorrent-url <url>` | URL    | `undefined`    | `undefined` |
 
 The url of your **qBittorrent** Web UI. Only relevant with
 [Injection](../tutorials/injection).
@@ -1102,9 +1115,9 @@ qbittorrentUrl: "http://user:pass@localhost:8080",
 
 ### `transmissionRpcUrl`
 
-| Config file name     | CLI short form | CLI long form                  | Format | Default |
-| -------------------- | -------------- | ------------------------------ | ------ | ------- |
-| `transmissionRpcUrl` | N/A            | `--transmission-rpc-url <url>` | URL    |         |
+| Config File Name     | CLI Short Form | CLI Long Form                  | Format | Config Default | Fallback    |
+| -------------------- | -------------- | ------------------------------ | ------ | -------------- | ----------- |
+| `transmissionRpcUrl` | N/A            | `--transmission-rpc-url <url>` | URL    | `undefined`    | `undefined` |
 
 The url of your **Transmission** RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
@@ -1134,9 +1147,9 @@ transmissionRpcUrl: "http://username:password@localhost:9091/transmission/rpc",
 
 ### `delugeRpcUrl`
 
-| Config file name | CLI short form | CLI long form            | Format | Default |
-| ---------------- | -------------- | ------------------------ | ------ | ------- |
-| `delugeRpcUrl`   | N/A            | `--deluge-rpc-url <url>` | URL    |         |
+| Config File Name | CLI Short Form | CLI Long Form            | Format | Config Default | Fallback    |
+| ---------------- | -------------- | ------------------------ | ------ | -------------- | ----------- |
+| `delugeRpcUrl`   | N/A            | `--deluge-rpc-url <url>` | URL    | `undefined`    | `undefined` |
 
 The url of your **Deluge** JSON-RPC Interface. Only relevant with
 [Injection](../tutorials/injection).
@@ -1166,9 +1179,9 @@ delugeRpcUrl: "http://:pass@localhost:8112/json",
 
 ### `notificationWebhookUrls`
 
-| Config file name          | CLI short form | CLI long form                           | Format | Default |
-| ------------------------- | -------------- | --------------------------------------- | ------ | ------- |
-| `notificationWebhookUrls` | N/A            | `--notification-webhook-urls <urls...>` | URL[]  |         |
+| Config File Name          | CLI Short Form | CLI Long Form                           | Format | Config Default | Fallback |
+| ------------------------- | -------------- | --------------------------------------- | ------ | -------------- | -------- |
+| `notificationWebhookUrls` | N/A            | `--notification-webhook-urls <urls...>` | URL[]  | `[]`           | `[]`     |
 
 `cross-seed` will send a POST request to these URLs with the following payload:
 
@@ -1220,9 +1233,9 @@ notificationWebhookUrls: ["http://apprise:8000/notify", "http://apprise:8001/not
 
 ### `host`
 
-| Config file name | CLI short form | CLI long form   | Format    | Default   |
-| ---------------- | -------------- | --------------- | --------- | --------- |
-| `host`           | N/A            | `--host <host>` | `host/ip` | `0.0.0.0` |
+| Config File Name | CLI Short Form | CLI Long Form   | Format    | Config Default | Fallback  |
+| ---------------- | -------------- | --------------- | --------- | -------------- | --------- |
+| `host`           | N/A            | `--host <host>` | `host/ip` | `0.0.0.0`      | `0.0.0.0` |
 
 In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
@@ -1246,9 +1259,9 @@ host: "1.3.3.7",
 
 ### `port`\*
 
-| Config file name | CLI short form | CLI long form   | Format   | Default |
-| ---------------- | -------------- | --------------- | -------- | ------- |
-| `port`           | `-p <port>`    | `--port <port>` | `number` | `2468`  |
+| Config File Name | CLI Short Form | CLI Long Form   | Format   | Config Default | Fallback |
+| ---------------- | -------------- | --------------- | -------- | -------------- | -------- |
+| `port`           | `-p <port>`    | `--port <port>` | `number` | `2468`         | `2468`   |
 
 In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
@@ -1269,9 +1282,9 @@ port: 3000,
 
 ### `rssCadence`
 
-| Config file name | CLI short form | CLI long form             | Format                          | Default |
-| ---------------- | -------------- | ------------------------- | ------------------------------- | ------- |
-| `rssCadence`     | N/A            | `--rss-cadence <cadence>` | `string` in the [ms][ms] format |         |
+| Config File Name | CLI Short Form | CLI Long Form             | Format                          | Config Default | Fallback    |
+| ---------------- | -------------- | ------------------------- | ------------------------------- | -------------- | ----------- |
+| `rssCadence`     | N/A            | `--rss-cadence <cadence>` | `string` in the [ms][ms] format | `30 minutes`   | `undefined` |
 
 :::tip
 
@@ -1313,9 +1326,9 @@ rssCadence: "20min",
 
 ### `searchCadence`
 
-| Config file name | CLI short form | CLI long form                | Format                          | Default |
-| ---------------- | -------------- | ---------------------------- | ------------------------------- | ------- |
-| `searchCadence`  |                | `--search-cadence <cadence>` | `string` in the [ms][ms] format |         |
+| Config File Name | CLI Short Form | CLI Long Form                | Format                          | Config Default | Fallback    |
+| ---------------- | -------------- | ---------------------------- | ------------------------------- | -------------- | ----------- |
+| `searchCadence`  |                | `--search-cadence <cadence>` | `string` in the [ms][ms] format | `1 day`        | `undefined` |
 
 :::tip
 
@@ -1353,9 +1366,9 @@ searchCadence: "4 weeks",
 
 ### `apiKey`
 
-| Config file name | CLI short form | CLI long form     | Format   | Default     |
-| ---------------- | -------------- | ----------------- | -------- | ----------- |
-| `apiKey`         |                | `--api-key <key>` | `string` | `undefined` |
+| Config File Name | CLI Short Form | CLI Long Form     | Format   | Config Default | Fallback    |
+| ---------------- | -------------- | ----------------- | -------- | -------------- | ----------- |
+| `apiKey`         |                | `--api-key <key>` | `string` | `undefined`    | `undefined` |
 
 :::info
 
@@ -1389,9 +1402,9 @@ apiKey: "abcdefghijklmn0pqrstuvwxyz",
 
 ### `snatchTimeout`
 
-| Config file name | CLI short form | CLI long form                | Format                          | Default      |
-| ---------------- | -------------- | ---------------------------- | ------------------------------- | ------------ |
-| `snatchTimeout`  |                | `--snatch-timeout <timeout>` | `string` in the [ms][ms] format | `30 seconds` |
+| Config File Name | CLI Short Form | CLI Long Form                | Format                          | Config Default | Fallback     |
+| ---------------- | -------------- | ---------------------------- | ------------------------------- | -------------- | ------------ |
+| `snatchTimeout`  |                | `--snatch-timeout <timeout>` | `string` in the [ms][ms] format | `30 seconds`   | `30 seconds` |
 
 This option applies to any snatch (download) of a .torrent file via Torznab. If
 a response is not given in the amount of time specified then it will consider
@@ -1420,9 +1433,9 @@ snatchTimeout: "15s",
 
 ### `searchTimeout`
 
-| Config file name | CLI short form | CLI long form                | Format                          | Default     |
-| ---------------- | -------------- | ---------------------------- | ------------------------------- | ----------- |
-| `searchTimeout`  |                | `--search-timeout <timeout>` | `string` in the [ms][ms] format | `2 minutes` |
+| Config File Name | CLI Short Form | CLI Long Form                | Format                          | Config Default | Fallback    |
+| ---------------- | -------------- | ---------------------------- | ------------------------------- | -------------- | ----------- |
+| `searchTimeout`  |                | `--search-timeout <timeout>` | `string` in the [ms][ms] format | `2 minutes`    | `2 minutes` |
 
 This option applies to any search via Torznab. If the search response is not
 given in the amount of time specified then it will consider the search failed.
@@ -1450,9 +1463,9 @@ searchTimeout: "20s",
 
 ### `searchLimit`
 
-| Config file name | CLI short form | CLI long form             | Format   | Default     |
-| ---------------- | -------------- | ------------------------- | -------- | ----------- |
-| `searchLimit`    |                | `--search-limit <number>` | `number` | `undefined` |
+| Config File Name | CLI Short Form | CLI Long Form             | Format   | Config Default | Fallback    |
+| ---------------- | -------------- | ------------------------- | -------- | -------------- | ----------- |
+| `searchLimit`    |                | `--search-limit <number>` | `number` | `400`          | `undefined` |
 
 This option applies to any search Torznab. This option will stop searching after
 the number of searches meets the number specified.
@@ -1481,9 +1494,9 @@ searchLimit: 150,
 
 ### `flatLinking`
 
-| Config file name | CLI short form | CLI long form    | Format    | Default |
-| ---------------- | -------------- | ---------------- | --------- | ------- |
-| `flatLinking`    | N/A            | `--flat-linking` | `boolean` | `false` |
+| Config File Name | CLI Short Form | CLI Long Form    | Format    | Config Default | Fallback |
+| ---------------- | -------------- | ---------------- | --------- | -------------- | -------- |
+| `flatLinking`    | N/A            | `--flat-linking` | `boolean` | `false`        | `false`  |
 
 :::caution Be Advised
 
@@ -1538,9 +1551,9 @@ flatLinking: false,
 
 ### `blockList`
 
-| Config file name | CLI short form | CLI long form            | Format      | Default |
-| ---------------- | -------------- | ------------------------ | ----------- | ------- |
-| `blockList`      | N/A            | `--block-list <strings>` | `string(s)` |         |
+| Config File Name | CLI Short Form | CLI Long Form            | Format      | Config Default | Fallback |
+| ---------------- | -------------- | ------------------------ | ----------- | -------------- | -------- |
+| `blockList`      | N/A            | `--block-list <strings>` | `string(s)` | `[]`           | `[]`     |
 
 :::tip
 
