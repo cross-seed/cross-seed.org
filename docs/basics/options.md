@@ -848,9 +848,9 @@ autoResumeMaxDownload: 0,
 
 ### `ignoreNonRelevantFilesToResume`
 
-| Config file name                 | CLI short form | CLI long form                           | Format    | Default |
-| -------------------------------- | -------------- | --------------------------------------- | --------- | ------- |
-| `ignoreNonRelevantFilesToResume` | `N/A`          | `--ignore-non-relevant-files-to-resume` | `boolean` | `false` |
+| Config File Name                 | CLI Short Form | CLI Long Form                           | Format    | Config Default | Fallback |
+| -------------------------------- | -------------- | --------------------------------------- | --------- | -------------- | -------- |
+| `ignoreNonRelevantFilesToResume` | `N/A`          | `--ignore-non-relevant-files-to-resume` | `boolean` | `false`        | `false`  |
 
 If set to `true` and the amount remaining is above
 [autoResumeMaxDownload](#autoresumemaxdownload), resume if accumulated size of
