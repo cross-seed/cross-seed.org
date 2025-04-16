@@ -18,7 +18,7 @@ robust and can be leveraged manually or through automation external to `cross-se
 
 `cross-seed` must share the same
 [user and group](../basics/getting-started.mdx#with-docker) permissions as the torrent
-client to prevent errors.
+clients to prevent errors.
 
 :::
 
@@ -30,20 +30,10 @@ You need to configure [`linking`](./linking.md) or use [`duplicateCategories: tr
 
 ::::
 
-### `rTorrent` setup
-
-`cross-seed` will inject torrents into **rTorrent** with a `cross-seed` label.
-
 1. Edit your config file:
     1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`rtorrentRpcUrl`](../basics/options#rtorrentrpcurl) option.
-       It should look like an `http` url that looks like
-       `http://user:pass@localhost:8080/rutorrent/RPC2` (if you have ruTorrent
-       installed). See the [reference](../basics/options#rtorrentrpcurl) for
-       more details.
-        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to rTorrent.
+    2. Set your [`torrentClients`](../basics/options#torrentclients) option.
+2. Start or restart `cross-seed` and confirm all clients was successfully connected.
 
 :::tip Docker
 
@@ -54,40 +44,6 @@ Make sure that your `cross-seed` container has **read** access to the **data
 directories** of your torrents, mapped to the same path as **rTorrent**.
 
 :::
-
-### `qBittorrent` setup
-
-1. Edit your config file:
-    1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`qbittorrentUrl`](../basics/options#qbittorrenturl) option.
-       It should look like an `http` url that looks like
-       `http://user:pass@localhost:8080/` See the
-       [reference](../basics/options#qbittorrenturl) for more details.
-        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to qBittorrent.
-
-### `Transmission` setup
-
-1. Edit your config file:
-    1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`transmissionRpcUrl`](../basics/options#rtorrentrpcurl) option.
-       It should look like an `http` url that looks like
-       `http://user:pass@localhost:9091/transmission/rpc`
-        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to Transmission.
-
-### `Deluge` setup
-
-1. Edit your config file:
-    1. Set your [`action`](../basics/options#action) option to `inject`.
-    2. Set your [`delugeRpcUrl`](../basics/options#delugerpcurl) option.
-       It should look like an `http` url that looks like
-       `http://:pass@localhost:8112/json` (the colon before `pass` is intentional)
-        - [You may need to urlencode your username and password if they contain special characters](../basics/faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
-2. Start or restart `cross-seed`. The logs at startup will tell you if
-   `cross-seed` was able to connect to Deluge.
 
 ## Manual or Scheduled Injection
 
