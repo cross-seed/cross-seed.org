@@ -37,18 +37,33 @@ tracker automation) performs:
 
 #### RSS requests
 
+-   These are performed by [`rssCadence`](../basics/options.md#rsscadence) and
+    [`cross-seed rss`](./utils.md#cross-seed-rss).
 -   `cross-seed` initiates an RSS request by searching with an empty query.
     These are usually cached and updated regularly, so the tracker's server is
     sending you a precomputed file.
--   These are cheap in both compute and network I/O, so we generally don't worry
-    about them.
+-   These are cheap in both compute and network I/O.
 
 #### Search requests
 
+-   These are performed by [`searchCadence`](../basics/options.md#searchcadence),
+    [`cross-seed search`](./utils.md#cross-seed-search), and
+    [`webhook searches`](../tutorials/triggering-searches.md).
 -   `cross-seed` searches for movie and TV show names individually.
 -   The tracker's server has to scan through its catalog looking for releases
     with similar names.
 -   These are expensive in compute, but cheap in network I/O.
+
+#### Announce requests
+
+-   These are performed by [`Announce Matching`](../tutorials/announce.md).
+-   A tool such as [`autobrr`](https://autobrr.com/) uses IRC to listen for
+    announces from the tracker and then sends them to `cross-seed`.
+-   This has zero load on the tracker since they create the announce once and
+    publish it in the IRC channel for everyone to see, regardless of the number
+    of users. Only the snatches from announce create load on the tracker, if it
+    passes `cross-seed`'s pre-snatch checks.
+-   These are completely free in network I/O and compute.
 
 #### Snatches
 
@@ -74,12 +89,16 @@ backlog slowly.
 
 It's usually not worth it to bother cross-seeding episodes since they will be
 deleted in the near future (when season packs come out). By default,
-`cross-seed` skips episode torrents.
+`cross-seed` skips episode torrents for `search` and `rss` with
+[`includeSingleEpisodes: false`](../basics/options.md#includesingleepisodes).
+However for [`Webhook Triggered Searches`](../tutorials/triggering-searches.md)
+and [`Announce Matching`](../tutorials/announce.md), `cross-seed` treats these
+differently since these are triggered on a new download or upload, meaning a
+season pack is unlikely to be available.
 
 If you are racing or never download season packs, and would like to **turn on**
 episode searches, **set
-[`includeSingleEpisodes`](../basics/options.md#includesingleepisodes) to
-`true`**.
+[`includeSingleEpisodes: true`](../basics/options.md#includesingleepisodes)**.
 
 :::caution
 
@@ -95,16 +114,10 @@ data) search.
 
 :::
 
-### Skipping torrents with unknown/extra files
+### Skipping torrents with significant unknown/extra files
 
-Torrents that are "purely" video files are the most likely to find matches. By
-default, `cross-seed` restricts searches to just these torrents.
-
-This excludes anything that is not movie or TV content, but will also exclude
-anything that contains `.nfo`, `.srt`, `.txt` or other non-video files, even if
-the primary file is a video file. This is restrictive, but it works well with
-[`matchMode: "strict"`](../basics/options.md#matchmode) because it only allows the
-torrents most likely to find perfect matches.
+This behavior is covered in detail
+[`here`](../v6-migration.md#updated-includenonvideos-behavior).
 
 ### Backlog searching 400 items per day
 
@@ -139,11 +152,12 @@ This is configurable with [`searchLimit`](../basics/options.md#searchlimit).
 they can change over time.
 
 For this reason, `cross-seed` enforces that you have configured the
-`excludeRecentSearch` and `excludeOlder` options, and its defaults are set such
-that `cross-seed` will search for things recently downloaded a few times, but
-only search once for things downloaded far in the past. These settings will
-build your backlog of cross-seeds, and sufficiently catch new releases trickling
-to other trackers.
+[`excludeRecentSearch`](../basics/options.md#excluderecentsearch) and
+[`excludeOlder`](../basics/options.md#excludeolder) options, and its defaults
+are set such that `cross-seed` will search for things recently downloaded a few
+times, but only search once for things downloaded far in the past. These
+settings will build your backlog of cross-seeds, and sufficiently catch new
+releases trickling to other trackers.
 
 ### Pausing between searches
 
