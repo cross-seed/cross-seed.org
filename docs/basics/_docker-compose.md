@@ -5,7 +5,7 @@ services:
   cross-seed:
     image: ghcr.io/cross-seed/cross-seed:6
     container_name: cross-seed
-    user: 1000:1000 # optional but recommended
+    user: 1000:1000 # this must match your torrent client (cross-seed does not support using PGID and PUID)
     ports:
       - "2468:2468"
     volumes:
