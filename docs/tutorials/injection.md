@@ -25,6 +25,10 @@ You need to configure [`linking`](./linking.md) or use [`duplicateCategories: tr
 
 [**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
 
+`cross-seed` must share the same
+[user and group](../basics/getting-started.mdx#with-docker) permissions as the torrent
+client to prevent errors.
+
 :::
 
 ### `rTorrent` setup
@@ -112,9 +116,12 @@ existing folder structure.
 
 :::tip
 To achieve optimal injection behavior, adding the prefix `[mediatype][tracker-name]` as you would normally see it in
-[`outputDir`](../basics/options.md#outputdir) when saving the torrent file is recommended.
+[`outputDir`](../basics/options.md#outputdir) when saving the torrent file is recommended (e.g. `[movie][ProwlarrName]abc.torrent`).
 
 Current "mediatypes" support are `episode`, `pack`, `movie`, `anime`, `video`, `audio`, `book`, and `unknown`.
+
+Even though the mediatype is required to be valid, it is not currently used during the injection process. This means that if you have lots of torrents files to inject, you can just use `[unknown][tracker-name]` as a prefix for all of them.
+
 :::
 
 This is the same format in which `cross-seed` normally saves .torrent files. If you do not specify both of these parameters,

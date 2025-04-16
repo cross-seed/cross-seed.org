@@ -1237,7 +1237,7 @@ notificationWebhookUrls: ["http://apprise:8000/notify", "http://apprise:8001/not
 | ---------------- | -------------- | --------------- | --------- | -------------- | --------- |
 | `host`           | N/A            | `--host <host>` | `host/ip` | `0.0.0.0`      | `0.0.0.0` |
 
-In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
+In [Daemon Mode](./managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
 the host to bind to and listen on.
 
@@ -1263,7 +1263,7 @@ host: "1.3.3.7",
 | ---------------- | -------------- | --------------- | -------- | -------------- | -------- |
 | `port`           | `-p <port>`    | `--port <port>` | `number` | `2468`         | `2468`   |
 
-In [Daemon Mode](../basics/managing-the-daemon), `cross-seed` runs a webserver
+In [Daemon Mode](./managing-the-daemon), `cross-seed` runs a webserver
 listening for a few types of HTTP requests. You can use this option to change
 the port it listens on.
 
@@ -1294,7 +1294,7 @@ port: 3000,
 
 :::
 
-In [Daemon Mode](../basics/managing-the-daemon), with this option enabled,
+In [Daemon Mode](./managing-the-daemon), with this option enabled,
 `cross-seed` will run periodic RSS searches on your configured indexers to check
 if any new uploads match torrents you already own. Setting this option to
 `null`, or not specifying it at all, will disable the feature.
@@ -1338,7 +1338,7 @@ rssCadence: "20min",
 
 :::
 
-In [Daemon Mode](../basics/managing-the-daemon), with this option enabled,
+In [Daemon Mode](./managing-the-daemon), with this option enabled,
 `cross-seed` will run periodic searches of your torrents (respecting your
 `includeEpisodes`, `includeNonVideos`, `excludeOlder`, and `excludeRecentSearch`
 settings).
@@ -1372,7 +1372,7 @@ searchCadence: "4 weeks",
 
 :::info
 
-[`apiKey`](../basics/options.md#apikey) is disabled in the config file by
+`apiKey` is disabled in the config file by
 default, if you want to specify a key set it to a valid key (24 character min).
 
 :::

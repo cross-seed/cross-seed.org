@@ -420,7 +420,8 @@ visibility, this is preventable.
 ### My torrents are injected (qBittorrent) but show `missing files` error!
 
 If you see injected torrents show up with a `missing files` error, it is likely
-due to permissions or incorrect paths/mounts/volumes. The logs from qBittorrent
+due to incorrect paths/mounts/volumes or permissions (`cross-seed` must have
+the same [user and group](./getting-started.mdx#with-docker) as your torrent clients). The logs from qBittorrent
 will usually state the specific reason.
 
 ### I'm getting errors in cross-seed on hostingby.design seedbox
