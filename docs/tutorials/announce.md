@@ -40,16 +40,16 @@ cross-seed.
 
 #### Configuring Retries
 
-1. In `autobrr`, go to: `Filters > YOUR_CROSS_SEED_FILTER > External > Retry`
-2. Set `RETRY HTTP STATUS CODE(S)` to `202`
-3. Set `MAXIMUM RETRY ATTEMPTS` to `100`
-4. Set `RETRY_DELAY IN SECONDS` to `900` (15 minutes)
-5. Click `Save` and repeat for any other filters you have set up for `cross-seed`.
-
-This will retry any announces where the source torrent is still downloading every 15 minutes for a day. If the torrent finishes downloading after this window, `cross-seed` will still inject the torrent with its internal retry system but `autobrr` will not have considered it a success.
-
 :::caution
 
 You can adjust the retry delay and attempts to your liking, however `autobrr` will also retry if requests fail. This means that if `cross-seed` was down for an extended period, `autobrr` could overwhelm `cross-seed` with retry requests as soon as it comes back online. You would need to restart both `autobrr` and `cross-seed` to escape this situation.
 
 :::
+
+1. In `autobrr`, go to `Filters > YOUR_CROSS_SEED_FILTER > External > Retry`
+2. Set `RETRY HTTP STATUS CODE(S)` to `202`
+3. Set `MAXIMUM RETRY ATTEMPTS` to `100`
+4. Set `RETRY DELAY IN SECONDS` to `900` (15 minutes)
+5. Click `Save` and repeat for any other filters you have set up for `cross-seed`.
+
+This will retry any announces where the source torrent is still downloading every 15 minutes for a day. If the torrent finishes downloading after this window, `cross-seed` will still inject the torrent with its internal retry system but `autobrr` will not have considered it a success.
