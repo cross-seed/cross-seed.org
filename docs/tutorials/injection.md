@@ -134,9 +134,9 @@ for retrying have already been filtered for matching.
 
 If the .torrent files follow the naming format above, they will be elligible for cleanup if they fall into one of these categories:
 
--   The torrent is in client and complete (successful injection or already exists)
--   The torrent has no matches (source torrent/data was likely removed)
--   The torrent matches your blocklist
+- The torrent is in client and complete (successful injection or already exists)
+- The torrent has no matches (source torrent/data was likely removed)
+- The torrent matches your blocklist
 
 Stalled torrents (either the cross seeded torrent or it's source) will require your intervention before `cross-seed` will remove the .torrent file.
 You will need to remove these torrents from your client and the .torrent file from outputDir. If you wish to keep them in client, only remove their .torrent file from outputDir.

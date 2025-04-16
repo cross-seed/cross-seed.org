@@ -144,6 +144,12 @@ the new structure, see the
 
 ### autobrr Update
 
+:::tip
+
+[**How can I use `autobrr` with `cross-seed`?**](./tutorials/announce.md)
+
+:::
+
 Due to the above updates, you might notice inconsistencies in the tracker
 subdirectories created through `/api/announce` codepaths as compared to a
 periodic search. These inconsistencies are only cosmetic and won't affect
@@ -185,7 +191,7 @@ announce will _ALWAYS_ be cross seeded, if possible, even if
 :::tip
 
 To prevent cross-seeding episodes from announce, configure your filters in
-[autobrr](#autobrr-update).
+[autobrr](./tutorials/announce.md#setting-up-announce-matching).
 
 :::
 
@@ -372,7 +378,7 @@ We have improved the performance and accuracy of matching new candidates against
 content you already have (now with [`dataDirs`](./basics/options.md#datadirs) support).
 RSS scans now support pagination in case `cross-seed` experiences downtime.
 The `/api/announce` endpoint has slightly modified its HTTP status codes to better
-integrate with [**Autobrr**](https://github.com/autobrr/autobrr).
+[integrate with `autobrr`](./reference/api.md#post-apiannounce).
 
 ### Sonarr TV Library Searching
 

@@ -509,27 +509,8 @@ to compare two torrent files and see exactly how they differ.
 
 ### How can I use [**autobrr**](https://autobrr.com/) with cross-seed?
 
-If you are using [**autobrr**](https://autobrr.com/) to cross-seed, you can use
-the [`/api/announce`](../reference/api#post-apiannounce) endpoint, rather than
-[`/api/webhook`](../reference/api#post-apiwebhook), to match against what
-`cross-seed`
-[already knows about your available media](../reference/architecture#prefiltering)
-(instead of searching your indexers every time).
-
-:::tip
-
-If you want to filter announces even further, consider setting up more specific
-filters or using [**omegabrr**](https://github.com/autobrr/omegabrr) (which
-filters based on monitored items in Arrs) to minimize needless calls to
-cross-seed.
-
-:::
-
-:::info
-
-For more help setting this up, you can head over to the
-[autobrr documentation for 3rd-party-tools](https://autobrr.com/3rd-party-tools/cross-seed#cross-seed-filter).
-:::
+Instructions for using `autobrr` with `cross-seed` can be found in the
+[`Announce Matching Tutorial`](../tutorials/announce.md).
 
 ### My tracker is mad at me for snatching too many .torrent files!
 

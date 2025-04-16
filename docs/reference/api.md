@@ -101,6 +101,12 @@ curl -XPOST http://localhost:2468/api/webhook \
 
 ## POST `/api/announce`
 
+:::tip
+
+[**How to configure matches from announce?**](../tutorials/announce.md)
+
+:::
+
 Use this endpoint to feed announces into cross-seed. For each `announce`,
 `cross-seed` will check if the provided search criteria match any torrents you
 already have. If found, it will run our matching algorithm to verify that the
@@ -119,15 +125,6 @@ This endpoint returns `200` if your request was received and a completed match
 was found in your client, if a match was found to be incomplete (still
 downloading) then `cross-seed` will return the status code `202`, and if no
 match was found `cross-seed` will respond with a `204 No Content`.
-
-:::tip
-
-[**How to configure matches from announce?**](../tutorials/announce.md)
-
-**You can use the "retry on status code" function (_code: 202_) in autobrr's
-filter settings to retry currently incomplete (downloading) torrents**
-
-:::
 
 ### Supported formats
 

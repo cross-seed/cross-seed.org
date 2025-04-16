@@ -32,7 +32,7 @@ same opinions, and we haven't spoken to all of them.
 
 :::info What is "load"?
 
-We can break **load** into 3 distinct actions that `cross-seed` (and all other
+We can break **load** into 4 distinct actions that `cross-seed` (and all other
 tracker automation) performs:
 
 #### RSS requests
