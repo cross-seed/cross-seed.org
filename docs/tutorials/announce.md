@@ -14,7 +14,7 @@ The most common way to connect to a trackers IRC announce channel is through [`a
 
 :::warning
 
-Snatches from announce will happen directly with the tracker, it will not be proxied through `Prowlarr/Jackett` like all other requests `cross-seed` makes. For most users, this is not a problem, but if you are using a proxy or VPN on `Prowlarr/Jackett`, you will need to ensure that your proxy or VPN is also set up for `cross-seed` to avoid any issues.
+Snatches from announce will happen directly with the tracker, it will not be proxied through `Prowlarr/Jackett` unlike all other requests `cross-seed` makes. For most users, this is not a problem, but if you are using a proxy or VPN on `Prowlarr/Jackett`, you will need to ensure that your proxy or VPN is also set up for `cross-seed` to avoid any issues.
 
 :::
 
