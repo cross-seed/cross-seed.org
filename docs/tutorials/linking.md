@@ -121,7 +121,7 @@ links created in your `linkDirs` pointing to the original files.
 
 :::
 
-:::note Docker Users
+:::info Docker Users
 
 **For Docker Users**: there are a few more specific requirements for linking to
 work properly.
