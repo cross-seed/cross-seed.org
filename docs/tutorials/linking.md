@@ -196,8 +196,6 @@ will throw an `ENOENT: no such file or directory` error.
 #### When to use symlinks
 
 -   Your setup doesn't move files around
--   You have separate drives (e.g. for leeching vs seeding) and therefore cannot
-    use hardlinks
 -   You want to stop cross-seeding torrents when originals are deleted, but
     don't use [**qbit_manage**](https://github.com/StuffAnThings/qbit_manage)
     -   This will present as cross-seeded torrents with missing files errors in

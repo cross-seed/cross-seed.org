@@ -97,7 +97,7 @@ This heavily reduces "useless" searches and makes it more feasible to use
 
 Similar [search requests](#search-requests) are grouped together in a run and
 share the results if applicable. This prevents duplicate queries for searchees
-that differ only be release group, source, resolution, etc. These results are
+that differ only by release group, source, resolution, etc. These results are
 not cached long term as they can change over time.
 
 `cross-seed` also caches the [snatches](#snatches) it makes. This means on
