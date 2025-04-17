@@ -95,14 +95,14 @@ This heavily reduces "useless" searches and makes it more feasible to use
 
 ### Preventing repetition
 
-Similar search requests ([as defined above](#drawbacks)) are grouped together
-in a run and share the results if applicable. This prevents duplicate queries
-for searchees that differ only be release group, source, resolution, etc. These
-results are not cached long term as they can change over time.
+Similar [search requests](#search-requests) are grouped together in a run and
+share the results if applicable. This prevents duplicate queries for searchees
+that differ only be release group, source, resolution, etc. These results are
+not cached long term as they can change over time.
 
-`cross-seed` also caches the snatches ([as defined above](#drawbacks)) it
-makes. This means on subsequent searches, `cross-seed` will never snatch
-the same torrent twice—the biggest load on a tracker.
+`cross-seed` also caches the [snatches](#snatches) it makes. This means on
+subsequent searches, `cross-seed` will never snatch the same torrent twice—the
+biggest load on a tracker.
 
 ### Parsing bad titles
 
@@ -123,9 +123,9 @@ torrents it searches, and by working through its backlog slowly.
 ### Delay between searches
 
 As of version 6, `cross-seed` enforces a minimum 30 second
-[`delay`](../basics/options.md#delay) between individual search requests
-([as defined above](#drawbacks)) during any bulk search. This only applies to
-bulk searches, not between each
+[`delay`](../basics/options.md#delay) between individual
+[search requests](#search-requests) during any bulk search. This only applies
+to bulk searches, not between each
 [webhook-triggered search](../tutorials/triggering-searches.md).
 
 ### Preventing unnecessary searches
@@ -177,10 +177,9 @@ This behavior is covered in detail
 
 ### Limiting search volume
 
-By default, `cross-seed` only make 400 search requests
-([as defined above](#drawbacks)) from your backlog per day. This is measured by
-the number of unique search queries that `cross-seed` makes per run. We do this
-for a few reasons:
+By default, `cross-seed` only make 400 [search requests](#search-requests) from
+your backlog per day. This is measured by the number of unique search queries
+that `cross-seed` makes per run. We do this for a few reasons:
 
 -   It eases you into the process of cross seeding. This limit is only
     consequential when first starting out.
