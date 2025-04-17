@@ -21,6 +21,12 @@ Torrent-based is more robust, and prevents some performance issues with `dataDir
 wherein `cross-seed` has to frequently scan your `dataDirs` and watch all of their
 children for changes.
 
+If you have multiple clients and/or linkDirs configured, `cross-seed` will
+inject data-based matches into the first valid
+[`torrentClient`](../basics/options.md#torrentclients) along with the first
+valid [`linkDir`](../basics/options.md#linkdirs). Custom routing is not
+supported at this time.
+
 ## General Usage for [`dataDirs`](../basics/options.md#datadirs)
 
 :::info dataDirs Usage
