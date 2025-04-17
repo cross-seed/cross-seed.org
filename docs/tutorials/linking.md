@@ -44,7 +44,7 @@ it is not recommended for new users.
 
 :::
 
-:::danger
+::::danger
 
 **`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
 **(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
@@ -57,7 +57,7 @@ sonarr or radarr.
 
 :::
 
-:::
+::::
 
 To set up linking, you need to define at least one directory where `cross-seed` will create
 links to your existing files and set the
@@ -82,9 +82,11 @@ or where drive pooling is impossible.
 
 :::
 
-In nearly all cases, your linkDir should reside in your torrent client download
-directory. In the example below, your torrent client download directory would be
-`/mnt/user/data/torrents/`.
+### Configuring [`linkDirs`](../basics/options.md#linkdirs)
+
+In nearly all cases, your linkDirs should reside in your torrent client
+download directory. In the example below, your torrent client download
+directory would be `/mnt/user/data/torrents/`.
 
 ```
 mnt/
@@ -100,7 +102,7 @@ mnt/
 │  |  |  ├─ Show/
 ```
 
-Your `linkDir` would then be:
+Your `linkDirs` would then be:
 
 ```js
 module.exports = {
@@ -119,7 +121,7 @@ links created in your `linkDirs` pointing to the original files.
 
 :::
 
-### Docker Users
+:::note Docker Users
 
 **For Docker Users**: there are a few more specific requirements for linking to
 work properly.
@@ -142,6 +144,8 @@ module.exports = {
     linkDirs: ["/data/torrents/SomeLinkDirName"],
 };
 ```
+
+:::
 
 ## Hardlinks vs Symlinks vs Reflinks
 
