@@ -426,7 +426,7 @@ will usually state the specific reason.
 
 ### I'm getting errors in cross-seed on hostingby.design seedbox
 
-:::tip
+:::info
 
 Although we are providing the information given from hostingby.design, we are
 not able to support this directly. This is just what was passed to us. Contact

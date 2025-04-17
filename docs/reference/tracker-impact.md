@@ -8,7 +8,7 @@ benefits for trackers, it also has some drawbacks. In this doc, we will outline
 the benefits and drawbacks, then discuss strategies you can use to minimize
 `cross-seed`'s footprint.
 
-### Benefits
+## Benefits
 
 The benefits a tracker sees from automatic cross-seeding largely center around
 retention. Having more seeders leads to healthier swarms, longer retention, and
@@ -19,7 +19,7 @@ backfill uploads are not particularly well-seeded because the users have already
 downloaded them from elsewhere. But any `cross-seed` users will automatically
 pick up the new releases and reliably seed them, increasing redundancy.
 
-### Drawbacks
+## Drawbacks
 
 Private BitTorrent trackers are small-budget hobby software projects that run on
 donations and the good will of the sysop. They do not run on infrastructure like
@@ -35,7 +35,7 @@ same opinions, and we haven't spoken to all of them.
 We can break **load** into 4 distinct actions that `cross-seed` (and all other
 tracker automation) performs:
 
-#### RSS requests
+### RSS requests
 
 -   These are performed by [`rssCadence`](../basics/options.md#rsscadence) and
     [`cross-seed rss`](./utils.md#cross-seed-rss).
@@ -44,7 +44,7 @@ tracker automation) performs:
     sending you a precomputed file.
 -   These are cheap in both compute and network I/O.
 
-#### Search requests
+### Search requests
 
 -   These are performed by [`searchCadence`](../basics/options.md#searchcadence),
     [`cross-seed search`](./utils.md#cross-seed-search), and
@@ -56,7 +56,7 @@ tracker automation) performs:
     [`id-searching`](../tutorials/id-searching.md) not only yields far better
     results but is also a lighter load on the tracker database.
 
-#### Announce requests
+### Announce requests
 
 -   These are performed by [`Announce Matching`](../tutorials/announce.md).
 -   A tool such as [`autobrr`](https://autobrr.com/) uses IRC to listen for
@@ -67,7 +67,7 @@ tracker automation) performs:
     passes `cross-seed`'s pre-snatch checks.
 -   These are completely free in network I/O and compute.
 
-#### Snatches
+### Snatches
 
 -   `cross-seed` will snatch any torrent that has the same release group,
     source, resolution, and rough size as your owned torrent.
@@ -80,12 +80,63 @@ tracker automation) performs:
 
 :::
 
+## How `cross-seed` Minimizes Load on Trackers
+
+`cross-seed` is designed with these drawbacks in mind. While it's a tool for
+users, it should be as friendly as possible to trackers.
+
+### Category-aware searching
+
+`cross-seed` queries each indexer for the media
+[Torznab categories](https://inhies.github.io/Newznab-API/categories/#predefined-categories)
+it supports, and skip searching for any media type the indexer doesn't carry.
+This heavily reduces "useless" searches and makes it more feasible to use
+`cross-seed` with non-video trackers.
+
+### Preventing repetition
+
+Similar search requests ([as defined above](#drawbacks)) are grouped together
+in a run and share the results if applicable. This prevents duplicate queries
+for searchees that differ only be release group, source, resolution, etc. These
+results are not cached long term as they can change over time.
+
+`cross-seed` also caches the snatches ([as defined above](#drawbacks)) it
+makes. This means on subsequent searches, `cross-seed` will never snatch
+the same torrent twice—the biggest load on a tracker.
+
+### Parsing bad titles
+
+`cross-seed` will parse bad titles to add aditional information to the search
+query. For example, a torrent titled "Season 1" could be parsed to "Show S1" if
+the information is available within its files. Similarly for
+[`data-based searches`](../tutorials/data-based-matching.md), `cross-seed` can
+parse the standard Sonarr and Radarr folder structures for more meaningful
+searches. It will also outright reject searches that cannot be salvaged.
+
 ## How `cross-seed`'s Default Settings Minimize Load on Trackers
 
-As of version 6, `cross-seed`'s default configuration aims to minimize load by
-being selective about which torrents it searches, and by working through its
-backlog slowly.
-[See the latest default config file.](https://github.com/cross-seed/cross-seed/blob/master/src/config.template.cjs)
+For applicable options, `cross-seed` limits the values to prevent badly
+configured setups which harms both the user and the trackers. The default
+configuration also aims to minimize load by being selective about which
+torrents it searches, and by working through its backlog slowly.
+
+### Delay between searches
+
+As of version 6, `cross-seed` enforces a minimum 30 second
+[`delay`](../basics/options.md#delay) between individual search requests
+([as defined above](#drawbacks)) during any bulk search. This only applies to
+bulk searches, not between each
+[webhook-triggered search](../tutorials/triggering-searches.md).
+
+### Preventing unnecessary searches
+
+`cross-seed` enforces that you have configured the
+[`excludeRecentSearch`](../basics/options.md#excluderecentsearch) and
+[`excludeOlder`](../basics/options.md#excludeolder) options, and its defaults
+are set such that `cross-seed` will search for things recently downloaded a few
+times, but only search once for things downloaded far in the past. These
+settings will build your backlog of cross-seeds, and sufficiently catch new
+releases trickling to other trackers.
 
 ### Skipping episodes
 
@@ -97,6 +148,9 @@ However for [`Webhook Triggered Searches`](../tutorials/triggering-searches.md)
 and [`Announce Matching`](../tutorials/announce.md), `cross-seed` treats these
 differently since these are triggered on a new download or upload, meaning a
 season pack is unlikely to be available.
+
+Similarly, `cross-seed` will not search individual episodes from a season pack
+as these are likely [trumped/dead](../v6-migration.md#removed-includeepisodes).
 
 If you are racing or never download season packs, and would like to **turn on**
 episode searches, **set
@@ -151,22 +205,3 @@ The important thing is that you seed for a long time - not that you start
 seeding as early as possible.
 
 This is configurable with [`searchLimit`](../basics/options.md#searchlimit).
-
-### Preventing Repetitive Searches
-
-`cross-seed` caches the snatches ([as defined above](#drawbacks)) it makes, but
-does not cache search results as they can change over time.
-
-For this reason, `cross-seed` enforces that you have configured the
-[`excludeRecentSearch`](../basics/options.md#excluderecentsearch) and
-[`excludeOlder`](../basics/options.md#excludeolder) options, and its defaults
-are set such that `cross-seed` will search for things recently downloaded a few
-times, but only search once for things downloaded far in the past. These
-settings will build your backlog of cross-seeds, and sufficiently catch new
-releases trickling to other trackers.
-
-### Pausing between searches
-
-As of version 6, `cross-seed` enforces a minimum 30 second pause between
-individual searches during any bulk search. This only applies to bulk searches,
-not [webhook-triggered searches](../tutorials/triggering-searches.md).

@@ -85,6 +85,9 @@ This is not going to automatically fix anything for you, but will give you a
 better starting point to try and solve the issue yourself before requiring
 outside assistance.
 
+Restrictions are placed on config options where applicable to prevent badly
+configured setups which harm both the user and trackers.
+
 :::note
 
 We have implemented specific "ratio-based" ranges for the
@@ -296,7 +299,7 @@ that we've missed, please let us know
 [Torznab categories](https://inhies.github.io/Newznab-API/categories/#predefined-categories)
 it supports, and skip searching for any media type the indexer doesn't carry.
 This heavily reduces "useless" searches and makes it more feasible to use
-cross-seed with non-video trackers.
+`cross-seed` with non-video trackers.
 
 This requires no action to be taken on your part.
 
