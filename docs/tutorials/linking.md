@@ -84,6 +84,12 @@ or where drive pooling is impossible.
 
 ### Configuring [`linkDirs`](../basics/options.md#linkdirs)
 
+:::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::
+
 In nearly all cases, your linkDirs should reside in your torrent client
 download directory. In the example below, your torrent client download
 directory would be `/mnt/user/data/torrents/`.
@@ -114,12 +120,6 @@ module.exports = {
 If you have multiple drives without drive pooling, add more linkDirs as needed
 for each drive. Once you have restarted `cross-seed`, new matches will have
 links created in your `linkDirs` pointing to the original files.
-
-:::tip
-
-[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
-
-:::
 
 :::info Docker Users
 
