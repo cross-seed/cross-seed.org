@@ -345,7 +345,7 @@ This requires no action on your part.
 
 ### Failed injection (saved) retry
 
-:::danger
+::::warning
 
 `cross-seed` is the **only** program that understands how to properly link and
 inject its [partial](./tutorials/partial-matching.md) and
@@ -355,9 +355,13 @@ not work. You do not need to do anything with torrents saved to
 `outputDir`—`cross-seed` will handle them unless the torrent is stalled.
 [**Read more**](./tutorials/injection.md#manual-or-scheduled-injection).
 
+:::danger
+
 **DO NOT USE [`outputDir`](./basics/options.md#outputdir) AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
 
 :::
+
+::::
 
 Previously whenever an injection attempt failed, your torrent would be saved and
 require manual intervention (or a subsequent successful search and injection) to

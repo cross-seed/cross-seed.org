@@ -49,9 +49,13 @@ it is not recommended for new users.
 **`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
 **(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
 
+:::tip
+
 If you cannot use linking, you may want to use
 [`duplicateCategories: true`](../basics/options.md#duplicatecategories) if you are using
 sonarr or radarr.
+
+:::
 
 :::
 
@@ -167,6 +171,20 @@ be within the same Docker volume**, or else linking will fail.
         [**qbit_manage**](https://github.com/StuffAnThings/qbit_manage) to still
         be able to delete hardlinked files when originals are deleted
 
+### Reflink
+
+A reflink works similarly to hardlinks until data is written to it. Instead of
+modifying both files, only the new data is overwritten on the targeted file.
+This means a reflink with a file starts out identical but can diverge over time
+if either is modified. This has the same restrictions as [`hardlink`](#hardlink).
+
+#### When to use reflinks
+
+-   Your filesystem supports it
+-   You want to cross seed the rare files that differ between trackers. Any
+    differences between these two files will not affect the other while still sharing
+    the indentical parts.
+
 ### Symlink
 
 A symlink is a **shortcut** that stores a path to the original file. OSes have
@@ -185,17 +203,3 @@ will throw an `ENOENT: no such file or directory` error.
     -   This will present as cross-seeded torrents with missing files errors in
         your torrent client which you can then bulk delete
 -   You prefer errors over accidentally silently copying data
-
-### Reflink
-
-A reflink works similarly to hardlinks until data is written to it. Instead of
-modifying both files, only the new data is overwritten on the targeted file.
-This means a reflink with a file starts out identical but can diverge over time
-if either is modified. This has the same restrictions as [`hardlink`](#hardlink).
-
-#### When to use reflinks
-
--   Your filesystem supports it
--   You want to cross seed the rare files that differ between trackers. Any
-    differences between these two files will not affect the other while still sharing
-    the indentical parts.

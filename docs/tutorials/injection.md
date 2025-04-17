@@ -8,12 +8,19 @@ If you use **rTorrent**, **Transmission**, **Deluge**, or **qBittorrent**, `cros
 can inject the torrents it finds directly into your torrent client. This feature is extremely
 robust and can be leveraged manually or through automation external to `cross-seed`.
 
-:::tip
-If you are having issues with injection errors, and it reverting to save, please
-[check our FAQ](../basics/faq-troubleshooting.md#failed-to-inject-saving-instead)
-:::
-
 ## Setting up your client
+
+::::tip
+
+[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+:::danger Permissions
+
+`cross-seed` must share the same
+[user and group](../basics/getting-started.mdx#with-docker) permissions as the torrent
+client to prevent errors.
+
+:::
 
 :::caution Arr Users
 
@@ -21,15 +28,7 @@ You need to configure [`linking`](./linking.md) or use [`duplicateCategories: tr
 
 :::
 
-:::tip
-
-[**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
-
-`cross-seed` must share the same
-[user and group](../basics/getting-started.mdx#with-docker) permissions as the torrent
-client to prevent errors.
-
-:::
+::::
 
 ### `rTorrent` setup
 
@@ -92,7 +91,7 @@ directories** of your torrents, mapped to the same path as **rTorrent**.
 
 ## Manual or Scheduled Injection
 
-:::danger
+::::warning
 
 `cross-seed` is the **only** program that understands how to properly link and
 inject its [partial](./partial-matching.md) and
@@ -101,9 +100,13 @@ programs, like [**autotorrent**](https://github.com/JohnDoee/autotorrent), will
 not work. You do not need to do anything with torrents saved to
 `outputDir`—`cross-seed` will handle them unless the torrent is stalled.
 
+:::danger
+
 **DO NOT USE [`outputDir`](../basics/options.md#outputdir) AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
 
 :::
+
+::::
 
 In v6, `cross-seed` has the ability to add .torrent files for injection directly. You can either opt to wait for the hourly cadence, or
 alternatively run the [`cross-seed inject`](../reference/utils.md#cross-seed-inject) command to attempt injection for .torrent files in
@@ -114,15 +117,19 @@ For torrent files being injected manually, if using [`flatLinking: false`](../ba
 `[mediatype][tracker]` prefix (where tracker is the name corresponding to that tracker's `linkDir` folder) in order to inject within your
 existing folder structure.
 
-:::tip
+::::tip
 To achieve optimal injection behavior, adding the prefix `[mediatype][tracker-name]` as you would normally see it in
 [`outputDir`](../basics/options.md#outputdir) when saving the torrent file is recommended (e.g. `[movie][ProwlarrName]abc.torrent`).
 
+:::info
+
 Current "mediatypes" support are `episode`, `pack`, `movie`, `anime`, `video`, `audio`, `book`, and `unknown`.
+
+:::
 
 Even though the mediatype is required to be valid, it is not currently used during the injection process. This means that if you have lots of torrents files to inject, you can just use `[unknown][tracker-name]` as a prefix for all of them.
 
-:::
+::::
 
 This is the same format in which `cross-seed` normally saves .torrent files. If you do not specify both of these parameters,
 `cross-seed` will link the torrents into the `UnknownTracker` directory for you, and will require your intervention to sort them

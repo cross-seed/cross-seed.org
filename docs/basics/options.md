@@ -406,14 +406,18 @@ torrentDir: "C:\\torrents",
 | ---------------- | -------------- | -------------------- | -------- | -------------- | -------- |
 | `outputDir`      | `-s <dir>`     | `--output-dir <dir>` | `string` | `null`         | `null`   |
 
+::::tip
+
+Keep this set to `outputDir: null` for the best experience with `cross-seed`.
+This will map outputDir into your `cross-seed` [config directory](./faq-troubleshooting.md#what-is-configdb-torrent_cache-and-cross-seeds-in-the-config-directory).
+
 :::danger
 
 **DO NOT USE THIS DIRECTORY AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
 
-Keep this set to `outputDir: null` for the best experience with `cross-seed`.
-This will map outputDir into your `cross-seed` [config directory](./faq-troubleshooting.md#what-is-configdb-torrent_cache-and-cross-seeds-in-the-config-directory)
-
 :::
+
+::::
 
 With [`action: "inject"`](#action), `cross-seed` will use this directory to
 retry injections only, it will be empty nearly all the time. With
@@ -457,12 +461,6 @@ outputDir: "/path/to/folder",
 `cross-seed` will search the paths provided (separated by spaces). If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
 to create a link to the original file in the linkDirs.
-
-:::warning
-
-You cannot include your [`linkDirs`](#linkdirs) in the `dataDirs` option.
-
-:::
 
 :::caution Docker
 
@@ -597,7 +595,7 @@ Ideally, you should only have a single linkDir and use drive pooling. Using
 multiple linkDirs should be reserved for setups with cache/temp drives or where
 drive pooling is impossible.
 
-[**Read more**](../tutorials/linking.md)
+[**How to configure linking?**](../tutorials/linking.md)
 
 :::
 
@@ -608,16 +606,6 @@ where the original data is accessible (both torrent and data-based matches). The
 correct linkDir is chosen by matching the `stat.st_dev` for the source and link
 paths. If no linkDir shares a `stat.st_dev` with the source, the injection will
 fail for hardlinks and fallback to the first linkDir for symlinks.
-
-[**How to configure linking?**](../tutorials/linking.md)
-
-:::tip
-
-[**If you are using `dataDirs`**](../tutorials/data-based-matching.md#general-usage-for-datadirs),
-your `linkDirs` can not reside _INSIDE_ of your included [`dataDirs`](#datadirs) folders.
-This is to prevent recursive and erroneous searches of folders used in linking folder structure.
-
-:::
 
 :::caution Docker
 
@@ -652,13 +640,17 @@ linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
 | ---------------- | -------------------- | -------------------- | -------- | -------------- | ---------- |
 | `linkType`       | `--link-type <type>` | `--link-type <type>` | `string` | `hardlink`     | `symlink`  |
 
+:::tip
+
+[**What `linkType` should I use?**](../tutorials/linking.md)
+
+:::
+
 `cross-seed` will link (symlink/hardlink/reflink) in the method provided. If you use
 [Injection](../tutorials/injection) `cross-seed` will use the specified linkType
 to create a link to the original file in one of the linkDirs.
 
 Valid methods for linkType are `symlink`, `hardlink`, and `reflink`.
-
-[**Read more**](../tutorials/linking.md)
 
 #### `linkType` Examples (CLI)
 
@@ -895,13 +887,6 @@ includeNonVideos: false,
 
 Increase this number to reject fewer torrents based on size. There is no
 guarantee that it will increase your match rate.
-
-:::caution
-
-This option has very limited utility and under normal operation does not need to
-be modified.
-
-:::
 
 #### `fuzzySizeThreshold` Examples (CLI)
 
@@ -1330,13 +1315,24 @@ rssCadence: "20min",
 | ---------------- | -------------- | ---------------------------- | ------------------------------- | -------------- | ----------- |
 | `searchCadence`  |                | `--search-cadence <cadence>` | `string` in the [ms][ms] format | `1 day`        | `undefined` |
 
-:::tip
+::::tip
 
 [**How to trigger a search on download completion?**](../tutorials/triggering-searches.md)
 
 [**How to trigger ahead of schedule?**](./faq-troubleshooting.md#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
 
+:::warning
+
+There is no reason to increase this value above the minimum of `1 day`. This
+will negatively affect [`searchLimit`](#searchlimit), delay your searches, and
+cause them to be bunched up rather than spread out. If you wish to control the
+frequency in which torrents are searched, use the
+[`excludeOlder`](#excludeolder) and
+[`excludeRecentSearch`](#excluderecentsearch) options instead.
+
 :::
+
+::::
 
 In [Daemon Mode](./managing-the-daemon), with this option enabled,
 `cross-seed` will run periodic searches of your torrents (respecting your
@@ -1406,6 +1402,16 @@ apiKey: "abcdefghijklmn0pqrstuvwxyz",
 | ---------------- | -------------- | ---------------------------- | ------------------------------- | -------------- | ------------ |
 | `snatchTimeout`  |                | `--snatch-timeout <timeout>` | `string` in the [ms][ms] format | `30 seconds`   | `30 seconds` |
 
+:::warning
+
+A single search (for which there could be thousands) could require multiple
+snatches which happens sequentially. Similarly, a single rss event could have
+thousands of candidates to parse through. Setting this value too high or to
+`undefined` could indenfintely delay how quickly `cross-seed` can process
+candidates for no real benefit.
+
+:::
+
 This option applies to any snatch (download) of a .torrent file via Torznab. If
 a response is not given in the amount of time specified then it will consider
 the snatch as failed.
@@ -1437,6 +1443,14 @@ snatchTimeout: "15s",
 | ---------------- | -------------- | ---------------------------- | ------------------------------- | -------------- | ----------- |
 | `searchTimeout`  |                | `--search-timeout <timeout>` | `string` in the [ms][ms] format | `2 minutes`    | `2 minutes` |
 
+:::warning
+
+`cross-seed` may need to perform thousands of searches in a single run. Setting
+this value too high or to `undefined` could indenfintely delay how quickly
+`cross-seed` can process candidates for no real benefit.
+
+:::
+
 This option applies to any search via Torznab. If the search response is not
 given in the amount of time specified then it will consider the search failed.
 
@@ -1467,15 +1481,9 @@ searchTimeout: "20s",
 | ---------------- | -------------- | ------------------------- | -------- | -------------- | ----------- |
 | `searchLimit`    |                | `--search-limit <number>` | `number` | `400`          | `undefined` |
 
-This option applies to any search Torznab. This option will stop searching after
-the number of searches meets the number specified.
+Stop searching after the number of search queries meets the number specified.
 
-:::info
-
-This will apply to searching in daemon mode (periodic/cadence or when given a
-path which contains many files) or directly with the search command.
-
-:::
+[**Read more**](../reference/tracker-impact.md#limiting-search-volume)
 
 #### `searchLimit` Examples (CLI)
 

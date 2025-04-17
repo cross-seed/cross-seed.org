@@ -40,14 +40,12 @@ access to your data directories if you wish to use [`linking`](./linking.md).
 | Path               | configPath | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
 | Path (Recommended) | data       | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
 
-:::tip
+::::tip
 
 The `data` path is required for [**`linking`**](./linking.md) and
 [**`data-based matching`**](./data-based-matching.md).
 
 You may need additional paths if you are using multiple drives without pooling.
-
-:::
 
 :::caution
 
@@ -60,6 +58,8 @@ are found under the `Show more settings` dropdown at the bottom of the template.
 | Path (Optional)    | outputDir  | /cross-seeds                         | /path/to/output/dir                 | Read/Write  |
 
 :::
+
+::::
 
 ### Port Mappings
 

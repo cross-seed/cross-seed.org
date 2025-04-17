@@ -32,15 +32,19 @@ automatically. Here's how to get everything up and running.
 
 ### 1. Install `cross-seed`
 
-:::caution
+::::caution
 
 **`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
 **(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
+
+:::tip
 
 You can still use `cross-seed` without linking, but the features will be limited.
 This will be covered in depth later in this guide.
 
 :::
+
+::::
 
 You can install `cross-seed` using one of the following methods:
 
@@ -109,7 +113,7 @@ ghcr.io/cross-seed/cross-seed gen-config
 
 ### 3. Edit the Config File
 
-:::info
+:::note
 
 The configuration file uses JavaScript syntax, which means:
 
@@ -118,13 +122,23 @@ The configuration file uses JavaScript syntax, which means:
 - Array elements and options must be separated by commas.
 - [**Windows users will need to use `\\` for paths.**](./faq-troubleshooting.md#windows-paths)
 
+:::danger
+
 DO NOT remove options from the config file, this will cause errors.
 
 :::
 
+::::
+
 Once you've created your config file, you'll need to fill in the necessary
 fields to connect to your torrent client and indexer. You will likely need
 to configure the following:
+
+::::info Baseline Options
+
+-   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett).
+-   [**`Connection to your torrent client`**](../tutorials/injection.md): URL with login info of your torrent client
+-   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to.
 
 :::tip
 
@@ -134,9 +148,7 @@ configure `cross-seed` to find _all_ possible matches.
 
 :::
 
--   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett).
--   [**`Connection to your torrent client`**](../tutorials/injection.md): URL with login info of your torrent client
--   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to.
+::::
 
 Here's an example of what your `config.js` might look like:
 
@@ -156,11 +168,13 @@ module.exports = {
 
 ### 4. Run the Daemon
 
-:::warning
+::::warning
 
 The settings from the config template assumes you will be setting up linking.
 You will need to follow the [linking tutorial](../tutorials/linking.md) for
 the config validation to pass.
+
+:::tip
 
 If you cannot use linking, the errors will guide you on what to change in the
 config. You also may want to use
@@ -168,6 +182,8 @@ config. You also may want to use
 sonarr or radarr.
 
 :::
+
+::::
 
 Once you've set up your configuration, you're ready to run the daemon. Start the
 daemon with this command:

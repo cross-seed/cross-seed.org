@@ -90,6 +90,3 @@ module.exports = {
     ],
 };
 ```
-
-Many thanks to [**zakary**](https://github.com/zakkarry) for implementing this
-feature.

@@ -7,8 +7,9 @@
 
 :::tip
 
-You can easily configure your torrent client to
-[send search commands when a torrent finishes.](../tutorials/triggering-searches)
+The two main endpoints you will be using are covered by the
+[`Announce Matching`](../tutorials/announce.md) and
+[`Triggering Searches`](../tutorials/triggering-searches.md) tutorials.
 
 :::
 

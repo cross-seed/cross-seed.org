@@ -426,6 +426,14 @@ will usually state the specific reason.
 
 ### I'm getting errors in cross-seed on hostingby.design seedbox
 
+:::tip
+
+Although we are providing the information given from hostingby.design, we are
+not able to support this directly. This is just what was passed to us. Contact
+them for details and further instructions if you have any issues
+
+:::
+
 1. Get your shared instance IP address (`cat ~/.install/subnet.lock`)
 2. Torznab URLs should be: `http://ip:port/prowlarr/[id]/api?apikey=[apikey]`
 3. Your torrent client should be on the same subnet (if installed after dec.
@@ -441,15 +449,14 @@ The subnet/shared instances are reverse proxies so no https
 
 :::
 
-:::tip
+### I can't reach my Prowlarr/Jackett/cross-seed/torrent client (Using Docker/VPN)
 
-Although we are providing the information given from hostingby.design, we are
-not able to support this directly. This is just what was passed to us. Contact
-them for details and further instructions if you have any issues
+:::danger
+
+Even with API authentication, we still recommend that you **do not expose
+`cross-seed`'s port to untrusted networks (such as the Internet).**
 
 :::
-
-### I can't reach my Prowlarr/Jackett/cross-seed/torrent client (Using Docker/VPN)
 
 If you are using [Docker](./getting-started#with-docker), you cannot use
 `localhost` as an address to communicate across containers. Consider using your
@@ -471,13 +478,6 @@ There is no need to put `cross-seed` behind a VPN. All `cross-seed` requests are
 to your torrent client or Jackett/Prowlarr. The only exception is when
 announcements are made via the `/announce` API endpoint and are snatched during
 matching or for injection.
-
-:::
-
-:::danger
-
-Even with API authentication, we still recommend that you **do not expose
-`cross-seed`'s port to untrusted networks (such as the Internet).**
 
 :::
 

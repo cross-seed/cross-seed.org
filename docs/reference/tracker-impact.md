@@ -52,7 +52,9 @@ tracker automation) performs:
 -   `cross-seed` searches for movie and TV show names individually.
 -   The tracker's server has to scan through its catalog looking for releases
     with similar names.
--   These are expensive in compute, but cheap in network I/O.
+-   These are expensive in compute, but cheap in network I/O. Using
+    [`id-searching`](../tutorials/id-searching.md) not only yields far better
+    results but is also a lighter load on the tracker database.
 
 #### Announce requests
 
@@ -119,11 +121,15 @@ data) search.
 This behavior is covered in detail
 [`here`](../v6-migration.md#updated-includenonvideos-behavior).
 
-### Backlog searching 400 items per day
+### Limiting search volume
 
-By default, `cross-seed` only searches 400 items from your backlog per day. We
-do this for a few reasons:
+By default, `cross-seed` only make 400 search requests
+([as defined above](#drawbacks)) from your backlog per day. This is measured by
+the number of unique search queries that `cross-seed` makes per run. We do this
+for a few reasons:
 
+-   It eases you into the process of cross seeding. This limit is only
+    consequential when first starting out.
 -   If you have a high `excludeRecentSearch` of one year for example, intending
     to do a rolling daily search of the torrents that were last searched a year
     ago, torrent searches will "bunch up" once a year (depending on when you
@@ -148,8 +154,8 @@ This is configurable with [`searchLimit`](../basics/options.md#searchlimit).
 
 ### Preventing Repetitive Searches
 
-`cross-seed` caches the snatches it makes, but does not cache search results as
-they can change over time.
+`cross-seed` caches the snatches ([as defined above](#drawbacks)) it makes, but
+does not cache search results as they can change over time.
 
 For this reason, `cross-seed` enforces that you have configured the
 [`excludeRecentSearch`](../basics/options.md#excluderecentsearch) and
