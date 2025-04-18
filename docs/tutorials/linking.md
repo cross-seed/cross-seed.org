@@ -74,19 +74,15 @@ the data in your client and/or `dataDirs` from which you're linking . Using
 All paths need to be accessible in the same structure as your torrent client for
 injection to succeed.
 
-:::tip
-
-Ideally, you should only have a single linkDir and use drive pooling.
-Using multiple linkDirs should be reserved for setups with cache/temp drives
-or where drive pooling is impossible.
-
-:::
-
 ### Configuring [`linkDirs`](../basics/options.md#linkdirs)
 
 :::tip
 
 [**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+Ideally, you should only have a single linkDir and use drive pooling.
+Using multiple linkDirs should be reserved for setups with cache/temp drives
+or where drive pooling is impossible.
 
 :::
 
