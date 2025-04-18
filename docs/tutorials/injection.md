@@ -33,6 +33,8 @@ You need to configure [`linking`](./linking.md) or use [`duplicateCategories: tr
 1. Edit your config file:
     1. Set your [`action`](../basics/options#action) option to `inject`.
     2. Set your [`torrentClients`](../basics/options#torrentclients) option.
+        - If desired, add `readonly:` after the client prefix to only source
+        cross seeds from that client without injecting.
 2. Start or restart `cross-seed` and confirm all clients was successfully connected.
 
 :::tip Docker
