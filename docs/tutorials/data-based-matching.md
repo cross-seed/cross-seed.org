@@ -42,10 +42,17 @@ Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
    the directories from `dataDirs` entirely.
 
 3. You want to cross seed from `TorrentClientA` to `TorrentClientB`. In this case,
-   you can set `dataDirs` to the path of the downloaded data (e.g `/data/torrents/tv`)
-   in `TorrentClientA`, and configure `cross-seed` with `TorrentClientB` only.
-   This will likely create duplicate torrents seeding in both clients, ensure you will
-   be following your tracker's rules.
+   it's **_STRONGLY_** recommended to use the `readonly:` feature for the
+   [`torrentClients`](../basics/options.md#torrentclients) option. Setting this on
+   `TorrentClientA` will prevent `cross-seed` from injecting torrents into it but
+   will still use it as a source for matches. This prevents any issues with
+   duplicate torrents between clients.
+
+   a. If you cannot use the `readonly:` feature, you can set `dataDirs` to the
+   path of the downloaded data (e.g `/data/torrents/tv`)in `TorrentClientA`,
+   and configure `cross-seed` with `TorrentClientB` only. This will likely
+   create duplicate torrents seeding in both clients, ensure you will be following
+   your tracker's rules.
 
 :::
 
