@@ -27,7 +27,7 @@ These matches are exempt from [`includeSingleEpisodes`](../basics/options.md#inc
 If you want to filter announces even further, consider setting up more specific
 filters or using [**Lists**](https://autobrr.com/filters/lists) (which
 filters based on monitored items in Arrs) to minimize needless calls to
-cross-seed.
+`cross-seed`.
 
 :::
 

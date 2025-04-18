@@ -51,10 +51,10 @@ tracker automation) performs:
     [`webhook searches`](../tutorials/triggering-searches.md).
 -   `cross-seed` searches for movie and TV show names individually.
 -   The tracker's server has to scan through its catalog looking for releases
-    with similar names.
--   These are expensive in compute, but cheap in network I/O. Using
-    [`id-searching`](../tutorials/id-searching.md) not only yields far better
-    results but is also a lighter load on the tracker database.
+    with similar names. Using [`id-searching`](../tutorials/id-searching.md)
+    not only yields far better results but is also a lighter load on the
+    tracker database.
+-   These are expensive in compute, but cheap in network I/O.
 
 ### Announce requests
 
