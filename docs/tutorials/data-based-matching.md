@@ -23,6 +23,8 @@ children for changes.
 
 ## General Usage for [`dataDirs`](../basics/options.md#datadirs)
 
+:::info dataDirs Usage
+
 Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
 
 1. You are downloading through Usenet or other non-torrent methods in order to
@@ -39,17 +41,15 @@ Most users will not need to use `dataDirs`. You should only use `dataDirs` if:
    This will likely create duplicate torrents seeding in both clients, ensure you will
    be following your tracker's rules.
 
-## Setting up data-based matching
-
-:::info WINDOWS USERS
-
-[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](../basics/faq-troubleshooting.md#windows-paths)
-
 :::
+
+## Setting up data-based matching
 
 :::tip
 
 [**What should I do after updating my config?**](../basics/faq-troubleshooting.md#what-should-i-do-after-updating-my-config)
+
+[**For Windows users, it is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](../basics/faq-troubleshooting.md#windows-paths)
 
 :::
 

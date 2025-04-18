@@ -38,16 +38,12 @@ it is not recommended for new users.
 
 ## Setting up linking
 
-:::info WINDOWS USERS
-
-[**It is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](../basics/faq-troubleshooting.md#windows-paths)
-
-:::
-
 ::::danger
 
 **`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
 **(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
+
+[**For Windows users, it is necessary to insert double-slashes for your paths, back-slashes are "escape characters" and "\\\\" equates to "\\".**](../basics/faq-troubleshooting.md#windows-paths)
 
 :::tip
 
