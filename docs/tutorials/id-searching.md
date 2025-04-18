@@ -13,7 +13,7 @@ searching.
 
 :::tip
 
-INFO The series or movie _must be added in your instance of Sonarr or Radarr._
+The series or movie _must be added in your instance of Sonarr or Radarr._
 You don't need to have actual media _imported_, but **the entry must exist**.
 _"Missing"_ or _"Unmonitored"_ status is valid.
 
