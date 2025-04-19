@@ -374,6 +374,15 @@ complete the cross-seeding process. We've now added an hourly inject job to
 save in more failure scenarios such as an incomplete source or instead of a
 linking failure fallback.
 
+:::tip
+
+If you have configured
+[webhook on completion](./tutorials/triggering-searches.md), `cross-seed` will
+automatically trigger an early run of the inject job to retry any saved
+torrents faster.
+
+:::
+
 This feature supports BYO `.torrent` files. For more information, see the
 [Direct Injection page](./tutorials/injection.md#manual-or-scheduled-injection)
 and our [`utils`](./reference/utils.md#cross-seed-inject) for detailed

@@ -113,6 +113,15 @@ alternatively run the [`cross-seed inject`](../reference/utils.md#cross-seed-inj
 your [`outputDir`](../basics/options.md#outputdir). You can alternatively use `cross-seed inject --inject-dir /path/to/folder` to specify
 another directory.
 
+:::tip
+
+If you have configured
+[webhook on completion](./triggering-searches.md), `cross-seed` will
+automatically trigger an early run of the inject job to retry any saved
+torrents faster.
+
+:::
+
 For torrent files being injected manually, if using [`flatLinking: false`](../basics/options.md#flatlinking) will require a
 `[mediatype][tracker]` prefix (where tracker is the name corresponding to that tracker's `linkDir` folder) in order to inject within your
 existing folder structure.
