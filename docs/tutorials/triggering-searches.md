@@ -10,6 +10,14 @@ finishes downloading, by adding an on-completion script to your torrent client
 [import script](https://gist.github.com/zakkarry/ddc337a37b038cb84e6248fe8adebb46))
 that calls `cross-seed`'s HTTP API.
 
+:::tip
+
+As a bonus, this will also trigger an early run of the
+[inject job](./injection.md#manual-or-scheduled-injection) in order
+to inject saved cross seeds waiting on this torrent faster.
+
+:::
+
 If you don't set this up, `cross-seed` _will_ eventually search everything
 with [`searchCadence`](../basics/options.md#searchcadence).
 
