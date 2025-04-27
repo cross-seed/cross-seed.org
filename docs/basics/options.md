@@ -1050,15 +1050,15 @@ action: "inject",
 
 `cross-seed` will never inject a torrent into a client if it exists in another.
 
-If there similar torrents in multiple clients, the order of the clients defined
-will be used as the priority.
+If there similar torrents to source from in multiple clients, the order of the
+clients defined will be used as the priority.
 
 Injections from [`useClientTorrents`](#useclienttorrents) will be injected into
 the client the match was sourced from with the first valid
 [`linkDir`](#linkdirs). Custom routing is not supported at this time.
 
 Injections from [`dataDirs`](#datadirs) will be injected into the first valid
-client along with the first valid [`linkDir`](#linkdirs). Custom routing is
+client with the first valid [`linkDir`](#linkdirs). Custom routing is
 not supported at this time.
 
 :::
@@ -1075,7 +1075,7 @@ use a client to source cross seeds from but not inject into.
 [user and group](./getting-started.mdx#with-docker) permissions as the torrent
 clients to prevent errors.
 
-[**You may need to use [`cross-seed clear-client-cache`](../reference/utils.md#cross-seed-clear-client-cache) if you change torrent clients or modify the torrents in client**]
+**You may need to use [`cross-seed clear-client-cache`](../reference/utils.md#cross-seed-clear-client-cache) if you change torrent clients or modify the torrents in client**
 
 :::
 

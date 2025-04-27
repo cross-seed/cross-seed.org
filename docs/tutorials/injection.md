@@ -115,7 +115,7 @@ If the .torrent files follow the naming format above, they will be elligible for
 Stalled torrents (either the cross seeded torrent or it's source) will require your intervention before `cross-seed` will remove the .torrent file.
 You will need to remove these torrents from your client and the .torrent file from outputDir. If you wish to keep them in client, only remove their .torrent file from outputDir.
 
-In some cases, `cross-seed` may refuse to inject torrents if their titles are too different to prevent false positives. To override this, you can use the [`--ignore-titles`](../reference/utils.md#cross-seed-inject) flag with the manual command. The .torrent files that are rejected for this reason will not be deleted, you will need to remove them manually or use the command with the flag to inject them.
+In some cases, `cross-seed` may refuse to inject torrents if their titles are too different to prevent false positives. To override this, you can use [`cross-seed inject --ignore-titles`](../reference/utils.md#cross-seed-inject). Without this flag, the .torrent files that are rejected for this reason will not be deleted. You will need to remove them manually or use the command with the flag to inject them.
 
 :::tip
 You can find more information about this feature in the [`v6 migration guide`](../v6-migration.md#failed-injection-saved-retry).
