@@ -1069,11 +1069,13 @@ use a client to source cross seeds from but not inject into.
 
 :::tip
 
-[You may need to urlencode your username and password if they contain special characters](./faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
+[**You may need to urlencode your username and password if they contain special characters**](./faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
 
 `cross-seed` must share the same
 [user and group](./getting-started.mdx#with-docker) permissions as the torrent
 clients to prevent errors.
+
+[**You may need to use [`cross-seed clear-client-cache`](../reference/utils.md#cross-seed-clear-client-cache) if you change torrent clients or modify the torrents in client**]
 
 :::
 
