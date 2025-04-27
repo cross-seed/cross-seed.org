@@ -137,7 +137,7 @@ to configure the following:
 ::::info Baseline Options
 
 -   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett)
--   [**`Connection to your torrent client`**](../tutorials/injection.md): URL with login info of your torrent client
+-   [**`torrentClients`**](../tutorials/injection.md): URLs of your torrent clients.
 -   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to (optional but **_strongly_** recommended)
 
 :::tip
@@ -158,7 +158,12 @@ module.exports = {
         "http://prowlarr:9696/1/api?apikey=12345",
         "http://prowlarr:9696/2/api?apikey=12345",
     ],
-    qbittorrentUrl: "http://username:password@localhost:8080",
+    torrentClients: [
+        "qbittorrent:http://user:pass@localhost:8080",
+        "deluge:http://:pass@localhost:8112/json",
+        "transmission:http://user:pass@localhost:9091/transmission/rpc",
+        "rtorrent:http://user:pass@localhost:8080/RPC2",
+    ],
     linkDirs: ["/data/torrents/SomeLinkDirName"],
     ... several other settings covered by the Next Steps section ...
 };
