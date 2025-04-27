@@ -36,6 +36,29 @@ timestamps for [`excludeOlder`](../basics/options.md#excludeolder) and
 cross-seed clear-cache
 ```
 
+### `cross-seed clear-client-cache`
+
+:::info When to Use
+
+This is unncessary in most cases. Only use if:
+
+1. You have switched torrent clients while keeping the exact same host and port.
+2. You have modified the trackers or renamed the files of torrents in your
+   client and you don't want to wait for the daily `cleanup` job. All other
+   modifications to torrents will be detected immediately by `cross-seed`.
+
+:::
+
+Clear the cache of the torrents for
+[`torrentClients`](../basics/options.md#torrentclients) and the cache of the
+data for [`dataDirs`](../basics/options.md#datadirs).
+
+#### Usage
+
+```shell
+cross-seed clear-client-cache
+```
+
 ### `cross-seed update-torrent-cache-trackers`
 
 Update the announce urls for torrents in the torrent cache.
