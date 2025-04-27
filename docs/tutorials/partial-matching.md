@@ -39,7 +39,9 @@ If a partial match is found, cross-seed will:
 
 1. Inject the torrent with the matched files.
 2. Recheck the torrent for missing files.
-3. Resume according to [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload)
+3. Resume according to
+   [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload) and
+   [`ignoreNonRelevantFilesToResume`](../basics/options.md#ignorenonrelevantfilestoresume).
 
 :::info Note
 Nearly all partial matches will have the existing files at 99.9% instead of 100% after rechecking.
@@ -78,8 +80,9 @@ To enable partial matching, follow these steps:
 3. **Configure `partial` range and auto resume**
 
     You can adjust the
-    [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) and
-    [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload)
+    [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold),
+    [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload), and
+    [`ignoreNonRelevantFilesToResume`](../basics/options.md#ignorenonrelevantfilestoresume)
     options depending on whether you are willing to incur more or less
     DL on partial matches.
 
@@ -88,6 +91,7 @@ To enable partial matching, follow these steps:
         // ... other settings ...
         fuzzySizeThreshold: 0.1,
         autoResumeMaxDownload: 52428800,
+        ignoreNonRelevantFilesToResume: true,
     };
     ```
 
