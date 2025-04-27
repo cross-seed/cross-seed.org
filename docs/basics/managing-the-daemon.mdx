@@ -148,6 +148,25 @@ screen -r cross-seed
 
 Once attached, you can detach with `ctrl-A, D`.
 
+To ensure that `cross-seed` runs after a reboot, you can use the `@reboot` cron
+job.
+
+```shell
+crontab -e
+```
+
+Then add the following line to the end of the file:
+
+```shell
+@reboot screen -S cross-seed -d -m cross-seed daemon
+```
+
+After saving, you can confirm that the cron job is set up by running:
+
+```shell
+crontab -l
+```
+
 ### Windows
 
 ::::caution
