@@ -71,6 +71,15 @@ alternatively run the [`cross-seed inject`](../reference/utils.md#cross-seed-inj
 your [`outputDir`](../basics/options.md#outputdir). You can alternatively use `cross-seed inject --inject-dir /path/to/folder` to specify
 another directory.
 
+:::tip
+
+If you have configured
+[webhook on completion](./triggering-searches.md), `cross-seed` will
+automatically trigger an early run of the inject job to retry any saved
+torrents faster.
+
+:::
+
 For torrent files being injected manually, if using [`flatLinking: false`](../basics/options.md#flatlinking) will require a
 `[mediatype][tracker]` prefix (where tracker is the name corresponding to that tracker's `linkDir` folder) in order to inject within your
 existing folder structure.
@@ -105,6 +114,8 @@ If the .torrent files follow the naming format above, they will be elligible for
 
 Stalled torrents (either the cross seeded torrent or it's source) will require your intervention before `cross-seed` will remove the .torrent file.
 You will need to remove these torrents from your client and the .torrent file from outputDir. If you wish to keep them in client, only remove their .torrent file from outputDir.
+
+In some cases, `cross-seed` may refuse to inject torrents if their titles are too different to prevent false positives. To override this, you can use the [`--ignore-titles`](../reference/utils.md#cross-seed-inject) flag with the manual command. The .torrent files that are rejected for this reason will not be deleted, you will need to remove them manually or use the command with the flag to inject them.
 
 :::tip
 You can find more information about this feature in the [`v6 migration guide`](../v6-migration.md#failed-injection-saved-retry).

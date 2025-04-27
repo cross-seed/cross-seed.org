@@ -42,8 +42,9 @@ cross-seed clear-cache
 
 This is unncessary in most cases. Only use if:
 
-1. You have switched torrent clients while keeping the exact same host and port.
-2. You have modified the trackers or renamed the files of torrents in your
+1. You have changed torrent clients while keeping the exact same host and port.
+2. You have changed the OS that `cross-seed` runs on.
+3. You have modified the trackers or renamed the files of torrents in your
    client and you don't want to wait for the daily `cleanup` job. All other
    modifications to torrents will be detected immediately by `cross-seed`.
 
@@ -161,16 +162,21 @@ cross-seed clear-indexer-failures
 Injects previously saved, or manually added, torrents from
 [`outputDir`](../basics/options.md#outputdir).
 
-By default this command will use [`outputDir`](../basics/options.md#outputdir),
-however, you can also specify an `inject dir` by providing the argument.
+You can alternatively specify an `--inject-dir` by providing the argument.
 
-[Read More...](../tutorials/injection.md#manual-or-scheduled-injection)
+In some cases, `cross-seed` may refuse to inject torrents if their titles are
+too different to prevent false positives. You can override this by using the
+`--ignore-titles` flag. This is not recommended unless you are sure that the
+failed match is a potential cross seed.
+
+[Read more about the injection process including how to use your own .torrent files...](../tutorials/injection.md#manual-or-scheduled-injection)
 
 #### Usage
 
 ```shell
 cross-seed inject
 cross-seed inject --inject-dir /path/to/dir
+cross-seed inject --ignore-titles
 ```
 
 ### `cross-seed rss`

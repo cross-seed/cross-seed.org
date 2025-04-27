@@ -83,6 +83,9 @@ Get your user and group by running the following command:
 echo -e "User=$(id -un)\nGroup=$(id -gn)"
 ```
 
+You can also try `ExecStart=npx cross-seed daemon` if the one below doesn't
+work.
+
 :::
 
 ```unit file (systemd)
@@ -97,9 +100,6 @@ ExecStart=cross-seed daemon
 [Install]
 WantedBy=multi-user.target
 ```
-
-You can also try `ExecStart=npx cross-seed daemon` if the one above doesn't
-work.
 
 :::info
 
