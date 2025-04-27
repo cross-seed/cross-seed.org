@@ -1064,13 +1064,16 @@ not supported at this time.
 :::
 
 The URL(s) of your torrent client that `cross-seed` will source torrents from
-prefixed by their client type. `cross-seed` must share the same
-[user and group](./getting-started.mdx#with-docker) permissions as the torrent
-clients to prevent errors.
+prefixed by their client type. You can also use `readonly:` after the prefix to
+use a client to source cross seeds from but not inject into.
 
 :::tip
 
 [You may need to urlencode your username and password if they contain special characters](./faq-troubleshooting.md#can-i-use-special-characters-in-my-urls)
+
+`cross-seed` must share the same
+[user and group](./getting-started.mdx#with-docker) permissions as the torrent
+clients to prevent errors.
 
 :::
 
@@ -1118,6 +1121,7 @@ credentials in the following format:
 ```shell
 cross-seed search --torrent-clients rtorrent:http://rutorrent/rutorrent/RPC2
 cross-seed search --torrent-clients rtorrent:http://user:pass@localhost:8080/RPC2 qbittorrent:http://user:pass@localhost:8080
+cross-seed search --torrent-clients rtorrent:readonly:http://user:pass@localhost:8080/RPC2 qbittorrent:http://user:pass@localhost:8080
 ```
 
 #### `torrentClients` Examples (Config file)
@@ -1128,7 +1132,7 @@ torrentClients: ["deluge:http://:pass@localhost:8112/json"],
 torrentClients: [
 	"qbittorrent:http://user:pass@localhost:8080",
 	"deluge:http://:pass@localhost:8112/json",
-	"transmission:http://user:pass@localhost:9091/transmission/rpc",
+	"transmission:readonly:http://user:pass@localhost:9091/transmission/rpc",
 	"rtorrent:http://user:pass@localhost:8080/RPC2",
 ],
 ```
