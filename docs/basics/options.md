@@ -1057,6 +1057,10 @@ Injections from [`useClientTorrents`](#useclienttorrents) will be injected into
 the client the match was sourced from with the first valid
 [`linkDir`](#linkdirs). Custom routing is not supported at this time.
 
+Injections from [`dataDirs`](#datadirs) will be injected into the first valid
+client along with the first valid [`linkDir`](#linkdirs). Custom routing is
+not supported at this time.
+
 :::
 
 The URL(s) of your torrent client that `cross-seed` will source torrents from
