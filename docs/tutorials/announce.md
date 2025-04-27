@@ -35,16 +35,22 @@ filters based on monitored items in Arrs) to minimize needless calls to
 
 `cross-seed` will return a status code of [`202`](../reference/api.md#post-apiannounce) if the source torrent is still downloading. While these torrents are saved by `cross-seed` for [later retrying](../v6-migration.md#failed-injection-saved-retry), you can also set up `autobrr` to retry these torrents as well. This has a few benefits:
 
-- The retries will happen at an interval that you set, rather than waiting exclusively on `cross-seed` to retry. This means you can potentially start seeding faster with a shorter retry interval.
-- Once the source torrent is finally completed, the next retry that `autobrr` sends will return with a `200` status code. This means that `autobrr` will now mark this announce as successful and then run your configured actions.
+- Once the source torrent has finally completed, the next retry that `autobrr` sends will return with a `200` status code. This means that `autobrr` will now mark this announce as successful and then run your configured actions.
+- The retries will happen at an interval that you set, rather than waiting exclusively on `cross-seed` to retry. This means you can potentially start seeding faster with a shorter retry interval (mitigated by [webhook on completion](./triggering-searches.md) inject job triggering).
 
 #### Configuring Retries
 
-:::caution
+::::caution
 
 You can adjust the retry delay and attempts to your liking, however `autobrr` will also retry if requests fail. This means that if `cross-seed` was down for an extended period, `autobrr` could overwhelm `cross-seed` with retry requests as soon as it comes back online. You would need to restart both `autobrr` and `cross-seed` to escape this situation.
 
+:::tip
+
+If you configured [webhook on completion](./triggering-searches.md), `cross-seed` will automatically trigger an early run of the inject job to retry any saved torrents faster, mitigating the need for a short `autobrr` retry interval.
+
 :::
+
+::::
 
 1. In `autobrr`, go to `Filters > YOUR_CROSS_SEED_FILTER > External > Retry`
 2. Set `RETRY HTTP STATUS CODE(S)` to `202`

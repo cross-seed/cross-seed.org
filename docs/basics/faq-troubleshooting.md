@@ -560,6 +560,15 @@ the inject job or when using `cross-seed inject`. It will detect the newly
 downloaded files, link them to the other torrents, and trigger a
 recheck for those torrents.
 
+:::tip
+
+If you have configured
+[webhook on completion](../tutorials/triggering-searches.md), once the
+selected torrent is completed, `cross-seed` will automatically trigger an early
+run of the inject job.
+
+:::
+
 For the rare case that the .torrent files are not present in `outputDir`. First,
 choose which tracker you'd like to complete the download on and start the
 torrent. Then copy (or export) the .torrent files from the other related partial
