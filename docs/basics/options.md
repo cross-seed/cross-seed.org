@@ -1054,8 +1054,9 @@ If there similar torrents to source from in multiple clients, the order of the
 clients defined will be used as the priority.
 
 Injections from [`useClientTorrents`](#useclienttorrents) will be injected into
-the client the match was sourced from with the first valid
-[`linkDir`](#linkdirs). Custom routing is not supported at this time.
+the client the match was sourced from or the first valid non-readonly client
+with the first valid [`linkDir`](#linkdirs). Custom routing is not supported at
+this time.
 
 Injections from [`dataDirs`](#datadirs) will be injected into the first valid
 client with the first valid [`linkDir`](#linkdirs). Custom routing is
@@ -1064,8 +1065,8 @@ not supported at this time.
 :::
 
 The URL(s) of your torrent client that `cross-seed` will source torrents from
-prefixed by their client type. You can also use `readonly:` after the prefix to
-use a client to source cross seeds from but not inject into.
+prefixed by their client type. If desired, you can use `readonly:` after the
+prefix to use a client to source cross seeds from but not inject into.
 
 :::tip
 
