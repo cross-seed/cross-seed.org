@@ -1098,7 +1098,7 @@ The url of your **Transmission** RPC Interface prefixed with `transmission`:
 #### `rtorrent`
 
 The url of your **rTorrent** XMLRPC interface prefixed with `rtorrent`:
-`rtorrent:http://user:pass@localhost:8080/RPC2`
+`rtorrent:http://user:pass@localhost:8080/RPC2` or `rtorrent:http://user:pass@localhost:8080/rutorrent/plugins/httprpc/action.php`
 
 :::info
 
