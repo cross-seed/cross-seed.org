@@ -4,10 +4,10 @@ title: FAQ & Troubleshooting
 sidebar_position: 4
 ---
 
-:::tip Looking for detailed troubleshooting?
+:::tip Need More Help?
 
-For a comprehensive, systematic approach to troubleshooting common issues, check
-out our [Comprehensive Troubleshooting Guide](../reference/troubleshooting.md).
+For more detailed troubleshooting steps, see the
+[Troubleshooting Guide](../reference/troubleshooting.md).
 
 :::
 

@@ -1,6 +1,6 @@
 ---
 id: path-mapping
-sidebar_position: 10
+sidebar_position: 4
 title: Path Mapping Guide
 ---
 
@@ -80,9 +80,13 @@ module.exports = {
 };
 ```
 
-:::caution Windows Paths Windows paths must use double backslashes (`\\`)
+:::caution Windows Paths
+
+Windows paths must use double backslashes (`\\`)
 because the backslash is an escape character in JavaScript. A single backslash
-would cause syntax errors. :::
+would cause syntax errors.
+
+:::
 
 #### Docker Environment
 
@@ -107,8 +111,12 @@ module.exports = {
 };
 ```
 
-:::tip Docker Paths Always use the paths as they appear **inside** the
-container, not the host paths. :::
+:::tip 
+
+Docker Paths always use the paths as they appear **inside** the
+container, not the host paths.
+
+:::
 
 ### Path Mapping Visualization
 

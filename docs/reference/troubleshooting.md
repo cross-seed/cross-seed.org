@@ -1,7 +1,7 @@
 ---
 id: troubleshooting
 title: Comprehensive Troubleshooting
-sidebar_position: 5
+sidebar_position: 1
 ---
 
 # Comprehensive Troubleshooting Guide
