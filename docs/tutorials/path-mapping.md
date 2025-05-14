@@ -114,45 +114,72 @@ container, not the host paths. :::
 
 #### Correct Path Mapping:
 
-```
-┌─────────────────────┐     ┌─────────────────────┐
-│    cross-seed       │     │   qBittorrent       │
-│                     │     │                     │
-│  /data/torrents     │◄────┤  /data/torrents     │
-│                     │     │                     │
-│  /data/cross-seed-  │     │  /data/cross-seed-  │
-│       links         │────►│       links         │
-└─────────────────────┘     └─────────────────────┘
-          ▲                           ▲
-          │                           │
-          │                           │
-┌─────────────────────────────────────────────────┐
-│                   Host System                   │
-│                                                 │
-│              /data/torrents                     │
-│              /data/cross-seed-links             │
-└─────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph HostSystem["Host System"]
+        HostTorrents["/data/torrents"]
+        HostLinks["/data/cross-seed-links"]
+    end
+
+    subgraph CrossSeed["cross-seed container"]
+        CSTorrents["/data/torrents"]
+        CSLinks["/data/cross-seed-links"]
+    end
+
+    subgraph QBit["qBittorrent container"]
+        QBTorrents["/data/torrents"]
+        QBLinks["/data/cross-seed-links"]
+    end
+
+    HostTorrents --- CSTorrents
+    HostTorrents --- QBTorrents
+    HostLinks --- CSLinks
+    HostLinks --- QBLinks
+
+    CSTorrents <--> QBTorrents
+    CSLinks <--> QBLinks
+
+    classDef container fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef host fill:#e0f0ff,stroke:#0066cc,stroke-width:2px
+
+    class CrossSeed,QBit container
+    class HostSystem host
 ```
 
 #### Incorrect Path Mapping:
 
-```
-┌─────────────────────┐     ┌─────────────────────┐
-│    cross-seed       │     │   qBittorrent       │
-│                     │     │                     │
-│  /torrents          │     │  /downloads         │ ✗ Different paths!
-│                     │     │                     │
-│  /cross-seed-links  │     │  /links             │ ✗ Different paths!
-└─────────────────────┘     └─────────────────────┘
-          ▲                           ▲
-          │                           │
-          │                           │
-┌─────────────────────────────────────────────────┐
-│                   Host System                   │
-│                                                 │
-│              /data/torrents                     │
-│              /data/cross-seed-links             │
-└─────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph HostSystem["Host System"]
+        HostTorrents["/data/torrents"]
+        HostLinks["/data/cross-seed-links"]
+    end
+
+    subgraph CrossSeed["cross-seed container"]
+        CSTorrents["/torrents"]
+        CSLinks["/cross-seed-links"]
+    end
+
+    subgraph QBit["qBittorrent container"]
+        QBTorrents["/downloads"]
+        QBLinks["/links"]
+    end
+
+    HostTorrents --- CSTorrents
+    HostTorrents --- QBTorrents
+    HostLinks --- CSLinks
+    HostLinks --- QBLinks
+
+    CSTorrents <-->|❌ Different paths!| QBTorrents
+    CSLinks <-->|❌ Different paths!| QBLinks
+
+    classDef container fill:#f9f9f9,stroke:#333,stroke-width:2px
+    classDef host fill:#e0f0ff,stroke:#0066cc,stroke-width:2px
+    classDef error fill:#fff0f0,stroke:#cc0000,stroke-width:2px
+
+    class CrossSeed,QBit container
+    class HostSystem host
+    class QBTorrents,QBLinks error
 ```
 
 ### Path Mapping for Different Setups

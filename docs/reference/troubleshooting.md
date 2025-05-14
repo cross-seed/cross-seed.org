@@ -497,62 +497,97 @@ These messages indicate injection problems.
 
 ### Startup Issues Flowchart
 
-```
-Start
-  │
-  ├─ cross-seed starts without errors → Done
-  │
-  ├─ SyntaxError in config.js
-  │   └─ Check for: missing commas, quotes, brackets
-  │
-  ├─ RangeError: WebAssembly.instantiate()
-  │   └─ Set NODE_OPTIONS=--disable-wasm-trap-handler
-  │
-  ├─ val is not a non-empty string
-  │   └─ Delete config.db
-  │
-  └─ EADDRINUSE
-      └─ Change port or kill existing process
+```mermaid
+flowchart TD
+    Start([Start]) --> A{cross-seed starts without errors?}
+    A -->|Yes| Done([Done])
+
+    A -->|No| B{What error?}
+
+    B -->|SyntaxError in config.js| C[Check for: missing commas, quotes, brackets]
+    C --> Fix1[Fix syntax errors in config.js]
+    Fix1 --> Start
+
+    B -->|RangeError: WebAssembly.instantiate()| D[Set NODE_OPTIONS=--disable-wasm-trap-handler]
+    D --> Start
+
+    B -->|val is not a non-empty string| E[Delete config.db]
+    E --> Start
+
+    B -->|EADDRINUSE| F[Change port or kill existing process]
+    F --> Start
+
+    classDef process fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef decision fill:#e1f5fe,stroke:#0277bd,stroke-width:1px
+    classDef endpoint fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+
+    class Start,Done endpoint
+    class A,B decision
+    class C,D,E,F,Fix1 process
 ```
 
 ### Client Connection Flowchart
 
-```
-Start
-  │
-  ├─ Can connect to client? → Yes → Done
-  │
-  ├─ Login failed
-  │   └─ Check credentials, URL-encode special chars
-  │
-  ├─ Connection refused/timeout
-  │   └─ Check network connectivity, VPN settings
-  │
-  ├─ Docker networking issue
-  │   └─ Use container names instead of localhost
-  │
-  └─ Client configuration issue
-      └─ Enable WebUI, check port and settings
+```mermaid
+flowchart TD
+    Start([Start]) --> A{Can connect to client?}
+    A -->|Yes| Done([Done])
+
+    A -->|No| B{What issue?}
+
+    B -->|Login failed| C[Check credentials, URL-encode special chars]
+    C --> Start
+
+    B -->|Connection refused/timeout| D[Check network connectivity, VPN settings]
+    D --> Start
+
+    B -->|Docker networking issue| E[Use container names instead of localhost]
+    E --> Start
+
+    B -->|Client configuration issue| F[Enable WebUI, check port and settings]
+    F --> Start
+
+    classDef process fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef decision fill:#e1f5fe,stroke:#0277bd,stroke-width:1px
+    classDef endpoint fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+
+    class Start,Done endpoint
+    class A,B decision
+    class C,D,E,F process
 ```
 
 ### Linking Flowchart
 
-```
-Start
-  │
-  ├─ Linking works? → Yes → Done
-  │
-  ├─ EXDEV: cross-device link
-  │   └─ Ensure source/destination on same filesystem
-  │
-  ├─ EACCES: permission denied
-  │   └─ Check directory permissions and ownership
-  │
-  ├─ Docker volume issues
-  │   └─ Use consistent paths, single volume
-  │
-  └─ Filesystem doesn't support hardlinks
-      └─ Switch to symlinks or reflinks
+```mermaid
+flowchart TD
+    Start([Start]) --> A{Linking works?}
+    A -->|Yes| Done([Done])
+
+    A -->|No| B{What error?}
+
+    B -->|EXDEV: cross-device link| C[Ensure source/destination on same filesystem]
+    C --> Fix1[Use single volume or switch to symlinks]
+    Fix1 --> Start
+
+    B -->|EACCES: permission denied| D[Check directory permissions and ownership]
+    D --> Fix2[Match PUID/PGID with torrent client]
+    Fix2 --> Start
+
+    B -->|Docker volume issues| E[Use consistent paths, single volume]
+    E --> Start
+
+    B -->|Filesystem doesn't support hardlinks| F[Switch to symlinks or reflinks]
+    F --> Start
+
+    classDef process fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef decision fill:#e1f5fe,stroke:#0277bd,stroke-width:1px
+    classDef endpoint fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef fix fill:#fff8e1,stroke:#f57f17,stroke-width:1px
+
+    class Start,Done endpoint
+    class A,B decision
+    class C,D,E,F process
+    class Fix1,Fix2 fix
 ```
 
 ## Advanced Diagnostic Commands
@@ -604,6 +639,42 @@ docker inspect -f '{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}
 
 # Test network between containers
 docker exec -it cross-seed ping qbittorrent
+```
+
+### Docker Troubleshooting Flowchart
+
+```mermaid
+flowchart TD
+    Start([Start Docker Diagnosis]) --> A{Can cross-seed start properly?}
+    A -->|No| A1[Check config.js syntax and container logs]
+    A1 --> A
+
+    A -->|Yes| B{Can cross-seed connect to Prowlarr/Jackett?}
+    B -->|No| B1[Check network settings and Torznab URLs]
+    B1 --> B
+
+    B -->|Yes| C{Can cross-seed connect to torrent client?}
+    C -->|No| C1[Check client API settings and URL]
+    C1 --> C
+
+    C -->|Yes| D{Are torrent injections working?}
+    D -->|No| D1[Check permissions and paths]
+    D1 --> D
+
+    D -->|Yes| E{Is linking working correctly?}
+    E -->|No| E1[Check volume mounts and filesystem support]
+    E1 --> E
+
+    E -->|Yes| Done([Setup is working!])
+
+    classDef process fill:#f0f0f0,stroke:#333,stroke-width:1px
+    classDef decision fill:#e1f5fe,stroke:#0277bd,stroke-width:1px
+    classDef endpoint fill:#e8f5e9,stroke:#2e7d32,stroke-width:1px
+    classDef fix fill:#fff8e1,stroke:#f57f17,stroke-width:1px
+
+    class Start,Done endpoint
+    class A,B,C,D,E decision
+    class A1,B1,C1,D1,E1 fix
 ```
 
 ## When to Get Help
