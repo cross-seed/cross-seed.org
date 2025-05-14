@@ -16,23 +16,23 @@ files that don't match each other.
 
 So, what's the outcome?
 
--   **More Matches**: Partial matching finds torrents even when small files are
-    missing/mismatched often doubling the amount of cross seeds found. Using this
-    mode will find all possible cross seeds from your data.
--   **Fewer Wasted Snatches**: Many torrents that can't match under
-    `matchMode: "strict"` (due to a "technicality") can and will match with
-    partial matching, meaning the snatch doesn't go to waste.
+- **More Matches**: Partial matching finds torrents even when small files are
+  missing/mismatched often doubling the amount of cross seeds found. Using this
+  mode will find all possible cross seeds from your data.
+- **Fewer Wasted Snatches**: Many torrents that can't match under
+  `matchMode: "strict"` (due to a "technicality") can and will match with
+  partial matching, meaning the snatch doesn't go to waste.
 
-:::tip
-Combine partial matching with [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes)
-to cross seed season packs even if you're missing individual episodes!
-:::
+:::tip Combine partial matching with
+[`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes) to cross seed
+season packs even if you're missing individual episodes! :::
 
 ### How Partial Matching Works
 
 Partial matching relies on a new [`matchMode`](../basics/options.md#matchmode)
-setting called `partial`. This mode only requires some files to match instead of all.
-`cross-seed` uses the [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) to set a minimum
+setting called `partial`. This mode only requires some files to match instead of
+all. `cross-seed` uses the
+[`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold) to set a minimum
 size for partial matches (default 0.02, allowing up to 2% size variance).
 
 If a partial match is found, cross-seed will:
@@ -43,10 +43,9 @@ If a partial match is found, cross-seed will:
    [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload) and
    [`ignoreNonRelevantFilesToResume`](../basics/options.md#ignorenonrelevantfilestoresume).
 
-:::info Note
-Nearly all partial matches will have the existing files at 99.9% instead of 100% after rechecking.
-This is expected and is due to how torrent piece hashing works.
-:::
+:::info Note Nearly all partial matches will have the existing files at 99.9%
+instead of 100% after rechecking. This is expected and is due to how torrent
+piece hashing works. :::
 
 ### Configuration Steps for Partial Matching
 
@@ -72,8 +71,8 @@ To enable partial matching, follow these steps:
 
     ```js
     module.exports = {
-        // ... other settings ...
-        matchMode: "partial",
+    	// ... other settings ...
+    	matchMode: "partial",
     };
     ```
 
@@ -83,15 +82,15 @@ To enable partial matching, follow these steps:
     [`fuzzySizeThreshold`](../basics/options.md#fuzzysizethreshold),
     [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload), and
     [`ignoreNonRelevantFilesToResume`](../basics/options.md#ignorenonrelevantfilestoresume)
-    options depending on whether you are willing to incur more or less
-    DL on partial matches.
+    options depending on whether you are willing to incur more or less DL on
+    partial matches.
 
     ```js
     module.exports = {
-        // ... other settings ...
-        fuzzySizeThreshold: 0.1,
-        autoResumeMaxDownload: 52428800,
-        ignoreNonRelevantFilesToResume: true,
+    	// ... other settings ...
+    	fuzzySizeThreshold: 0.1,
+    	autoResumeMaxDownload: 52428800,
+    	ignoreNonRelevantFilesToResume: true,
     };
     ```
 
@@ -106,7 +105,7 @@ To enable partial matching, follow these steps:
 
     ```js
     module.exports = {
-        // ... other settings ...
-        seasonFromEpisodes: 0.5,
+    	// ... other settings ...
+    	seasonFromEpisodes: 0.5,
     };
     ```

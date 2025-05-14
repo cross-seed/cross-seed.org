@@ -4,22 +4,22 @@ sidebar_position: 6
 title: Triggering Searches
 ---
 
-`cross-seed` gives you the ability to search for cross-seeds as soon as a torrent
-finishes downloading, by adding an on-completion script to your torrent client
-(or the Sonarr/Radarr
+`cross-seed` gives you the ability to search for cross-seeds as soon as a
+torrent finishes downloading, by adding an on-completion script to your torrent
+client (or the Sonarr/Radarr
 [import script](https://gist.github.com/zakkarry/ddc337a37b038cb84e6248fe8adebb46))
 that calls `cross-seed`'s HTTP API.
 
 :::tip
 
 As a bonus, this will also trigger an early run of the
-[inject job](./injection.md#manual-or-scheduled-injection) in order
-to inject saved cross seeds waiting on this torrent faster.
+[inject job](./injection.md#manual-or-scheduled-injection) in order to inject
+saved cross seeds waiting on this torrent faster.
 
 :::
 
-If you don't set this up, `cross-seed` _will_ eventually search everything
-with [`searchCadence`](../basics/options.md#searchcadence).
+If you don't set this up, `cross-seed` _will_ eventually search everything with
+[`searchCadence`](../basics/options.md#searchcadence).
 
 All the techniques mentioned below boil down to using the `curl` command to send
 an HTTP POST request to the `cross-seed` daemon, which will look like this.
@@ -70,17 +70,17 @@ We will refer to this as `<BASE_URL>` below.
 
 ### Setting Up Your Torrent Client
 
-There are likely two versions of webhook command you want to use, depending
-if you want to include episodes or not. There are other options available to
+There are likely two versions of webhook command you want to use, depending if
+you want to include episodes or not. There are other options available to
 customize found [`here`](../reference/api.md#request-payload), but these offer
 no benefit to download completion.
 
 :::warning
 
-You may be tempted to set `ignoreCrossSeeds: false` for download completion triggers
-but this offers no benefits. Partial matches will trigger a completion event in your
-client once it completes. This creates a _useless_ webhook search since this media
-was just processed by cross-seed.
+You may be tempted to set `ignoreCrossSeeds: false` for download completion
+triggers but this offers no benefits. Partial matches will trigger a completion
+event in your client once it completes. This creates a _useless_ webhook search
+since this media was just processed by cross-seed.
 
 :::
 
@@ -98,6 +98,7 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
 
 1. Create a script named `rtorrent-cross-seed.sh`, replacing `<BASE_URL>` and
    `<API_KEY>` with the correct values from above:
+
     ```shell
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2" -d "includeSingleEpisodes=true"
@@ -109,6 +110,7 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2"
     ```
+
 2. Make it executable:
     ```shell
     chmod +x rtorrent-cross-seed.sh
@@ -128,6 +130,7 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
 1. Go to Tools > Options > Downloads.
 2. Enable **Run external program on torrent completion**, replacing `<BASE_URL>`
    and `<API_KEY>` with the correct values from above:
+
     ```shell
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=%I" -d "includeSingleEpisodes=true"
     ```
@@ -145,6 +148,7 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
 
 1. Create `transmission-cross-seed.sh`, replacing `<BASE_URL>` and `<API_KEY>`
    with the correct values from above:
+
     ```shell
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$TR_TORRENT_HASH" -d "includeSingleEpisodes=true"
@@ -156,6 +160,7 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
     #!/bin/sh
     curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$TR_TORRENT_HASH"
     ```
+
 2. Make it executable:
     ```shell
     chmod +x transmission-cross-seed.sh
@@ -170,6 +175,7 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
 
 1. Create a file called `deluge-cross-seed.sh`, replacing `<BASE_URL>` and
    `<API_KEY>` with the correct values from above:
+
     ```shell
     #!/bin/bash
     infoHash=$1

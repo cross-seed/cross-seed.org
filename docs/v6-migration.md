@@ -205,8 +205,8 @@ meets your needs as it will reduce unecessary load on trackers.
 
 :::tip
 
-You can override this option for webhook searches which gives the best of
-both worlds.
+You can override this option for webhook searches which gives the best of both
+worlds.
 
 [**Read more**](./tutorials/triggering-searches.md#setting-up-your-torrent-client)
 
@@ -217,10 +217,10 @@ both worlds.
 ### Linking for torrent-based Matches
 
 Previously in v5, there were many scenarios where using `dataDirs` would offer
-benefits over `torrentDir`—namely, looser matching with the `flexible` match mode
-required data-based matching. In version 6 we have added support for linking
-torrent-based matches, so data-based matching is no longer necessary (read more
-below).
+benefits over `torrentDir`—namely, looser matching with the `flexible` match
+mode required data-based matching. In version 6 we have added support for
+linking torrent-based matches, so data-based matching is no longer necessary
+(read more below).
 
 #### Data-based Matching Use Cases
 
@@ -271,7 +271,8 @@ Previously, our recommendation if you wanted to strictly search only
 [`torrentDir`](./basics/options.md#torrentdir) at an empty folder. This is no
 longer necessary. You can now set [`torrentDir`](./basics/options.md#torrentdir)
 to `null` to achieve a data-only search, with the caveat that data-only
-configurations are likely [no longer necessary](#linking-for-torrent-based-matches).
+configurations are likely
+[no longer necessary](#linking-for-torrent-based-matches).
 
 ### Anime Support
 
@@ -360,7 +361,8 @@ not work. You do not need to do anything with torrents saved to
 
 :::danger
 
-**DO NOT USE [`outputDir`](./basics/options.md#outputdir) AS A WATCH FOLDER FOR YOUR TORRENT CLIENT!**
+**DO NOT USE [`outputDir`](./basics/options.md#outputdir) AS A WATCH FOLDER FOR
+YOUR TORRENT CLIENT!**
 
 :::
 
@@ -378,8 +380,8 @@ linking failure fallback.
 
 If you have configured
 [webhook on completion](./tutorials/triggering-searches.md), `cross-seed` will
-automatically trigger an early run of the inject job to retry any saved
-torrents faster.
+automatically trigger an early run of the inject job to retry any saved torrents
+faster.
 
 :::
 
@@ -391,10 +393,10 @@ information about behavior.
 ### RSS/Announce Improvements
 
 We have improved the performance and accuracy of matching new candidates against
-content you already have (now with [`dataDirs`](./basics/options.md#datadirs) support).
-RSS scans now support pagination in case `cross-seed` experiences downtime.
-The `/api/announce` endpoint has slightly modified its HTTP status codes to better
-[integrate with `autobrr`](./reference/api.md#post-apiannounce).
+content you already have (now with [`dataDirs`](./basics/options.md#datadirs)
+support). RSS scans now support pagination in case `cross-seed` experiences
+downtime. The `/api/announce` endpoint has slightly modified its HTTP status
+codes to better [integrate with `autobrr`](./reference/api.md#post-apiannounce).
 
 ### Sonarr TV Library Searching
 

@@ -35,10 +35,10 @@ container template to automatically restart the container. Add
 `cross-seed` only **needs** access to your config directory. It will also need
 access to your data directories if you wish to use [`linking`](./linking.md).
 
-| Config Type        | Name       | Container                            | Host                                | Access Mode |
-| ------------------ | ---------- | ------------------------------------ | ----------------------------------- | ----------- |
-| Path               | configPath | /config                              | /mnt/user/appdata/cross-seed        | Read/Write  |
-| Path (Recommended) | data       | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data        | Read/Write  |
+| Config Type        | Name       | Container                            | Host                         | Access Mode |
+| ------------------ | ---------- | ------------------------------------ | ---------------------------- | ----------- |
+| Path               | configPath | /config                              | /mnt/user/appdata/cross-seed | Read/Write  |
+| Path (Recommended) | data       | /torrent/client/path/to/torrent/data | /path/to/torrent/client/data | Read/Write  |
 
 ::::tip
 
@@ -52,10 +52,10 @@ You may need additional paths if you are using multiple drives without pooling.
 The following two mappings are optional and you are unlikely to need them. They
 are found under the `Show more settings` dropdown at the bottom of the template.
 
-| Config Type        | Name       | Container                            | Host                                | Access Mode |
-| ------------------ | ---------- | ------------------------------------ | ----------------------------------- | ----------- |
-| Path (Optional)    | torrentDir | /torrents                            | /path/to/torrent/client/session/dir | Read Only   |
-| Path (Optional)    | outputDir  | /cross-seeds                         | /path/to/output/dir                 | Read/Write  |
+| Config Type     | Name       | Container    | Host                                | Access Mode |
+| --------------- | ---------- | ------------ | ----------------------------------- | ----------- |
+| Path (Optional) | torrentDir | /torrents    | /path/to/torrent/client/session/dir | Read Only   |
+| Path (Optional) | outputDir  | /cross-seeds | /path/to/output/dir                 | Read/Write  |
 
 :::
 
@@ -109,4 +109,3 @@ permissions. Double-check that your appdata/config folder has the proper
 permissions for user:group `99:100`
 
 :::
-

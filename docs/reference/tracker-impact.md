@@ -37,46 +37,44 @@ tracker automation) performs:
 
 ### RSS requests
 
--   These are performed by [`rssCadence`](../basics/options.md#rsscadence) and
-    [`cross-seed rss`](./utils.md#cross-seed-rss).
--   `cross-seed` initiates an RSS request by searching with an empty query.
-    These are usually cached and updated regularly, so the tracker's server is
-    sending you a precomputed file.
--   These are cheap in both compute and network I/O.
+- These are performed by [`rssCadence`](../basics/options.md#rsscadence) and
+  [`cross-seed rss`](./utils.md#cross-seed-rss).
+- `cross-seed` initiates an RSS request by searching with an empty query. These
+  are usually cached and updated regularly, so the tracker's server is sending
+  you a precomputed file.
+- These are cheap in both compute and network I/O.
 
 ### Search requests
 
--   These are performed by [`searchCadence`](../basics/options.md#searchcadence),
-    [`cross-seed search`](./utils.md#cross-seed-search), and
-    [`webhook searches`](../tutorials/triggering-searches.md).
--   `cross-seed` searches for movie and TV show names individually.
--   The tracker's server has to scan through its catalog looking for releases
-    with similar names. Using [`id-searching`](../tutorials/id-searching.md)
-    not only yields far better results but is also a lighter load on the
-    tracker database.
--   These are expensive in compute, but cheap in network I/O.
+- These are performed by [`searchCadence`](../basics/options.md#searchcadence),
+  [`cross-seed search`](./utils.md#cross-seed-search), and
+  [`webhook searches`](../tutorials/triggering-searches.md).
+- `cross-seed` searches for movie and TV show names individually.
+- The tracker's server has to scan through its catalog looking for releases with
+  similar names. Using [`id-searching`](../tutorials/id-searching.md) not only
+  yields far better results but is also a lighter load on the tracker database.
+- These are expensive in compute, but cheap in network I/O.
 
 ### Announce requests
 
--   These are performed by [`Announce Matching`](../tutorials/announce.md).
--   A tool such as [`autobrr`](https://autobrr.com/) uses IRC to listen for
-    announces from the tracker and then sends them to `cross-seed`.
--   This has zero load on the tracker since they create the announce once and
-    publish it in the IRC channel for everyone to see, regardless of the number
-    of users. Only the snatches from announce create load on the tracker, if it
-    passes `cross-seed`'s pre-snatch checks.
--   These are completely free in network I/O and compute.
+- These are performed by [`Announce Matching`](../tutorials/announce.md).
+- A tool such as [`autobrr`](https://autobrr.com/) uses IRC to listen for
+  announces from the tracker and then sends them to `cross-seed`.
+- This has zero load on the tracker since they create the announce once and
+  publish it in the IRC channel for everyone to see, regardless of the number of
+  users. Only the snatches from announce create load on the tracker, if it
+  passes `cross-seed`'s pre-snatch checks.
+- These are completely free in network I/O and compute.
 
 ### Snatches
 
--   `cross-seed` will snatch any torrent that has the same release group,
-    source, resolution, and rough size as your owned torrent.
--   The tracker's server has to add your passkey to its stored copy of the
-    torrent file, then send it to you (and it's often quite big—a few
-    megabytes).
--   These are expensive in network I/O (and maybe memory), but cheap in compute.
--   Some trackers count snatches for their user rank systems, and snatching many
-    unnecessary torrents may be seen as abuse.
+- `cross-seed` will snatch any torrent that has the same release group, source,
+  resolution, and rough size as your owned torrent.
+- The tracker's server has to add your passkey to its stored copy of the torrent
+  file, then send it to you (and it's often quite big—a few megabytes).
+- These are expensive in network I/O (and maybe memory), but cheap in compute.
+- Some trackers count snatches for their user rank systems, and snatching many
+  unnecessary torrents may be seen as abuse.
 
 :::
 
@@ -117,15 +115,15 @@ searches. It will also outright reject searches that cannot be salvaged.
 
 For applicable options, `cross-seed` limits the values to prevent badly
 configured setups which harms both the user and the trackers. The default
-configuration also aims to minimize load by being selective about which
-torrents it searches, and by working through its backlog slowly.
+configuration also aims to minimize load by being selective about which torrents
+it searches, and by working through its backlog slowly.
 
 ### Delay between searches
 
 As of version 6, `cross-seed` enforces a minimum 30 second
 [`delay`](../basics/options.md#delay) between individual
-[search requests](#search-requests) during any bulk search. This only applies
-to bulk searches, not between each
+[search requests](#search-requests) during any bulk search. This only applies to
+bulk searches, not between each
 [webhook-triggered search](../tutorials/triggering-searches.md).
 
 ### Preventing unnecessary searches
@@ -181,19 +179,19 @@ By default, `cross-seed` only make 400 [search requests](#search-requests) from
 your backlog per day. This is measured by the number of unique search queries
 that `cross-seed` makes per run. We do this for a few reasons:
 
--   It eases you into the process of cross seeding. This limit is only
-    consequential when first starting out.
--   If you have a high `excludeRecentSearch` of one year for example, intending
-    to do a rolling daily search of the torrents that were last searched a year
-    ago, torrent searches will "bunch up" once a year (depending on when you
-    first set up `cross-seed`) to be searched back to back, potentially causing
-    rate limiting problems for your other automations due to the high search
-    volume (Sonarr, Radarr, etc.).
--   Long-lived bulk search runs encounter **drift** - while they run, your other
-    automations will be downloading new torrents, moving data files around, and
-    deleting torrents and/or data files, and the snapshot `cross-seed` took of
-    your torrents at the beginning of the search goes out of date. Keeping bulk
-    search runs short helps a lot.
+- It eases you into the process of cross seeding. This limit is only
+  consequential when first starting out.
+- If you have a high `excludeRecentSearch` of one year for example, intending to
+  do a rolling daily search of the torrents that were last searched a year ago,
+  torrent searches will "bunch up" once a year (depending on when you first set
+  up `cross-seed`) to be searched back to back, potentially causing rate
+  limiting problems for your other automations due to the high search volume
+  (Sonarr, Radarr, etc.).
+- Long-lived bulk search runs encounter **drift** - while they run, your other
+  automations will be downloading new torrents, moving data files around, and
+  deleting torrents and/or data files, and the snapshot `cross-seed` took of
+  your torrents at the beginning of the search goes out of date. Keeping bulk
+  search runs short helps a lot.
 
 You may have an **instant gratification mindset**, and we get it! Seeing your
 total number of cross-seeds and your final seed size on a tracker is exciting.

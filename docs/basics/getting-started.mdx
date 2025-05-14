@@ -39,8 +39,8 @@ automatically. Here's how to get everything up and running.
 
 :::tip
 
-You can still use `cross-seed` without linking, but the features will be limited.
-This will be covered in depth later in this guide.
+You can still use `cross-seed` without linking, but the features will be
+limited. This will be covered in depth later in this guide.
 
 :::
 
@@ -82,8 +82,8 @@ Here you go:
 
 <DockerCompose />
 
--   Run the container once which will generate the config file.
--   Then skip to [Step 3: Edit the Config File](#3-edit-the-config-file).
+- Run the container once which will generate the config file.
+- Then skip to [Step 3: Edit the Config File](#3-edit-the-config-file).
 
 Otherwise, continue with the following steps.
 
@@ -140,20 +140,23 @@ The configuration file uses JavaScript syntax, which means:
 ::::
 
 Once you've created your config file, you'll need to fill in the necessary
-fields to connect to your torrent client and indexer. You will likely need
-to configure the following:
+fields to connect to your torrent client and indexer. You will likely need to
+configure the following:
 
 ::::info Baseline Options
 
--   [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from Prowlarr or Jackett)
--   [**`torrentClients`**](../tutorials/injection.md): URLs of your torrent clients.
--   [**`linkDirs`**](../tutorials/linking.md): Directories where your data is linked to (optional but **_strongly_** recommended)
+- [**`torznab`**](./options.md#torznab): URLs of your Torznab indexers (from
+  Prowlarr or Jackett)
+- [**`torrentClients`**](../tutorials/injection.md): URLs of your torrent
+  clients.
+- [**`linkDirs`**](../tutorials/linking.md): Directories where your data is
+  linked to (optional but **_strongly_** recommended)
 
 :::tip
 
-These settings are just the recommended starting point for `cross-seed`.
-The [`Next Steps`](#next-steps) section below will guide you on how to
-configure `cross-seed` to find _all_ possible matches.
+These settings are just the recommended starting point for `cross-seed`. The
+[`Next Steps`](#next-steps) section below will guide you on how to configure
+`cross-seed` to find _all_ possible matches.
 
 :::
 
@@ -185,8 +188,8 @@ module.exports = {
 ::::warning
 
 The settings from the config template assumes you will be setting up linking.
-You will need to follow the [linking tutorial](../tutorials/linking.md) for
-the config validation to pass.
+You will need to follow the [linking tutorial](../tutorials/linking.md) for the
+config validation to pass.
 
 :::tip
 
@@ -255,17 +258,17 @@ Some common errors are also listed in the
 Once you have the daemon up and running, here are a few additional features to
 get the most out of `cross-seed`:
 
--   [**Managing the daemon**](./managing-the-daemon) with Docker or systemd for
-    long-term use.
--   [**Setting up partial matches**](../tutorials/partial-matching) to increase
-    your seed size even more (at the cost of downloading a few extra NFO files).
--   [**Setting up ID-based searching**](../tutorials/id-searching) for better
-    match rates by configuring Sonarr and Radarr
--   [**Listening for announces**](../tutorials/announce.md) to join new swarms
-    as an uploader.
--   [**Notifying cross-seed of completed downloads**](../tutorials/triggering-searches)
-    to search for new things more quickly.
--   [**Data based matching**](../tutorials/data-based-matching.md) to match
-    torrents based on their data.
--   [**Explore cross-seed's configuration options**](options) to customize
-    `cross-seed`'s behavior to your liking.
+- [**Managing the daemon**](./managing-the-daemon) with Docker or systemd for
+  long-term use.
+- [**Setting up partial matches**](../tutorials/partial-matching) to increase
+  your seed size even more (at the cost of downloading a few extra NFO files).
+- [**Setting up ID-based searching**](../tutorials/id-searching) for better
+  match rates by configuring Sonarr and Radarr
+- [**Listening for announces**](../tutorials/announce.md) to join new swarms as
+  an uploader.
+- [**Notifying cross-seed of completed downloads**](../tutorials/triggering-searches)
+  to search for new things more quickly.
+- [**Data based matching**](../tutorials/data-based-matching.md) to match
+  torrents based on their data.
+- [**Explore cross-seed's configuration options**](options) to customize
+  `cross-seed`'s behavior to your liking.

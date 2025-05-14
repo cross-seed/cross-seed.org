@@ -37,7 +37,7 @@ dataDirs: ["C:\\My Data\\Downloads\\Movies"],
 
 The config directory for `cross-seed` is located in the following locations:
 
-| Platform  | Path                                               | 
+| Platform  | Path                                               |
 | --------- | -------------------------------------------------- |
 | `Windows` | `C:\Users\<YourUsername>\AppData\Local\cross-seed` |
 | `MacOS`   | `/Users/<YourUsername>/.cross-seed`                |
@@ -46,8 +46,8 @@ The config directory for `cross-seed` is located in the following locations:
 
 :::tip
 
-If you would like to use a custom config directory, you can set the
-`CONFIG_DIR` environment variable.
+If you would like to use a custom config directory, you can set the `CONFIG_DIR`
+environment variable.
 
 :::
 
@@ -55,7 +55,8 @@ If you would like to use a custom config directory, you can set the
 
 The config file for `cross-seed` called `config.js` is located in the config
 directory described above. For instructions on creating and editing the config
-file, use the [getting started guide](./getting-started.mdx#2-create-a-config-file).
+file, use the
+[getting started guide](./getting-started.mdx#2-create-a-config-file).
 
 ### How do I find the logs for `cross-seed`?
 
@@ -111,6 +112,7 @@ cross-seeding music.
 
 To safely delete a torrent from your client, either an injected cross seed or
 the original torrent, you will need to meet these requirements:
+
 - You have [`linking`](../tutorials/linking.md) configured
 - You are using [`hardlinks or reflinks`](./options.md#linktype)
 - You are using [`flatLinking: false`](./options.md#flatlinking)
@@ -144,9 +146,10 @@ the rules of your trackers before you utilize any of their APIs directly.
 ### What's the best way to add new trackers?
 
 Just add the [`torznab`](./options.md#torznab) url to your config. `cross-seed`
-will automatically queue searches for your catalog on just the new indexer(s). If
-you want to trigger a search early, you can use the job API endpoint described
-in the [`FAQ entry`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
+will automatically queue searches for your catalog on just the new indexer(s).
+If you want to trigger a search early, you can use the job API endpoint
+described in the
+[`FAQ entry`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
 above.
 
 :::tip
@@ -155,21 +158,24 @@ above.
 
 :::
 
-For NPM or local installations, use the following command with the appropriate API key:
+For NPM or local installations, use the following command with the appropriate
+API key:
+
 ```shell
 curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY -d 'name=search'
 ```
 
 For Docker, use the following command with the appropriate API key:
+
 ```shell
 docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY -d 'name=search'
 ```
 
 :::danger
 
-Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search)
-while the [`daemon`](./managing-the-daemon.mdx) is running as it will cause
-errors in the sqlite database. Use the job API endpoint described here instead.
+Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
+the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
+the sqlite database. Use the job API endpoint described here instead.
 
 :::
 
@@ -189,7 +195,9 @@ If you are simply adding a new tracker, follow this
 
 :::
 
-For NPM or local installations, use the following command with the appropriate API key:
+For NPM or local installations, use the following command with the appropriate
+API key:
+
 ```shell
 curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY \
   -d 'name=search' \
@@ -198,6 +206,7 @@ curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY \
 ```
 
 For Docker, use the following command with the appropriate API key:
+
 ```shell
 docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY \
   -d 'name=search' \
@@ -207,9 +216,9 @@ docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR
 
 :::danger
 
-Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search)
-while the [`daemon`](./managing-the-daemon.mdx) is running as it will cause
-errors in the sqlite database. Use the job API endpoint described here instead.
+Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
+the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
+the sqlite database. Use the job API endpoint described here instead.
 
 :::
 
@@ -222,8 +231,8 @@ occurring.
 
 :::
 
-Typically this error occurs when [`outputDir`](./options.md#outputdir)
-is set to a directory which is already in use or is not empty. `outputDir` is a sort of
+Typically this error occurs when [`outputDir`](./options.md#outputdir) is set to
+a directory which is already in use or is not empty. `outputDir` is a sort of
 "working directory" for cross-seed, and needs to be set to a dedicated empty
 directory. `outputDir` is used as a temporary store for tracking things like
 failed injections (for retrying later) and .torrent files which are being
@@ -248,7 +257,7 @@ then delete the torrent from your client.
 
 :::tip
 
-Use [`useClientTorrents: true`](./options.md#useclienttorrents) instead of 
+Use [`useClientTorrents: true`](./options.md#useclienttorrents) instead of
 [`torrentDir`](./options.md#torrentdir).
 
 :::
@@ -420,9 +429,9 @@ visibility, this is preventable.
 ### My torrents are injected (qBittorrent) but show `missing files` error!
 
 If you see injected torrents show up with a `missing files` error, it is likely
-due to incorrect paths/mounts/volumes or permissions (`cross-seed` must have
-the same [user and group](./getting-started.mdx#with-docker) as your torrent clients). The logs from qBittorrent
-will usually state the specific reason.
+due to incorrect paths/mounts/volumes or permissions (`cross-seed` must have the
+same [user and group](./getting-started.mdx#with-docker) as your torrent
+clients). The logs from qBittorrent will usually state the specific reason.
 
 ### I'm getting errors in cross-seed on hostingby.design seedbox
 
@@ -474,8 +483,8 @@ VPN since localhost/LAN is not accessible from the VPN network by default.
 
 :::info
 
-There is no need to put `cross-seed` behind a VPN. All `cross-seed` requests are made
-to your torrent client or Jackett/Prowlarr. The only exception is when
+There is no need to put `cross-seed` behind a VPN. All `cross-seed` requests are
+made to your torrent client or Jackett/Prowlarr. The only exception is when
 announcements are made via the `/announce` API endpoint and are snatched during
 matching or for injection.
 
@@ -484,10 +493,11 @@ matching or for injection.
 ### Searching media libraries vs. torrent data (data-based searching)
 
 You can search both your media libraries (Arr/Plex) and actual torrent data
-(downloaded files) using [`dataDirs`](./options.md#datadirs). If you are
-using the media libraries with renamed files, you will need to use
-[`matchMode: "flexible"`](./options.md#matchmode) or [`matchMode: "partial"`](./options.md#matchmode)
-in your configuration file to allow leeway in the matching process.
+(downloaded files) using [`dataDirs`](./options.md#datadirs). If you are using
+the media libraries with renamed files, you will need to use
+[`matchMode: "flexible"`](./options.md#matchmode) or
+[`matchMode: "partial"`](./options.md#matchmode) in your configuration file to
+allow leeway in the matching process.
 
 ### Why do I see `it has a different file tree` in my logs?
 
@@ -519,8 +529,8 @@ that may not ultimately match your owned torrents. It preserves every torrent
 file that it snatches.
 
 We have spoken to admins at several trackers and have settled on a set of
-default settings that these trackers prefer. As of v6, this should no longer
-be a concern unless you are using commands such as
+default settings that these trackers prefer. As of v6, this should no longer be
+a concern unless you are using commands such as
 [`cross-seed clear-cache`](../reference/utils.md#cross-seed-clear-cache) or
 [`cross-seed clear-indexer-failures`](../reference/utils.md#cross-seed-clear-indexer-failures).
 If your tracker has reached out to you about your usage of cross-seed, consider
@@ -545,8 +555,8 @@ search results, and less unnecessary snatches.
 ### My partial matches from related searches are missing the same data, how can I only download it once?
 
 `cross-seed` is not aware of what matches will happen ahead of time, each is
-performed with zero knowledge of the previous or the following. As such, it
-is possible to have situations where a partial match when complete would become a
+performed with zero knowledge of the previous or the following. As such, it is
+possible to have situations where a partial match when complete would become a
 perfect match for another otherwise partial match. This is usually neglibile
 since the missing data is small, but in cases where it is significant such as
 with [seasonFromEpisodes](./options.md#seasonfromepisodes), you can use the
@@ -557,15 +567,15 @@ If you have not recently deleted files in your
 .torrent file present. If so, simply pick one torrent to complete the download
 on and that's it! `cross-seed` uses all possible matches to source files with
 the inject job or when using `cross-seed inject`. It will detect the newly
-downloaded files, link them to the other torrents, and trigger a
-recheck for those torrents.
+downloaded files, link them to the other torrents, and trigger a recheck for
+those torrents.
 
 :::tip
 
 If you have configured
-[webhook on completion](../tutorials/triggering-searches.md), once the
-selected torrent is completed, `cross-seed` will automatically trigger an early
-run of the inject job.
+[webhook on completion](../tutorials/triggering-searches.md), once the selected
+torrent is completed, `cross-seed` will automatically trigger an early run of
+the inject job.
 
 :::
 
@@ -579,8 +589,8 @@ completed torrent over the previous (or ensemble) that caused the partial match.
 
 :::danger
 
-Manual injections such as what is performed here requires the renaming
-of .torrent files for proper linking.
+Manual injections such as what is performed here requires the renaming of
+.torrent files for proper linking.
 
 [**Read More**](../tutorials/injection.md#manual-or-scheduled-injection)
 
@@ -588,8 +598,8 @@ of .torrent files for proper linking.
 
 ### How can I force inject a cross seed if its source is incomplete?
 
-In most scenarios, `cross-seed` will not inject matches if the source is incomplete.
-The only time `cross-seed` will, is from the `cross-seed inject`
+In most scenarios, `cross-seed` will not inject matches if the source is
+incomplete. The only time `cross-seed` will, is from the `cross-seed inject`
 command or from the inject job. If the age of the saved .torrent file
 (determined my last modified time) is older than a day, `cross-seed` will inject
 and link files even from an incomplete source if
@@ -597,21 +607,21 @@ and link files even from an incomplete source if
 enabled. These injections will always be treated as `partial` matches which are
 paused and rechecked.
 
-Once the torrent has finished rechecking, it's progress may be anywhere from
-0% to 100%. You will then have to choose between resuming the torrent or
-removing it from client with the corresponding .torrent file in
+Once the torrent has finished rechecking, it's progress may be anywhere from 0%
+to 100%. You will then have to choose between resuming the torrent or removing
+it from client with the corresponding .torrent file in
 [`outputDir`](./options.md#outputdir). Of course this is no longer "cross
-seeding", but it does allow the possibility of reviving the stalled torrent
-used as the source. In order to do this, you may need to follow the manual steps
+seeding", but it does allow the possibility of reviving the stalled torrent used
+as the source. In order to do this, you may need to follow the manual steps
 outlined in the
 [faq entry](#my-partial-matches-from-related-searches-are-missing-the-same-data-how-can-i-only-download-it-once)
 above on the stalled torrent.
 
 :::caution
 
-This is not true "cross seeding" and will likely incur significant
-download for the matched torrent. This should rarely be needed as `cross-seed`
-can match from multiple sources. `cross-seed` is simply offering you the ability
-to revive the stalled torrents inside your client.
+This is not true "cross seeding" and will likely incur significant download for
+the matched torrent. This should rarely be needed as `cross-seed` can match from
+multiple sources. `cross-seed` is simply offering you the ability to revive the
+stalled torrents inside your client.
 
 :::

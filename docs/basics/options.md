@@ -44,8 +44,8 @@ long-form option name as the `kebab-cased` variant. For example, the
 ## Options in the config file
 
 For instructions on creating and editing the config file, use the
-[getting started guide](./getting-started.mdx#2-create-a-config-file).
-DO NOT remove options from the config file, this will cause errors.
+[getting started guide](./getting-started.mdx#2-create-a-config-file). DO NOT
+remove options from the config file, this will cause errors.
 
 :::tip
 
@@ -301,13 +301,15 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 
 :::warning
 
-Deluge does not currently support useClientTorrents, use [`torrentDir`](#torrentdir) instead.
+Deluge does not currently support useClientTorrents, use
+[`torrentDir`](#torrentdir) instead.
 
 :::
 
-Query the torrent client APIs to find matches against its contents. This is a replacement
-for torrentDir and is generally recommended. This method supports qBittorrent's `SQLite`
-mode and all forms of content layouts/renames/modifications to the torrent in client.
+Query the torrent client APIs to find matches against its contents. This is a
+replacement for torrentDir and is generally recommended. This method supports
+qBittorrent's `SQLite` mode and all forms of content
+layouts/renames/modifications to the torrent in client.
 
 #### `useClientTorrents` Examples (CLI)
 
@@ -331,6 +333,7 @@ useClientTorrents: true,
 :::danger qBittorrent
 
 You **MUST** use [`useClientTorrents`](#useclienttorrents) instead if any apply:
+
 - You are using `SQLite` in `Preferences -> Advanced`
 - You have renamed torrents or its files in client
 - You have torrents added _WITHOUT_ `Content Layout` set to `Original`
@@ -401,7 +404,8 @@ torrentDir: "C:\\torrents",
 ::::tip
 
 Keep this set to `outputDir: null` for the best experience with `cross-seed`.
-This will map outputDir into your `cross-seed` [config directory](./faq-troubleshooting.md#what-is-configdb-torrent_cache-and-cross-seeds-in-the-config-directory).
+This will map outputDir into your `cross-seed`
+[config directory](./faq-troubleshooting.md#what-is-configdb-torrent_cache-and-cross-seeds-in-the-config-directory).
 
 :::danger
 
@@ -413,8 +417,8 @@ This will map outputDir into your `cross-seed` [config directory](./faq-troubles
 
 With [`action: "inject"`](#action), `cross-seed` will use this directory to
 retry injections only, it will be empty nearly all the time. With
-[`action: "save"`](#action), `cross-seed` will store the .torrent files it
-finds in this directory. Only change this from `null` if you are using
+[`action: "save"`](#action), `cross-seed` will store the .torrent files it finds
+in this directory. Only change this from `null` if you are using
 `action: "save"` and the path would be more convenient.
 
 #### `outputDir` Examples (CLI)
@@ -553,8 +557,8 @@ enabled, this will be applied as tag instead while keeping
 :::info
 
 This will prevent an Arr from seeing duplicate torrents in Activity, and
-attempting to import cross-seeds. You do not need to set this to `true`
-if you are using linking.
+attempting to import cross-seeds. You do not need to set this to `true` if you
+are using linking.
 
 Example: if you have a category called "Movies", this will automatically inject
 cross-seeds to "Movies.cross-seed"
@@ -628,9 +632,9 @@ linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
 
 ### `linkType`
 
-| Config File Name | CLI Short Form       | CLI Long Form        | Format   | Config Default | Fallback   |
-| ---------------- | -------------------- | -------------------- | -------- | -------------- | ---------- |
-| `linkType`       | `--link-type <type>` | `--link-type <type>` | `string` | `hardlink`     | `symlink`  |
+| Config File Name | CLI Short Form       | CLI Long Form        | Format   | Config Default | Fallback  |
+| ---------------- | -------------------- | -------------------- | -------- | -------------- | --------- |
+| `linkType`       | `--link-type <type>` | `--link-type <type>` | `string` | `hardlink`     | `symlink` |
 
 :::tip
 
@@ -638,9 +642,9 @@ linkDirs: ["C:\\cross-seed-links", "D:\\xseeds"],
 
 :::
 
-`cross-seed` will link (symlink/hardlink/reflink) in the method provided. If you use
-[Injection](../tutorials/injection) `cross-seed` will use the specified linkType
-to create a link to the original file in one of the linkDirs.
+`cross-seed` will link (symlink/hardlink/reflink) in the method provided. If you
+use [Injection](../tutorials/injection) `cross-seed` will use the specified
+linkType to create a link to the original file in one of the linkDirs.
 
 Valid methods for linkType are `symlink`, `hardlink`, and `reflink`.
 
@@ -660,9 +664,9 @@ linkType: "symlink",
 
 ### `matchMode`
 
-| Config File Name | CLI Short Form        | CLI Long Form         | Format                         | Config Default | Fallback   |
-| ---------------- | --------------------- | --------------------- | ------------------------------ | -------------- | ---------- |
-| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `strict`/`flexible`/`partial*` | `flexible`     | `strict`   |
+| Config File Name | CLI Short Form        | CLI Long Form         | Format                         | Config Default | Fallback |
+| ---------------- | --------------------- | --------------------- | ------------------------------ | -------------- | -------- |
+| `matchMode`      | `--match-mode <mode>` | `--match-mode <mode>` | `strict`/`flexible`/`partial*` | `flexible`     | `strict` |
 
 `cross-seed` uses three types of matching algorithms `strict`, `flexible`, and
 `partial`. All types are equally safe. `strict` is required if you cannot use
@@ -678,14 +682,14 @@ wasted snatches since it's the most complete.
 
 :::
 
-| option     | description                                                              |
-| ---------- | ------------------------------------------------------------------------ |
-| `strict`   | requires all file names to match exactly along with file sizes           |
-| `flexible` | allows for file renames and slight inconsistencies                       |
-| `partial`  | can be read about in detail [here](../tutorials/partial-matching.md)     |
+| option     | description                                                          |
+| ---------- | -------------------------------------------------------------------- |
+| `strict`   | requires all file names to match exactly along with file sizes       |
+| `flexible` | allows for file renames and slight inconsistencies                   |
+| `partial`  | can be read about in detail [here](../tutorials/partial-matching.md) |
 
-For media library searches `flexible` or `partial` is necessary due to the renaming
-of files.
+For media library searches `flexible` or `partial` is necessary due to the
+renaming of files.
 
 #### `matchMode` Examples (CLI)
 
@@ -740,10 +744,12 @@ skipRecheck: false,
 
 :::tip
 
-It's recommended to use `includeSingleEpisodes: false` in your config and override it for webhook
-commands triggered on [`download completion`](../tutorials/triggering-searches.md#setting-up-your-torrent-client).
-Combined with matching single episodes from announce, this should match all episodes without
-the downside of searching for [`trumped/dead torrents`](../v6-migration.md#updated-includesingleepisodes-behavior).
+It's recommended to use `includeSingleEpisodes: false` in your config and
+override it for webhook commands triggered on
+[`download completion`](../tutorials/triggering-searches.md#setting-up-your-torrent-client).
+Combined with matching single episodes from announce, this should match all
+episodes without the downside of searching for
+[`trumped/dead torrents`](../v6-migration.md#updated-includesingleepisodes-behavior).
 
 :::
 
@@ -847,8 +853,8 @@ autoResumeMaxDownload: 0,
 If set to `true` and the amount remaining is above
 [autoResumeMaxDownload](#autoresumemaxdownload), resume if accumulated size of
 the missing files is less than the accumulated size of the known-irrelevant
-files such as nfo, sample, txt, subs, proofs, and bonus/commentary files
-present in the torrent.
+files such as nfo, sample, txt, subs, proofs, and bonus/commentary files present
+in the torrent.
 
 #### `ignoreNonRelevantFilesToResume` Examples (CLI)
 
@@ -856,6 +862,7 @@ present in the torrent.
 cross-seed search --ignore-non-relevant-files-to-resume # will resume if the only files missing are known-irrelevant files
 cross-seed search --no-ignore-non-relevant-files-to-resume # will not resume if the only files missing are known-irrelevant files
 ```
+
 #### `ignoreNonRelevantFilesToResume` Examples (Config file)
 
 ```js
@@ -1059,8 +1066,8 @@ with the first valid [`linkDir`](#linkdirs). Custom routing is not supported at
 this time.
 
 Injections from [`dataDirs`](#datadirs) will be injected into the first valid
-client with the first valid [`linkDir`](#linkdirs). Custom routing is
-not supported at this time.
+client with the first valid [`linkDir`](#linkdirs). Custom routing is not
+supported at this time.
 
 :::
 
@@ -1076,7 +1083,9 @@ prefix to use a client to source cross seeds from but not inject into.
 [user and group](./getting-started.mdx#with-docker) permissions as the torrent
 clients to prevent errors.
 
-**You may need to use [`cross-seed clear-client-cache`](../reference/utils.md#cross-seed-clear-client-cache) if you change torrent clients or modify the torrents in client**
+**You may need to use
+[`cross-seed clear-client-cache`](../reference/utils.md#cross-seed-clear-client-cache)
+if you change torrent clients or modify the torrents in client**
 
 :::
 
@@ -1098,7 +1107,8 @@ The url of your **Transmission** RPC Interface prefixed with `transmission`:
 #### `rtorrent`
 
 The url of your **rTorrent** XMLRPC interface prefixed with `rtorrent`:
-`rtorrent:http://user:pass@localhost:8080/RPC2` or `rtorrent:http://user:pass@localhost:8080/rutorrent/plugins/httprpc/action.php`
+`rtorrent:http://user:pass@localhost:8080/RPC2` or
+`rtorrent:http://user:pass@localhost:8080/rutorrent/plugins/httprpc/action.php`
 
 :::info
 
@@ -1201,9 +1211,9 @@ notificationWebhookUrls: ["http://apprise:8000/notify", "http://apprise:8001/not
 | ---------------- | -------------- | --------------- | --------- | -------------- | --------- |
 | `host`           | N/A            | `--host <host>` | `host/ip` | `0.0.0.0`      | `0.0.0.0` |
 
-In [Daemon Mode](./managing-the-daemon), `cross-seed` runs a webserver
-listening for a few types of HTTP requests. You can use this option to change
-the host to bind to and listen on.
+In [Daemon Mode](./managing-the-daemon), `cross-seed` runs a webserver listening
+for a few types of HTTP requests. You can use this option to change the host to
+bind to and listen on.
 
 Unless you have an address on your interface you wish **NOT** to listen on, or
 have a special set of networking requirements, you likely **DO NOT** need to
@@ -1227,9 +1237,9 @@ host: "1.3.3.7",
 | ---------------- | -------------- | --------------- | -------- | -------------- | -------- |
 | `port`           | `-p <port>`    | `--port <port>` | `number` | `2468`         | `2468`   |
 
-In [Daemon Mode](./managing-the-daemon), `cross-seed` runs a webserver
-listening for a few types of HTTP requests. You can use this option to change
-the port it listens on.
+In [Daemon Mode](./managing-the-daemon), `cross-seed` runs a webserver listening
+for a few types of HTTP requests. You can use this option to change the port it
+listens on.
 
 #### `port` Examples (CLI)
 
@@ -1258,10 +1268,10 @@ port: 3000,
 
 :::
 
-In [Daemon Mode](./managing-the-daemon), with this option enabled,
-`cross-seed` will run periodic RSS searches on your configured indexers to check
-if any new uploads match torrents you already own. Setting this option to
-`null`, or not specifying it at all, will disable the feature.
+In [Daemon Mode](./managing-the-daemon), with this option enabled, `cross-seed`
+will run periodic RSS searches on your configured indexers to check if any new
+uploads match torrents you already own. Setting this option to `null`, or not
+specifying it at all, will disable the feature.
 
 :::tip
 
@@ -1313,10 +1323,9 @@ frequency in which torrents are searched, use the
 
 ::::
 
-In [Daemon Mode](./managing-the-daemon), with this option enabled,
-`cross-seed` will run periodic searches of your torrents (respecting your
-`includeEpisodes`, `includeNonVideos`, `excludeOlder`, and `excludeRecentSearch`
-settings).
+In [Daemon Mode](./managing-the-daemon), with this option enabled, `cross-seed`
+will run periodic searches of your torrents (respecting your `includeEpisodes`,
+`includeNonVideos`, `excludeOlder`, and `excludeRecentSearch` settings).
 
 #### `searchCadence` Examples (CLI)
 
@@ -1347,8 +1356,8 @@ searchCadence: "4 weeks",
 
 :::info
 
-`apiKey` is disabled in the config file by
-default, if you want to specify a key set it to a valid key (24 character min).
+`apiKey` is disabled in the config file by default, if you want to specify a key
+set it to a valid key (24 character min).
 
 :::
 

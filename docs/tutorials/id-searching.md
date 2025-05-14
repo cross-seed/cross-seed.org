@@ -13,8 +13,8 @@ searching.
 
 :::tip
 
-The series or movie _must be added in your instance of Sonarr or Radarr._
-You don't need to have actual media _imported_, but **the entry must exist**.
+The series or movie _must be added in your instance of Sonarr or Radarr._ You
+don't need to have actual media _imported_, but **the entry must exist**.
 _"Missing"_ or _"Unmonitored"_ status is valid.
 
 **We do not query any external metadata servers.**
@@ -23,18 +23,18 @@ _"Missing"_ or _"Unmonitored"_ status is valid.
 
 ### Benefits
 
--   **More Matches**: Searches by unique ID reduce mismatches due to naming
-    inconsistencies.
--   **Less Unnecessary Snatches**: Search results from indexers will have fewer
-    bogus (but sometimes similar-looking) results.
--   **Lighter on Trackers**: ID-based searches use cheaper and more accurate
-    search capabilities supported by many indexers, relying less on expensive
-    text-based search.
+- **More Matches**: Searches by unique ID reduce mismatches due to naming
+  inconsistencies.
+- **Less Unnecessary Snatches**: Search results from indexers will have fewer
+  bogus (but sometimes similar-looking) results.
+- **Lighter on Trackers**: ID-based searches use cheaper and more accurate
+  search capabilities supported by many indexers, relying less on expensive
+  text-based search.
 
 ### Requirements
 
--   Any Sonarr instances running at least v4, and/or
--   Any Radarr instances running at least v3
+- Any Sonarr instances running at least v4, and/or
+- Any Radarr instances running at least v3
 
 ### Configuration
 
@@ -69,9 +69,9 @@ Add these URLs to `config.js` under the `sonarr` and `radarr` keys:
 
 ```js
 module.exports = {
-    // ... other settings ...
-    sonarr: ["http://localhost:8989/?apikey=12345"],
-    radarr: ["http://localhost:7878/?apikey=67890"],
+	// ... other settings ...
+	sonarr: ["http://localhost:8989/?apikey=12345"],
+	radarr: ["http://localhost:7878/?apikey=67890"],
 };
 ```
 
@@ -79,14 +79,14 @@ For multiple instances (e.g., separate 4K libraries), list each URL in an array:
 
 ```js
 module.exports = {
-    // ... other settings ...
-    sonarr: [
-        "http://localhost:8989/?apikey=12345",
-        "http://localhost4k:8990/?apikey=54321",
-    ],
-    radarr: [
-        "http://localhost:7878/?apikey=67890",
-        "http://localhost4k:7879/?apikey=09876",
-    ],
+	// ... other settings ...
+	sonarr: [
+		"http://localhost:8989/?apikey=12345",
+		"http://localhost4k:8990/?apikey=54321",
+	],
+	radarr: [
+		"http://localhost:7878/?apikey=67890",
+		"http://localhost4k:7879/?apikey=09876",
+	],
 };
 ```

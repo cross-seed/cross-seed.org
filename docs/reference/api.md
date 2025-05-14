@@ -30,8 +30,8 @@ curl -XPOST localhost:2468/api/webhook -H "X-Api-Key: YOUR_API_KEY" --data-urlen
 
 ## GET `/api/ping`
 
-This endpoint will respond with `200 OK` if the daemon is running.
-There is no authorization on this endpoint.
+This endpoint will respond with `200 OK` if the daemon is running. There is no
+authorization on this endpoint.
 
 ### Request Payload
 
@@ -151,8 +151,8 @@ POST /api/announce
 This endpoint allows you to trigger an early run of a specified job. For the
 `search` and `rss` jobs, the next scheduled run for the job will be double its
 normal cadence if the request was successful. You will be able to perform
-another early run once the next scheduled run is closer than its regular
-cadence away.
+another early run once the next scheduled run is closer than its regular cadence
+away.
 
 If the job is not enabled due to your config (e.g
 [`searchCadence`](../basics/options#searchcadence) is set to `null`)
