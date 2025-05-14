@@ -4,6 +4,13 @@ title: FAQ & Troubleshooting
 sidebar_position: 4
 ---
 
+:::tip Looking for detailed troubleshooting?
+
+For a comprehensive, systematic approach to troubleshooting common issues, check
+out our [Comprehensive Troubleshooting Guide](../reference/troubleshooting.md).
+
+:::
+
 ### Updating to cross-seed v6
 
 If you are updating from version 5.x to version 6.x, you can visit the
