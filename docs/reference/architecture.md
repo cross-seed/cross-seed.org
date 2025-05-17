@@ -84,9 +84,13 @@ all of the torrents from your client and any data from all configured
   torrent files that are not present in your client.
 
 - Prefiltering de-duplicates files (data) and torrents with the same name and
-  will therefore not be searched multiple times. :::info .torrent files from
-  your client will take precedence over files in your
+  will therefore not be searched multiple times.
+
+  :::info
+
+  .torrent files from your client will take precedence over files in your
   [`dataDirs`](../basics/options.md#datadirs) with the same name and file sizes.
+
   :::
 
 ## Matching algorithm

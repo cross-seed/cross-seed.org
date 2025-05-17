@@ -23,9 +23,13 @@ So, what's the outcome?
   `matchMode: "strict"` (due to a "technicality") can and will match with
   partial matching, meaning the snatch doesn't go to waste.
 
-:::tip Combine partial matching with
+:::tip
+
+Combine partial matching with
 [`seasonFromEpisodes`](../basics/options.md#seasonfromepisodes) to cross seed
-season packs even if you're missing individual episodes! :::
+season packs even if you're missing individual episodes!
+
+:::
 
 ### How Partial Matching Works
 
@@ -43,9 +47,13 @@ If a partial match is found, cross-seed will:
    [`autoResumeMaxDownload`](../basics/options.md#autoresumemaxdownload) and
    [`ignoreNonRelevantFilesToResume`](../basics/options.md#ignorenonrelevantfilestoresume).
 
-:::info Note Nearly all partial matches will have the existing files at 99.9%
-instead of 100% after rechecking. This is expected and is due to how torrent
-piece hashing works. :::
+:::info Note
+
+Nearly all partial matches will have the existing files at 99.9% instead of
+100% after rechecking. This is expected and is due to how torrent piece hashing
+works.
+
+:::
 
 ### Configuration Steps for Partial Matching
 

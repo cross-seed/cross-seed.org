@@ -93,7 +93,9 @@ For torrent files being injected manually, if using
 tracker's `linkDir` folder) in order to inject within your existing folder
 structure.
 
-::::tip To achieve optimal injection behavior, adding the prefix
+::::tip
+
+To achieve optimal injection behavior, adding the prefix
 `[mediatype][tracker-name]` as you would normally see it in
 [`outputDir`](../basics/options.md#outputdir) when saving the torrent file is
 recommended (e.g. `[movie][ProwlarrName]abc.torrent`).
@@ -143,5 +145,9 @@ Without this flag, the .torrent files that are rejected for this reason will not
 be deleted. You will need to remove them manually or use the command with the
 flag to inject them.
 
-:::tip You can find more information about this feature in the
-[`v6 migration guide`](../v6-migration.md#failed-injection-saved-retry). :::
+:::tip
+
+You can find more information about this feature in the
+[`v6 migration guide`](../v6-migration.md#failed-injection-saved-retry).
+
+:::
