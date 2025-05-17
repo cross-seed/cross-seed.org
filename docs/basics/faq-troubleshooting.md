@@ -4,6 +4,13 @@ title: FAQ & Troubleshooting
 sidebar_position: 4
 ---
 
+:::tip Need More Help?
+
+For more detailed troubleshooting steps, see the
+[Troubleshooting Guide](../reference/troubleshooting.md).
+
+:::
+
 ### Updating to cross-seed v6
 
 If you are updating from version 5.x to version 6.x, you can visit the
