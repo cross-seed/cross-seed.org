@@ -145,6 +145,12 @@ the rules of your trackers before you utilize any of their APIs directly.
 
 ### What's the best way to add new trackers?
 
+:::tip
+
+[**What should I do after updating my config?**](#what-should-i-do-after-updating-my-config)
+
+:::
+
 Just add the [`torznab`](./options.md#torznab) url to your config. `cross-seed`
 will automatically queue searches for your catalog on just the new indexer(s).
 If you want to trigger a search early, you can use the job API endpoint
@@ -152,9 +158,11 @@ described in the
 [`FAQ entry`](#is-there-a-way-to-trigger-a-specific-cross-seed-job-ahead-of-schedule)
 above.
 
-:::tip
+:::danger
 
-[**What should I do after updating my config?**](#what-should-i-do-after-updating-my-config)
+Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
+the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
+the sqlite database. Use the job API endpoint described below instead.
 
 :::
 
@@ -171,15 +179,14 @@ For Docker, use the following command with the appropriate API key:
 docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR_API_KEY -d 'name=search'
 ```
 
-:::danger
+### How can I disable the time-based exclude options in a `cross-seed search`?
 
-Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
-the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
-the sqlite database. Use the job API endpoint described here instead.
+:::tip
+
+If you are simply adding a new tracker, follow this
+[FAQ entry](#whats-the-best-way-to-add-new-trackers) instead.
 
 :::
-
-### How can I disable the time-based exclude options in a `cross-seed search`?
 
 In order to disable and override the [`excludeOlder`](./options.md#excludeolder)
 and [`excludeRecentSearch`](./options.md#excluderecentsearch) options defined in
@@ -188,10 +195,11 @@ your `config.js`, you can use the job API endpoint described in the
 above. This will, for the duration of the search being run, disable the options
 completely - searching for absolutely everything available.
 
-:::tip
+:::danger
 
-If you are simply adding a new tracker, follow this
-[FAQ entry](#whats-the-best-way-to-add-new-trackers) instead.
+Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
+the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
+the sqlite database. Use the job API endpoint described below instead.
 
 :::
 
@@ -213,14 +221,6 @@ docker exec -it cross-seed curl -XPOST http://localhost:2468/api/job?apikey=YOUR
   -d 'ignoreExcludeRecentSearch=true' \
   -d 'ignoreExcludeOlder=true'
 ```
-
-:::danger
-
-Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
-the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
-the sqlite database. Use the job API endpoint described here instead.
-
-:::
 
 ### What causes `outputDir should only contain .torrent files` warning?
 
