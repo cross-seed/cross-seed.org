@@ -162,7 +162,7 @@ above.
 
 Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
 the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
-the sqlite database. Use the job API endpoint described below instead.
+the sqlite database. Use the job API endpoint as shown below instead.
 
 :::
 
@@ -199,7 +199,7 @@ completely - searching for absolutely everything available.
 
 Do not run [`cross-seed search`](../reference/utils.md#cross-seed-search) while
 the [`daemon`](./managing-the-daemon.mdx) is running as it will cause errors in
-the sqlite database. Use the job API endpoint described below instead.
+the sqlite database. Use the job API endpoint as shown below instead.
 
 :::
 
