@@ -856,6 +856,14 @@ the missing files is less than the accumulated size of the known-irrelevant
 files such as nfo, sample, txt, subs, proofs, and bonus/commentary files present
 in the torrent.
 
+:::note
+
+The goal is to resume all torrents that meet this criteria. However, for
+safety, a 200 MiB limit has been set on the remaining download size. We're open
+to increasing this limit if needed.
+
+:::
+
 #### `ignoreNonRelevantFilesToResume` Examples (CLI)
 
 ```shell
