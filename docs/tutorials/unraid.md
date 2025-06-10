@@ -28,7 +28,8 @@ utilize the `Extra Parameters` section of the `Advanced Settings` in the
 container template to automatically restart the container. Add
 `--restart unless-stopped` to `Extra Parameters`, as seen in the screenshot.
 
-![screenshot-cross-seed-extra-param-config](https://github.com/cross-seed/cross-seed.org/assets/9668239/7e365d63-1f0d-467c-b6df-e3a53183abac)
+![screenshot-cross-seed-extra-param-config](https://github.com/user-attachments/assets/79617a20-9ceb-4871-9655-1c1147f4167e)
+
 
 ### Volume Mappings
 
@@ -83,7 +84,7 @@ Below is a screenshot of what your Docker container configuration might look
 like. Now, you can try starting the Docker container and editing the resulting
 configuration file in the next step.
 
-![screenshot-cross-seed](https://github.com/cross-seed/cross-seed/assets/123845855/93a4749e-1506-40de-91f5-ac7d8ec93334)
+![screenshot-cross-seed](https://github.com/user-attachments/assets/d9a80b2b-c358-404f-98e8-d0ebd7080382)
 
 :::tip
 
