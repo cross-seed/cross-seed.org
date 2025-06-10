@@ -15,21 +15,6 @@ to the template configuration.
 
 ## Configuration
 
-### Auto-Restart
-
-`cross-seed`, by default, will stop the container if a configuration option is
-suspected to be bad or transient network failures occur during startup
-validation (such as failing to connect to the torrent client or Torznab
-endpoints).
-
-Once you have verified your settings and `config.js` are correct (after your
-initial configuration) and are only encountering errors intermittently, you can
-utilize the `Extra Parameters` section of the `Advanced Settings` in the
-container template to automatically restart the container. Add
-`--restart unless-stopped` to `Extra Parameters`, as seen in the screenshot.
-
-![screenshot-cross-seed-extra-param-config](https://github.com/cross-seed/cross-seed.org/assets/9668239/7e365d63-1f0d-467c-b6df-e3a53183abac)
-
 ### Volume Mappings
 
 `cross-seed` only **needs** access to your config directory. It will also need
@@ -94,6 +79,21 @@ example) to run the search command.
 :::
 
 You can start the container to create the config file path.
+
+### Auto-Restart
+
+`cross-seed`, by default, will stop the container if a configuration option is
+suspected to be bad or transient network failures occur during startup
+validation (such as failing to connect to the torrent client or Torznab
+endpoints).
+
+Once you have verified your settings and `config.js` are correct (after your
+initial configuration) and are only encountering errors intermittently, you can
+utilize the `Extra Parameters` section of the `Advanced Settings` in the
+container template to automatically restart the container. Add
+`--restart unless-stopped` to `Extra Parameters`, as seen in the screenshot.
+
+![screenshot-cross-seed-extra-param-config](https://github.com/cross-seed/cross-seed.org/assets/9668239/7e365d63-1f0d-467c-b6df-e3a53183abac)
 
 ## Final Steps
 
