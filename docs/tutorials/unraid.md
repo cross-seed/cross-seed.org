@@ -15,22 +15,6 @@ to the template configuration.
 
 ## Configuration
 
-### Auto-Restart
-
-`cross-seed`, by default, will stop the container if a configuration option is
-suspected to be bad or transient network failures occur during startup
-validation (such as failing to connect to the torrent client or Torznab
-endpoints).
-
-Once you have verified your settings and `config.js` are correct (after your
-initial configuration) and are only encountering errors intermittently, you can
-utilize the `Extra Parameters` section of the `Advanced Settings` in the
-container template to automatically restart the container. Add
-`--restart unless-stopped` to `Extra Parameters`, as seen in the screenshot.
-
-![screenshot-cross-seed-extra-param-config](https://github.com/user-attachments/assets/79617a20-9ceb-4871-9655-1c1147f4167e)
-
-
 ### Volume Mappings
 
 `cross-seed` only **needs** access to your config directory. It will also need
@@ -81,25 +65,40 @@ skip this step.
 #### Screenshot
 
 Below is a screenshot of what your Docker container configuration might look
-like. Now, you can try starting the Docker container and editing the resulting
+like. Now you can try starting the Docker container and editing your
 configuration file in the next step.
 
 ![screenshot-cross-seed](https://github.com/user-attachments/assets/d9a80b2b-c358-404f-98e8-d0ebd7080382)
 
 :::tip
 
-In the top right if you enable "Advanced View" it will reveal the
-`Post Argument` field, this can be changed from `daemon` to `search` (for
+Enabling "Advanced View" in the top right will reveal the
+`Post Argument` field. This can be changed from `daemon` to `search` (for
 example) to run the search command.
 
 :::
 
 You can start the container to create the config file path.
 
+### Auto-Restart
+
+By default, `cross-seed` will stop the container if a configuration option is
+suspected to be bad or transient network failures occur during startup
+validation (such as failing to connect to the torrent client or Torznab
+endpoints).
+
+Once you have verified your settings are correct, your `config.js` is valid
+(after your initial configuration), and you are only encountering errors intermittently,
+you can utilize the `Extra Parameters` section of the `Advanced Settings` in the
+container template to automatically restart the container. Add
+`--restart unless-stopped` to `Extra Parameters`, as seen in the screenshot.
+
+![screenshot-cross-seed-extra-param-config](https://github.com/user-attachments/assets/79617a20-9ceb-4871-9655-1c1147f4167e)
+
 ## Final Steps
 
 `cross-seed` runs in daemon mode by default on Unraid and will automatically
-generate the config file upon startup. To configure and finish setting up,
+generate the config file upon startup. To configure and complete setup,
 continue from step 3 in the
 [Getting Started](../basics/getting-started.mdx#3-edit-the-config-file) guide.
 
