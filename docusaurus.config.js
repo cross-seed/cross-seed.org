@@ -66,7 +66,13 @@ const config = {
 						label: "Documentation",
 					},
 					{
-						href: "https://discord.gg/jpbUFzS5Wb",
+						href: "https://old.reddit.com/r/crossseed/comments/1l8x300/welcome_to_crossseed/",
+						label: "Reddit",
+						className: "reddit-link",
+						position: "right",
+					},
+					{
+						href: "https://old.reddit.com/crossseed/",
 						label: "Discord",
 						className: "discord-link",
 						position: "right",
