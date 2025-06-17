@@ -72,7 +72,7 @@ const config = {
 						position: "right",
 					},
 					{
-						href: "https://old.reddit.com/crossseed/",
+						href: "https://discord.gg/jpbUFzS5Wb",
 						label: "Discord",
 						className: "discord-link",
 						position: "right",
