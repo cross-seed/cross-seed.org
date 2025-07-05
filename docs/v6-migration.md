@@ -167,7 +167,8 @@ name from `Settings -> Indexers` instead of the "indexer identifier".
   "name": {{ toRawJson .TorrentName }},
   "guid": "{{ .TorrentUrl }}",
   "link": "{{ .TorrentUrl }}",
-  "tracker": {{ toRawJson .IndexerName }}
+  "tracker": {{ toRawJson .IndexerName }},
+  "cookie": "{{ .Cookie }}"
 }
 ```
 
