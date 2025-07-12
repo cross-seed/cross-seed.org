@@ -301,8 +301,9 @@ radarr: ["http://radarr:7878/?apikey=12345","https://radarr4k:7879/?apikey=12345
 
 :::warning
 
-Deluge does not currently support useClientTorrents, use
-[`torrentDir`](#torrentdir) instead.
+Deluge with Docker can have a desyncing issue with the WebUI daemon after
+prolonged uptime with useClientTorrents, if you notice strange behavior you may
+need to use [`torrentDir`](#torrentdir) instead.
 
 :::
 
@@ -858,9 +859,9 @@ in the torrent.
 
 :::note
 
-The goal is to resume all torrents that meet this criteria. However, for
-safety, a 200 MiB limit has been set on the remaining download size. We're open
-to increasing this limit if needed.
+The goal is to resume all torrents that meet this criteria. However, for safety,
+a 200 MiB limit has been set on the remaining download size. We're open to
+increasing this limit if needed.
 
 :::
 
