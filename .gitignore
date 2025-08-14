@@ -27,3 +27,5 @@ yarn.lock
 # IDEA
 **/.idea/workspace.xml
 **/.idea/tasks.xml
+
+**/.claude/settings.local.json
