@@ -181,6 +181,25 @@ This means a reflink with a file starts out identical but can diverge over time
 if either is modified. This has the same restrictions as
 [`hardlink`](#hardlink).
 
+::::tip
+
+There are two types of reflinks available to use in `cross-seed`.
+`linkType: "reflink"` will error if the filesystem does not support it.
+`linkType: "reflinkOrCopy"` will fallback to copying if reflinks are not
+supported.
+
+:::danger
+
+Under no circumstances should you allow `cross-seed` to copy data.
+`linkType: "reflinkOrCopy"` should ONLY be used in extremely limited
+circumstances and will require _YOUR_ testing to confirm there are no copies.
+
+[**The original use case for `reflinkOrCopy` is detailed here**](https://github.com/cross-seed/cross-seed/issues/1031#issuecomment-3217435128)
+
+:::
+
+::::
+
 #### When to use reflinks
 
 - Your filesystem supports it
