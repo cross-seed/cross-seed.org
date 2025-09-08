@@ -649,6 +649,12 @@ linkType to create a link to the original file in one of the linkDirs.
 
 Valid methods for linkType are `symlink`, `hardlink`, and `reflink`.
 
+:::tip
+
+[**It's possible to use an alternative reflink method detailed here**](../tutorials/linking.md#reflink)
+
+:::
+
 #### `linkType` Examples (CLI)
 
 ```shell
