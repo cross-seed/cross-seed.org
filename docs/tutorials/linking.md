@@ -21,7 +21,7 @@ _hardlinks_, and _reflinks_. `cross-seed` uses **hardlinks** by default.
 
 ### Should I set up linking?
 
-You don't need to set up linking with the
+You don't need to set up linking with
 [`matchMode: "strict"`](../basics/options.md#matchmode). However, you will need
 to set up linking in order to enable the more complete matching strategies such
 as [partial matching](partial-matching.md) or if you want to use
