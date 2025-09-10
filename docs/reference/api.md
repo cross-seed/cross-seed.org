@@ -152,7 +152,8 @@ This endpoint allows you to trigger an early run of a specified job. For the
 `search` and `rss` jobs, the next scheduled run for the job will be double its
 normal cadence if the request was successful. You will be able to perform
 another early run once the next scheduled run is closer than its regular cadence
-away.
+away. When triggered for the `cleanup` job, it will always run all cleanup tasks
+to bypass their internal scheduling.
 
 If the job is not enabled due to your config (e.g
 [`searchCadence`](../basics/options#searchcadence) is set to `null`)
