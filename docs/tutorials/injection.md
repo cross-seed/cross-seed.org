@@ -88,7 +88,7 @@ any saved torrents faster.
 :::
 
 For torrent files being injected manually, if using
-[`flatLinking: false`](../basics/options.md#flatlinking) will require a
+[`flatLinking: false`](../basics/options.md#flatlinking) may require a
 `[mediatype][tracker]` prefix (where tracker is the name corresponding to that
 tracker's `linkDir` folder) in order to inject within your existing folder
 structure.
@@ -115,9 +115,11 @@ them.
 ::::
 
 This is the same format in which `cross-seed` normally saves .torrent files. If
-you do not specify both of these parameters, `cross-seed` will link the torrents
-into the `UnknownTracker` directory for you, and will require your intervention
-to sort them if you wish to do so.
+you do not specify both of these parameters, `cross-seed` will try to parse the
+tracker name using the announce urls in the .torrent file and compare it with
+`cross-seed's` snatch history. If it cannot determine a tracker, `cross-seed`
+will link the torrents into the `UnknownTracker` directory for you, and will
+require your intervention to sort them if you wish to do so.
 
 Using this command or utilizing the injection hourly cadence will perform
 minimal filtering on injection attempts. This means there is the possibility of
@@ -125,7 +127,7 @@ slightly increased chance of false-positives with .torrent files you add for
 injection. All torrent files saved by `cross-seed` for retrying have already
 been filtered for matching.
 
-If the .torrent files follow the naming format above, they will be elligible for
+If the .torrent files follow the naming format above, they will be eligible for
 cleanup if they fall into one of these categories:
 
 - The torrent is in client and complete (successful injection or already exists)

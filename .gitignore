@@ -23,6 +23,7 @@ yarn-error.log*
 .frontmatter/database/taxonomyDb.json
 frontmatter.json
 yarn.lock
+.vscode
 
 # IDEA
 **/.idea/workspace.xml
