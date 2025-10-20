@@ -78,7 +78,7 @@ export default function Home() {
 						A[Tracker A]
     					B[Tracker B]
     					C[Tracker C]
-						X[qBittorrent • cross-seed 🌱] 
+						X[Your torrent client • cross-seed 🌱] 
     					
     					X <== DL, Seeding ==> A
     					X == 🌱 ==> B
@@ -99,10 +99,10 @@ export default function Home() {
 								duplicate downloads.
 							</Feature>
 							<Feature title="Maximize seed size and seed time">
-								cross-seed runs in the background,
-								automatically cross-seeding new downloads to all
-								your trackers and watching for new uploads that
-								match what’s already in your library.
+								cross-seed runs in the background, automatically
+								cross-seeding new downloads to all your trackers
+								and watching for new uploads that match what’s
+								already in your library.
 							</Feature>
 							<Feature title="Stronger swarms, longer retention">
 								Increase availability on every tracker, helping
