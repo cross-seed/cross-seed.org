@@ -1,10 +1,21 @@
+import Mermaid from "@theme/Mermaid";
 import React from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
+
+function Feature({ title, children }) {
+	return (
+		<div className="col col--4">
+			<div className="text--center padding-horiz--md">
+				<h3>{title}</h3>
+				<p>{children}</p>
+			</div>
+		</div>
+	);
+}
 
 function HomepageHeader() {
 	const { siteConfig } = useDocusaurusContext();
@@ -26,16 +37,133 @@ function HomepageHeader() {
 	);
 }
 
+function IntroducingCrossSeed() {
+	return (
+		<section className={styles.whatIsCrossSeed}>
+			<div className="container margin-top--lg">
+				<p>
+					<strong>
+						Seeding is the backbone of private trackers.
+					</strong>{" "}
+					The more you seed, the more reliable and resilient the swarm
+					becomes — meaning faster downloads, longer torrent
+					lifespans, and healthier trackers overall.
+				</p>
+				<p>
+					<strong>
+						cross-seed makes it effortless to contribute more.
+					</strong>{" "}
+					It automatically finds torrents you already have and seeds
+					them on other trackers, boosting availability, seed size,
+					and ratio without manual searching or duplicate downloads.
+				</p>
+			</div>
+		</section>
+	);
+}
+
 export default function Home() {
 	const { siteConfig } = useDocusaurusContext();
 	return (
 		<Layout
-			title={`Welcome to ${siteConfig.title}`}
+			title={siteConfig.title}
 			description="An app to find cross-seeds automatically"
 		>
 			<HomepageHeader />
 			<main>
-				<HomepageFeatures />
+				<IntroducingCrossSeed />
+				<center>
+					<Mermaid
+						value={`flowchart BT
+						A[Tracker A]
+    					B[Tracker B]
+    					C[Tracker C]
+						X[qBittorrent • cross-seed 🌱] 
+    					
+    					X <== DL, Seeding ==> A
+    					X == 🌱 ==> B
+    					X == 🌱 ==> C
+					`}
+					/>
+				</center>
+				<section className={styles.features}>
+					<div className="container">
+						<div className="row">
+							<div className="col col--12">
+								<h2 className="text--center">Benefits</h2>
+								<hr />
+							</div>
+							<Feature title="Download once, seed everywhere">
+								Share your existing torrents across multiple
+								trackers automatically — no manual searching, no
+								duplicate downloads.
+							</Feature>
+							<Feature title="Maximize seed size and seed time">
+								cross-seed runs in the background,
+								automatically cross-seeding new downloads to all
+								your trackers and watching for new uploads that
+								match what’s already in your library.
+							</Feature>
+							<Feature title="Stronger swarms, longer retention">
+								Increase availability on every tracker, helping
+								torrents stay alive and healthy for the whole
+								community.
+							</Feature>
+							<div className="col col--12 margin-top--lg">
+								<h2 className="text--center">
+									Advanced Features
+								</h2>
+								<hr />
+							</div>
+							<Feature title="Seamless matching, even with renamed files">
+								Renamed or reorganized your media library?
+								cross-seed can still match and seed it.
+							</Feature>
+							<Feature title="Partial Matching">
+								Match and seed torrents with samples, NFOs, or
+								other extra files you don't have, as long as you
+								have the core data files.
+							</Feature>
+							<Feature title="Integrates with your setup">
+								Works with qBittorrent, rTorrent, Deluge, and
+								Transmission, plus Torznab providers like
+								Jackett and Prowlarr.
+							</Feature>
+							<Feature title="Supports IMDb/TMDB IDs">
+								Finds cross-seeds based on unique movie and TV
+								show IDs, so you get accurate matches even if
+								titles vary across trackers.
+							</Feature>
+							<Feature title="Rescue lost torrent libraries">
+								As long as you still have the data files in some
+								form, cross-seed can figure out the rest and
+								re-seed your library.
+							</Feature>
+							<Feature title="Win races before they start">
+								Enter swarms as a 100% seeder the moment they’re
+								announced by pairing cross-seed with{" "}
+								<a
+									href="https://autobrr.com"
+									rel="noopener noreferrer"
+									target="_blank"
+								>
+									autobrr
+								</a>{" "}
+								— before the uploader even finishes connecting.
+							</Feature>
+						</div>
+					</div>
+				</section>
+				<div className="container padding-vert--lg text--center">
+					<div className={styles.buttons}>
+						<Link
+							className="button button--primary button--lg"
+							to="/docs/basics/getting-started"
+						>
+							Get Started
+						</Link>
+					</div>
+				</div>
 			</main>
 		</Layout>
 	);

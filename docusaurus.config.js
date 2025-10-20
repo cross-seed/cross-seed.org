@@ -7,7 +7,7 @@ const darkCodeTheme = require("prism-react-renderer").themes.dracula;
 /** @type {import('@docusaurus/types').Config} */
 const config = {
 	title: "cross-seed",
-	tagline: "Fully-automatic cross-seeding",
+	tagline: "Download once, seed everywhere",
 	url: "https://cross-seed.org",
 	baseUrl: "/",
 	onBrokenLinks: "throw",
