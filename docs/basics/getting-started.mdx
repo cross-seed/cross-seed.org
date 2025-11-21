@@ -13,6 +13,10 @@ using that data to seed across other trackers. This results in minimal downloads
 and instant seeding, making it a great way to build ratio and contribute to the
 community.
 
+The most efficient way to use `cross-seed` is to run it in **daemon mode**,
+which continuously monitors for new downloads and cross-seeds them
+automatically. Here's how to get everything up and running.
+
 :::info
 
 This software is designed primarily for **private trackers**. If you plan on
@@ -22,33 +26,11 @@ for more details.
 
 :::
 
----
-
-## Setting Up the Daemon
-
-The most efficient way to use `cross-seed` is to run it in **daemon mode**,
-which continuously monitors for new downloads and cross-seeds them
-automatically. Here's how to get everything up and running.
-
-### 1. Install `cross-seed`
-
-::::caution
-
-**`cross-seed` AND YOUR TORRENT CLIENT MUST BE ON THE _SAME_ OS TO USE LINKING**
-**(DOCKER ALWAYS RUNS ON LINUX, EVEN ON WINDOWS)**
-
-:::tip
-
-You can still use `cross-seed` without linking, but the features will be
-limited. This will be covered in depth later in this guide.
-
-:::
-
-::::
+## 1. Installation
 
 You can install `cross-seed` using one of the following methods:
 
-#### With `npm` (recommended if you're not using Docker)
+### Native installation with `npm`
 
 You'll need **Node.js 20** or greater. You can check your versions with the
 following commands:
@@ -63,14 +45,18 @@ install `cross-seed` with the following command:
 
 ```shell
 npm install -g cross-seed
-cross-seed --version
 ```
 
-#### With Unraid
+### Windows installation
+
+**Use [npm installation](#native-installation-with-npm)** if your torrent client
+is running on Windows. Do not use Docker.
+
+### Unraid installation
 
 For Unraid installation, see the [Unraid guide](../tutorials/unraid.md).
 
-#### With Docker
+### Docker installation
 
 ```shell
 docker run ghcr.io/cross-seed/cross-seed:6 --version
@@ -89,7 +75,7 @@ Otherwise, continue with the following steps.
 
 :::
 
-### 2. Create a Config File
+## 2. Create a Config File
 
 You'll need to generate a configuration file before running the daemon. Both
 Docker and non-Docker users will use the same method for this.
@@ -100,7 +86,7 @@ Docker and non-Docker users will use the same method for this.
 
 :::
 
-#### For non-Docker users:
+### For non-Docker users:
 
 Run the following command to generate a config file:
 
@@ -108,7 +94,7 @@ Run the following command to generate a config file:
 cross-seed gen-config
 ```
 
-#### For Docker users:
+### For Docker users:
 
 Docker users can generate the config file by running the following command:
 
@@ -120,7 +106,7 @@ ghcr.io/cross-seed/cross-seed gen-config
 
 ---
 
-### 3. Edit the Config File
+## 3. Edit the Config File
 
 ::::note
 
@@ -183,7 +169,7 @@ module.exports = {
 
 ---
 
-### 4. Run the Daemon
+## 4. Run the Daemon
 
 ::::warning
 
