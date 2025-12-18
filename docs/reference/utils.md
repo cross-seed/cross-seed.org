@@ -40,7 +40,7 @@ cross-seed clear-cache
 
 :::info When to Use
 
-This is unncessary in most cases. Only use if:
+This is unnecessary in most cases. Only use if:
 
 1. You have changed torrent clients while keeping the exact same host and port.
 2. You have changed the OS that `cross-seed` runs on.
