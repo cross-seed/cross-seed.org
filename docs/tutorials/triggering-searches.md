@@ -101,16 +101,8 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
 
     ```shell
     #!/bin/sh
-    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2" -d "includeSingleEpisodes=true"
+    /usr/bin/curl -s <BASE_URL>:2468/api/webhook?apikey=<API_KEY> -d "infoHash=$1" -d "includeSingleEpisodes=true" > /dev/null 2>&1 &
     ```
-
-    OR
-
-    ```shell
-    #!/bin/sh
-    curl -XPOST <BASE_URL>/api/webhook?apikey=<API_KEY> -d "infoHash=$2"
-    ```
-
 2. Make it executable:
     ```shell
     chmod +x rtorrent-cross-seed.sh
@@ -118,7 +110,7 @@ Use the webhook command with `-d "includeSingleEpisodes=true"` while keeping
 3. Add to `.rtorrent.rc`:
     ```shell
     echo 'method.insert=d.data_path,simple,"if=(d.is_multi_file),(cat,(d.directory),/),(cat,(d.directory),/,(d.name))"' >> .rtorrent.rc
-    echo 'method.set_key=event.download.finished,cross_seed,"execute={'`pwd`/rtorrent-cross-seed.sh',$d.name=,$d.hash=,$d.data_path=}"' >> .rtorrent.rc
+    echo 'method.set_key=event.download.finished,cross_seed,"execute={'`pwd`/rtorrent-cross-seed.sh',$d.hash=}"' >> .rtorrent.rc
     ```
 4. Restart rTorrent.
 
