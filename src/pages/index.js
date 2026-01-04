@@ -43,19 +43,22 @@ function IntroducingCrossSeed() {
 			<div className="container margin-top--lg">
 				<p>
 					<strong>
-						Seeding is the backbone of private trackers.
+						New private trackers make ratio tough at first.
 					</strong>{" "}
-					The more you seed, the more reliable and resilient the swarm
-					becomes — meaning faster downloads, longer torrent
-					lifespans, and healthier trackers overall.
+					You can’t upload until you’ve downloaded, so progress starts
+					slow — unless you can seed what you already have. cross-seed
+					changes that by matching torrents you already have and
+					seeding them on other trackers, so you can contribute
+					immediately without extra downloads or manual searching.
 				</p>
 				<p>
 					<strong>
-						cross-seed makes it effortless to contribute more.
+						The result is stronger swarms and healthier trackers.
 					</strong>{" "}
-					It automatically finds torrents you already have and seeds
-					them on other trackers, boosting availability, seed size,
-					and ratio without manual searching or duplicate downloads.
+					More seeds means faster downloads, longer retention, and
+					better availability for trackers — while you build ratio
+					and seed size without babysitting your client or
+					duplicating data.
 				</p>
 			</div>
 		</section>
